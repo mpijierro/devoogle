@@ -15,9 +15,19 @@ class Media extends Migration
     {
         Schema::create('media', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
-            $table->string('slug');
+
+            $table->integer('category_id')->unsigned();
+            $table->foreign('category_id')->references('id')->on('category');
+
+            $table->integer('lang_id')->unsigned();
+            $table->foreign('lang_id')->references('id')->on('lang');
+
+            $table->string('title');
+            $table->text('description');
+            $table->string('url');
+
             $table->timestamps();
+
         });
     }
 
