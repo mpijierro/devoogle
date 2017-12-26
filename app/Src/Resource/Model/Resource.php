@@ -13,6 +13,7 @@ class Resource extends Model
     protected $table = 'resource';
 
     protected $fillable = [
+        'uuid',
         'user_id',
         'category_id',
         'lang_id',
@@ -36,6 +37,11 @@ class Resource extends Model
     {
         return $this->belongsTo(Category::class);
 
+    }
+
+    public function uuid()
+    {
+        return $this->attributes['uuid'];
     }
 
     public function lang()

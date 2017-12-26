@@ -27,3 +27,4 @@ Route::get('/resource', "Resource\HomeResourceController")->name('home-resource'
 Route::get('/create-resource', "Resource\CreateResourceController")->name('create-resource');
 Route::post('/create-resource', "Resource\StoreResourceController")->name('store-resource');
 
+Route::get('/edit-resource/{resource}', "Resource\EditResourceController")->name('edit-resource');

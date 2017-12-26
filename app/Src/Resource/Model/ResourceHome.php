@@ -17,6 +17,11 @@ class ResourceHome
         $this->resource = $resource;
     }
 
+    public function uuid()
+    {
+        return $this->resource->uuid();
+    }
+
 
     public function title()
     {

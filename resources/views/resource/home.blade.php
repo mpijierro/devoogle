@@ -95,7 +95,8 @@
                     <b>Enlace</b>: <a href="{!! $resource->url() !!}" target="_blank">{!! $resource->title() !!}</a><br>
                     <b>Descripción</b>: {!! $resource->description()  !!}<br>
                     <b>Categoría</b>: {!! $resource->categoryName()  !!}<br>
-                    <b>Idioma</b>: {!! $resource->langName()  !!}
+                    <b>Idioma</b>: {!! $resource->langName()  !!}<br>
+                    <b>Editar</b>: <a href="{!! route('edit-resource', $resource->uuid()) !!}">Editar</a>
                     <br>
                     <hr><br>
 

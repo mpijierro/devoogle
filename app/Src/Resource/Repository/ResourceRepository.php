@@ -3,7 +3,7 @@
 namespace Mulidev\Src\Resource\Repository;
 
 use Mulidev\Src\Resource\Model\Resource;
-use Mulidev\Src\Resource\Model\ResourceHome;
+use Webpatser\Uuid\Uuid;
 
 class ResourceRepository
 {
@@ -20,6 +20,7 @@ class ResourceRepository
     {
 
         return Resource::create([
+            'uuid' => Uuid::generate(),
             'title' => $map->getTitle(),
             'description' => $map->getDescription(),
             'url' => $map->getUrl(),
