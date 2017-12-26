@@ -1,10 +1,10 @@
 <?php
 
-namespace Mulidev\Src\Media\Command;
+namespace Mulidev\Src\Resource\Command;
 
-use Mulidev\Src\Media\Library\FormCreate;
+use Mulidev\Src\Resource\Library\FormCreate;
 
-class CreateMediaHandler
+class CreateResourceHandler
 {
 
     /**
@@ -26,7 +26,7 @@ class CreateMediaHandler
     }
 
 
-    public function __invoke(CreateMediaCommand $command)
+    public function __invoke(CreateResourceCommand $command)
     {
         ($this->formCreate)();
 

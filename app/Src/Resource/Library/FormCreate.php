@@ -1,6 +1,6 @@
 <?php
 
-namespace Mulidev\Src\Media\Library;
+namespace Mulidev\Src\Resource\Library;
 
 use Mulidev\Src\Category\Repository\CategoryRepository;
 use Mulidev\Src\Lang\Repository\LangRepository;

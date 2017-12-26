@@ -1,16 +1,16 @@
 <?php
 
-namespace Mulidev\Src\Media\Model;
+namespace Mulidev\Src\Resource\Model;
 
 use Illuminate\Database\Eloquent\Model;
 use Mulidev\Src\Category\Model\Category;
 use Mulidev\Src\Lang\Model\Lang;
 use Mulidev\Src\User\Model\User;
 
-class Media extends Model
+class Resource extends Model
 {
 
-    protected $table = 'media';
+    protected $table = 'resource';
 
     protected $fillable = [
         'user_id',
@@ -28,17 +28,32 @@ class Media extends Model
 
     public function user()
     {
-        $this->belongsTo(User::class);
+        return $this->belongsTo(User::class);
     }
 
     public function category()
     {
-        $this->belongsTo(Category::class);
+        return $this->belongsTo(Category::class);
 
     }
 
     public function lang()
     {
-        $this->belongsTo(Lang::class);
+        return $this->belongsTo(Lang::class);
+    }
+
+    public function title()
+    {
+        return $this->attributes['title'];
+    }
+
+    public function description()
+    {
+        return $this->attributes['description'];
+    }
+
+    public function url()
+    {
+        return $this->attributes['url'];
     }
 }

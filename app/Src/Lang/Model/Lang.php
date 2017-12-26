@@ -3,7 +3,7 @@
 namespace Mulidev\Src\Lang\Model;
 
 use Illuminate\Database\Eloquent\Model;
-use Mulidev\Src\Media\Model\Media;
+use Mulidev\Src\Resource\Model\Resource;
 
 class Lang extends Model
 {
@@ -15,9 +15,19 @@ class Lang extends Model
         'code'
     ];
 
-    public function media()
+    public function resource()
     {
-        return $this->hasMany(Media::class);
+        return $this->hasMany(Resource::class);
+    }
+
+    public function name()
+    {
+        return $this->attributes['name'];
+    }
+
+    public function code()
+    {
+        return $this->attributes['code'];
     }
 
 }

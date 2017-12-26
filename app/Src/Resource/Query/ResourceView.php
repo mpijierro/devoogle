@@ -1,9 +1,8 @@
 <?php
 
-namespace Mulidev\Src\Media\Command;
+namespace Mulidev\Src\Resource\Query;
 
-
-class StoreMediaCommand
+class ResourceView
 {
 
     /**
@@ -17,18 +16,18 @@ class StoreMediaCommand
     /**
      * @var string
      */
-    private $categoryId;
+    private $category;
     /**
      * @var string
      */
-    private $langId;
+    private $lang;
 
-    public function __construct(string $title, string $url, string $categoryId, string $langId)
+    public function __construct(string $title, string $url, string $category, string $lang)
     {
         $this->title = $title;
         $this->url = $url;
-        $this->categoryId = $categoryId;
-        $this->langId = $langId;
+        $this->category = $category;
+        $this->lang = $lang;
     }
 
     /**
@@ -50,17 +49,17 @@ class StoreMediaCommand
     /**
      * @return string
      */
-    public function getCategoryId()
+    public function getCategory()
     {
-        return $this->categoryId;
+        return $this->category;
     }
 
     /**
      * @return string
      */
-    public function getLangId()
+    public function getLang()
     {
-        return $this->langId;
+        return $this->lang;
     }
 
 

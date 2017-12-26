@@ -1,9 +1,9 @@
 <?php
 
-namespace Mulidev\Src\Media\Repository;
+namespace Mulidev\Src\Resource\Command;
 
 
-class CreateMediaDto
+class StoreResourceCommand
 {
 
     /**
@@ -22,13 +22,18 @@ class CreateMediaDto
      * @var string
      */
     private $langId;
+    /**
+     * @var string
+     */
+    private $description;
 
-    public function __construct(string $title, string $url, string $categoryId, string $langId)
+    public function __construct(string $title, string $description, string $url, string $categoryId, string $langId)
     {
         $this->title = $title;
         $this->url = $url;
         $this->categoryId = $categoryId;
         $this->langId = $langId;
+        $this->description = $description;
     }
 
     /**
@@ -38,6 +43,16 @@ class CreateMediaDto
     {
         return $this->title;
     }
+
+    /**
+     * @return string
+     */
+    public function getDescription(): string
+    {
+        return $this->description;
+    }
+
+
 
     /**
      * @return string

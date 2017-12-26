@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class Media extends Migration
+class Resource extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class Media extends Migration
      */
     public function up()
     {
-        Schema::create('media', function (Blueprint $table) {
+        Schema::create('resource', function (Blueprint $table) {
             $table->increments('id');
 
             $table->integer('category_id')->unsigned();
@@ -38,6 +38,6 @@ class Media extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('media');
+        Schema::dropIfExists('resource');
     }
 }

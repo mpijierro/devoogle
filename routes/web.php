@@ -20,7 +20,10 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 
-//Route::get('/create-media', \Mulidev\Http\Controllers\Media\CreateMediaController::class)->name('create-media');
-Route::get('/create-media', "Media\CreateMediaController")->name('create-media');
-Route::post('/create-media', "Media\StoreMediaController")->name('store-media');
+//Route::get('/create-resource', \Mulidev\Http\Controllers\Resource\CreateResourceController::class)->name('create-resource');
+
+Route::get('/resource', "Resource\HomeResourceController")->name('home-resource');
+
+Route::get('/create-resource', "Resource\CreateResourceController")->name('create-resource');
+Route::post('/create-resource', "Resource\StoreResourceController")->name('store-resource');
 

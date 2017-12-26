@@ -1,10 +1,10 @@
 <?php
 
-namespace Mulidev\Src\Media\Request;
+namespace Mulidev\Src\Resource\Request;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreMediaRequest extends FormRequest
+class StoreResourceRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.

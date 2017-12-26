@@ -8,7 +8,7 @@
                     <div class="panel-heading">Crear registro</div>
 
                     <div class="panel-body">
-                        <form class="form-horizontal" method="POST" action="{{ route('store-media') }}">
+                        <form class="form-horizontal" method="POST" action="{{ route('store-resource') }}">
 
                             {{ csrf_field() }}
 
@@ -16,11 +16,25 @@
                                 <label for="title" class="col-md-4 control-label">Título</label>
 
                                 <div class="col-md-6">
-                                    {{ Form::text('title', null, ['class' => 'form-control', 'id' =>'email', 'required', 'autofocus'] ) }}
+                                    {{ Form::text('title', null, ['class' => 'form-control', 'id' =>'title', 'required', 'autofocus'] ) }}
 
                                     @if ($errors->has('title'))
                                         <span class="help-block">
                                         <strong>{{ $errors->first('title') }}</strong>
+                                    </span>
+                                    @endif
+                                </div>
+                            </div>
+
+                            <div class="form-group{{ $errors->has('description') ? ' has-error' : '' }}">
+                                <label for="description" class="col-md-4 control-label">Descripción</label>
+
+                                <div class="col-md-6">
+                                    {{ Form::text('description', null, ['class' => 'form-control', 'id' =>'description', 'required', 'autofocus'] ) }}
+
+                                    @if ($errors->has('description'))
+                                        <span class="help-block">
+                                        <strong>{{ $errors->first('description') }}</strong>
                                     </span>
                                     @endif
                                 </div>
