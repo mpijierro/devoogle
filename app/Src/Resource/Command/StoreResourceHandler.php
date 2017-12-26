@@ -2,7 +2,7 @@
 
 namespace Mulidev\Src\Resource\Command;
 
-use Mulidev\Src\Resource\Repository\CreateResourceDto;
+use Mulidev\Src\Resource\Repository\ResourceMap;
 use Mulidev\Src\Resource\Repository\ResourceRepository;
 
 class StoreResourceHandler
@@ -22,16 +22,21 @@ class StoreResourceHandler
     public function __invoke(StoreResourceCommand $command)
     {
 
-        $dto = $this->createDto($command);
+        $dto = $this->createResourceMap($command);
 
         $this->resourceRepository->create($dto);
 
     }
 
 
-    private function createDto(StoreResourceCommand $command)
+    private function createResourceMap(StoreResourceCommand $command)
     {
-        return new CreateResourceDto($command->getTitle(), $command->getDescription(), $command->getUrl(), $command->getCategoryId(), $command->getLangId());
+        return new ResourceMap($command->getTitle(), $command->getDescription(), $command->getUrl(), $this->obtainSlug($command), $command->getCategoryId(), $command->getLangId());
+    }
+
+    private function obtainSlug(StoreResourceCommand $command)
+    {
+        return str_slug($command->getTitle()) . '-' . str_random(5);
     }
 
 }

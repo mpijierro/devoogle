@@ -19,6 +19,7 @@ class Resource extends Model
         'title',
         'description',
         'url',
+        'slug'
     ];
 
     protected $hidden = [

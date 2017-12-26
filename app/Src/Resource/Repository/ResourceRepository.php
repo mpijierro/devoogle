@@ -16,15 +16,16 @@ class ResourceRepository
     }
 
 
-    public function create(CreateResourceDto $dto)
+    public function create(ResourceMap $map)
     {
 
         return Resource::create([
-            'title' => $dto->getTitle(),
-            'description' => $dto->getDescription(),
-            'url' => $dto->getUrl(),
-            'category_id' => $dto->getCategoryId(),
-            'lang_id' => $dto->getLangId()
+            'title' => $map->getTitle(),
+            'description' => $map->getDescription(),
+            'url' => $map->getUrl(),
+            'slug' => $map->getSlug(),
+            'category_id' => $map->getCategoryId(),
+            'lang_id' => $map->getLangId()
         ]);
 
     }
