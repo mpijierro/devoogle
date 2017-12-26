@@ -8,64 +8,76 @@
                     <div class="panel-heading">Crear registro</div>
 
                     <div class="panel-body">
-                        <form class="form-horizontal" method="POST" action="{{ route('store-medi') }}">
+                        <form class="form-horizontal" method="POST" action="{{ route('store-media') }}">
 
                             {{ csrf_field() }}
 
-                            <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                                <label for="name" class="col-md-4 control-label">Name</label>
+                            <div class="form-group{{ $errors->has('title') ? ' has-error' : '' }}">
+                                <label for="title" class="col-md-4 control-label">Título</label>
 
                                 <div class="col-md-6">
-                                    <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" required autofocus>
+                                    {{ Form::text('title', null, ['class' => 'form-control', 'id' =>'email', 'required', 'autofocus'] ) }}
 
-                                    @if ($errors->has('name'))
+                                    @if ($errors->has('title'))
                                         <span class="help-block">
-                                        <strong>{{ $errors->first('name') }}</strong>
+                                        <strong>{{ $errors->first('title') }}</strong>
                                     </span>
                                     @endif
                                 </div>
                             </div>
 
-                            <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                                <label for="email" class="col-md-4 control-label">E-Mail Address</label>
+                            <div class="form-group{{ $errors->has('url') ? ' has-error' : '' }}">
+                                <label for="url" class="col-md-4 control-label">Url</label>
 
                                 <div class="col-md-6">
-                                    <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required>
+                                    {{ Form::url('url', null, ['class' => 'form-control', 'id' =>'url', 'required'] ) }}
 
-                                    @if ($errors->has('email'))
+                                    @if ($errors->has('url'))
                                         <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
+                                        <strong>{{ $errors->first('url') }}</strong>
                                     </span>
                                     @endif
                                 </div>
                             </div>
 
-                            <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                                <label for="password" class="col-md-4 control-label">Password</label>
+
+                            <div class="form-group{{ $errors->has('category') ? ' has-error' : '' }}">
+                                <label for="category" class="col-md-4 control-label">Categoría</label>
 
                                 <div class="col-md-6">
-                                    <input id="password" type="password" class="form-control" name="password" required>
 
-                                    @if ($errors->has('password'))
+                                    {{ \Form::select('category_id', $form->categoryOptions(), null,
+                                                            ['placeholder' => 'Selecciona categoría',
+                                                            'class' => 'form-control', 'required']) }}
+
+                                    @if ($errors->has('category'))
                                         <span class="help-block">
-                                        <strong>{{ $errors->first('password') }}</strong>
+                                        <strong>{{ $errors->first('category') }}</strong>
                                     </span>
                                     @endif
                                 </div>
                             </div>
 
-                            <div class="form-group">
-                                <label for="password-confirm" class="col-md-4 control-label">Confirm Password</label>
+                            <div class="form-group{{ $errors->has('lang') ? ' has-error' : '' }}">
+                                <label for="lang" class="col-md-4 control-label">Idioma</label>
 
                                 <div class="col-md-6">
-                                    <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
+
+                                    {{ \Form::select('lang_id', $form->langOptions(), null, ['placeholder' => 'Selecciona categoría', 'class' => 'form-control', 'required']) }}
+
+                                    @if ($errors->has('lang'))
+                                        <span class="help-block">
+                                        <strong>{{ $errors->first('lang') }}</strong>
+                                    </span>
+                                    @endif
                                 </div>
                             </div>
+
 
                             <div class="form-group">
                                 <div class="col-md-6 col-md-offset-4">
                                     <button type="submit" class="btn btn-primary">
-                                        Register
+                                        Crear
                                     </button>
                                 </div>
                             </div>

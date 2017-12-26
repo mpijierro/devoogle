@@ -17,7 +17,7 @@ class CreateMediaController
 
         $handler($command);
 
-        view()->share('formCreate', $handler->getFormCreate());
+        view()->share('form', $handler->getFormCreate());
 
         return view('media.form');
     }
