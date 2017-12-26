@@ -36,7 +36,11 @@ class Resource extends Model
     public function category()
     {
         return $this->belongsTo(Category::class);
+    }
 
+    public function id()
+    {
+        return $this->attributes['id'];
     }
 
     public function uuid()
@@ -62,5 +66,15 @@ class Resource extends Model
     public function url()
     {
         return $this->attributes['url'];
+    }
+
+    public function categoryId()
+    {
+        return $this->attributes['category_id'];
+    }
+
+    public function langId()
+    {
+        return $this->attributes['lang_id'];
     }
 }

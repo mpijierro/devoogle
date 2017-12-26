@@ -1,15 +1,12 @@
 <?php
 
-namespace Mulidev\Src\Resource\Command;
+namespace Mulidev\Src\Resource\Query;
 
 use Mulidev\Src\Resource\Library\FormCreate;
 
-class CreateResourceHandler
+class CreateResourceManager
 {
 
-    /**
-     * @var FormCreate
-     */
     private $formCreate;
 
     public function __construct(FormCreate $formCreate)
@@ -17,16 +14,12 @@ class CreateResourceHandler
         $this->formCreate = $formCreate;
     }
 
-    /**
-     * @return FormCreate
-     */
     public function getFormCreate()
     {
         return $this->formCreate;
     }
 
-
-    public function __invoke(CreateResourceCommand $command)
+    public function __invoke()
     {
         ($this->formCreate)();
 

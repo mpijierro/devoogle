@@ -2,22 +2,22 @@
 
 namespace Mulidev\Http\Controllers\Resource;
 
-use Mulidev\Src\Resource\Command\CreateResourceCommand;
-use Mulidev\Src\Resource\Command\CreateResourceHandler;
+use Mulidev\Src\Resource\Query\EditResourceManager;
+use Mulidev\Src\Resource\Query\EditResourceQuery;
 
 class EditResourceController
 {
 
 
-    public function __invoke()
+    public function __invoke($uuid)
     {
 
-        $command = new CreateResourceCommand();
-        $handler = app(CreateResourceHandler::class);
+        $query = new EditResourceQuery($uuid);
+        $handler = app(EditResourceManager::class);
+        $handler($query);
 
-        $handler($command);
-
-        view()->share('form', $handler->getFormCreate());
+        view()->share('form', $handler->getFormEdit());
+        view()->share('uuid', $uuid);
 
         return view('resource.form');
     }

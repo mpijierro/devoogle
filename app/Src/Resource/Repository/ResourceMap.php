@@ -5,7 +5,7 @@ namespace Mulidev\Src\Resource\Repository;
 
 class ResourceMap
 {
-
+    
     private $title;
 
     private $description;

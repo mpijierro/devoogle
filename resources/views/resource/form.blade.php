@@ -8,7 +8,10 @@
                     <div class="panel-heading">Crear registro</div>
 
                     <div class="panel-body">
-                        <form class="form-horizontal" method="POST" action="{{ route('store-resource') }}">
+
+
+                        {{ Form::model($form->model(), ['url' => route('update-resource', $uuid), 'method'=>'POST', 'class' => 'form-horizontal']) }}
+
 
                             {{ csrf_field() }}
 
@@ -95,7 +98,7 @@
                                     </button>
                                 </div>
                             </div>
-                        </form>
+                        {{ Form::close() }}
                     </div>
                 </div>
             </div>

@@ -10,9 +10,12 @@ class ResourceRepository
 
     public function resourceForHome()
     {
-
         return Resource::with(['category', 'lang'])->orderBy('created_at', 'desc')->get();
+    }
 
+    public function findByUuid(string $aUuid)
+    {
+        return Resource::where('uuid', $aUuid)->firstOrFail();
     }
 
 
@@ -25,6 +28,19 @@ class ResourceRepository
             'description' => $map->getDescription(),
             'url' => $map->getUrl(),
             'slug' => $map->getSlug(),
+            'category_id' => $map->getCategoryId(),
+            'lang_id' => $map->getLangId()
+        ]);
+
+    }
+
+    public function update(ResourceMap $map, $aResourceId)
+    {
+
+        return Resource::where('id', $aResourceId)->update([
+            'title' => $map->getTitle(),
+            'description' => $map->getDescription(),
+            'url' => $map->getUrl(),
             'category_id' => $map->getCategoryId(),
             'lang_id' => $map->getLangId()
         ]);
