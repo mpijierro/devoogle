@@ -22,10 +22,16 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 //Route::get('/create-resource', \Mulidev\Http\Controllers\Resource\CreateResourceController::class)->name('create-resource');
 
-Route::get('/resource', "Resource\HomeResourceController")->name('home-resource');
+Route::group(['prefix' => 'resource'], function () {
 
-Route::get('/create-resource', "Resource\CreateResourceController")->name('create-resource');
-Route::post('/create-resource', "Resource\StoreResourceController")->name('store-resource');
+    Route::get('/', "Resource\HomeResourceController")->name('home-resource');
 
-Route::get('/edit-resource/{resource}', "Resource\EditResourceController")->name('edit-resource');
-Route::post('/edit-resource/{resource}', "Resource\UpdateResourceController")->name('update-resource');
+    Route::get('/create', "Resource\CreateResourceController")->name('create-resource');
+    Route::post('/create', "Resource\StoreResourceController")->name('store-resource');
+
+    Route::get('/edit/{uuid}', "Resource\EditResourceController")->name('edit-resource');
+    Route::post('/edit/{uuid}', "Resource\UpdateResourceController")->name('update-resource');
+
+    Route::get('/delete/{uuid}', "Resource\DeleteResourceController")->name('delete-resource');
+
+});

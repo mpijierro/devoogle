@@ -10,7 +10,7 @@
                     <div class="panel-body">
 
 
-                        {{ Form::model($form->model(), ['url' => route('update-resource', $uuid), 'method'=>'POST', 'class' => 'form-horizontal']) }}
+                        {{ Form::model($form->model(), ['url' => $form->action(), 'method'=>'POST', 'class' => 'form-horizontal']) }}
 
 
                             {{ csrf_field() }}

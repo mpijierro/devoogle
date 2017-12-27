@@ -4,12 +4,13 @@ namespace Mulidev\Src\Resource\Library;
 
 use Mulidev\Src\Category\Repository\CategoryRepository;
 use Mulidev\Src\Lang\Repository\LangRepository;
+use Mulidev\Src\Mulidev\Library\Form;
 use Mulidev\Src\Resource\Repository\ResourceRepository;
 use Webpatser\Uuid\Uuid;
 
-class FormEdit
+class FormEdit extends Form
 {
-    private $model;
+
     private $resource;
     private $categoryOptions;
     private $langOptions;
@@ -39,7 +40,6 @@ class FormEdit
         $this->resourceRepository = $resourceRepository;
         $this->categoryRepository = $categoryRepository;
         $this->langRepository = $langRepository;
-        $this->model = [];
         $this->categoryOptions = [];
         $this->categoryIdSelected = 0;
         $this->langIdSelected = 0;
@@ -77,6 +77,8 @@ class FormEdit
 
         $this->configModel();
 
+        $this->configAction();
+
         $this->configOptionsSelected();
 
         $this->configDropdownOptions();
@@ -89,7 +91,7 @@ class FormEdit
     }
 
 
-    private function configModel()
+    protected function configModel()
     {
 
         $this->model = $this->resource->toArray();
@@ -115,10 +117,14 @@ class FormEdit
         $this->categoryOptions = $this->categoryRepository->allOrderByName()->pluck('name', 'id');
     }
 
-
     private function configLangOptions()
     {
         $this->langOptions = $this->langRepository->allOrderByName()->pluck('name', 'id');
+    }
+
+    protected function configAction()
+    {
+        $this->action = route('update-resource', $this->resource->uuid());
     }
 
 }

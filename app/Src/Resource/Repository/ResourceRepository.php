@@ -47,4 +47,13 @@ class ResourceRepository
 
     }
 
+    public function delete(string $aUuid)
+    {
+
+        $resource = Resource::where('uuid', $aUuid)->firstOrFail();
+
+        $resource->delete();
+
+    }
+
 }

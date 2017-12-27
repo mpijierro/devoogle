@@ -80,11 +80,7 @@
     <div class="content">
 
         <div class="title m-b-md">
-            Laravel
-        </div>
-
-        <div class="title m-b-md">
-            <a href="{!! route('create-resource') !!}">Nuevo recurso</a>
+            Mulidev
         </div>
 
 
@@ -96,25 +92,18 @@
                     <b>Descripción</b>: {!! $resource->description()  !!}<br>
                     <b>Categoría</b>: {!! $resource->categoryName()  !!}<br>
                     <b>Idioma</b>: {!! $resource->langName()  !!}<br>
-                    <b>Editar</b>: <a href="{!! route('edit-resource', $resource->uuid()) !!}">Editar</a>
+                    <a href="{!! route('edit-resource', $resource->uuid()) !!}">Editar</a><br>
+                    <a href="{!! route('delete-resource', $resource->uuid()) !!}">Borrar</a>
                     <br>
-                    <hr><br>
+                    <hr>
+                    <br>
 
                 @endforeach
-
-
             </div>
-
-
         </div>
 
-
         <div class="links">
-            <a href="https://laravel.com/docs">Documentation</a>
-            <a href="https://laracasts.com">Laracasts</a>
-            <a href="https://laravel-news.com">News</a>
-            <a href="https://forge.laravel.com">Forge</a>
-            <a href="https://github.com/laravel/laravel">GitHub</a>
+            <a href="{!! route('create-resource') !!}">Nuevo</a>
         </div>
     </div>
 </div>

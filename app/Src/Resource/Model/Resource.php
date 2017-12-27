@@ -3,12 +3,15 @@
 namespace Mulidev\Src\Resource\Model;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Mulidev\Src\Category\Model\Category;
 use Mulidev\Src\Lang\Model\Lang;
 use Mulidev\Src\User\Model\User;
 
 class Resource extends Model
 {
+
+    use SoftDeletes;
 
     protected $table = 'resource';
 
@@ -20,7 +23,8 @@ class Resource extends Model
         'title',
         'description',
         'url',
-        'slug'
+        'slug',
+        'reviewed',
     ];
 
     protected $hidden = [

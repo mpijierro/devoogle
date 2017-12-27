@@ -4,8 +4,9 @@ namespace Mulidev\Src\Resource\Library;
 
 use Mulidev\Src\Category\Repository\CategoryRepository;
 use Mulidev\Src\Lang\Repository\LangRepository;
+use Mulidev\Src\Mulidev\Library\Form;
 
-class FormCreate
+class FormCreate extends Form
 {
 
     private $categoryOptions;
@@ -46,27 +47,34 @@ class FormCreate
     public function __invoke()
     {
 
+        $this->configModel();
+
+        $this->configAction();
+
         $this->configCategoryOptions();
 
         $this->configLangOptions();
-
 
     }
 
     private function configCategoryOptions()
     {
-
         $this->categoryOptions = $this->categoryRepository->allOrderByName()->pluck('name', 'id');
-
     }
-
 
     private function configLangOptions()
     {
-
         $this->langOptions = $this->langRepository->allOrderByName()->pluck('name', 'id');
-
     }
 
+    protected function configModel()
+    {
+        $this->model = [];
+    }
+
+    protected function configAction()
+    {
+        $this->action = route('store-resource');
+    }
 
 }
