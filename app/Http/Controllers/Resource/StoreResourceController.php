@@ -18,7 +18,8 @@ class StoreResourceController
 
             DB::beginTransaction();
 
-            $command = new StoreResourceCommand($request->get('title'), $request->get('description'), $request->get('url'), $request->get('category_id'), $request->get('lang_id'));
+            $command = new StoreResourceCommand($request->get('title'), $request->get('description'), $request->get('url'), $request->get('category_id'), $request->get('lang_id'),
+                $request->get('tag'));
             $handler = app(StoreResourceHandler::class);
             $handler($command);
 

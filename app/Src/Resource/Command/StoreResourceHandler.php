@@ -2,6 +2,7 @@
 
 namespace Mulidev\Src\Resource\Command;
 
+use Mulidev\Src\Resource\Model\Resource;
 use Mulidev\Src\Resource\Repository\ResourceMap;
 use Mulidev\Src\Resource\Repository\ResourceRepository;
 
@@ -13,6 +14,12 @@ class StoreResourceHandler
      */
     private $resourceRepository;
 
+    private $command;
+
+    private $resourceMap;
+
+    private $resource;
+
     public function __construct(ResourceRepository $resourceRepository)
     {
         $this->resourceRepository = $resourceRepository;
@@ -22,21 +29,48 @@ class StoreResourceHandler
     public function __invoke(StoreResourceCommand $command)
     {
 
-        $dto = $this->createResourceMap($command);
+        $this->initializeCommand($command);
 
-        $this->resourceRepository->create($dto);
+        $this->createResourceMap();
+
+        $this->createResource();
+
+        $this->attachTags();
 
     }
 
-
-    private function createResourceMap(StoreResourceCommand $command)
+    private function initializeCommand(StoreResourceCommand $command)
     {
-        return new ResourceMap($command->getTitle(), $command->getDescription(), $command->getUrl(), $this->obtainSlug($command), $command->getCategoryId(), $command->getLangId());
+        $this->command = $command;
     }
 
-    private function obtainSlug(StoreResourceCommand $command)
+
+    private function createResourceMap()
     {
-        return str_slug($command->getTitle()) . '-' . str_random(5);
+        $this->resourceMap = new ResourceMap($this->command->getTitle(), $this->command->getDescription(), $this->command->getUrl(), $this->obtainSlug($this->command), $this->command->getCategoryId(),
+            $this->command->getLangId());
+    }
+
+    private function createResource()
+    {
+        $this->resource = $this->resourceRepository->create($this->resourceMap);
+    }
+
+    private function attachTags()
+    {
+
+        $tags = explode(',', $this->command->getTag());
+
+        foreach ($tags as $tag) {
+
+            $this->resource->attachTag(trim($tag));
+        }
+
+    }
+
+    private function obtainSlug()
+    {
+        return str_slug($this->command->getTitle()) . '-' . str_random(Resource::LONG_RANDOM_STRING_IN_SLUG);
     }
 
 }

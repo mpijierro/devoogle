@@ -2,7 +2,6 @@
 
 namespace Mulidev\Src\Resource\Repository;
 
-
 class ResourceMap
 {
     

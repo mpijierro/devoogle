@@ -26,14 +26,19 @@ class StoreResourceCommand
      * @var string
      */
     private $description;
+    /**
+     * @var string
+     */
+    private $tag;
 
-    public function __construct(string $title, string $description, string $url, string $categoryId, string $langId)
+    public function __construct(string $title, string $description, string $url, string $categoryId, string $langId, string $tag)
     {
         $this->title = $title;
         $this->url = $url;
         $this->categoryId = $categoryId;
         $this->langId = $langId;
         $this->description = $description;
+        $this->tag = $tag;
     }
 
     /**
@@ -77,6 +82,16 @@ class StoreResourceCommand
     {
         return $this->langId;
     }
+
+    /**
+     * @return string
+     */
+    public function getTag(): string
+    {
+        return $this->tag;
+    }
+
+
 
 
 }

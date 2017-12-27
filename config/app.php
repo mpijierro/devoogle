@@ -78,7 +78,7 @@ return [
     |
     */
 
-    'locale' => 'en',
+    'locale' => 'es',
 
     /*
     |--------------------------------------------------------------------------
@@ -176,6 +176,7 @@ return [
         // Mulidev\Providers\BroadcastServiceProvider::class,
         Mulidev\Providers\EventServiceProvider::class,
         Mulidev\Providers\RouteServiceProvider::class,
+        \Mulidev\Src\Resource\ResourceServiceProvider::class,
 
     ],
 

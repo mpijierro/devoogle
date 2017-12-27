@@ -7,11 +7,14 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Mulidev\Src\Category\Model\Category;
 use Mulidev\Src\Lang\Model\Lang;
 use Mulidev\Src\User\Model\User;
+use Spatie\Tags\HasTags;
 
 class Resource extends Model
 {
 
-    use SoftDeletes;
+    use SoftDeletes, HasTags;
+
+    const LONG_RANDOM_STRING_IN_SLUG = 5;
 
     protected $table = 'resource';
 
