@@ -3,7 +3,8 @@
 namespace Mulidev\Src\Resource\Repository;
 
 use Mulidev\Src\Resource\Model\Resource;
-use Webpatser\Uuid\Uuid;
+use Symfony\Component\Routing\Exception\InvalidParameterException;
+
 
 class ResourceRepository
 {
@@ -19,31 +20,25 @@ class ResourceRepository
     }
 
 
-    public function create(ResourceMap $map)
+    public function create(Resource $resource)
     {
 
-        return Resource::create([
-            'uuid' => Uuid::generate(),
-            'title' => $map->getTitle(),
-            'description' => $map->getDescription(),
-            'url' => $map->getUrl(),
-            'slug' => $map->getSlug(),
-            'category_id' => $map->getCategoryId(),
-            'lang_id' => $map->getLangId()
-        ]);
+        if ($resource->isCorrectToSave()) {
+            return $resource->save();
+        }
+
+        throw new InvalidParameterException('Resource incorrect');
 
     }
 
-    public function update(ResourceMap $map, $aResourceId)
+    public function update(Resource $resource)
     {
 
-        return Resource::where('id', $aResourceId)->update([
-            'title' => $map->getTitle(),
-            'description' => $map->getDescription(),
-            'url' => $map->getUrl(),
-            'category_id' => $map->getCategoryId(),
-            'lang_id' => $map->getLangId()
-        ]);
+        if ($resource->isCorrectToSave()) {
+            return $resource->save();
+        }
+
+        return $resource->save();
 
     }
 

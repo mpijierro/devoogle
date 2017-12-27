@@ -84,4 +84,9 @@ class Resource extends Model
     {
         return $this->attributes['lang_id'];
     }
+
+    public function isCorrectToSave()
+    {
+        return ( ! empty($this->title()) AND ! empty($this->url()));
+    }
 }

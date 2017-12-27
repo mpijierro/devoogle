@@ -2,6 +2,7 @@
 
 namespace Mulidev\Http\Controllers\Resource;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Mulidev\Src\Resource\Command\StoreResourceCommand;
 use Mulidev\Src\Resource\Command\StoreResourceHandler;
@@ -18,7 +19,10 @@ class StoreResourceController
 
             DB::beginTransaction();
 
-            $command = new StoreResourceCommand($request->get('title'), $request->get('description'), $request->get('url'), $request->get('category_id'), $request->get('lang_id'),
+            $user = Auth::user();
+
+
+            $command = new StoreResourceCommand($user->id, $request->get('title'), $request->get('description'), $request->get('url'), $request->get('category_id'), $request->get('lang_id'),
                 $request->get('tag'));
             $handler = app(StoreResourceHandler::class);
             $handler($command);

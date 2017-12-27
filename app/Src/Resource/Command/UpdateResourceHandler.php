@@ -2,8 +2,6 @@
 
 namespace Mulidev\Src\Resource\Command;
 
-use Mulidev\Src\Resource\Model\Resource;
-use Mulidev\Src\Resource\Repository\ResourceMap;
 use Mulidev\Src\Resource\Repository\ResourceRepository;
 
 class UpdateResourceHandler
@@ -26,36 +24,42 @@ class UpdateResourceHandler
     public function __invoke(UpdateResourceCommand $command)
     {
 
-        $this->initializaCommand($command);
+        $this->initializeCommand($command);
 
-        $this->findResource($command->getUuid());
+        $this->find($command->getUuid());
 
-        $this->createResourceMap();
+        $this->fill();
 
-        $this->updateResource();
+        $this->update();
 
         $this->syncTags();
 
     }
 
-    private function initializaCommand(UpdateResourceCommand $command)
+    private function initializeCommand(UpdateResourceCommand $command)
     {
         $this->command = $command;
     }
 
-    private function findResource(string $aUuid)
+    private function find(string $aUuid)
     {
         $this->resource = $this->resourceRepository->findByUuid($aUuid);
     }
 
-    private function createResourceMap()
+    private function fill()
     {
-        $this->map = new ResourceMap($this->command->getTitle(), $this->command->getDescription(), $this->command->getUrl(), '', $this->command->getCategoryId(), $this->command->getLangId());
+
+        $this->resource->title = $this->command->getTitle();
+        $this->resource->description = $this->command->getDescription();
+        $this->resource->url = $this->command->getUrl();
+        $this->resource->category_id = $this->command->getCategoryId();
+        $this->resource->lang_id = $this->command->getLangId();
+
     }
 
-    private function updateResource()
+    private function update()
     {
-        $this->resourceRepository->update($this->map, $this->resource->id());
+        $this->resourceRepository->update($this->resource);
     }
 
 

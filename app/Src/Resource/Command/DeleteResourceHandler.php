@@ -2,7 +2,6 @@
 
 namespace Mulidev\Src\Resource\Command;
 
-use Mulidev\Src\Resource\Repository\ResourceMap;
 use Mulidev\Src\Resource\Repository\ResourceRepository;
 
 class DeleteResourceHandler

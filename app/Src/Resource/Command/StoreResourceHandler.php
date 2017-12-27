@@ -3,8 +3,8 @@
 namespace Mulidev\Src\Resource\Command;
 
 use Mulidev\Src\Resource\Model\Resource;
-use Mulidev\Src\Resource\Repository\ResourceMap;
 use Mulidev\Src\Resource\Repository\ResourceRepository;
+use Webpatser\Uuid\Uuid;
 
 class StoreResourceHandler
 {
@@ -31,9 +31,9 @@ class StoreResourceHandler
 
         $this->initializeCommand($command);
 
-        $this->createResourceMap();
+        $this->fill();
 
-        $this->createResource();
+        $this->create();
 
         $this->attachTags();
 
@@ -45,15 +45,24 @@ class StoreResourceHandler
     }
 
 
-    private function createResourceMap()
+    private function fill()
     {
-        $this->resourceMap = new ResourceMap($this->command->getTitle(), $this->command->getDescription(), $this->command->getUrl(), $this->obtainSlug($this->command), $this->command->getCategoryId(),
-            $this->command->getLangId());
+
+        $this->resource = new Resource();
+        $this->resource->user_id = $this->command->getUserId();
+        $this->resource->uuid = Uuid::generate();
+        $this->resource->title = $this->command->getTitle();
+        $this->resource->description = $this->command->getDescription();
+        $this->resource->url = $this->command->getUrl();
+        $this->resource->slug = $this->obtainSlug($this->command);
+        $this->resource->category_id = $this->command->getCategoryId();
+        $this->resource->lang_id = $this->command->getLangId();
+
     }
 
-    private function createResource()
+    private function create()
     {
-        $this->resource = $this->resourceRepository->create($this->resourceMap);
+        $this->resourceRepository->create($this->resource);
     }
 
     private function attachTags()
