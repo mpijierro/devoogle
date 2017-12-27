@@ -20,7 +20,7 @@ class ResourceRepository
     }
 
 
-    public function create(Resource $resource)
+    public function save(Resource $resource)
     {
 
         if ($resource->isCorrectToSave()) {
@@ -31,16 +31,6 @@ class ResourceRepository
 
     }
 
-    public function update(Resource $resource)
-    {
-
-        if ($resource->isCorrectToSave()) {
-            return $resource->save();
-        }
-
-        return $resource->save();
-
-    }
 
     public function delete(string $aUuid)
     {

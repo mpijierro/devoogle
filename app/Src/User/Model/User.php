@@ -34,4 +34,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Resource::class);
     }
+
+    public function isAdmin()
+    {
+        return $this->attributes['is_admin'];
+    }
 }

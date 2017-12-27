@@ -11,8 +11,6 @@ class UpdateResourceHandler
 
     private $resource;
 
-    private $map;
-
     private $resourceRepository;
 
     public function __construct(ResourceRepository $resourceRepository)
@@ -59,7 +57,7 @@ class UpdateResourceHandler
 
     private function update()
     {
-        $this->resourceRepository->update($this->resource);
+        $this->resourceRepository->save($this->resource);
     }
 
 

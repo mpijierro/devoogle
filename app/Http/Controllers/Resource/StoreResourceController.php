@@ -21,15 +21,14 @@ class StoreResourceController
 
             $user = Auth::user();
 
-
             $command = new StoreResourceCommand($user->id, $request->get('title'), $request->get('description'), $request->get('url'), $request->get('category_id'), $request->get('lang_id'),
-                $request->get('tag'));
+                request('tag', $default = ''));
             $handler = app(StoreResourceHandler::class);
             $handler($command);
 
             DB::commit();
 
-            return view('home');
+            return redirect()->route('home-resource');
 
         } catch (\Exception $exception) {
 

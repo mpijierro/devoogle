@@ -28,6 +28,7 @@ class Resource extends Model
         'url',
         'slug',
         'reviewed',
+        'comment'
     ];
 
     protected $hidden = [
@@ -85,8 +86,17 @@ class Resource extends Model
         return $this->attributes['lang_id'];
     }
 
+    /**
+     * TODO: update with real validation
+     * @return bool
+     */
     public function isCorrectToSave()
     {
         return ( ! empty($this->title()) AND ! empty($this->url()));
+    }
+
+    public function isReviewed()
+    {
+        return $this->attributes['reviewed'];
     }
 }

@@ -91,22 +91,7 @@
             <div class="col-md-6 col-md-offset-3">
                 @foreach ($view->foundResources() as $resource)
 
-                    <b>Enlace</b>: <a href="{!! $resource->url() !!}" target="_blank">{!! $resource->title() !!}</a><br>
-                    <b>Descripción</b>: {!! $resource->description()  !!}<br>
-                    <b>Categoría</b>: {!! $resource->categoryName()  !!}<br>
-                    <b>Idioma</b>: {!! $resource->langName()  !!}<br>
-                    <b>Etiquetas</b>:
-
-                    @foreach ($resource->tags() as $tag)
-                        {{ $loop->first ? '' : ', ' }}
-                        <span class="nice"><a href="{{route('home-tag', $tag->slug)}}">{{ $tag->name }}</a></span>
-                    @endforeach
-                    <br>
-                    <a href="{!! route('edit-resource', $resource->uuid()) !!}">Editar</a><br>
-                    <a href="{!! route('delete-resource', $resource->uuid()) !!}">Borrar</a>
-                    <br>
-                    <hr>
-                    <br>
+                    @include('resource.resource_register',   ['resource' => $resource]);
 
                 @endforeach
             </div>

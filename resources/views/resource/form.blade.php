@@ -93,7 +93,7 @@
                             <label for="tag" class="col-md-4 control-label">Etiquetas</label>
 
                             <div class="col-md-6">
-                                {{ Form::text('tag', null, ['class' => 'form-control', 'id' =>'tag', 'required', 'autofocus'] ) }}
+                                {{ Form::text('tag', null, ['class' => 'form-control', 'id' =>'tag', 'autofocus'] ) }}
 
                                 @if ($errors->has('tag'))
                                     <span class="help-block">

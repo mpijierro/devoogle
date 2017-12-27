@@ -30,6 +30,7 @@ class Resource extends Migration
             $table->text('description');
             $table->string('url');
             $table->string('slug');
+            $table->text('comment');
             $table->boolean('reviewed')->default(false);
 
             $table->timestamps();

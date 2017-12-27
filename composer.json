@@ -31,7 +31,10 @@
     ],
     "psr-4": {
       "Mulidev\\": "app/"
-    }
+    },
+    "files": [
+      "app/Src/Mulidev/Helper/user.php"
+    ]
   },
   "autoload-dev": {
     "psr-4": {

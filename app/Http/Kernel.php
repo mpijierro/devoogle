@@ -3,6 +3,7 @@
 namespace Mulidev\Http;
 
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
+use Mulidev\Http\Middleware\IsAdmin;
 
 class Kernel extends HttpKernel
 {
@@ -57,5 +58,6 @@ class Kernel extends HttpKernel
         'can' => \Illuminate\Auth\Middleware\Authorize::class,
         'guest' => \Mulidev\Http\Middleware\RedirectIfAuthenticated::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
+        'is.admin' => IsAdmin::class,
     ];
 }

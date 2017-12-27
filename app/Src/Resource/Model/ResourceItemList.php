@@ -58,4 +58,8 @@ class ResourceItemList
         return $this->resource->tags;
     }
 
+    public function isReviewed()
+    {
+        return $this->resource->isReviewed();
+    }
 }
