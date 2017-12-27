@@ -62,7 +62,7 @@ class StoreResourceHandler
 
     private function create()
     {
-        $this->resourceRepository->create($this->resource);
+        $this->resourceRepository->save($this->resource);
     }
 
     private function attachTags()

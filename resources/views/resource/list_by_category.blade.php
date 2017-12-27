@@ -84,7 +84,7 @@
         </div>
 
         <div class="title m-b-md">
-            Etiqueta <b>{!! $view->tagName() !!}</b>
+            Categoría <b>{!! $view->categoryName() !!}</b>
         </div>
 
         <div class="row">

@@ -2,6 +2,7 @@
 
 namespace Mulidev\Src\Resource\Repository;
 
+use Mulidev\Src\Category\Model\Category;
 use Mulidev\Src\Resource\Model\Resource;
 use Symfony\Component\Routing\Exception\InvalidParameterException;
 
@@ -46,6 +47,11 @@ class ResourceRepository
 
         return Resource::with(['category'])->withAnyTags([$tag])->get();
 
+    }
+
+    public function searchByCategory(Category $category)
+    {
+        return Resource::where('category_id', $category->id)->orderBy('created_at', 'desc')->get();
     }
 
 }

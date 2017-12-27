@@ -46,6 +46,14 @@ class ResourceItemList
     }
 
 
+    public function categorySlug()
+    {
+        $category = $this->resource->category;
+
+        return $category->slug();
+    }
+
+
     public function langNAme()
     {
         $lang = $this->resource->lang;

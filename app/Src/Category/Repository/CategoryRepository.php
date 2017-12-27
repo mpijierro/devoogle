@@ -17,4 +17,8 @@ class CategoryRepository
         return Category::orderBy('name', 'asc')->get();
     }
 
+    public function findBySlugOrFail(string $slug)
+    {
+        return Category::where('slug', $slug)->firstOrfail();
+    }
 }

@@ -5,7 +5,7 @@ namespace Mulidev\Http\Controllers\Tag;
 use Mulidev\Src\Resource\Query\ListByTagManager;
 use Mulidev\Src\Resource\Query\ListByTagQuery;
 
-class HomeTagController
+class TagListController
 {
 
     public function __invoke(string $slug)
