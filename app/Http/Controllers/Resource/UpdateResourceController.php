@@ -18,7 +18,8 @@ class UpdateResourceController
 
             DB::beginTransaction();
 
-            $command = new UpdateResourceCommand($aUuid, $request->get('title'), $request->get('description'), $request->get('url'), $request->get('category_id'), $request->get('lang_id'));
+            $command = new UpdateResourceCommand($aUuid, $request->get('title'), $request->get('description'), $request->get('url'), $request->get('category_id'), $request->get('lang_id'),
+                $request->get('tag'));
             $handler = app(UpdateResourceHandler::class);
             $handler($command);
 

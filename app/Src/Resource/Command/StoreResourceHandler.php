@@ -63,9 +63,12 @@ class StoreResourceHandler
 
         foreach ($tags as $tag) {
 
-            $this->resource->attachTag(trim($tag));
-        }
+            $sanitizeTag = trim($tag);
 
+            if ( ! empty($sanitizeTag)) {
+                $this->resource->attachTag($sanitizeTag);
+            }
+        }
     }
 
     private function obtainSlug()

@@ -9,7 +9,11 @@ use Mulidev\Src\Resource\Repository\ResourceRepository;
 class UpdateResourceHandler
 {
 
+    private $command;
+
     private $resource;
+
+    private $map;
 
     private $resourceRepository;
 
@@ -22,25 +26,56 @@ class UpdateResourceHandler
     public function __invoke(UpdateResourceCommand $command)
     {
 
+        $this->initializaCommand($command);
+
         $this->findResource($command->getUuid());
 
-        $map = $this->createResourceMap($command);
+        $this->createResourceMap();
 
-        $this->resourceRepository->update($map, $this->resource->id());
+        $this->updateResource();
+
+        $this->syncTags();
 
     }
 
+    private function initializaCommand(UpdateResourceCommand $command)
+    {
+        $this->command = $command;
+    }
 
     private function findResource(string $aUuid)
     {
         $this->resource = $this->resourceRepository->findByUuid($aUuid);
     }
 
-
-    private function createResourceMap(UpdateResourceCommand $command)
+    private function createResourceMap()
     {
-        return new ResourceMap($command->getTitle(), $command->getDescription(), $command->getUrl(), '', $command->getCategoryId(), $command->getLangId());
+        $this->map = new ResourceMap($this->command->getTitle(), $this->command->getDescription(), $this->command->getUrl(), '', $this->command->getCategoryId(), $this->command->getLangId());
     }
 
+    private function updateResource()
+    {
+        $this->resourceRepository->update($this->map, $this->resource->id());
+    }
+
+
+    private function syncTags()
+    {
+
+        $inputTags = explode(',', $this->command->getTag());
+
+        $sanitizeTags = [];
+
+        foreach ($inputTags as $tag) {
+
+            $sanitizeTag = trim($tag);
+
+            if ( ! empty($sanitizeTag)) {
+                $sanitizeTags[] = $sanitizeTag;
+            }
+        }
+
+        $this->resource->syncTags($sanitizeTags);
+    }
 
 }

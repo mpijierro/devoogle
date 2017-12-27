@@ -31,8 +31,12 @@ class UpdateResourceCommand
      * @var string
      */
     private $langId;
+    /**
+     * @var string
+     */
+    private $tag;
 
-    public function __construct(string $uuid, string $title, string $description, string $url, string $categoryId, string $langId)
+    public function __construct(string $uuid, string $title, string $description, string $url, string $categoryId, string $langId, string $tag)
     {
 
         $this->uuid = $uuid;
@@ -41,6 +45,7 @@ class UpdateResourceCommand
         $this->url = $url;
         $this->categoryId = $categoryId;
         $this->langId = $langId;
+        $this->tag = $tag;
     }
 
     /**
@@ -90,6 +95,15 @@ class UpdateResourceCommand
     {
         return $this->langId;
     }
+
+    /**
+     * @return string
+     */
+    public function getTag(): string
+    {
+        return $this->tag;
+    }
+
 
 
 }

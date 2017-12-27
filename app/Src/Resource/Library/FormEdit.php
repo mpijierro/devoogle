@@ -93,8 +93,16 @@ class FormEdit extends Form
 
     protected function configModel()
     {
-
         $this->model = $this->resource->toArray();
+
+        $this->configTagModel();
+    }
+
+    private function configTagModel()
+    {
+
+        $this->model['tag'] = $this->resource->tags->implode('name', ', ');
+
     }
 
     private function configOptionsSelected()
