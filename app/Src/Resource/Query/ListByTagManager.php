@@ -78,8 +78,7 @@ class ListByTagManager
 
     private function configView()
     {
-
-        return new ListByTagView($this->foundResources, $this->tag->name);
+        return new ListByTagView($this->foundResources, $this->resourcesFromQuery->links(), $this->tag->name);
 
     }
 

@@ -17,11 +17,13 @@ class ListByCategoryView
      * @var string
      */
     private $aCategoryName;
+    private $paginator;
 
-    public function __construct(Collection $foundResources, string $aCategoryName)
+    public function __construct(Collection $foundResources, $paginator, string $aCategoryName)
     {
         $this->foundResources = $foundResources;
         $this->aCategoryName = $aCategoryName;
+        $this->paginator = $paginator;
     }
 
     /**
@@ -39,5 +41,14 @@ class ListByCategoryView
     {
         return $this->aCategoryName;
     }
+
+    /**
+     * @return mixed
+     */
+    public function paginator()
+    {
+        return $this->paginator;
+    }
+
 
 }

@@ -81,7 +81,7 @@ class ListByCategoryManager
     private function configView()
     {
 
-        return new ListByCategoryView($this->foundResources, $this->category->name);
+        return new ListByCategoryView($this->foundResources, $this->resourcesFromQuery->links(), $this->category->name);
 
     }
 

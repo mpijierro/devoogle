@@ -8,36 +8,36 @@ use Illuminate\Support\Collection;
 class ListByTagView
 {
 
-    /**
-     * @var Collection
-     */
+
     private $foundResources;
-    /**
-     * @var string
-     */
+
+    private $paginator;
+
     private $aTagName;
 
-    public function __construct(Collection $foundResources, string $aTagName)
+    public function __construct(Collection $foundResources, $paginator, string $aTagName)
     {
         $this->foundResources = $foundResources;
+
+        $this->paginator = $paginator;
+
         $this->aTagName = $aTagName;
     }
 
-    /**
-     * @return Collection
-     */
+
     public function foundResources(): Collection
     {
         return $this->foundResources;
     }
 
-    /**
-     * @return string
-     */
     public function tagName(): string
     {
         return $this->aTagName;
     }
 
+    public function paginator()
+    {
+        return $this->paginator;
+    }
 
 }

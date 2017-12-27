@@ -5,10 +5,7 @@ namespace Mulidev\Src\Resource\Model;
 
 class ResourceItemList
 {
-
-    /**
-     * @var Resource
-     */
+    
     private $resource;
 
     public function __construct(Resource $resource)

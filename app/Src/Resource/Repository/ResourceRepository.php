@@ -10,6 +10,8 @@ use Symfony\Component\Routing\Exception\InvalidParameterException;
 class ResourceRepository
 {
 
+    const SIZE_PAGE = 1;
+
     public function resourceForHome()
     {
         return Resource::with(['category', 'lang'])->orderBy('created_at', 'desc')->get();
@@ -44,14 +46,12 @@ class ResourceRepository
 
     public function searchByTag($tag)
     {
-
-        return Resource::with(['category'])->withAnyTags([$tag])->get();
-
+        return Resource::with(['category'])->withAnyTags([$tag])->paginate(self::SIZE_PAGE);
     }
 
     public function searchByCategory(Category $category)
     {
-        return Resource::where('category_id', $category->id)->orderBy('created_at', 'desc')->get();
+        return Resource::where('category_id', $category->id)->orderBy('created_at', 'desc')->paginate(self::SIZE_PAGE);
     }
 
 }

@@ -97,6 +97,15 @@
             </div>
         </div>
 
+        <div class="row">
+
+            <div class="col-xs-12">
+                {{ $view->paginator() }}
+            </div>
+
+        </div>
+
+
         <div class="links">
             <a href="{!! route('create-resource') !!}">Nuevo</a>
         </div>
