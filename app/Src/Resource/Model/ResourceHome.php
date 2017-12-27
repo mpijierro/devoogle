@@ -53,4 +53,9 @@ class ResourceHome
         return $lang->name();
     }
 
+    public function tags()
+    {
+        return $this->resource->tags;
+    }
+
 }

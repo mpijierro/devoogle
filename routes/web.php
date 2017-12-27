@@ -35,3 +35,10 @@ Route::group(['prefix' => 'resource'], function () {
     Route::get('/delete/{uuid}', "Resource\DeleteResourceController")->name('delete-resource');
 
 });
+
+
+Route::group(['prefix' => 'tag'], function () {
+
+    Route::get('/{slug}', "Tag\HomeTagController")->name('home-tag');
+
+});

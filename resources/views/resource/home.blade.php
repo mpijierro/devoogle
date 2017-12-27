@@ -92,6 +92,13 @@
                     <b>Descripción</b>: {!! $resource->description()  !!}<br>
                     <b>Categoría</b>: {!! $resource->categoryName()  !!}<br>
                     <b>Idioma</b>: {!! $resource->langName()  !!}<br>
+                    <b>Etiquetas</b>:
+
+                    @foreach ($resource->tags() as $tag)
+                        {{ $loop->first ? '' : ', ' }}
+                        <span class="nice"><a href="{{route('home-tag', $tag->slug)}}">{{ $tag->name }}</a></span>
+                    @endforeach
+                    <br>
                     <a href="{!! route('edit-resource', $resource->uuid()) !!}">Editar</a><br>
                     <a href="{!! route('delete-resource', $resource->uuid()) !!}">Borrar</a>
                     <br>
