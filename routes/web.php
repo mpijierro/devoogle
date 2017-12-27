@@ -10,7 +10,7 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 
-Route::group(['prefix' => 'resource'], function () {
+Route::group(['middleware' => 'auth', 'prefix' => 'resource'], function () {
 
     Route::get('/', "Resource\HomeResourceController")->name('home-resource');
 
@@ -26,7 +26,9 @@ Route::group(['prefix' => 'resource'], function () {
 
 
 Route::group(['prefix' => 'tag'], function () {
-
     Route::get('/{slug}', "Tag\HomeTagController")->name('home-tag');
-
 });
+
+
+Route::get('/social/redirect/{provider}', 'Auth\SocialController@getSocialRedirect')->name('social-redirect');
+Route::get('/social/handle/{provider}', 'Auth\SocialController@getSocialHandle')->name('social-handle');

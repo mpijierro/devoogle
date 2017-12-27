@@ -72,6 +72,7 @@
                     </div>
                 </div>
             </div>
+            <a href="{{route('social-redirect', 'google')}}">Login in with Google</a>
         </div>
     </div>
 @endsection
