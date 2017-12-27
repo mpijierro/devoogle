@@ -5,7 +5,7 @@ namespace Mulidev\Src\Resource\Query;
 use Illuminate\Database\Eloquent\Collection;
 use Mulidev\Src\Category\Repository\CategoryRepository;
 use Mulidev\Src\Lang\Repository\LangRepository;
-use Mulidev\Src\Resource\Model\ResourceHome;
+use Mulidev\Src\Resource\Model\ResourceItemList;
 use Mulidev\Src\Resource\Repository\ResourceRepository;
 
 class HomeResourceManager
@@ -23,9 +23,7 @@ class HomeResourceManager
     {
         $this->resourceRepository = $resourceRepository;
         $this->resource = collect();
-
     }
-
 
     public function resource(): \Illuminate\Support\Collection
     {
@@ -46,7 +44,7 @@ class HomeResourceManager
 
         foreach ($resource as $element) {
 
-            $resourceHome = app(ResourceHome::class, ['resource' => $element]);
+            $resourceHome = app(ResourceItemList::class, ['resource' => $element]);
             $this->resource->push($resourceHome);
 
         }

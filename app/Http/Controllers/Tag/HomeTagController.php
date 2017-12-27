@@ -2,16 +2,21 @@
 
 namespace Mulidev\Http\Controllers\Tag;
 
+use Mulidev\Src\Resource\Query\ListByTagManager;
+use Mulidev\Src\Resource\Query\ListByTagQuery;
+
 class HomeTagController
 {
 
-    public function __invoke()
+    public function __invoke(string $slug)
     {
 
-        dd('...listado por tags');
+        $query = new ListByTagQuery($slug);
+        $manager = app(ListByTagManager::class);
+        $view = $manager($query);
 
-        //view()->share('view', $view);
+        view()->share('view', $view);
 
-        return view('resource.home');
+        return view('resource.list_by_tag');
     }
 }

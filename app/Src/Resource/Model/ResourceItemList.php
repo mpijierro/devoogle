@@ -3,7 +3,7 @@
 namespace Mulidev\Src\Resource\Model;
 
 
-class ResourceHome
+class ResourceItemList
 {
 
     /**

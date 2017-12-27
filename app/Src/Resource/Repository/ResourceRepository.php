@@ -56,4 +56,11 @@ class ResourceRepository
 
     }
 
+    public function searchByTag($tag)
+    {
+
+        return Resource::with(['category'])->withAnyTags([$tag])->get();
+
+    }
+
 }
