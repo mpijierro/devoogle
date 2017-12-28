@@ -8,11 +8,11 @@ use Devoogle\Src\User\Model\User;
 class Social extends Model
 {
 
-    const FACEBOOK_PROVIDER = 'facebook';
-
     const GOOGLE_PROVIDER = 'google';
 
     const GITHUB_PROVIDER = 'github';
+
+    const TWITTER_PROVIDER = 'twitter';
 
     /**
      * The database table used by the model.

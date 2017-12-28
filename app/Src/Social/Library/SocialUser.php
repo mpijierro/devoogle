@@ -28,23 +28,6 @@ abstract class SocialUser
 
     abstract public function email();
 
-    public function isMale()
-    {
-        $gender = $this->obtainGender();
-
-        return $gender === parent::GENDER_MALE;
-    }
-
-    abstract public function obtainGender();
-
-    public function isFemale()
-    {
-        $gender = $this->obtainGender();
-
-        return $gender === parent::GENDER_FEMALE;
-    }
-
-
     protected function getField($field)
     {
 

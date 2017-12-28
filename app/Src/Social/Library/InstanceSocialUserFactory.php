@@ -12,8 +12,8 @@ class InstanceSocialUserFactory
 
         $socialUserObject = $this->obtainSocialUserObject($provider);
 
-        if ($provider == Social::FACEBOOK_PROVIDER) {
-            return app(FacebookSocialUser::class, ['socialUserObject' => $socialUserObject]);
+        if ($provider == Social::TWITTER_PROVIDER) {
+            return app(TwitterSocialUser::class, ['socialUserObject' => $socialUserObject]);
         } elseif ($provider == Social::GOOGLE_PROVIDER) {
             return app(GoogleSocialUser::class, ['socialUserObject' => $socialUserObject]);
         } elseif ($provider == Social::GITHUB_PROVIDER) {

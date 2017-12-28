@@ -2,7 +2,7 @@
 
 namespace Devoogle\Src\Social\Library;
 
-class GoogleSocialUser extends SocialUser
+class TwitterSocialUser extends SocialUser
 {
 
     public function __construct($socialUserObject)
@@ -29,32 +29,17 @@ class GoogleSocialUser extends SocialUser
 
     public function name()
     {
-        $user = $this->getField('user');
-
-        return $user['displayName'];
+        return $this->getField('name');
     }
 
     public function firstName()
     {
-
-        $name = $this->obtainNameInfo();
-
-        return $name['givenName'];
-    }
-
-    private function obtainNameInfo()
-    {
-        $user = $this->getField('user');
-
-        return $user['name'];
+        return $this->getField('name');
     }
 
     public function lastName()
     {
-
-        $name = $this->obtainNameInfo();
-
-        return $name['familyName'];
+        return $this->getField('user');
     }
 
     public function email()

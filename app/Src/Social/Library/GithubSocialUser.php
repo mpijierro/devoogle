@@ -55,10 +55,4 @@ class GithubSocialUser extends SocialUser
         return $this->getField('email');
     }
 
-    public function obtainGender()
-    {
-        $user = $this->getField('user');
-
-        return $user['gender'];
-    }
 }

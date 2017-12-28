@@ -60,7 +60,9 @@
                                     </a>
                                     &nbsp;
                                     <a href="{{route('social-redirect', 'google')}}">Login in with Google</a><br>
-                                    <a href="{{route('social-redirect', 'github')}}">Login in with Github</a>
+                                    <a href="{{route('social-redirect', 'github')}}">Login in with Github</a><br>
+                                    <a href="{{route('social-redirect', 'twitter')}}">Login in with TWitter</a><br>
+
                                 </div>
                             </div>
                         </form>
