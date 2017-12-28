@@ -12,19 +12,11 @@ class DeleteResourceController
     public function __invoke($aUuid)
     {
 
-        try {
+        $command = new DeleteResourceCommand($aUuid);
+        $handler = app(DeleteResourceHandler::class);
+        $handler($command);
 
-            $command = new DeleteResourceCommand($aUuid);
-            $handler = app(DeleteResourceHandler::class);
-            $handler($command);
-
-            return redirect()->route('home-resource');
-
-        } catch (\Exception $exception) {
-
-
-            throw  $exception;
-        }
+        return redirect()->route('home-resource');
 
     }
 }

@@ -17,20 +17,12 @@ class CheckResourceController
 
     public function __invoke(string $aUuid)
     {
+        $command = new CheckResourceCommand($aUuid);
 
-        try {
+        $handler = app(CheckResourceHandler::class);
+        $handler($command);
 
-            $command = new CheckResourceCommand($aUuid);
-
-            $handler = app(CheckResourceHandler::class);
-            $handler($command);
-
-            return redirect()->route('home-resource');
-
-        } catch (\Exception $exception) {
-
-            throw  $exception;
-        }
+        return redirect()->route('home-resource');
 
     }
 }
