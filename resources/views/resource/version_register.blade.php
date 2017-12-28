@@ -3,7 +3,7 @@
 <b>Comentario</b>: {!! $version->comment() !!}
 <br><br>
 @if ( ! $version->isReviewed() or isAdmin() )
-    <a href="{!! route('edit-resource', $version->uuid()) !!}">Editar</a>&nbsp;
+    <a href="{!! route('edit-version', $version->uuid()) !!}">Editar</a>&nbsp;
 @endif
 
 

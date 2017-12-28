@@ -14,7 +14,6 @@ Route::group(['prefix' => 'recursos'], function () {
 
     Route::get('/', "Resource\HomeResourceController")->name('home-resource');
 
-    //Route::get('/resultados-de-busqueda/{key}', "Resource\SearchListController")->name('search-resource');
     Route::get('/buscar', "Resource\SearchResourceController")->name('search-resource-get');
     Route::post('/buscar', "Resource\SearchResourceController")->name('search-resource');
 
@@ -36,13 +35,14 @@ Route::group(['prefix' => 'recursos'], function () {
 
         Route::get('/crear-version/{uuid}', "Version\CreateVersionController")->name('create-version');
         Route::post('/crear-version/{uuid}', "Version\StoreVersionController")->name('store-version');
+        Route::get('/editar-version/{uuid}', "Version\EditVersionController")->name('edit-version');
+        Route::post('/editar-version/{uuid}', "Version\UpdateVersionController")->name('update-version');
 
 
         Route::group(['middleware' => 'is.admin'], function () {
 
-            Route::get('/eliminar/{uuid}', "Resource\DeleteResourceController")->name('delete-resource');
-
-            Route::get('/revisar/{uuid}', "Resource\CheckResourceController")->name('check-resource');
+            Route::get('/eliminar-recurso/{uuid}', "Resource\DeleteResourceController")->name('delete-resource');
+            Route::get('/revisar-recurso/{uuid}', "Resource\CheckResourceController")->name('check-resource');
 
         });
 
