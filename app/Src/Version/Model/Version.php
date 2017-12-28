@@ -47,6 +47,11 @@ class Version extends Model
         return $this->attributes['id'];
     }
 
+    public function userId()
+    {
+        return $this->attributes['user_id'];
+    }
+
     public function uuid()
     {
         return $this->attributes['uuid'];

@@ -48,6 +48,21 @@ class Resource extends Model
         return $this->belongsTo(Lang::class);
     }
 
+    public function userId()
+    {
+        return $this->attributes['user_id'];
+    }
+
+    public function categoryId()
+    {
+        return $this->attributes['category_id'];
+    }
+
+    public function langId()
+    {
+        return $this->attributes['lang_id'];
+    }
+
 
     public function version()
     {
@@ -77,16 +92,6 @@ class Resource extends Model
     public function url()
     {
         return $this->attributes['url'];
-    }
-
-    public function categoryId()
-    {
-        return $this->attributes['category_id'];
-    }
-
-    public function langId()
-    {
-        return $this->attributes['lang_id'];
     }
 
     /**

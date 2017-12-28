@@ -4,6 +4,9 @@ namespace Mulidev\Http;
 
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 use Mulidev\Http\Middleware\IsAdmin;
+use Mulidev\Http\Middleware\IsNotReviewed;
+use Mulidev\Http\Middleware\IsResourceOwner;
+use Mulidev\Http\Middleware\IsVersionOwner;
 
 class Kernel extends HttpKernel
 {
@@ -59,5 +62,8 @@ class Kernel extends HttpKernel
         'guest' => \Mulidev\Http\Middleware\RedirectIfAuthenticated::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'is.admin' => IsAdmin::class,
+        'is.resource.owner' => IsResourceOwner::class,
+        'is.version.owner' => IsVersionOwner::class,
+        'is.not.reviewed' => IsNotReviewed::class,
     ];
 }
