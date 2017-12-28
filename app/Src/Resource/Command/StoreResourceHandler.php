@@ -82,7 +82,7 @@ class StoreResourceHandler
 
     private function obtainSlug()
     {
-        return str_slug($this->command->getTitle()) . '-' . str_random(Resource::LONG_RANDOM_STRING_IN_SLUG);
+        return str_slug($this->command->getTitle()) . '-' . strtolower(str_random(Resource::LONG_RANDOM_STRING_IN_SLUG));
     }
 
 }

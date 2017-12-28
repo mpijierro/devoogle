@@ -83,6 +83,10 @@
             Mulidev
         </div>
 
+        <div clss="title -m-b-md">
+            @include('resource.form_search')
+        </div>
+
         <div class="title m-b-md">
             Etiqueta <b>{!! $view->tagName() !!}</b>
         </div>

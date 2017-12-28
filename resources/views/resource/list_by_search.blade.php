@@ -87,13 +87,13 @@
             @include('resource.form_search')
         </div>
 
-
         <div class="title m-b-md">
-            Categoría <b>{!! $view->categoryName() !!}</b>
+            Búsqueda: <b>{!! $view->searchedText() !!}</b>
         </div>
 
         <div class="row">
             <div class="col-md-6 col-md-offset-3">
+
                 @foreach ($view->foundResources() as $resource)
 
                     @include('resource.resource_register',   ['resource' => $resource]);
@@ -109,7 +109,6 @@
             </div>
 
         </div>
-
 
         <div class="links">
             <a href="{!! route('create-resource') !!}">Nuevo</a>

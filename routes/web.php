@@ -14,6 +14,10 @@ Route::group(['prefix' => 'recursos'], function () {
 
     Route::get('/', "Resource\HomeResourceController")->name('home-resource');
 
+    //Route::get('/resultados-de-busqueda/{key}', "Resource\SearchListController")->name('search-resource');
+    Route::get('/buscar', "Resource\SearchResourceController")->name('search-resource-get');
+    Route::post('/buscar', "Resource\SearchResourceController")->name('search-resource');
+
     Route::group(['prefix' => 'recursos-de-programacion-de'], function () {
         Route::get('/{slug}', "Tag\TagListController")->name('list-tag');
     });
