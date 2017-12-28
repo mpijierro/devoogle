@@ -16,7 +16,10 @@ class InstanceSocialUserFactory
             return app(FacebookSocialUser::class, ['socialUserObject' => $socialUserObject]);
         } elseif ($provider == Social::GOOGLE_PROVIDER) {
             return app(GoogleSocialUser::class, ['socialUserObject' => $socialUserObject]);
+        } elseif ($provider == Social::GITHUB_PROVIDER) {
+            return app(GithubSocialUser::class, ['socialUserObject' => $socialUserObject]);
         }
+
         throw new \InvalidArgumentException(sprintf("Provider %s not found", $provider));
     }
 

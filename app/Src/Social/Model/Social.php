@@ -12,6 +12,8 @@ class Social extends Model
 
     const GOOGLE_PROVIDER = 'google';
 
+    const GITHUB_PROVIDER = 'github';
+
     /**
      * The database table used by the model.
      *

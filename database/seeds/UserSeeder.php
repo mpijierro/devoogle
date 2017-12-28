@@ -12,8 +12,8 @@ class UserSeeder extends Seeder
     public function run()
     {
         \Illuminate\Support\Facades\DB::table('users')->insert([
-            'name' => 'Manu',
-            'email' => 'mpijierro@mulidev.com',
+            'name' => 'Admin',
+            'email' => 'admin@devoogle.com',
             'password' => bcrypt('123456'),
             'is_admin' => 1,
             'created_at' => new DateTime(),

@@ -115,7 +115,7 @@ class SocialHandler
     {
 
         $this->user = User::create([
-            'name' => $this->socialUser->firstName() . ' ' . $this->socialUser->lastName(),
+            'name' => $this->socialUser->name(),
             'email' => $this->retrieveEmailOrFake(),
             'password' => bcrypt(str_random(40)),
         ]);
