@@ -3,38 +3,33 @@
 namespace Mulidev\Http\Controllers\Version;
 
 use Illuminate\Support\Facades\DB;
-use Mulidev\Src\Resource\Command\UpdateResourceCommand;
-use Mulidev\Src\Resource\Command\UpdateResourceHandler;
-use Mulidev\Src\Resource\Request\StoreResourceRequest;
+use Mulidev\Src\Version\Command\UpdateVersionCommand;
+use Mulidev\Src\Version\Command\UpdateVersionHandler;
+use Mulidev\Src\Version\Repository\VersionRepositoryRead;
+use Mulidev\Src\Version\Request\UpdateVersionRequest;
 
 class UpdateVersionController
 {
 
 
-    public function __invoke(StoreResourceRequest $request, string $aUuid)
+    public function __invoke(UpdateVersionRequest $request, VersionRepositoryRead $versionRepositoryRead, string $aUuid)
     {
-
-        dd($uuid);
 
         try {
 
-            DB::beginTransaction();
-
-            $command = new UpdateResourceCommand($aUuid, $request->get('title'), $request->get('description'), $request->get('url'), $request->get('category_id'), $request->get('lang_id'),
-                request('tag', $default = ''));
-
-            $handler = app(UpdateResourceHandler::class);
+            $command = new UpdateVersionCommand($aUuid, $request->get('category_id'), $request->get('url'), $request->get('comment', $default = ''));
+            $handler = app(UpdateVersionHandler::class);
             $handler($command);
 
-            DB::commit();
+            $version = $versionRepositoryRead->findByUuid($aUuid);
 
-            return redirect()->route('home-resource');
+            return redirect()->route('edit-resource', $version->resource->uuid());
 
         } catch (\Exception $exception) {
 
             DB::rollback();
 
-            throw  $exception;
+            return back()->withInput();
         }
 
     }
