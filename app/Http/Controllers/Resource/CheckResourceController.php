@@ -2,9 +2,8 @@
 
 namespace Mulidev\Http\Controllers\Resource;
 
-
-use Mulidev\Src\Resource\Command\CheckVersionCommand;
-use Mulidev\Src\Resource\Command\CheckVersionHandler;
+use Mulidev\Src\Resource\Command\CheckResourceCommand;
+use Mulidev\Src\Resource\Command\CheckResourceHandler;
 
 /**
  * Mark a resource as reviewed
@@ -17,9 +16,9 @@ class CheckResourceController
 
     public function __invoke(string $aUuid)
     {
-        $command = new CheckVersionCommand($aUuid);
+        $command = new CheckResourceCommand($aUuid);
 
-        $handler = app(CheckVersionHandler::class);
+        $handler = app(CheckResourceHandler::class);
         $handler($command);
 
         return redirect()->route('home-resource');

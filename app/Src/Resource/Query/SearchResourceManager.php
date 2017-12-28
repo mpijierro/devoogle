@@ -5,12 +5,12 @@ namespace Mulidev\Src\Resource\Query;
 
 
 use Mulidev\Src\Resource\Model\ResourceItemList;
-use Mulidev\Src\Resource\Repository\ResourceRepository;
+use Mulidev\Src\Resource\Repository\ResourceRepositoryRead;
 
 class SearchResourceManager
 {
     /**
-     * @var ResourceRepository
+     * @var ResourceRepositoryRead
      */
     private $resourceRepository;
 
@@ -20,7 +20,7 @@ class SearchResourceManager
 
     private $query;
 
-    public function __construct(ResourceRepository $resourceRepository)
+    public function __construct(ResourceRepositoryRead $resourceRepository)
     {
         $this->resourceRepository = $resourceRepository;
 

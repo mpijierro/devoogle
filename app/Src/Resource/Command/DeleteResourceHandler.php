@@ -2,18 +2,27 @@
 
 namespace Mulidev\Src\Resource\Command;
 
-use Mulidev\Src\Resource\Repository\ResourceRepository;
+use Mulidev\Src\Resource\Repository\ResourceRepositoryRead;
+use Mulidev\Src\Resource\Repository\ResourceRepositoryWrite;
 
 class DeleteResourceHandler
 {
 
-    private $resourceRepository;
-
     private $resource;
+    /**
+     * @var ResourceRepositoryRead
+     */
+    private $resourceRepositoryRead;
+    /**
+     * @var ResourceRepositoryWrite
+     */
+    private $resourceRepositoryWrite;
 
-    public function __construct(ResourceRepository $resourceRepository)
+    public function __construct(ResourceRepositoryRead $resourceRepositoryRead, ResourceRepositoryWrite $resourceRepositoryWrite)
     {
-        $this->resourceRepository = $resourceRepository;
+
+        $this->resourceRepositoryRead = $resourceRepositoryRead;
+        $this->resourceRepositoryWrite = $resourceRepositoryWrite;
     }
 
 
@@ -28,13 +37,13 @@ class DeleteResourceHandler
 
     private function find($uuid)
     {
-        $this->resource = $this->resourceRepository->findByUuid($uuid);
+        $this->resource = $this->resourceRepositoryRead->findByUuid($uuid);
     }
 
 
     private function delete()
     {
-        $this->resourceRepository->delete($this->resource);
+        $this->resourceRepositoryWrite->delete($this->resource);
     }
 
 }

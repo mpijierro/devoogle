@@ -2,7 +2,7 @@
 
 namespace Mulidev\Src\Version\Command;
 
-use Mulidev\Src\Resource\Repository\ResourceRepository;
+use Mulidev\Src\Resource\Repository\ResourceRepositoryRead;
 use Mulidev\Src\Version\Repository\VersionRepositoryWrite;
 use Mulidev\Src\Version\Model\Version;
 
@@ -20,11 +20,11 @@ class StoreVersionHandler
      */
     private $versionRepositoryWrite;
     /**
-     * @var ResourceRepository
+     * @var ResourceRepositoryRead
      */
     private $resourceRepository;
 
-    public function __construct(VersionRepositoryWrite $versionRepositoryWrite, ResourceRepository $resourceRepository)
+    public function __construct(VersionRepositoryWrite $versionRepositoryWrite, ResourceRepositoryRead $resourceRepository)
     {
 
         $this->versionRepositoryWrite = $versionRepositoryWrite;

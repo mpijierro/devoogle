@@ -3,25 +3,24 @@
 namespace Mulidev\Src\Resource\Command;
 
 use Mulidev\Src\Resource\Model\Resource;
-use Mulidev\Src\Resource\Repository\ResourceRepository;
-use Mulidev\Src\Version\Model\Version;
+use Mulidev\Src\Resource\Repository\ResourceRepositoryWrite;
 
 
 class StoreResourceHandler
 {
 
-    /**
-     * @var ResourceRepository
-     */
-    private $resourceRepository;
-
     private $command;
 
     private $resource;
+    /**
+     * @var ResourceRepositoryWrite
+     */
+    private $resourceRepositoryWrite;
 
-    public function __construct(ResourceRepository $resourceRepository)
+
+    public function __construct(ResourceRepositoryWrite $resourceRepositoryWrite)
     {
-        $this->resourceRepository = $resourceRepository;
+        $this->resourceRepositoryWrite = $resourceRepositoryWrite;
     }
 
 
@@ -62,7 +61,7 @@ class StoreResourceHandler
 
     private function create()
     {
-        $this->resourceRepository->save($this->resource);
+        $this->resourceRepositoryWrite->save($this->resource);
     }
 
     private function attachTags()

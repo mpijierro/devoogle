@@ -3,7 +3,7 @@
 namespace Mulidev\Src\Version\Query;
 
 
-use Mulidev\Src\Resource\Repository\ResourceRepository;
+use Mulidev\Src\Resource\Repository\ResourceRepositoryRead;
 use Mulidev\Src\Version\Library\FormEdit;
 use Mulidev\Src\Version\Repository\VersionRepositoryRead;
 
@@ -15,7 +15,7 @@ class EditVersionManager
     private $formEdit;
 
     /**
-     * @var ResourceRepository
+     * @var ResourceRepositoryRead
      */
     private $resourceRepository;
     /**

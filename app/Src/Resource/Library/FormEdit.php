@@ -5,7 +5,7 @@ namespace Mulidev\Src\Resource\Library;
 use Mulidev\Src\Category\Repository\CategoryRepository;
 use Mulidev\Src\Lang\Repository\LangRepository;
 use Mulidev\Src\Mulidev\Library\Form;
-use Mulidev\Src\Resource\Repository\ResourceRepository;
+use Mulidev\Src\Resource\Repository\ResourceRepositoryRead;
 use Webpatser\Uuid\Uuid;
 
 class FormEdit extends Form
@@ -27,7 +27,7 @@ class FormEdit extends Form
      */
     private $langRepository;
     /**
-     * @var ResourceRepository
+     * @var ResourceRepositoryRead
      */
     private $resourceRepository;
 
@@ -35,7 +35,7 @@ class FormEdit extends Form
      * @param CategoryRepository $categoryRepository
      * @param LangRepository $langRepository
      */
-    public function __construct(ResourceRepository $resourceRepository, CategoryRepository $categoryRepository, LangRepository $langRepository)
+    public function __construct(ResourceRepositoryRead $resourceRepository, CategoryRepository $categoryRepository, LangRepository $langRepository)
     {
         $this->resourceRepository = $resourceRepository;
         $this->categoryRepository = $categoryRepository;

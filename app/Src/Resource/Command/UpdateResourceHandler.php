@@ -2,7 +2,8 @@
 
 namespace Mulidev\Src\Resource\Command;
 
-use Mulidev\Src\Resource\Repository\ResourceRepository;
+use Mulidev\Src\Resource\Repository\ResourceRepositoryRead;
+use Mulidev\Src\Resource\Repository\ResourceRepositoryWrite;
 
 class UpdateResourceHandler
 {
@@ -10,12 +11,19 @@ class UpdateResourceHandler
     private $command;
 
     private $resource;
+    /**
+     * @var ResourceRepositoryRead
+     */
+    private $resourceRepositoryRead;
+    /**
+     * @var ResourceRepositoryWrite
+     */
+    private $resourceRepositoryWrite;
 
-    private $resourceRepository;
-
-    public function __construct(ResourceRepository $resourceRepository)
+    public function __construct(ResourceRepositoryRead $resourceRepositoryRead, ResourceRepositoryWrite $resourceRepositoryWrite)
     {
-        $this->resourceRepository = $resourceRepository;
+        $this->resourceRepositoryRead = $resourceRepositoryRead;
+        $this->resourceRepositoryWrite = $resourceRepositoryWrite;
     }
 
 
@@ -41,7 +49,7 @@ class UpdateResourceHandler
 
     private function find(string $aUuid)
     {
-        $this->resource = $this->resourceRepository->findByUuid($aUuid);
+        $this->resource = $this->resourceRepositoryRead->findByUuid($aUuid);
     }
 
     private function fill()
@@ -57,7 +65,7 @@ class UpdateResourceHandler
 
     private function update()
     {
-        $this->resourceRepository->save($this->resource);
+        $this->resourceRepositoryWrite->save($this->resource);
     }
 
 

@@ -2,7 +2,7 @@
 
 namespace Mulidev\Src\Version\Command;
 
-use Mulidev\Src\Resource\Repository\ResourceRepository;
+use Mulidev\Src\Resource\Repository\ResourceRepositoryRead;
 use Mulidev\Src\Version\Repository\VersionRepositoryRead;
 use Mulidev\Src\Version\Repository\VersionRepositoryWrite;
 

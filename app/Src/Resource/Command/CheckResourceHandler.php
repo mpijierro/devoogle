@@ -2,24 +2,29 @@
 
 namespace Mulidev\Src\Resource\Command;
 
-use Mulidev\Src\Resource\Repository\ResourceRepository;
+use Mulidev\Src\Resource\Repository\ResourceRepositoryRead;
+use Mulidev\Src\Resource\Repository\ResourceRepositoryWrite;
 
 class CheckResourceHandler
 {
 
-    /**
-     * @var ResourceRepository
-     */
-    private $resourceRepository;
-
     private $resource;
+    /**
+     * @var ResourceRepositoryRead
+     */
+    private $resourceRepositoryRead;
+    /**
+     * @var ResourceRepositoryWrite
+     */
+    private $resourceRepositoryWrite;
 
-    public function __construct(ResourceRepository $resourceRepository)
+    public function __construct(ResourceRepositoryRead $resourceRepositoryRead, ResourceRepositoryWrite $resourceRepositoryWrite)
     {
-        $this->resourceRepository = $resourceRepository;
+        $this->resourceRepositoryRead = $resourceRepositoryRead;
+        $this->resourceRepositoryWrite = $resourceRepositoryWrite;
     }
 
-    public function __invoke(CheckVersionCommand $command)
+    public function __invoke(CheckResourceCommand $command)
     {
 
         $this->find($command->getUuid());
@@ -32,7 +37,7 @@ class CheckResourceHandler
 
     private function find(string $aUuid)
     {
-        $this->resource = $this->resourceRepository->findByUuid($aUuid);
+        $this->resource = $this->resourceRepositoryRead->findByUuid($aUuid);
     }
 
     private function check()
@@ -42,7 +47,7 @@ class CheckResourceHandler
 
     private function save()
     {
-        $this->resourceRepository->save($this->resource);
+        $this->resourceRepositoryWrite->save($this->resource);
     }
 
 }

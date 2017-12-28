@@ -6,20 +6,20 @@ use Illuminate\Database\Eloquent\Collection;
 use Mulidev\Src\Category\Repository\CategoryRepository;
 use Mulidev\Src\Lang\Repository\LangRepository;
 use Mulidev\Src\Resource\Model\ResourceItemList;
-use Mulidev\Src\Resource\Repository\ResourceRepository;
+use Mulidev\Src\Resource\Repository\ResourceRepositoryRead;
 
 class HomeResourceManager
 {
 
     /**
-     * @var ResourceRepository
+     * @var ResourceRepositoryRead
      */
     private $resourceRepository;
 
     private $resource;
 
 
-    public function __construct(ResourceRepository $resourceRepository)
+    public function __construct(ResourceRepositoryRead $resourceRepository)
     {
         $this->resourceRepository = $resourceRepository;
         $this->resource = collect();

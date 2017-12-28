@@ -7,7 +7,7 @@ use Mulidev\Src\Resource\Model\Resource;
 use Symfony\Component\Routing\Exception\InvalidParameterException;
 
 
-class ResourceRepository
+class ResourceRepositoryRead
 {
 
     const SIZE_PAGE = 5;

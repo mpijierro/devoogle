@@ -4,7 +4,7 @@ namespace Mulidev\Src\Resource\Query;
 
 
 use Mulidev\Src\Resource\Library\FormEdit;
-use Mulidev\Src\Resource\Repository\ResourceRepository;
+use Mulidev\Src\Resource\Repository\ResourceRepositoryRead;
 use Mulidev\Src\Version\Library\FormCreate;
 
 class EditResourceManager
@@ -22,12 +22,12 @@ class EditResourceManager
     private $formCreateVersion;
 
     /**
-     * @var ResourceRepository
+     * @var ResourceRepositoryRead
      */
     private $resourceRepository;
 
 
-    public function __construct(FormEdit $formEdit, FormCreate $formCreateVersion, ResourceRepository $resourceRepository)
+    public function __construct(FormEdit $formEdit, FormCreate $formCreateVersion, ResourceRepositoryRead $resourceRepository)
     {
         $this->formEdit = $formEdit;
         $this->resourceRepository = $resourceRepository;
