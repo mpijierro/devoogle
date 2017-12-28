@@ -23,7 +23,7 @@ class StoreVersionController
             $user = Auth::user();
             $uuid = Uuid::generate();
 
-            $command = new StoreVersionCommand($uuid, $parentUuid, $user->id, $request->get('category_id'), $request->get('url'), $request->get('comment', $default = ''));
+            $command = new StoreVersionCommand($uuid, $parentUuid, $user->id, $request->get('category_id'), $request->get('url'), request('comment', $default = ''));
             $handler = app(StoreVersionHandler::class);
             $handler($command);
 

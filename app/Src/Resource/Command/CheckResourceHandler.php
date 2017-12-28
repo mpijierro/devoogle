@@ -19,7 +19,7 @@ class CheckResourceHandler
         $this->resourceRepository = $resourceRepository;
     }
 
-    public function __invoke(CheckResourceCommand $command)
+    public function __invoke(CheckVersionCommand $command)
     {
 
         $this->find($command->getUuid());

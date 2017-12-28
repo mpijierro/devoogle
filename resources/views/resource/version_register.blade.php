@@ -8,9 +8,9 @@
 
 
 @if( isAdmin() )
-    <a href="{!! route('delete-resource', $version->uuid()) !!}">Borrar</a>&nbsp;
+    <a href="{!! route('delete-version', $version->uuid()) !!}">Borrar</a>&nbsp;
     @if ( ! $version->isReviewed())
-        <a href="{!! route('check-resource', $version->uuid()) !!}">Marcar como revisado</a>
+        <a href="{!! route('check-version', $version->uuid()) !!}">Marcar como revisado</a>
     @endif
 @endif
 

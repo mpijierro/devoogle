@@ -14,13 +14,10 @@ class VersionRepositoryWrite
         return $version->save();
     }
 
-    public function delete($versionId)
+    public function delete(Version $version)
     {
-
-        $resource = Resource::find($versionId);
-
-        $resource->delete();
-
+        $version->delete();
     }
+
 
 }

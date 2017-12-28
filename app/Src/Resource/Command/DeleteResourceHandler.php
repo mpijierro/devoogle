@@ -18,7 +18,7 @@ class DeleteResourceHandler
     }
 
 
-    public function __invoke(DeleteResourceCommand $command)
+    public function __invoke(DeleteVersionCommand $command)
     {
 
         $this->resourceRepository->delete($command->getUuid());

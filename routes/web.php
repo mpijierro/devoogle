@@ -44,6 +44,9 @@ Route::group(['prefix' => 'recursos'], function () {
             Route::get('/eliminar-recurso/{uuid}', "Resource\DeleteResourceController")->name('delete-resource');
             Route::get('/revisar-recurso/{uuid}', "Resource\CheckResourceController")->name('check-resource');
 
+            Route::get('/revisar-version/{uuid}', "Version\CheckVersionController")->name('check-version');
+            Route::get('/eliminar-version/{uuid}', "Version\DeleteVersionController")->name('delete-version');
+
         });
 
     });

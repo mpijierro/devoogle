@@ -2,8 +2,8 @@
 
 namespace Mulidev\Http\Controllers\Resource;
 
-use Mulidev\Src\Resource\Command\DeleteResourceCommand;
-use Mulidev\Src\Resource\Command\DeleteResourceHandler;
+use Mulidev\Src\Resource\Command\DeleteVersionCommand;
+use Mulidev\Src\Resource\Command\DeleteVersionHandler;
 
 class DeleteResourceController
 {
@@ -12,8 +12,8 @@ class DeleteResourceController
     public function __invoke($aUuid)
     {
 
-        $command = new DeleteResourceCommand($aUuid);
-        $handler = app(DeleteResourceHandler::class);
+        $command = new DeleteVersionCommand($aUuid);
+        $handler = app(DeleteVersionHandler::class);
         $handler($command);
 
         return redirect()->route('home-resource');
