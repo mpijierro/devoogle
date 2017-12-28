@@ -116,6 +116,23 @@
                 </div>
             </div>
 
+            @if ($versions->count())
+                @foreach ($versions as $version)
+                    <div class="row">
+                        <div class="col-md-8 col-md-offset-2">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">{!! $resource->title() !!} en formato {!! strtolower($version->category->name()) !!}</div>
+
+                                <div class="panel-body">
+                                    @include('resource.version_register', ['version' => $version])
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            @endif
+
+
             @if (isset($formCreateVersion))
                 @include ('resource.form_version',  ['form' => $formCreateVersion])
             @endif

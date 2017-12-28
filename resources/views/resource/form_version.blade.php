@@ -45,7 +45,7 @@
                     <label for="comment" class="col-md-4 control-label">Comentario</label>
 
                     <div class="col-md-6">
-                        {{ Form::text('comment', null, ['class' => 'form-control', 'id' =>'comment', 'required', 'autofocus'] ) }}
+                        {{ Form::text('comment', null, ['class' => 'form-control', 'id' =>'comment', 'autofocus'] ) }}
 
                         @if ($errors->has('comment'))
                             <span class="help-block">

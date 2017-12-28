@@ -10,6 +10,10 @@ use Mulidev\Src\Version\Library\FormCreate;
 class EditResourceManager
 {
 
+    private $resource;
+
+    private $versions;
+
     private $formEdit;
 
     /**
@@ -28,6 +32,8 @@ class EditResourceManager
         $this->formEdit = $formEdit;
         $this->resourceRepository = $resourceRepository;
         $this->formCreateVersion = $formCreateVersion;
+
+        $this->versions = collect();
     }
 
     public function getFormEdit()
@@ -40,12 +46,40 @@ class EditResourceManager
         return $this->formCreateVersion;
     }
 
+    public function resource()
+    {
+        return $this->resource;
+    }
+
+    public function versions()
+    {
+        return $this->versions;
+    }
+
     public function __invoke(EditResourceQuery $query)
     {
         ($this->formEdit)($query->getUuid());
 
         ($this->formCreateVersion)($query->getUuid());
 
+        $this->obtainVersions($query->getUuid());
+
     }
+
+    private function obtainVersions(string $uuid)
+    {
+
+        $this->findResource($uuid);
+
+        $this->versions = $this->resource->version;
+
+    }
+
+    private function findResource(string $uuid)
+    {
+        $this->resource = $this->resourceRepository->findByUuid($uuid);
+    }
+
+
 
 }

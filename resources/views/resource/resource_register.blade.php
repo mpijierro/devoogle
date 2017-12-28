@@ -2,6 +2,7 @@
 <b>Descripción</b>: {!! $resource->description()  !!}<br>
 <b>Categoría</b>: <span class="nice"><a href="{{route('list-category', $resource->categorySlug()) }}">{!! $resource->categoryName()  !!}</a></span><br>
 <b>Idioma</b>: {!! $resource->langName()  !!}<br>
+<b>Formatos</b>: ...añadir aquí las versiones<br>
 <b>Etiquetas</b>:
 
 @foreach ($resource->tags() as $tag)

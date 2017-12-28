@@ -24,6 +24,8 @@ class Version extends Model
         'reviewed',
     ];
 
+    protected $with = ['category'];
+
 
     public function user()
     {
@@ -53,11 +55,6 @@ class Version extends Model
     public function categoryId()
     {
         return $this->attributes['category_id'];
-    }
-
-    public function langId()
-    {
-        return $this->attributes['lang_id'];
     }
 
     public function url()
