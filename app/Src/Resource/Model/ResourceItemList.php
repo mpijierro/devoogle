@@ -1,6 +1,6 @@
 <?php
 
-namespace Mulidev\Src\Resource\Model;
+namespace Devoogle\Src\Resource\Model;
 
 
 class ResourceItemList

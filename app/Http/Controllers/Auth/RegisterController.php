@@ -1,9 +1,9 @@
 <?php
 
-namespace Mulidev\Http\Controllers\Auth;
+namespace Devoogle\Http\Controllers\Auth;
 
-use Mulidev\User;
-use Mulidev\Http\Controllers\Controller;
+use Devoogle\User;
+use Devoogle\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
@@ -58,7 +58,7 @@ class RegisterController extends Controller
      * Create a new user instance after a valid registration.
      *
      * @param  array $data
-     * @return \Mulidev\User
+     * @return \Devoogle\User
      */
     protected function create(array $data)
     {

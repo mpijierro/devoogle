@@ -67,7 +67,7 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => \Mulidev\Src\User\Model\User::class,
+            'model' => \Devoogle\Src\User\Model\User::class,
         ],
 
         // 'users' => [

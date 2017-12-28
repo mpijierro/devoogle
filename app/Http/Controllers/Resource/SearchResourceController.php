@@ -1,9 +1,9 @@
 <?php
 
-namespace Mulidev\Http\Controllers\Resource;
+namespace Devoogle\Http\Controllers\Resource;
 
-use Mulidev\Src\Resource\Query\SearchResourceManager;
-use Mulidev\Src\Resource\Query\SearchResourceQuery;
+use Devoogle\Src\Resource\Query\SearchResourceManager;
+use Devoogle\Src\Resource\Query\SearchResourceQuery;
 
 class SearchResourceController
 {

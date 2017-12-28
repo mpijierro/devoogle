@@ -1,11 +1,11 @@
 <?php
 
-namespace Mulidev\Http\Controllers\Version;
+namespace Devoogle\Http\Controllers\Version;
 
 use Illuminate\Support\Facades\DB;
-use Mulidev\Src\Version\Command\DeleteVersionCommand;
-use Mulidev\Src\Version\Command\DeleteVersionHandler;
-use Mulidev\Src\Version\Repository\VersionRepositoryRead;
+use Devoogle\Src\Version\Command\DeleteVersionCommand;
+use Devoogle\Src\Version\Command\DeleteVersionHandler;
+use Devoogle\Src\Version\Repository\VersionRepositoryRead;
 
 class DeleteVersionController
 {

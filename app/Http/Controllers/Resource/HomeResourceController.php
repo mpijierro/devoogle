@@ -1,8 +1,8 @@
 <?php
 
-namespace Mulidev\Http\Controllers\Resource;
+namespace Devoogle\Http\Controllers\Resource;
 
-use Mulidev\Src\Resource\Query\HomeResourceManager;
+use Devoogle\Src\Resource\Query\HomeResourceManager;
 
 class HomeResourceController
 {

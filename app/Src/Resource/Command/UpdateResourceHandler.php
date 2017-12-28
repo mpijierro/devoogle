@@ -1,9 +1,9 @@
 <?php
 
-namespace Mulidev\Src\Resource\Command;
+namespace Devoogle\Src\Resource\Command;
 
-use Mulidev\Src\Resource\Repository\ResourceRepositoryRead;
-use Mulidev\Src\Resource\Repository\ResourceRepositoryWrite;
+use Devoogle\Src\Resource\Repository\ResourceRepositoryRead;
+use Devoogle\Src\Resource\Repository\ResourceRepositoryWrite;
 
 class UpdateResourceHandler
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace Mulidev\Providers;
+namespace Devoogle\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Broadcast;

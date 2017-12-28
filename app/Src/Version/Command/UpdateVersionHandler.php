@@ -1,9 +1,9 @@
 <?php
 
-namespace Mulidev\Src\Version\Command;
+namespace Devoogle\Src\Version\Command;
 
-use Mulidev\Src\Version\Repository\VersionRepositoryRead;
-use Mulidev\Src\Version\Repository\VersionRepositoryWrite;
+use Devoogle\Src\Version\Repository\VersionRepositoryRead;
+use Devoogle\Src\Version\Repository\VersionRepositoryWrite;
 
 class UpdateVersionHandler
 {

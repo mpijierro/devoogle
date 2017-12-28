@@ -1,6 +1,6 @@
 {
   "name": "laravel/laravel",
-  "description": "The Laravel Framework.",
+  "description": "Devoogle.",
   "keywords": [
     "framework",
     "laravel"
@@ -30,10 +30,10 @@
       "database/factories"
     ],
     "psr-4": {
-      "Mulidev\\": "app/"
+      "Devoogle\\": "app/"
     },
     "files": [
-      "app/Src/Mulidev/Helper/user.php"
+      "app/Src/Devoogle/Helper/user.php"
     ]
   },
   "autoload-dev": {

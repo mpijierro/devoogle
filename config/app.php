@@ -171,12 +171,12 @@ return [
         /*
          * Application Service Providers...
          */
-        Mulidev\Providers\AppServiceProvider::class,
-        Mulidev\Providers\AuthServiceProvider::class,
-        // Mulidev\Providers\BroadcastServiceProvider::class,
-        Mulidev\Providers\EventServiceProvider::class,
-        Mulidev\Providers\RouteServiceProvider::class,
-        \Mulidev\Src\Resource\ResourceServiceProvider::class,
+        Devoogle\Providers\AppServiceProvider::class,
+        Devoogle\Providers\AuthServiceProvider::class,
+        // Devoogle\Providers\BroadcastServiceProvider::class,
+        Devoogle\Providers\EventServiceProvider::class,
+        Devoogle\Providers\RouteServiceProvider::class,
+        Devoogle\Src\Resource\ResourceServiceProvider::class,
 
     ],
 

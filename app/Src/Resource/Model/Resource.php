@@ -1,13 +1,13 @@
 <?php
 
-namespace Mulidev\Src\Resource\Model;
+namespace Devoogle\Src\Resource\Model;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Mulidev\Src\Category\Model\Category;
-use Mulidev\Src\Lang\Model\Lang;
-use Mulidev\Src\User\Model\User;
-use Mulidev\Src\Version\Model\Version;
+use Devoogle\Src\Category\Model\Category;
+use Devoogle\Src\Lang\Model\Lang;
+use Devoogle\Src\User\Model\User;
+use Devoogle\Src\Version\Model\Version;
 use Spatie\Tags\HasTags;
 
 class Resource extends Model

@@ -1,9 +1,9 @@
 <?php
 
-namespace Mulidev\Src\Resource;
+namespace Devoogle\Src\Resource;
 
 use Illuminate\Support\ServiceProvider;
-use Mulidev\Src\Resource\Model\Resource;
+use Devoogle\Src\Resource\Model\Resource;
 
 use Illuminate\Database\Eloquent\Relations\Relation;
 

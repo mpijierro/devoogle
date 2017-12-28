@@ -1,6 +1,6 @@
 <?php
 
-namespace Mulidev\Http\Middleware;
+namespace Devoogle\Http\Middleware;
 
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken as Middleware;
 

@@ -1,11 +1,11 @@
 <?php
 
-namespace Mulidev\Src\Version\Query;
+namespace Devoogle\Src\Version\Query;
 
 
-use Mulidev\Src\Resource\Repository\ResourceRepositoryRead;
-use Mulidev\Src\Version\Library\FormEdit;
-use Mulidev\Src\Version\Repository\VersionRepositoryRead;
+use Devoogle\Src\Resource\Repository\ResourceRepositoryRead;
+use Devoogle\Src\Version\Library\FormEdit;
+use Devoogle\Src\Version\Repository\VersionRepositoryRead;
 
 class EditVersionManager
 {

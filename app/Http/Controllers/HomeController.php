@@ -1,6 +1,6 @@
 <?php
 
-namespace Mulidev\Http\Controllers;
+namespace Devoogle\Http\Controllers;
 
 use Illuminate\Http\Request;
 

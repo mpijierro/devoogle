@@ -1,9 +1,9 @@
 <?php
 
-namespace Mulidev\Http\Controllers\Tag;
+namespace Devoogle\Http\Controllers\Tag;
 
-use Mulidev\Src\Resource\Query\ListByTagManager;
-use Mulidev\Src\Resource\Query\ListByTagQuery;
+use Devoogle\Src\Resource\Query\ListByTagManager;
+use Devoogle\Src\Resource\Query\ListByTagQuery;
 
 class TagListController
 {

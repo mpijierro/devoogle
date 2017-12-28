@@ -1,9 +1,9 @@
 <?php
 
-namespace Mulidev\Src\Social\Model;
+namespace Devoogle\Src\Social\Model;
 
 use Illuminate\Database\Eloquent\Model;
-use Mulidev\Src\User\Model\User;
+use Devoogle\Src\User\Model\User;
 
 class Social extends Model
 {

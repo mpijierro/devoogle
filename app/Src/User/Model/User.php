@@ -1,11 +1,11 @@
 <?php
 
-namespace Mulidev\Src\User\Model;
+namespace Devoogle\Src\User\Model;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Mulidev\Src\Resource\Model\Resource;
-use Mulidev\Src\Social\Model\Social;
+use Devoogle\Src\Resource\Model\Resource;
+use Devoogle\Src\Social\Model\Social;
 
 class User extends Authenticatable
 {

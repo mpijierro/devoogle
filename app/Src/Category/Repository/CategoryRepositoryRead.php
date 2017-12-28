@@ -1,8 +1,8 @@
 <?php
 
-namespace Mulidev\Src\Category\Repository;
+namespace Devoogle\Src\Category\Repository;
 
-use Mulidev\Src\Category\Model\Category;
+use Devoogle\Src\Category\Model\Category;
 
 class CategoryRepositoryRead
 {

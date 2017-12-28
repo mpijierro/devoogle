@@ -1,6 +1,6 @@
 <?php
 
-namespace Mulidev\Src\Tag\Repository;
+namespace Devoogle\Src\Tag\Repository;
 
 use Spatie\Tags\Tag;
 

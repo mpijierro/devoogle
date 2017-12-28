@@ -1,6 +1,6 @@
 <?php
 
-namespace Mulidev\Src\Resource\Query;
+namespace Devoogle\Src\Resource\Query;
 
 class SearchResourceQuery
 {

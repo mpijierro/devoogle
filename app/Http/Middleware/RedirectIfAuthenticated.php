@@ -1,6 +1,6 @@
 <?php
 
-namespace Mulidev\Http\Middleware;
+namespace Devoogle\Http\Middleware;
 
 use Closure;
 use Illuminate\Support\Facades\Auth;

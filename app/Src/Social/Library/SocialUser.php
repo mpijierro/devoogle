@@ -1,6 +1,6 @@
 <?php
 
-namespace Mulidev\Src\Social\Library;
+namespace Devoogle\Src\Social\Library;
 
 abstract class SocialUser
 {

@@ -1,12 +1,12 @@
 <?php
 
-namespace Mulidev\Http\Middleware;
+namespace Devoogle\Http\Middleware;
 
 use Closure;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\Auth;
-use Mulidev\Src\Resource\Repository\ResourceRepositoryRead;
-use Mulidev\Src\Version\Repository\VersionRepositoryRead;
+use Devoogle\Src\Resource\Repository\ResourceRepositoryRead;
+use Devoogle\Src\Version\Repository\VersionRepositoryRead;
 
 class IsNotReviewed
 {

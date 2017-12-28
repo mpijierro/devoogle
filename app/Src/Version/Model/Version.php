@@ -1,12 +1,12 @@
 <?php
 
-namespace Mulidev\Src\Version\Model;
+namespace Devoogle\Src\Version\Model;
 
 use Illuminate\Database\Eloquent\Model;
-use Mulidev\Src\Category\Model\Category;
-use Mulidev\Src\Lang\Model\Lang;
-use Mulidev\Src\Resource\Model\Resource;
-use Mulidev\Src\User\Model\User;
+use Devoogle\Src\Category\Model\Category;
+use Devoogle\Src\Lang\Model\Lang;
+use Devoogle\Src\Resource\Model\Resource;
+use Devoogle\Src\User\Model\User;
 
 
 class Version extends Model

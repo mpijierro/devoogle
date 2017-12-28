@@ -1,6 +1,6 @@
 <?php
 
-namespace Mulidev\Providers;
+namespace Devoogle\Providers;
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
@@ -14,7 +14,7 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @var string
      */
-    protected $namespace = 'Mulidev\Http\Controllers';
+    protected $namespace = 'Devoogle\Http\Controllers';
 
     /**
      * Define your route model bindings, pattern filters, etc.

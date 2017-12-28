@@ -1,9 +1,9 @@
 <?php
 
-namespace Mulidev\Src\Version\Repository;
+namespace Devoogle\Src\Version\Repository;
 
-use Mulidev\Src\Resource\Model\Resource;
-use Mulidev\Src\Version\Model\Version;
+use Devoogle\Src\Resource\Model\Resource;
+use Devoogle\Src\Version\Model\Version;
 
 
 class VersionRepositoryWrite

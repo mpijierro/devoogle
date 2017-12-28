@@ -1,8 +1,8 @@
 <?php
 
-namespace Mulidev\Src\Social\Library;
+namespace Devoogle\Src\Social\Library;
 
-use Mulidev\Src\Social\Model\Social;
+use Devoogle\Src\Social\Model\Social;
 use Laravel\Socialite\Facades\Socialite;
 
 class InstanceSocialUserFactory

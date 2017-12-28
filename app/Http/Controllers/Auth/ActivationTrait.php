@@ -1,9 +1,9 @@
 <?php
 
-namespace Mulidev\Http\Controllers\Auth;
+namespace Devoogle\Http\Controllers\Auth;
 
-use Mulidev\Logic\Activation\ActivationRepository;
-use Mulidev\Src\User\Model\User;
+use Devoogle\Logic\Activation\ActivationRepository;
+use Devoogle\Src\User\Model\User;
 use Illuminate\Support\Facades\Validator;
 
 trait ActivationTrait

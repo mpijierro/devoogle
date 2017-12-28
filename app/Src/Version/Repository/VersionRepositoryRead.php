@@ -1,8 +1,8 @@
 <?php
 
-namespace Mulidev\Src\Version\Repository;
+namespace Devoogle\Src\Version\Repository;
 
-use Mulidev\Src\Version\Model\Version;
+use Devoogle\Src\Version\Model\Version;
 
 class VersionRepositoryRead
 {

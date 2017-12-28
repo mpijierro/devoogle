@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Mulidev\Src\Version\Command;
+namespace Devoogle\Src\Version\Command;
 
 
 class CheckVersionCommand

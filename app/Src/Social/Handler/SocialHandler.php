@@ -1,13 +1,13 @@
 <?php
 
-namespace Mulidev\Src\Social\Handler;
+namespace Devoogle\Src\Social\Handler;
 
-use Mulidev\Src\Social\Library\InstanceSocialUserFactory;
-use Mulidev\Src\Social\Repository\SocialRepository;
-use Mulidev\Src\Social\Command\SocialHandlerCommand;
-use Mulidev\Src\User\Model\User;
-use Mulidev\Src\User\Repository\UserRepository;
-use Mulidev\Src\Social\Model\Social;
+use Devoogle\Src\Social\Library\InstanceSocialUserFactory;
+use Devoogle\Src\Social\Repository\SocialRepository;
+use Devoogle\Src\Social\Command\SocialHandlerCommand;
+use Devoogle\Src\User\Model\User;
+use Devoogle\Src\User\Repository\UserRepository;
+use Devoogle\Src\Social\Model\Social;
 
 class SocialHandler
 {

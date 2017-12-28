@@ -1,8 +1,8 @@
 <?php
 
-namespace Mulidev\Src\Resource\Repository;
+namespace Devoogle\Src\Resource\Repository;
 
-use Mulidev\Src\Resource\Model\Resource;
+use Devoogle\Src\Resource\Model\Resource;
 use Symfony\Component\Routing\Exception\InvalidParameterException;
 
 

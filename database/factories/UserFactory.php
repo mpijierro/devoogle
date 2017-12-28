@@ -13,7 +13,7 @@ use Faker\Generator as Faker;
 |
 */
 
-$factory->define(Mulidev\User::class, function (Faker $faker) {
+$factory->define(Devoogle\User::class, function (Faker $faker) {
     static $password;
 
     return [

@@ -1,9 +1,9 @@
 <?php
 
-namespace Mulidev\Http\Controllers\Category;
+namespace Devoogle\Http\Controllers\Category;
 
-use Mulidev\Src\Resource\Query\ListByCategoryManager;
-use Mulidev\Src\Resource\Query\ListByCategoryQuery;
+use Devoogle\Src\Resource\Query\ListByCategoryManager;
+use Devoogle\Src\Resource\Query\ListByCategoryQuery;
 
 class CategoryListController
 {

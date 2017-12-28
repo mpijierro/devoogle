@@ -1,6 +1,6 @@
 <?php
 
-namespace Mulidev\Providers;
+namespace Devoogle\Providers;
 
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
@@ -13,7 +13,7 @@ class AuthServiceProvider extends ServiceProvider
      * @var array
      */
     protected $policies = [
-        'Mulidev\Model' => 'Mulidev\Policies\ModelPolicy',
+        'Devoogle\Model' => 'Devoogle\Policies\ModelPolicy',
     ];
 
     /**

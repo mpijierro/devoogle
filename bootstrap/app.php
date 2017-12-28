@@ -28,17 +28,17 @@ $app = new Illuminate\Foundation\Application(
 
 $app->singleton(
     Illuminate\Contracts\Http\Kernel::class,
-    Mulidev\Http\Kernel::class
+    Devoogle\Http\Kernel::class
 );
 
 $app->singleton(
     Illuminate\Contracts\Console\Kernel::class,
-    Mulidev\Console\Kernel::class
+    Devoogle\Console\Kernel::class
 );
 
 $app->singleton(
     Illuminate\Contracts\Debug\ExceptionHandler::class,
-    Mulidev\Exceptions\Handler::class
+    Devoogle\Exceptions\Handler::class
 );
 
 /*

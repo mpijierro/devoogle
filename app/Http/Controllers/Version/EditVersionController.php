@@ -1,11 +1,11 @@
 <?php
 
-namespace Mulidev\Http\Controllers\Version;
+namespace Devoogle\Http\Controllers\Version;
 
-use Mulidev\Src\Resource\Query\EditResourceManager;
-use Mulidev\Src\Resource\Query\EditResourceQuery;
-use Mulidev\Src\Version\Query\EditVersionManager;
-use Mulidev\Src\Version\Query\EditVersionQuery;
+use Devoogle\Src\Resource\Query\EditResourceManager;
+use Devoogle\Src\Resource\Query\EditResourceQuery;
+use Devoogle\Src\Version\Query\EditVersionManager;
+use Devoogle\Src\Version\Query\EditVersionQuery;
 
 class EditVersionController
 {

@@ -1,8 +1,8 @@
 <?php
 
-namespace Mulidev\Src\User\Repository;
+namespace Devoogle\Src\User\Repository;
 
-use Mulidev\Src\User\Model\User;
+use Devoogle\Src\User\Model\User;
 
 class UserRepository
 {

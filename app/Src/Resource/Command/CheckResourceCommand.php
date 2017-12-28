@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Mulidev\Src\Resource\Command;
+namespace Devoogle\Src\Resource\Command;
 
 
 class CheckResourceCommand

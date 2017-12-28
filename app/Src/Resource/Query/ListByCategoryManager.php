@@ -1,11 +1,11 @@
 <?php
 
-namespace Mulidev\Src\Resource\Query;
+namespace Devoogle\Src\Resource\Query;
 
-use Mulidev\Src\Category\Repository\CategoryRepositoryRead;
-use Mulidev\Src\Resource\Model\ResourceItemList;
-use Mulidev\Src\Resource\Repository\ResourceRepositoryRead;
-use Mulidev\Src\Tag\Repository\TagRepositoryRead;
+use Devoogle\Src\Category\Repository\CategoryRepositoryRead;
+use Devoogle\Src\Resource\Model\ResourceItemList;
+use Devoogle\Src\Resource\Repository\ResourceRepositoryRead;
+use Devoogle\Src\Tag\Repository\TagRepositoryRead;
 
 class ListByCategoryManager
 {

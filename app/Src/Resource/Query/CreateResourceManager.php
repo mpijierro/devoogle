@@ -1,8 +1,8 @@
 <?php
 
-namespace Mulidev\Src\Resource\Query;
+namespace Devoogle\Src\Resource\Query;
 
-use Mulidev\Src\Resource\Library\FormCreate;
+use Devoogle\Src\Resource\Library\FormCreate;
 
 class CreateResourceManager
 {

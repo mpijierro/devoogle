@@ -1,11 +1,11 @@
 <?php
 
-namespace Mulidev\Src\Resource\Library;
+namespace Devoogle\Src\Resource\Library;
 
-use Mulidev\Src\Category\Repository\CategoryRepositoryRead;
-use Mulidev\Src\Lang\Repository\LangRepositoryRead;
-use Mulidev\Src\Mulidev\Library\Form;
-use Mulidev\Src\Resource\Repository\ResourceRepositoryRead;
+use Devoogle\Src\Category\Repository\CategoryRepositoryRead;
+use Devoogle\Src\Lang\Repository\LangRepositoryRead;
+use Devoogle\Src\Devoogle\Library\Form;
+use Devoogle\Src\Resource\Repository\ResourceRepositoryRead;
 use Webpatser\Uuid\Uuid;
 
 class FormEdit extends Form

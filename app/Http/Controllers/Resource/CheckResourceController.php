@@ -1,15 +1,15 @@
 <?php
 
-namespace Mulidev\Http\Controllers\Resource;
+namespace Devoogle\Http\Controllers\Resource;
 
-use Mulidev\Src\Resource\Command\CheckResourceCommand;
-use Mulidev\Src\Resource\Command\CheckResourceHandler;
+use Devoogle\Src\Resource\Command\CheckResourceCommand;
+use Devoogle\Src\Resource\Command\CheckResourceHandler;
 
 /**
  * Mark a resource as reviewed
  *
  * Class CheckResourceController
- * @package Mulidev\Http\Controllers\Resource
+ * @package Devoogle\Http\Controllers\Resource
  */
 class CheckResourceController
 {

@@ -1,9 +1,9 @@
 <?php
 
-namespace Mulidev\Http\Controllers\Version;
+namespace Devoogle\Http\Controllers\Version;
 
 
-use Mulidev\Src\Resource\Query\CreateResourceManager;
+use Devoogle\Src\Resource\Query\CreateResourceManager;
 
 class CreateVersionController
 {

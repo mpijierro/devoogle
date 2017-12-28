@@ -1,10 +1,10 @@
 <?php
 
-namespace Mulidev\Src\Version\Command;
+namespace Devoogle\Src\Version\Command;
 
-use Mulidev\Src\Resource\Repository\ResourceRepositoryRead;
-use Mulidev\Src\Version\Repository\VersionRepositoryWrite;
-use Mulidev\Src\Version\Model\Version;
+use Devoogle\Src\Resource\Repository\ResourceRepositoryRead;
+use Devoogle\Src\Version\Repository\VersionRepositoryWrite;
+use Devoogle\Src\Version\Model\Version;
 
 
 class StoreVersionHandler

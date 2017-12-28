@@ -1,9 +1,9 @@
 <?php
 
-namespace Mulidev\Http\Controllers\Resource;
+namespace Devoogle\Http\Controllers\Resource;
 
 
-use Mulidev\Src\Resource\Query\CreateResourceManager;
+use Devoogle\Src\Resource\Query\CreateResourceManager;
 
 class CreateResourceController
 {

@@ -30,7 +30,7 @@ return [
     ],
 
     'stripe' => [
-        'model' => \Mulidev\Src\User\Model\User::class,
+        'model' => \Devoogle\Src\User\Model\User::class,
         'key' => env('STRIPE_KEY'),
         'secret' => env('STRIPE_SECRET'),
     ],

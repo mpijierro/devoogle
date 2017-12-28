@@ -1,6 +1,6 @@
 <?php
 
-namespace Mulidev\Src\Social\Command;
+namespace Devoogle\Src\Social\Command;
 
 class SocialHandlerCommand
 {

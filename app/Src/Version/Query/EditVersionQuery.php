@@ -1,6 +1,6 @@
 <?php
 
-namespace Mulidev\Src\Version\Query;
+namespace Devoogle\Src\Version\Query;
 
 class EditVersionQuery
 {

@@ -1,8 +1,8 @@
 <?php
 
-namespace Mulidev\Src\Lang\Repository;
+namespace Devoogle\Src\Lang\Repository;
 
-use Mulidev\Src\Lang\Model\Lang;
+use Devoogle\Src\Lang\Model\Lang;
 
 class LangRepositoryRead
 {

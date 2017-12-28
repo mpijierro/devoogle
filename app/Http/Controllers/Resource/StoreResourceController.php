@@ -1,12 +1,12 @@
 <?php
 
-namespace Mulidev\Http\Controllers\Resource;
+namespace Devoogle\Http\Controllers\Resource;
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use Mulidev\Src\Resource\Command\StoreResourceCommand;
-use Mulidev\Src\Resource\Command\StoreResourceHandler;
-use Mulidev\Src\Resource\Request\StoreResourceRequest;
+use Devoogle\Src\Resource\Command\StoreResourceCommand;
+use Devoogle\Src\Resource\Command\StoreResourceHandler;
+use Devoogle\Src\Resource\Request\StoreResourceRequest;
 use Webpatser\Uuid\Uuid;
 
 class StoreResourceController

@@ -1,13 +1,13 @@
 <?php
 
-namespace Mulidev\Src\Social\Repository;
+namespace Devoogle\Src\Social\Repository;
 
-use Mulidev\Src\Social\Model\Social;
+use Devoogle\Src\Social\Model\Social;
 
 class SocialRepository
 {
     /**
-     * @var \Mulidev\Src\Social\Model\Social
+     * @var \Devoogle\Src\Social\Model\Social
      */
     private $social;
 

@@ -1,12 +1,12 @@
 <?php
 
-namespace Mulidev\Http\Controllers\Version;
+namespace Devoogle\Http\Controllers\Version;
 
 use Illuminate\Support\Facades\DB;
-use Mulidev\Src\Version\Command\UpdateVersionCommand;
-use Mulidev\Src\Version\Command\UpdateVersionHandler;
-use Mulidev\Src\Version\Repository\VersionRepositoryRead;
-use Mulidev\Src\Version\Request\UpdateVersionRequest;
+use Devoogle\Src\Version\Command\UpdateVersionCommand;
+use Devoogle\Src\Version\Command\UpdateVersionHandler;
+use Devoogle\Src\Version\Repository\VersionRepositoryRead;
+use Devoogle\Src\Version\Request\UpdateVersionRequest;
 
 class UpdateVersionController
 {

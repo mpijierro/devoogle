@@ -1,6 +1,6 @@
 <?php
 
-namespace Mulidev\Exceptions;
+namespace Devoogle\Exceptions;
 
 use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;

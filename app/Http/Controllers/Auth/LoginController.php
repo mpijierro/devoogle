@@ -1,8 +1,8 @@
 <?php
 
-namespace Mulidev\Http\Controllers\Auth;
+namespace Devoogle\Http\Controllers\Auth;
 
-use Mulidev\Http\Controllers\Controller;
+use Devoogle\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Laravel\Socialite\Facades\Socialite;
 

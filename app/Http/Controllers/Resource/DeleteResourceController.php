@@ -1,9 +1,9 @@
 <?php
 
-namespace Mulidev\Http\Controllers\Resource;
+namespace Devoogle\Http\Controllers\Resource;
 
-use Mulidev\Src\Resource\Command\DeleteResourceCommand;
-use Mulidev\Src\Resource\Command\DeleteResourceHandler;
+use Devoogle\Src\Resource\Command\DeleteResourceCommand;
+use Devoogle\Src\Resource\Command\DeleteResourceHandler;
 
 class DeleteResourceController
 {

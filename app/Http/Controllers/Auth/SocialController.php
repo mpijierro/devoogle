@@ -1,11 +1,11 @@
 <?php
 
-namespace Mulidev\Http\Controllers\Auth;
+namespace Devoogle\Http\Controllers\Auth;
 
-use Mulidev\Http\Controllers\Controller;
-use Mulidev\Src\User\Model\User;
-use Mulidev\Src\Social\Handler\SocialHandler;
-use Mulidev\Src\Social\Command\SocialHandlerCommand;
+use Devoogle\Http\Controllers\Controller;
+use Devoogle\Src\User\Model\User;
+use Devoogle\Src\Social\Handler\SocialHandler;
+use Devoogle\Src\Social\Command\SocialHandlerCommand;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Input;

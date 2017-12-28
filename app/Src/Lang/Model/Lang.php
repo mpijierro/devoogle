@@ -1,9 +1,9 @@
 <?php
 
-namespace Mulidev\Src\Lang\Model;
+namespace Devoogle\Src\Lang\Model;
 
 use Illuminate\Database\Eloquent\Model;
-use Mulidev\Src\Resource\Model\Resource;
+use Devoogle\Src\Resource\Model\Resource;
 
 class Lang extends Model
 {

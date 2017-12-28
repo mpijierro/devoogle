@@ -1,6 +1,6 @@
 <?php
 
-namespace Mulidev\Http\Middleware;
+namespace Devoogle\Http\Middleware;
 
 use Illuminate\Cookie\Middleware\EncryptCookies as Middleware;
 

@@ -1,9 +1,9 @@
 <?php
 
-namespace Mulidev\Http\Controllers\Resource;
+namespace Devoogle\Http\Controllers\Resource;
 
-use Mulidev\Src\Resource\Query\EditResourceManager;
-use Mulidev\Src\Resource\Query\EditResourceQuery;
+use Devoogle\Src\Resource\Query\EditResourceManager;
+use Devoogle\Src\Resource\Query\EditResourceQuery;
 
 class EditResourceController
 {

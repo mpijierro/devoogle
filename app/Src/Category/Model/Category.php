@@ -1,9 +1,9 @@
 <?php
 
-namespace Mulidev\Src\Category\Model;
+namespace Devoogle\Src\Category\Model;
 
 use Illuminate\Database\Eloquent\Model;
-use Mulidev\Src\Resource\Model\Resource;
+use Devoogle\Src\Resource\Model\Resource;
 
 class Category extends Model
 {

@@ -1,12 +1,12 @@
 <?php
 
-namespace Mulidev\Http\Controllers\Version;
+namespace Devoogle\Http\Controllers\Version;
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use Mulidev\Src\Version\Command\StoreVersionCommand;
-use Mulidev\Src\Version\Command\StoreVersionHandler;
-use Mulidev\Src\Version\Request\StoreVersionRequest;
+use Devoogle\Src\Version\Command\StoreVersionCommand;
+use Devoogle\Src\Version\Command\StoreVersionHandler;
+use Devoogle\Src\Version\Request\StoreVersionRequest;
 use Webpatser\Uuid\Uuid;
 
 class StoreVersionController

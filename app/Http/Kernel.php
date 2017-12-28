@@ -1,12 +1,12 @@
 <?php
 
-namespace Mulidev\Http;
+namespace Devoogle\Http;
 
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
-use Mulidev\Http\Middleware\IsAdmin;
-use Mulidev\Http\Middleware\IsNotReviewed;
-use Mulidev\Http\Middleware\IsResourceOwner;
-use Mulidev\Http\Middleware\IsVersionOwner;
+use Devoogle\Http\Middleware\IsAdmin;
+use Devoogle\Http\Middleware\IsNotReviewed;
+use Devoogle\Http\Middleware\IsResourceOwner;
+use Devoogle\Http\Middleware\IsVersionOwner;
 
 class Kernel extends HttpKernel
 {
@@ -20,9 +20,9 @@ class Kernel extends HttpKernel
     protected $middleware = [
         \Illuminate\Foundation\Http\Middleware\CheckForMaintenanceMode::class,
         \Illuminate\Foundation\Http\Middleware\ValidatePostSize::class,
-        \Mulidev\Http\Middleware\TrimStrings::class,
+        \Devoogle\Http\Middleware\TrimStrings::class,
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
-        \Mulidev\Http\Middleware\TrustProxies::class,
+        \Devoogle\Http\Middleware\TrustProxies::class,
     ];
 
     /**
@@ -32,12 +32,12 @@ class Kernel extends HttpKernel
      */
     protected $middlewareGroups = [
         'web' => [
-            \Mulidev\Http\Middleware\EncryptCookies::class,
+            \Devoogle\Http\Middleware\EncryptCookies::class,
             \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
             \Illuminate\Session\Middleware\StartSession::class,
             // \Illuminate\Session\Middleware\AuthenticateSession::class,
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
-            \Mulidev\Http\Middleware\VerifyCsrfToken::class,
+            \Devoogle\Http\Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
         ],
 
@@ -59,7 +59,7 @@ class Kernel extends HttpKernel
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'bindings' => \Illuminate\Routing\Middleware\SubstituteBindings::class,
         'can' => \Illuminate\Auth\Middleware\Authorize::class,
-        'guest' => \Mulidev\Http\Middleware\RedirectIfAuthenticated::class,
+        'guest' => \Devoogle\Http\Middleware\RedirectIfAuthenticated::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'is.admin' => IsAdmin::class,
         'is.resource.owner' => IsResourceOwner::class,

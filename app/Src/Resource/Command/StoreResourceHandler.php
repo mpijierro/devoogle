@@ -1,9 +1,9 @@
 <?php
 
-namespace Mulidev\Src\Resource\Command;
+namespace Devoogle\Src\Resource\Command;
 
-use Mulidev\Src\Resource\Model\Resource;
-use Mulidev\Src\Resource\Repository\ResourceRepositoryWrite;
+use Devoogle\Src\Resource\Model\Resource;
+use Devoogle\Src\Resource\Repository\ResourceRepositoryWrite;
 
 
 class StoreResourceHandler

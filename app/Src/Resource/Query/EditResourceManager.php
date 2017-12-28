@@ -1,11 +1,11 @@
 <?php
 
-namespace Mulidev\Src\Resource\Query;
+namespace Devoogle\Src\Resource\Query;
 
 
-use Mulidev\Src\Resource\Library\FormEdit;
-use Mulidev\Src\Resource\Repository\ResourceRepositoryRead;
-use Mulidev\Src\Version\Library\FormCreate;
+use Devoogle\Src\Resource\Library\FormEdit;
+use Devoogle\Src\Resource\Repository\ResourceRepositoryRead;
+use Devoogle\Src\Version\Library\FormCreate;
 
 class EditResourceManager
 {

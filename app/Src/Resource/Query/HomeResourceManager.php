@@ -1,12 +1,12 @@
 <?php
 
-namespace Mulidev\Src\Resource\Query;
+namespace Devoogle\Src\Resource\Query;
 
 use Illuminate\Database\Eloquent\Collection;
-use Mulidev\Src\Category\Repository\CategoryRepositoryRead;
-use Mulidev\Src\Lang\Repository\LangRepositoryRead;
-use Mulidev\Src\Resource\Model\ResourceItemList;
-use Mulidev\Src\Resource\Repository\ResourceRepositoryRead;
+use Devoogle\Src\Category\Repository\CategoryRepositoryRead;
+use Devoogle\Src\Lang\Repository\LangRepositoryRead;
+use Devoogle\Src\Resource\Model\ResourceItemList;
+use Devoogle\Src\Resource\Repository\ResourceRepositoryRead;
 
 class HomeResourceManager
 {

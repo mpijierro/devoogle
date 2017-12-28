@@ -1,6 +1,6 @@
 <?php
 
-namespace Mulidev\Src\Version\Request;
+namespace Devoogle\Src\Version\Request;
 
 use Illuminate\Foundation\Http\FormRequest;
 

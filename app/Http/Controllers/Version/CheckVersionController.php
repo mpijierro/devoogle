@@ -1,17 +1,17 @@
 <?php
 
-namespace Mulidev\Http\Controllers\Version;
+namespace Devoogle\Http\Controllers\Version;
 
 
-use Mulidev\Src\Version\Command\CheckVersionCommand;
-use Mulidev\Src\Version\Command\CheckVersionHandler;
-use Mulidev\Src\Version\Repository\VersionRepositoryRead;
+use Devoogle\Src\Version\Command\CheckVersionCommand;
+use Devoogle\Src\Version\Command\CheckVersionHandler;
+use Devoogle\Src\Version\Repository\VersionRepositoryRead;
 
 /**
  * Mark a version as reviewed
  *
  * Class CheckResourceController
- * @package Mulidev\Http\Controllers\Resource
+ * @package Devoogle\Http\Controllers\Resource
  */
 class CheckVersionController
 {

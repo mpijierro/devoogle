@@ -1,11 +1,11 @@
 <?php
 
-namespace Mulidev\Http\Controllers\Resource;
+namespace Devoogle\Http\Controllers\Resource;
 
 use Illuminate\Support\Facades\DB;
-use Mulidev\Src\Resource\Command\UpdateResourceCommand;
-use Mulidev\Src\Resource\Command\UpdateResourceHandler;
-use Mulidev\Src\Resource\Request\StoreResourceRequest;
+use Devoogle\Src\Resource\Command\UpdateResourceCommand;
+use Devoogle\Src\Resource\Command\UpdateResourceHandler;
+use Devoogle\Src\Resource\Request\StoreResourceRequest;
 
 class UpdateResourceController
 {
