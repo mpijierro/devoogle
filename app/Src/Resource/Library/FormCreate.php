@@ -2,8 +2,8 @@
 
 namespace Mulidev\Src\Resource\Library;
 
-use Mulidev\Src\Category\Repository\CategoryRepository;
-use Mulidev\Src\Lang\Repository\LangRepository;
+use Mulidev\Src\Category\Repository\CategoryRepositoryRead;
+use Mulidev\Src\Lang\Repository\LangRepositoryRead;
 use Mulidev\Src\Mulidev\Library\Form;
 
 class FormCreate extends Form
@@ -13,19 +13,19 @@ class FormCreate extends Form
     private $langOptions;
 
     /**
-     * @var CategoryRepository
+     * @var CategoryRepositoryRead
      */
     private $categoryRepository;
     /**
-     * @var LangRepository
+     * @var LangRepositoryRead
      */
     private $langRepository;
 
     /**
-     * @param CategoryRepository $categoryRepository
-     * @param LangRepository $langRepository
+     * @param CategoryRepositoryRead $categoryRepository
+     * @param LangRepositoryRead $langRepository
      */
-    public function __construct(CategoryRepository $categoryRepository, LangRepository $langRepository)
+    public function __construct(CategoryRepositoryRead $categoryRepository, LangRepositoryRead $langRepository)
     {
         $this->categoryRepository = $categoryRepository;
         $this->categoryOptions = [];

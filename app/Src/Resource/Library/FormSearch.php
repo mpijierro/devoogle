@@ -2,8 +2,8 @@
 
 namespace Mulidev\Src\Resource\Library;
 
-use Mulidev\Src\Category\Repository\CategoryRepository;
-use Mulidev\Src\Lang\Repository\LangRepository;
+use Mulidev\Src\Category\Repository\CategoryRepositoryRead;
+use Mulidev\Src\Lang\Repository\LangRepositoryRead;
 use Mulidev\Src\Mulidev\Library\Form;
 
 class FormSearch extends Form

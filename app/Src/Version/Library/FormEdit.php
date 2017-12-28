@@ -2,8 +2,8 @@
 
 namespace Mulidev\Src\Version\Library;
 
-use Mulidev\Src\Category\Repository\CategoryRepository;
-use Mulidev\Src\Lang\Repository\LangRepository;
+use Mulidev\Src\Category\Repository\CategoryRepositoryRead;
+use Mulidev\Src\Lang\Repository\LangRepositoryRead;
 use Mulidev\Src\Mulidev\Library\Form;
 use Mulidev\Src\Version\Repository\VersionRepositoryRead;
 
@@ -24,10 +24,10 @@ class FormEdit extends Form
 
 
     /**
-     * @param CategoryRepository $categoryRepository
-     * @param LangRepository $langRepositor
+     * @param CategoryRepositoryRead $categoryRepository
+     * @param LangRepositoryRead $langRepositor
      */
-    public function __construct(CategoryRepository $categoryRepository, VersionRepositoryRead $repositoryRead)
+    public function __construct(CategoryRepositoryRead $categoryRepository, VersionRepositoryRead $repositoryRead)
     {
         $this->categoryRepository = $categoryRepository;
         $this->repositoryRead = $repositoryRead;

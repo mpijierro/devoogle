@@ -4,7 +4,7 @@ namespace Mulidev\Src\Tag\Repository;
 
 use Spatie\Tags\Tag;
 
-class TagRepository
+class TagRepositoryRead
 {
 
     public function findBySlugOrFail(string $aSlug, string $type = null)

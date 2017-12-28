@@ -2,10 +2,10 @@
 
 namespace Mulidev\Src\Resource\Query;
 
-use Mulidev\Src\Category\Repository\CategoryRepository;
+use Mulidev\Src\Category\Repository\CategoryRepositoryRead;
 use Mulidev\Src\Resource\Model\ResourceItemList;
 use Mulidev\Src\Resource\Repository\ResourceRepositoryRead;
-use Mulidev\Src\Tag\Repository\TagRepository;
+use Mulidev\Src\Tag\Repository\TagRepositoryRead;
 
 class ListByCategoryManager
 {
@@ -23,11 +23,11 @@ class ListByCategoryManager
     private $category;
 
     /**
-     * @var CategoryRepository
+     * @var CategoryRepositoryRead
      */
     private $categoryRepository;
 
-    public function __construct(ResourceRepositoryRead $repository, CategoryRepository $categoryRepository)
+    public function __construct(ResourceRepositoryRead $repository, CategoryRepositoryRead $categoryRepository)
     {
         $this->repository = $repository;
 

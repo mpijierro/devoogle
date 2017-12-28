@@ -4,7 +4,7 @@ namespace Mulidev\Src\Lang\Repository;
 
 use Mulidev\Src\Lang\Model\Lang;
 
-class LangRepository
+class LangRepositoryRead
 {
 
     public function find($aLangId)

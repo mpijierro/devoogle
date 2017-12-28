@@ -4,7 +4,7 @@ namespace Mulidev\Src\Resource\Query;
 
 use Mulidev\Src\Resource\Model\ResourceItemList;
 use Mulidev\Src\Resource\Repository\ResourceRepositoryRead;
-use Mulidev\Src\Tag\Repository\TagRepository;
+use Mulidev\Src\Tag\Repository\TagRepositoryRead;
 
 class ListByTagManager
 {
@@ -21,11 +21,11 @@ class ListByTagManager
 
     private $tag;
     /**
-     * @var TagRepository
+     * @var TagRepositoryRead
      */
     private $tagRepository;
 
-    public function __construct(ResourceRepositoryRead $repository, TagRepository $tagRepository)
+    public function __construct(ResourceRepositoryRead $repository, TagRepositoryRead $tagRepository)
     {
         $this->repository = $repository;
 
