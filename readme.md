@@ -1,8 +1,8 @@
 
 
-## Mulidev
+## Devoogle
 
-Mulidev es una librería multimedia para gestionar y organizar recursos de programación
+Devoogle es una librería multimedia para gestionar y organizar recursos de programación
 
 ## Contributing
 
