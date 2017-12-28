@@ -4,16 +4,11 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class Resource extends Migration
+class CreateResourceVersion extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
-        Schema::create('resource', function (Blueprint $table) {
+        Schema::create('resource_version', function (Blueprint $table) {
 
             $table->increments('id');
 
@@ -22,22 +17,17 @@ class Resource extends Migration
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users');
 
+            $table->integer('resource_id')->unsigned()->nullable();
+            $table->foreign('resource_id')->references('id')->on('resource');
+
             $table->integer('category_id')->unsigned();
             $table->foreign('category_id')->references('id')->on('category');
 
-            $table->integer('lang_id')->unsigned();
-            $table->foreign('lang_id')->references('id')->on('lang');
-
-            $table->string('title');
-            $table->text('description');
             $table->string('url');
-            $table->string('slug');
             $table->text('comment');
             $table->boolean('reviewed')->default(false);
 
             $table->timestamps();
-            $table->softDeletes();
-
 
         });
     }
@@ -49,6 +39,6 @@ class Resource extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('resource');
+        Schema::dropIfExists('resource_version');
     }
 }

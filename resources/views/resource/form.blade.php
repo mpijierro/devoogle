@@ -115,6 +115,11 @@
                     </div>
                 </div>
             </div>
+
+            @if (isset($formCreateVersion))
+                @include ('resource.form_version',  ['form' => $formCreateVersion])
+            @endif
+
         </div>
     </div>
 @endsection

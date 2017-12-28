@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use Mulidev\Src\Resource\Command\StoreResourceCommand;
 use Mulidev\Src\Resource\Command\StoreResourceHandler;
 use Mulidev\Src\Resource\Request\StoreResourceRequest;
+use Webpatser\Uuid\Uuid;
 
 class StoreResourceController
 {
@@ -20,15 +21,16 @@ class StoreResourceController
             DB::beginTransaction();
 
             $user = Auth::user();
+            $uuid = Uuid::generate();
 
-            $command = new StoreResourceCommand($user->id, $request->get('title'), $request->get('description'), $request->get('url'), $request->get('category_id'), $request->get('lang_id'),
-                request('tag', $default = ''));
+            $command = new StoreResourceCommand($uuid, $user->id, $request->get('title'), $request->get('description'), $request->get('url'), $request->get('category_id'), $request->get('lang_id'),
+                request('tag', $default = ''), request('comment', $default = ''));
             $handler = app(StoreResourceHandler::class);
             $handler($command);
 
             DB::commit();
 
-            return redirect()->route('home-resource');
+            return redirect()->route('edit-resource', $uuid);
 
         } catch (\Exception $exception) {
 

@@ -6,37 +6,27 @@ namespace Mulidev\Src\Resource\Command;
 class StoreResourceCommand
 {
 
-    /**
-     * @var string
-     */
-    private $title;
-    /**
-     * @var string
-     */
-    private $url;
-    /**
-     * @var string
-     */
-    private $categoryId;
-    /**
-     * @var string
-     */
-    private $langId;
-    /**
-     * @var string
-     */
-    private $description;
-    /**
-     * @var string
-     */
-    private $tag;
-    /**
-     * @var string
-     */
+    private $uuid;
+
     private $userId;
 
-    public function __construct(string $userId, string $title, string $description, string $url, string $categoryId, string $langId, string $tag)
+    private $title;
+
+    private $url;
+
+    private $categoryId;
+
+    private $langId;
+
+    private $description;
+
+    private $tag;
+
+    private $comment;
+
+    public function __construct(string $uuid, string $userId, string $title, string $description, string $url, string $categoryId, string $langId, string $tag, string $comment)
     {
+        $this->uuid = $uuid;
         $this->userId = $userId;
         $this->title = $title;
         $this->url = $url;
@@ -44,69 +34,54 @@ class StoreResourceCommand
         $this->langId = $langId;
         $this->description = $description;
         $this->tag = $tag;
+        $this->comment = $comment;
     }
 
-    /**
-     * @return string
-     */
+
+    public function getUuid(): string
+    {
+        return $this->uuid;
+    }
+
     public function getUserId(): string
     {
         return $this->userId;
     }
 
-
-
-    /**
-     * @return string
-     */
     public function getTitle()
     {
         return $this->title;
     }
 
-    /**
-     * @return string
-     */
     public function getDescription(): string
     {
         return $this->description;
     }
 
-
-
-    /**
-     * @return string
-     */
     public function getUrl()
     {
         return $this->url;
     }
 
-    /**
-     * @return string
-     */
     public function getCategoryId()
     {
         return $this->categoryId;
     }
 
-    /**
-     * @return string
-     */
     public function getLangId()
     {
         return $this->langId;
     }
 
-    /**
-     * @return string
-     */
     public function getTag(): string
     {
         return $this->tag;
     }
 
-
+    public function getComment(): string
+    {
+        return $this->comment;
+    }
 
 
 }

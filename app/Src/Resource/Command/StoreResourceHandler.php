@@ -4,7 +4,8 @@ namespace Mulidev\Src\Resource\Command;
 
 use Mulidev\Src\Resource\Model\Resource;
 use Mulidev\Src\Resource\Repository\ResourceRepository;
-use Webpatser\Uuid\Uuid;
+use Mulidev\Src\Version\Model\Version;
+
 
 class StoreResourceHandler
 {
@@ -15,8 +16,6 @@ class StoreResourceHandler
     private $resourceRepository;
 
     private $command;
-
-    private $resourceMap;
 
     private $resource;
 
@@ -50,13 +49,14 @@ class StoreResourceHandler
 
         $this->resource = new Resource();
         $this->resource->user_id = $this->command->getUserId();
-        $this->resource->uuid = Uuid::generate();
+        $this->resource->uuid = $this->command->getUuid();
         $this->resource->title = $this->command->getTitle();
         $this->resource->description = $this->command->getDescription();
         $this->resource->url = $this->command->getUrl();
         $this->resource->slug = $this->obtainSlug($this->command);
         $this->resource->category_id = $this->command->getCategoryId();
         $this->resource->lang_id = $this->command->getLangId();
+        $this->resource->comment = $this->command->getComment();
 
     }
 

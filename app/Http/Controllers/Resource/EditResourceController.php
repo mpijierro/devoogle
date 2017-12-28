@@ -17,6 +17,7 @@ class EditResourceController
         $handler($query);
 
         view()->share('form', $handler->getFormEdit());
+        view()->share('formCreateVersion', $handler->getFormCreateVersion());
         view()->share('uuid', $uuid);
 
         return view('resource.form');

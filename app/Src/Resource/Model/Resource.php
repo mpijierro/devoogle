@@ -7,14 +7,15 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Mulidev\Src\Category\Model\Category;
 use Mulidev\Src\Lang\Model\Lang;
 use Mulidev\Src\User\Model\User;
+use Mulidev\Src\Version\Model\Version;
 use Spatie\Tags\HasTags;
 
 class Resource extends Model
 {
 
-    use SoftDeletes, HasTags;
-
     const LONG_RANDOM_STRING_IN_SLUG = 5;
+
+    use SoftDeletes, HasTags;
 
     protected $table = 'resource';
 
@@ -31,10 +32,6 @@ class Resource extends Model
         'comment'
     ];
 
-    protected $hidden = [
-        'password',
-        'remember_token',
-    ];
 
     public function user()
     {
@@ -46,6 +43,17 @@ class Resource extends Model
         return $this->belongsTo(Category::class);
     }
 
+    public function lang()
+    {
+        return $this->belongsTo(Lang::class);
+    }
+
+
+    public function version()
+    {
+        return $this->hasMany(Version::class);
+    }
+
     public function id()
     {
         return $this->attributes['id'];
@@ -54,11 +62,6 @@ class Resource extends Model
     public function uuid()
     {
         return $this->attributes['uuid'];
-    }
-
-    public function lang()
-    {
-        return $this->belongsTo(Lang::class);
     }
 
     public function title()

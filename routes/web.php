@@ -34,6 +34,9 @@ Route::group(['prefix' => 'recursos'], function () {
         Route::get('/editar/{uuid}', "Resource\EditResourceController")->name('edit-resource');
         Route::post('/editar/{uuid}', "Resource\UpdateResourceController")->name('update-resource');
 
+        Route::get('/crear-version/{uuid}', "Version\CreateVersionController")->name('create-version');
+        Route::post('/crear-version/{uuid}', "Version\StoreVersionController")->name('store-version');
+
 
         Route::group(['middleware' => 'is.admin'], function () {
 

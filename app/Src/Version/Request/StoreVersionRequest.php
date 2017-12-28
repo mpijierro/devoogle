@@ -1,10 +1,10 @@
 <?php
 
-namespace Mulidev\Src\Resource\Request;
+namespace Mulidev\Src\Version\Request;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreResourceRequest extends FormRequest
+class StoreVersionRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -31,11 +31,8 @@ class StoreResourceRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required',
-            'description' => 'string',
             'url' => 'required|url',
-            'category_id' => 'required',
-            'lang_id' => 'required'
+            'category_id' => 'required'
         ];
     }
 }
