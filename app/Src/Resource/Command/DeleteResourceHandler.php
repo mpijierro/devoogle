@@ -7,10 +7,9 @@ use Mulidev\Src\Resource\Repository\ResourceRepository;
 class DeleteResourceHandler
 {
 
-    /**
-     * @var ResourceRepository
-     */
     private $resourceRepository;
+
+    private $resource;
 
     public function __construct(ResourceRepository $resourceRepository)
     {
@@ -18,12 +17,24 @@ class DeleteResourceHandler
     }
 
 
-    public function __invoke(DeleteVersionCommand $command)
+    public function __invoke(DeleteResourceCommand $command)
     {
 
-        $this->resourceRepository->delete($command->getUuid());
+        $this->find($command->getUuid());
+
+        $this->delete();
 
     }
 
+    private function find($uuid)
+    {
+        $this->resource = $this->resourceRepository->findByUuid($uuid);
+    }
+
+
+    private function delete()
+    {
+        $this->resourceRepository->delete($this->resource);
+    }
 
 }

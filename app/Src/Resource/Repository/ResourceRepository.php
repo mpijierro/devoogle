@@ -35,13 +35,9 @@ class ResourceRepository
     }
 
 
-    public function delete(string $aUuid)
+    public function delete(Resource $resource)
     {
-
-        $resource = Resource::where('uuid', $aUuid)->firstOrFail();
-
         $resource->delete();
-
     }
 
     public function searchByTag($tag)
