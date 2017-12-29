@@ -26,8 +26,8 @@ class CategorySeeder extends Seeder
         ]);
 
         DB::table('category')->insert([
-            'name' => 'Html',
-            'slug' => 'html',
+            'name' => 'Web',
+            'slug' => 'web',
             'created_at' => \Carbon\Carbon::now(),
             'updated_at' => \Carbon\Carbon::now()
         ]);
@@ -40,24 +40,11 @@ class CategorySeeder extends Seeder
         ]);
 
         DB::table('category')->insert([
-            'name' => 'Documento de texto',
+            'name' => 'Documento',
             'slug' => 'documento-texto',
             'created_at' => \Carbon\Carbon::now(),
             'updated_at' => \Carbon\Carbon::now()
         ]);
 
-        DB::table('category')->insert([
-            'name' => 'Blog',
-            'slug' => 'blog',
-            'created_at' => \Carbon\Carbon::now(),
-            'updated_at' => \Carbon\Carbon::now()
-        ]);
-
-        DB::table('category')->insert([
-            'name' => 'Artículo',
-            'slug' => 'article',
-            'created_at' => \Carbon\Carbon::now(),
-            'updated_at' => \Carbon\Carbon::now()
-        ]);
     }
 }
