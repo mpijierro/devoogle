@@ -1,35 +1,48 @@
-<a href="{!! $resource->url() !!}" target="_blank" style="font-size: 18px">{!! $resource->title() !!}</a>
-<br><br>
-<i class="fa fa-folder-open" aria-hidden="true"></i>
-<span class="nice"><a href="{{route('list-category', $resource->categorySlug()) }}">{!! $resource->categoryName()  !!}</a></span>
-&nbsp;&nbsp;&nbsp;<i class="fa fa-language" aria-hidden="true"></i> <span class="nice">{!! $resource->langName() !!}</span>
-&nbsp;&nbsp;&nbsp;<i class="fa fa-tags" aria-hidden="true"></i>
-@foreach ($resource->tags() as $tag)
-    {{ $loop->first ? '' : ', ' }}
-    <span class="nice"><a href="{{route('list-tag', $tag->slug)}}">{{ $tag->name }}</a></span>
-@endforeach
-<br>
-
-<i class="fa fa-comment" aria-hidden="true"></i> {!! $resource->description()  !!}
-
-<br><br>
-<i class="fa fa-eye" aria-hidden="true"></i> ...añadir aquí las versiones<br>
-
-
-@if ($resource->hasComment())
-    <br><br>
-    <i class="fa fa-comment" aria-hidden="true"></i> {!! $resource->comment()  !!}
-@endif
-
-<br><br>
-@if ( ! $resource->isReviewed() or isAdmin() )
-    <a href="{!! route('edit-resource', $resource->uuid()) !!}">Editar</a>&nbsp;
-@endif
-
-
-@if( isLogged() AND isAdmin() )
-    <a href="{!! route('delete-resource', $resource->uuid()) !!}">Borrar</a>&nbsp;
-    @if ( ! $resource->isReviewed())
-        <a href="{!! route('check-resource', $resource->uuid()) !!}">Marcar como revisado</a>
+<div class="col-xs-12">
+    <a href="{!! $resource->url() !!}" target="_blank" style="font-size: 18px">{!! $resource->title() !!}</a>
+    @if ($resource->hasDescription())
+        <br>
+        {!! $resource->description()  !!}
     @endif
-@endif
+</div>
+
+<div class="col-xs-12" style="margin-top:15px;">
+
+    <i class="fa fa-folder-open" aria-hidden="true"></i>
+    <span class="nice"><a
+                href="{{route('list-category', $resource->category->slug()) }}">{!! $resource->category->name()  !!}</a></span>
+
+    <i class="fa fa-language icon-resource-register" aria-hidden="true"></i> <span
+            class="nice">{!! $resource->lang->name() !!}</span>
+
+
+    <i class="fa fa-eye icon-resource-register" aria-hidden="true"></i>
+    @foreach ($resource->version as $version)
+        {{ $loop->first ? '' : ', ' }}
+        <span class="nice"><a href="{{ $version->url() }}" target="_blank"
+                              title="{!! $version->comment() !!}">{{ $version->category->name() }}</a></span>
+    @endforeach
+
+    <i class="fa fa-tags icon-resource-register" aria-hidden="true"></i>
+    @foreach ($resource->tags as $tag)
+        {{ $loop->first ? '' : ', ' }}
+        <span class="nice"><a href="{{route('list-tag', $tag->slug)}}">{{ $tag->name }}</a></span>
+    @endforeach
+
+    @if (isLogged())
+
+        @if ( ! $resource->isReviewed() or isAdmin() )
+            <br><br>
+            <a href="{!! route('edit-resource', $resource->uuid()) !!}">Editar</a>&nbsp;&nbsp;&nbsp;
+            <a href="{!! route('delete-resource', $resource->uuid()) !!}">Borrar</a>&nbsp;
+        @endif
+
+        @if( isAdmin() )
+
+            @if ( ! $resource->isReviewed())
+                <a href="{!! route('check-resource', $resource->uuid()) !!}">Marcar como revisado</a>
+            @endif
+        @endif
+    @endif
+
+</div>

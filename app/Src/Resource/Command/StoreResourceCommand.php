@@ -22,9 +22,8 @@ class StoreResourceCommand
 
     private $tag;
 
-    private $comment;
 
-    public function __construct(string $uuid, string $userId, string $title, string $description, string $url, string $categoryId, string $langId, string $tag, string $comment)
+    public function __construct(string $uuid, string $userId, string $title, string $description, string $url, string $categoryId, string $langId, string $tag)
     {
         $this->uuid = $uuid;
         $this->userId = $userId;
@@ -34,7 +33,6 @@ class StoreResourceCommand
         $this->langId = $langId;
         $this->description = $description;
         $this->tag = $tag;
-        $this->comment = $comment;
     }
 
 
@@ -76,11 +74,6 @@ class StoreResourceCommand
     public function getTag(): string
     {
         return $this->tag;
-    }
-
-    public function getComment(): string
-    {
-        return $this->comment;
     }
 
 

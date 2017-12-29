@@ -11,45 +11,25 @@ use Devoogle\Src\Resource\Repository\ResourceRepositoryRead;
 class HomeResourceManager
 {
 
-    /**
-     * @var ResourceRepositoryRead
-     */
     private $resourceRepository;
 
-    private $resource;
+    private $resources;
 
 
     public function __construct(ResourceRepositoryRead $resourceRepository)
     {
         $this->resourceRepository = $resourceRepository;
-        $this->resource = collect();
     }
 
-    public function resource(): \Illuminate\Support\Collection
+
+    public function resources()
     {
-        return $this->resource;
+        return $this->resources;
     }
 
     public function __invoke()
     {
-
-        $resource = $this->resourceRepository->resourceForHome();
-
-        $this->processResource($resource);
+        $this->resources = $this->resourceRepository->resourceForHome();
     }
-
-
-    private function processResource(Collection $resource)
-    {
-
-        foreach ($resource as $element) {
-
-            $resourceHome = app(ResourceItemList::class, ['resource' => $element]);
-            $this->resource->push($resourceHome);
-
-        }
-
-    }
-
 
 }
