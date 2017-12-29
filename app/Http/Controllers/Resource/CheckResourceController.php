@@ -21,7 +21,7 @@ class CheckResourceController
         $handler = app(CheckResourceHandler::class);
         $handler($command);
 
-        return redirect()->route('home-resource');
+        return redirect()->route('edit-resource', $aUuid);
 
     }
 }

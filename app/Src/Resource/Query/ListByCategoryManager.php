@@ -11,20 +11,13 @@ class ListByCategoryManager
 {
 
     private $query;
-    /**
-     * @var ResourceRepositoryRead
-     */
+
     private $repository;
 
-    private $resourcesFromQuery;
-
-    private $foundResources;
+    private $resources;
 
     private $category;
 
-    /**
-     * @var CategoryRepositoryRead
-     */
     private $categoryRepository;
 
     public function __construct(ResourceRepositoryRead $repository, CategoryRepositoryRead $categoryRepository)
@@ -45,8 +38,6 @@ class ListByCategoryManager
 
         $this->search();
 
-        $this->processResource();
-
         return $this->configView();
 
     }
@@ -63,26 +54,13 @@ class ListByCategoryManager
 
     private function search()
     {
-        $this->resourcesFromQuery = $this->repository->searchByCategory($this->category);
+        $this->resources = $this->repository->searchByCategory($this->category);
     }
 
-    private function processResource()
-    {
-
-        foreach ($this->resourcesFromQuery as $resource) {
-
-            $resourceHome = app(ResourceItemList::class, ['resource' => $resource]);
-            $this->foundResources->push($resourceHome);
-
-        }
-
-    }
 
     private function configView()
     {
-
-        return new ListByCategoryView($this->foundResources, $this->resourcesFromQuery->links(), $this->category->name);
-
+        return new ListByCategoryView($this->resources, $this->resources->links(), $this->category->name);
     }
 
 }

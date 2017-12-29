@@ -3,48 +3,32 @@
 namespace Devoogle\Src\Resource\Query;
 
 
-use Illuminate\Support\Collection;
-
 class ListByCategoryView
 {
 
-    /**
-     * @var Collection
-     */
-    private $foundResources;
-
-    /**
-     * @var string
-     */
+    private $resources;
     private $aCategoryName;
     private $paginator;
 
-    public function __construct(Collection $foundResources, $paginator, string $aCategoryName)
+
+    public function __construct($resources, $paginator, string $aCategoryName)
     {
-        $this->foundResources = $foundResources;
+        $this->resources = $resources;
         $this->aCategoryName = $aCategoryName;
         $this->paginator = $paginator;
     }
 
-    /**
-     * @return Collection
-     */
-    public function foundResources(): Collection
+
+    public function resources()
     {
-        return $this->foundResources;
+        return $this->resources;
     }
 
-    /**
-     * @return string
-     */
     public function categoryName(): string
     {
         return $this->aCategoryName;
     }
 
-    /**
-     * @return mixed
-     */
     public function paginator()
     {
         return $this->paginator;

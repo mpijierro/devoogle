@@ -1,10 +1,7 @@
-<form action="{!! route('search-resource') !!}" method="POST" class="form-horizontal">
+<form action="{!! route('search-resource') !!}" method="POST" class="form-horizontal" style="float:right">
     {{ csrf_field() }}
 
-
-    <div class="form-group{{ $errors->has('search') ? ' has-error' : '' }}">
-        <label for="search" class="col-md-4 control-label">Búsqueda</label>
-
+    <div class="form-group">
         <div class="col-md-6">
             {{ Form::text('search', null, ['class' => 'form-control', 'id' =>'search', 'required', 'autofocus'] ) }}
         </div>

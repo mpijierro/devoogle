@@ -16,6 +16,8 @@ class TagListController
         $view = $manager($query);
 
         view()->share('view', $view);
+        view()->share('resources', $view->resources());
+
 
         return view('resource.list_by_tag');
     }

@@ -7,15 +7,14 @@ use Illuminate\Support\Collection;
 
 class ListByTagView
 {
-
-
     private $foundResources;
 
     private $paginator;
 
     private $aTagName;
 
-    public function __construct(Collection $foundResources, $paginator, string $aTagName)
+
+    public function __construct($foundResources, $paginator, string $aTagName)
     {
         $this->foundResources = $foundResources;
 
@@ -25,7 +24,7 @@ class ListByTagView
     }
 
 
-    public function foundResources(): Collection
+    public function resources()
     {
         return $this->foundResources;
     }

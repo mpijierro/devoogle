@@ -83,10 +83,6 @@
             Devoogle
         </div>
 
-        <div clss="title -m-b-md">
-            @include('resource.form_search')
-        </div>
-
         <div class="title m-b-md">
             Búsqueda: <b>{!! $view->searchedText() !!}</b>
         </div>

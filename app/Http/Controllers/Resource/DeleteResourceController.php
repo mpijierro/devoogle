@@ -16,7 +16,7 @@ class DeleteResourceController
         $handler = app(DeleteResourceHandler::class);
         $handler($command);
 
-        return redirect()->route('home-resource');
+        return redirect()->route('home');
 
     }
 }

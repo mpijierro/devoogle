@@ -15,6 +15,7 @@ class CategoryListController
         $manager = app(ListByCategoryManager::class);
         $view = $manager($query);
 
+        view()->share('resources', $view->resources());
         view()->share('view', $view);
 
         return view('resource.list_by_category');

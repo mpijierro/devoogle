@@ -10,19 +10,13 @@ class ListByTagManager
 {
 
     private $query;
-    /**
-     * @var ResourceRepositoryRead
-     */
+
     private $repository;
 
-    private $resourcesFromQuery;
-
-    private $foundResources;
+    private $resources;
 
     private $tag;
-    /**
-     * @var TagRepositoryRead
-     */
+
     private $tagRepository;
 
     public function __construct(ResourceRepositoryRead $repository, TagRepositoryRead $tagRepository)
@@ -43,8 +37,6 @@ class ListByTagManager
 
         $this->search();
 
-        $this->processResource();
-
         return $this->configView();
 
     }
@@ -61,24 +53,12 @@ class ListByTagManager
 
     private function search()
     {
-        $this->resourcesFromQuery = $this->repository->searchByTag($this->tag->name);
-    }
-
-    private function processResource()
-    {
-
-        foreach ($this->resourcesFromQuery as $resource) {
-
-            $resourceHome = app(ResourceItemList::class, ['resource' => $resource]);
-            $this->foundResources->push($resourceHome);
-
-        }
-
+        $this->resources = $this->repository->searchByTag($this->tag->name);
     }
 
     private function configView()
     {
-        return new ListByTagView($this->foundResources, $this->resourcesFromQuery->links(), $this->tag->name);
+        return new ListByTagView($this->resources, $this->resources->links(), $this->tag->name);
 
     }
 

@@ -8,27 +8,34 @@
 
 <div class="col-xs-12" style="margin-top:15px;">
 
-    <i class="fa fa-folder-open" aria-hidden="true"></i>
-    <span class="nice"><a
-                href="{{route('list-category', $resource->category->slug()) }}">{!! $resource->category->name()  !!}</a></span>
-
-    <i class="fa fa-language icon-resource-register" aria-hidden="true"></i> <span
+    <!-- Lang -->
+    <i class="fa fa-language" aria-hidden="true"></i> <span
             class="nice">{!! $resource->lang->name() !!}</span>
 
 
-    <i class="fa fa-eye icon-resource-register" aria-hidden="true"></i>
+    <!-- Version -->
+    <i class="fa fa-caret-square-o-right icon-resource-register" aria-hidden="true"></i>
     @foreach ($resource->version as $version)
         {{ $loop->first ? '' : ', ' }}
         <span class="nice"><a href="{{ $version->url() }}" target="_blank"
                               title="{!! $version->comment() !!}">{{ $version->category->name() }}</a></span>
     @endforeach
 
+
+<!-- Category -->
+    <i class="fa fa-folder-open icon-resource-register" aria-hidden="true"></i>
+    <span class="nice"><a
+                href="{{route('list-category', $resource->category->slug()) }}">{!! $resource->category->name()  !!}</a></span>
+
+    <!-- Tag -->
     <i class="fa fa-tags icon-resource-register" aria-hidden="true"></i>
     @foreach ($resource->tags as $tag)
         {{ $loop->first ? '' : ', ' }}
         <span class="nice"><a href="{{route('list-tag', $tag->slug)}}">{{ $tag->name }}</a></span>
     @endforeach
 
+
+<!-- Adm -->
     @if (isLogged())
 
         @if ( ! $resource->isReviewed() or isAdmin() )
@@ -38,7 +45,6 @@
         @endif
 
         @if( isAdmin() )
-
             @if ( ! $resource->isReviewed())
                 <a href="{!! route('check-resource', $resource->uuid()) !!}">Marcar como revisado</a>
             @endif
