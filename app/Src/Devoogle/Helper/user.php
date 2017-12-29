@@ -1,5 +1,15 @@
 <?php
 
+
+if ( ! function_exists('isLogged')) {
+
+    function isLogged()
+    {
+        return (\Illuminate\Support\Facades\Auth::check());
+    }
+}
+
+
 if ( ! function_exists('user')) {
 
     function user()

@@ -27,7 +27,7 @@
 @endif
 
 
-@if( isAdmin() )
+@if( isLogged() AND isAdmin() )
     <a href="{!! route('delete-resource', $resource->uuid()) !!}">Borrar</a>&nbsp;
     @if ( ! $resource->isReviewed())
         <a href="{!! route('check-resource', $resource->uuid()) !!}">Marcar como revisado</a>
