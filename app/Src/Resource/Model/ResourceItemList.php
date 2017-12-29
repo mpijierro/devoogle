@@ -63,6 +63,16 @@ class ResourceItemList
         return $this->resource->tags;
     }
 
+    public function comment()
+    {
+        return $this->resource->comment();
+    }
+
+    public function hasComment()
+    {
+        return ! empty($this->comment());
+    }
+
     public function isReviewed()
     {
         return $this->resource->isReviewed();

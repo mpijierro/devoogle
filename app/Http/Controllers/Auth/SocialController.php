@@ -45,10 +45,10 @@ class SocialController extends Controller
             DB::commit();
 
             if ($handler->isLoginWithRegister()) {
-                return redirect('home')->with('success', trans('socials.registerSuccess'));
+                return redirect()->route('home')->with('success', trans('socials.registerSuccess'));
             }
 
-            return redirect('home');
+            return redirect()->route('home');
 
         } catch (\Exception $e) {
 

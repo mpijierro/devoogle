@@ -89,6 +89,11 @@ class Resource extends Model
         return $this->attributes['description'];
     }
 
+    public function comment()
+    {
+        return $this->attributes['comment'];
+    }
+
     public function url()
     {
         return $this->attributes['url'];

@@ -22,6 +22,10 @@ class EditResourceController
         view()->share('versions', $handler->versions());
         view()->share('uuid', $uuid);
 
+        view()->share('titleForm', 'Actualizar recurso');
+        view()->share('textActionButton', 'Actualizar');
+
+
         return view('resource.form');
     }
 }

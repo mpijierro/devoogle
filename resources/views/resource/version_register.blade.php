@@ -1,20 +1,15 @@
-<b>Enlace</b>: <a href="{!! $version->url() !!}" target="_blank">Visitar</a><br>
-<b>Categoría</b>: <span class="nice"><a href="{{route('list-category', $version->category->slug()) }}">{!! $version->category->name()  !!}</a></span><br>
-<b>Comentario</b>: {!! $version->comment() !!}
-<br><br>
+<a href="{!! $version->url() !!}" target="_blank">Formato <b>{!! strtolower($version->category->name()) !!}</b></a>
+
+@if (!empty($version->comment()))
+    , {!! $version->comment() !!}
+@endif
+
 @if ( ! $version->isReviewed() or isAdmin() )
-    <a href="{!! route('edit-version', $version->uuid()) !!}">Editar</a>&nbsp;
-@endif
-
-
-@if( isAdmin() )
+    <br><a href="{!! route('edit-version', $version->uuid()) !!}">Editar</a>&nbsp;
     <a href="{!! route('delete-version', $version->uuid()) !!}">Borrar</a>&nbsp;
-    @if ( ! $version->isReviewed())
-        <a href="{!! route('check-version', $version->uuid()) !!}">Marcar como revisado</a>
-    @endif
 @endif
 
 
-<br>
-<hr>
-<br>
+@if( isAdmin() and (! $version->isReviewed()) )
+    <a href="{!! route('check-version', $version->uuid()) !!}">Marcar como revisado</a>
+@endif

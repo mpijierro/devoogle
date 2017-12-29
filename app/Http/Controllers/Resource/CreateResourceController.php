@@ -16,6 +16,9 @@ class CreateResourceController
 
         view()->share('form', $handler->getFormCreate());
 
+        view()->share('titleForm', 'Crear recurso');
+        view()->share('textActionButton', 'Crear');
+
         return view('resource.form');
     }
 }
