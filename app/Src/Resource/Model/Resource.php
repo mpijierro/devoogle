@@ -111,4 +111,19 @@ class Resource extends Model
     {
         return $this->attributes['reviewed'];
     }
+
+    public function isOwner(User $user)
+    {
+        return $this->user_id == $user->id();
+    }
+
+    public function canWrite(User $user)
+    {
+        return (( ! $this->isReviewed() and $this->isOwner($user)) OR isAdmin());
+    }
+
+    public function canCheck()
+    {
+        return (isAdmin() and ! $this->isReviewed());
+    }
 }

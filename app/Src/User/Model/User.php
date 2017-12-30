@@ -39,4 +39,19 @@ class User extends Authenticatable
     {
         return $this->attributes['is_admin'];
     }
+
+    public function id()
+    {
+        return $this->attributes['id'];
+    }
+
+    public function name()
+    {
+        return $this->attributes['name'];
+    }
+
+    public function email()
+    {
+        return $this->attributes['email'];
+    }
 }

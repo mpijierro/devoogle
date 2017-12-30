@@ -40,17 +40,16 @@
 <!-- Adm -->
     @if (isLogged())
 
-        @if ( ! $resource->isReviewed() or isAdmin() )
+        @if ( $resource->canWrite(user()) )
             <br><br>
             <a href="{!! route('edit-resource', $resource->uuid()) !!}">Editar</a>&nbsp;&nbsp;&nbsp;
             <a href="{!! route('delete-resource', $resource->uuid()) !!}">Borrar</a>&nbsp;
         @endif
 
-        @if( isAdmin() )
-            @if ( ! $resource->isReviewed())
-                <a href="{!! route('check-resource', $resource->uuid()) !!}">Marcar como revisado</a>
-            @endif
+        @if ( $resource->canCheck())
+            <a href="{!! route('check-resource', $resource->uuid()) !!}">Marcar como revisado</a>
         @endif
+
     @endif
 
 </div>
