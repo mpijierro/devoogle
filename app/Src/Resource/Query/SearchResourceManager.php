@@ -1,10 +1,7 @@
 <?php
 
-
 namespace Devoogle\Src\Resource\Query;
 
-
-use Devoogle\Src\Resource\Model\ResourceItemList;
 use Devoogle\Src\Resource\Repository\ResourceRepositoryRead;
 
 class SearchResourceManager

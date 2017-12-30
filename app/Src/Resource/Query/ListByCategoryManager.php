@@ -3,12 +3,13 @@
 namespace Devoogle\Src\Resource\Query;
 
 use Devoogle\Src\Category\Repository\CategoryRepositoryRead;
-use Devoogle\Src\Resource\Model\ResourceItemList;
+use Devoogle\Src\Devoogle\Library\Paginable;
 use Devoogle\Src\Resource\Repository\ResourceRepositoryRead;
-use Devoogle\Src\Tag\Repository\TagRepositoryRead;
 
 class ListByCategoryManager
 {
+
+    use Paginable;
 
     private $query;
 
@@ -32,17 +33,21 @@ class ListByCategoryManager
     public function __invoke(ListByCategoryQuery $query): ListByCategoryView
     {
 
-        $this->initialize($query);
+        $this->initializePaginable();
+
+        $this->initializeQuery($query);
 
         $this->findCategory();
 
         $this->search();
 
+        $this->checkPageInRange();
+
         return $this->configView();
 
     }
 
-    private function initialize(ListByCategoryQuery $query)
+    private function initializeQuery(ListByCategoryQuery $query)
     {
         $this->query = $query;
     }

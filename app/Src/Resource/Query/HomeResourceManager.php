@@ -2,19 +2,17 @@
 
 namespace Devoogle\Src\Resource\Query;
 
-use Illuminate\Database\Eloquent\Collection;
-use Devoogle\Src\Category\Repository\CategoryRepositoryRead;
-use Devoogle\Src\Lang\Repository\LangRepositoryRead;
-use Devoogle\Src\Resource\Model\ResourceItemList;
+use Devoogle\Src\Devoogle\Library\Paginable;
 use Devoogle\Src\Resource\Repository\ResourceRepositoryRead;
 
 class HomeResourceManager
 {
 
+    use Paginable;
+
     private $resourceRepository;
 
     private $resources;
-
 
     public function __construct(ResourceRepositoryRead $resourceRepository)
     {
@@ -28,6 +26,17 @@ class HomeResourceManager
     }
 
     public function __invoke()
+    {
+
+        $this->initializePaginable();
+
+        $this->search();
+
+        $this->checkPageInRange();
+
+    }
+
+    private function search()
     {
         $this->resources = $this->resourceRepository->resourceForHome();
     }

@@ -15,11 +15,13 @@
 
     <!-- Version -->
     <i class="fa fa-caret-square-o-right icon-resource-register" aria-hidden="true"></i>
-    @foreach ($resource->version as $version)
+    @forelse ($resource->version as $version)
         {{ $loop->first ? '' : ', ' }}
         <span class="nice"><a href="{{ $version->url() }}" target="_blank"
                               title="{!! $version->comment() !!}">{{ $version->category->name() }}</a></span>
-    @endforeach
+    @empty
+        No vers.
+    @endforelse
 
 
 <!-- Category -->

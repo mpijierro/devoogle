@@ -6,7 +6,7 @@
 
     @if (isset($paginator))
         <div class="col-xs-12">
-            {{ $view->paginator() }}
+            {{ $paginator }}
         </div>
     @endif
 
