@@ -1,5 +1,5 @@
 <div class="panel panel-default">
-    <div class="panel-heading">¿Sabes si existe este mismo contenido con otro formato? ¡Añade una nueva versión!</div>
+    <div class="panel-heading">¿Sabes si existe este mismo contenido con otro formato? ¡Añádelo!</div>
 
     <div class="panel-body">
 
@@ -40,7 +40,7 @@
 
 
         <div class="form-group{{ $errors->has('comment') ? ' has-error' : '' }}">
-            <label for="comment" class="col-md-4 control-label">Comentario</label>
+            <label for="comment" class="col-md-4 control-label">Descripción</label>
 
             <div class="col-md-6">
                 {{ Form::textarea('comment', null, ['class' => 'form-control', 'id' =>'comment', 'autofocus', 'rows'=>3] ) }}

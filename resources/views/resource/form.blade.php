@@ -10,6 +10,20 @@
 
             {{ Form::model($form->model(), ['url' => $form->action(), 'method'=>'POST', 'class' => 'form-horizontal']) }}
 
+            <div class="form-group{{ $errors->has('url') ? ' has-error' : '' }}">
+                <label for="url" class="col-md-4 control-label">Url</label>
+
+                <div class="col-md-6">
+                    {{ Form::url('url', null, ['class' => 'form-control', 'id' =>'url', 'required'] ) }}
+
+                    @if ($errors->has('url'))
+                        <span class="help-block">
+                                        <strong>{{ $errors->first('url') }}</strong>
+                                    </span>
+                    @endif
+                </div>
+            </div>
+
 
             <div class="form-group{{ $errors->has('title') ? ' has-error' : '' }}">
                 <label for="title" class="col-md-4 control-label">Título</label>
@@ -34,20 +48,6 @@
                     @if ($errors->has('description'))
                         <span class="help-block">
                                         <strong>{{ $errors->first('description') }}</strong>
-                                    </span>
-                    @endif
-                </div>
-            </div>
-
-            <div class="form-group{{ $errors->has('url') ? ' has-error' : '' }}">
-                <label for="url" class="col-md-4 control-label">Url</label>
-
-                <div class="col-md-6">
-                    {{ Form::url('url', null, ['class' => 'form-control', 'id' =>'url', 'required'] ) }}
-
-                    @if ($errors->has('url'))
-                        <span class="help-block">
-                                        <strong>{{ $errors->first('url') }}</strong>
                                     </span>
                     @endif
                 </div>
@@ -97,18 +97,6 @@
                         <span class="help-block">
                                         <strong>{{ $errors->first('tag') }}</strong>
                                     </span>
-                    @endif
-                </div>
-            </div>
-
-            <div class="form-group{{ $errors->has('comment') ? ' has-error' : '' }}">
-                <label for="comment" class="col-md-4 control-label">Comentario</label>
-
-                <div class="col-md-6">
-                    {{ Form::textarea('comment', null, ['class' => 'form-control', 'id' =>'comment', 'autofocus', 'rows'=>3] ) }}
-
-                    @if ($errors->has('comment'))
-                        <span class="help-block"><strong>{{ $errors->first('comment') }}</strong></span>
                     @endif
                 </div>
             </div>

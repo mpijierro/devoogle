@@ -50,12 +50,11 @@ class StoreResourceHandler
         $this->resource->user_id = $this->command->getUserId();
         $this->resource->uuid = $this->command->getUuid();
         $this->resource->title = $this->command->getTitle();
-        $this->resource->description = $this->command->getDescription();
-        $this->resource->url = $this->command->getUrl();
+        $this->resource->description = trim($this->command->getDescription());
+        $this->resource->url = trim($this->command->getUrl());
         $this->resource->slug = $this->obtainSlug($this->command);
         $this->resource->category_id = $this->command->getCategoryId();
         $this->resource->lang_id = $this->command->getLangId();
-        $this->resource->comment = $this->command->getComment();
 
     }
 

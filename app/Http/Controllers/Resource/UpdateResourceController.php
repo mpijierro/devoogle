@@ -26,7 +26,7 @@ class UpdateResourceController
 
             DB::commit();
 
-            return redirect()->route('home-resource');
+            return redirect()->route('edit-resource', $aUuid);
 
         } catch (\Exception $exception) {
 

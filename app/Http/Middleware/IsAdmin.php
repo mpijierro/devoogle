@@ -24,7 +24,7 @@ class IsAdmin
         $user = user();
 
         if ( ! $user->isAdmin()) {
-            return redirect()->route('home-resource');
+            return redirect()->route('login');
         }
 
         return $next($request);

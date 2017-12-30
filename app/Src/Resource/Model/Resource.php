@@ -28,8 +28,7 @@ class Resource extends Model
         'description',
         'url',
         'slug',
-        'reviewed',
-        'comment'
+        'reviewed'
     ];
 
 
@@ -63,7 +62,6 @@ class Resource extends Model
         return $this->attributes['lang_id'];
     }
 
-
     public function version()
     {
         return $this->hasMany(Version::class);
@@ -89,9 +87,10 @@ class Resource extends Model
         return $this->attributes['description'];
     }
 
-    public function comment()
+
+    public function hasDescription()
     {
-        return $this->attributes['comment'];
+        return ! empty($this->description());
     }
 
     public function url()

@@ -13,7 +13,7 @@ class HomeResourceController
         $view = app(HomeResourceManager::class);
         $view();
 
-        view()->share('view', $view);
+        view()->share('resources', $view->resources());
 
         return view('resource.home');
     }
