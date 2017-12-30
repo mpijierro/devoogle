@@ -2,6 +2,7 @@
 
 namespace Devoogle\Providers;
 
+use Devoogle\Src\Devoogle\Composer\SidebarAuthorComposer;
 use Devoogle\Src\Devoogle\Composer\SidebarCategoryComposer;
 use Devoogle\Src\Devoogle\Composer\SidebarTagComposer;
 use Illuminate\Support\ServiceProvider;
@@ -19,6 +20,8 @@ class ComposerServiceProvider extends ServiceProvider
         View::composer('sidebar/sidebar_category', SidebarCategoryComposer::class);
 
         View::composer('sidebar/sidebar_tag', SidebarTagComposer::class);
+
+        View::composer('sidebar/sidebar_author', SidebarAuthorComposer::class);
     }
 
     /**

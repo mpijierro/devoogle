@@ -8,33 +8,44 @@
 
 <div class="col-xs-12" style="margin-top:15px;">
 
+
+    <!-- Category -->
+    <i class="fa fa-folder-open-o" aria-hidden="true"></i>
+    <span class="nice"><a
+                href="{{route('list-category', $resource->category->slug()) }}">{!! $resource->category->name()  !!}</a></span>
+
+
     <!-- Lang -->
-    <i class="fa fa-language" aria-hidden="true"></i> <span
+    <i class="fa fa-language icon-resource-register" aria-hidden="true"></i> <span
             class="nice">{!! $resource->lang->name() !!}</span>
 
 
+    <!-- Author -->
+    <i class="fa fa-users icon-resource-register" aria-hidden="true"></i>
+    @foreach ($resource->author() as $tag)
+        {{ $loop->first ? '' : ', ' }}
+        <span class="nice"><a href="{{route('list-tag', $tag->slug)}}">{{ $tag->name }}</a></span>
+    @endforeach
+
+
+<!-- Tag -->
+    <i class="fa fa-tags icon-resource-register" aria-hidden="true"></i>
+    @foreach ($resource->tagsWithoutType() as $tag)
+        {{ $loop->first ? '' : ', ' }}
+        <span class="nice"><a href="{{route('list-tag', $tag->slug)}}">{{ $tag->name }}</a></span>
+    @endforeach
+
+
     <!-- Version -->
-    <i class="fa fa-caret-square-o-right icon-resource-register" aria-hidden="true"></i>
+    <i class="fa fa-caret-square-o-right icon-resource-register" aria-hidden="true" title="Otros formatos disponibles"></i>
     @forelse ($resource->version as $version)
         {{ $loop->first ? '' : ', ' }}
         <span class="nice"><a href="{{ $version->url() }}" target="_blank"
                               title="{!! $version->comment() !!}">{{ $version->category->name() }}</a></span>
     @empty
-        No vers.
+        Sin otros formatos.
     @endforelse
 
-
-<!-- Category -->
-    <i class="fa fa-folder-open-o icon-resource-register" aria-hidden="true"></i>
-    <span class="nice"><a
-                href="{{route('list-category', $resource->category->slug()) }}">{!! $resource->category->name()  !!}</a></span>
-
-    <!-- Tag -->
-    <i class="fa fa-tags icon-resource-register" aria-hidden="true"></i>
-    @foreach ($resource->tags as $tag)
-        {{ $loop->first ? '' : ', ' }}
-        <span class="nice"><a href="{{route('list-tag', $tag->slug)}}">{{ $tag->name }}</a></span>
-    @endforeach
 
 
 <!-- Adm -->

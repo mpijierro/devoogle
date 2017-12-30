@@ -3,11 +3,12 @@
 namespace Devoogle\Src\Devoogle\Composer;
 
 use Devoogle\Src\Tag\Library\RouteTag;
+use Devoogle\Src\Tag\Model\Tag;
 use Devoogle\Src\Tag\Repository\TagRepositoryRead;
 use Illuminate\Support\Facades\Route;
 use Illuminate\View\View;
 
-class SidebarTagComposer
+class SidebarAuthorComposer
 {
     /**
      * @var TagRepositoryRead
@@ -42,9 +43,9 @@ class SidebarTagComposer
 
     private function sendTagsToView()
     {
-        $tags = $this->tagRepositoryRead->allWithoutType();
+        $authors = $this->tagRepositoryRead->allWithType(Tag::TYPE_AUTHOR);
 
-        $this->view->with('tags', $tags);
+        $this->view->with('authors', $authors);
     }
 
 

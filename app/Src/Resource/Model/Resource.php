@@ -2,6 +2,7 @@
 
 namespace Devoogle\Src\Resource\Model;
 
+use Devoogle\Src\Tag\Model\Tag;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Devoogle\Src\Category\Model\Category;
@@ -31,6 +32,7 @@ class Resource extends Model
         'reviewed'
     ];
 
+    protected $with = ['user', 'category', 'lang', 'tags'];
 
     public function user()
     {
@@ -47,6 +49,28 @@ class Resource extends Model
         return $this->belongsTo(Lang::class);
     }
 
+    public function version()
+    {
+        return $this->hasMany(Version::class);
+    }
+
+    public function author()
+    {
+        return $this->tagsWithType(Tag::TYPE_AUTHOR);
+    }
+
+    public function tagsWithoutType()
+    {
+
+        return $this->tags->filter(function ($tag) {
+
+            if (is_null($tag->type)) {
+                return $tag;
+            }
+
+        });
+    }
+
     public function userId()
     {
         return $this->attributes['user_id'];
@@ -60,11 +84,6 @@ class Resource extends Model
     public function langId()
     {
         return $this->attributes['lang_id'];
-    }
-
-    public function version()
-    {
-        return $this->hasMany(Version::class);
     }
 
     public function id()

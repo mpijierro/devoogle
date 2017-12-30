@@ -21,4 +21,14 @@ class TagRepositoryRead
     {
         return Tag::all();
     }
+
+    public function allWithoutType()
+    {
+        return Tag::whereNull('type')->orderBy('order_column')->get();
+    }
+
+    public function allWithType(string $type)
+    {
+        return Tag::getWithType($type);
+    }
 }
