@@ -3,20 +3,18 @@
 namespace Devoogle\Src\Resource\Query;
 
 
-use Illuminate\Support\Collection;
-
 class ListBySearchView
 {
 
-    private $foundResources;
+    private $resources;
 
     private $paginator;
 
     private $searchedText;
 
-    public function __construct(Collection $foundResources, $paginator, string $searchedText)
+    public function __construct($resources, $paginator, string $searchedText)
     {
-        $this->foundResources = $foundResources;
+        $this->resources = $resources;
 
         $this->paginator = $paginator;
 
@@ -24,9 +22,9 @@ class ListBySearchView
     }
 
 
-    public function foundResources(): Collection
+    public function resources()
     {
-        return $this->foundResources;
+        return $this->resources;
     }
 
     public function searchedText(): string

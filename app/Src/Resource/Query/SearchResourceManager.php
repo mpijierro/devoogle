@@ -2,18 +2,18 @@
 
 namespace Devoogle\Src\Resource\Query;
 
+use Devoogle\Src\Devoogle\Library\Paginable;
 use Devoogle\Src\Resource\Repository\ResourceRepositoryRead;
 
 class SearchResourceManager
 {
+    use Paginable;
     /**
      * @var ResourceRepositoryRead
      */
     private $resourceRepository;
 
-    private $resourcesFromQuery;
-
-    private $foundResources;
+    private $resources;
 
     private $query;
 
@@ -21,18 +21,23 @@ class SearchResourceManager
     {
         $this->resourceRepository = $resourceRepository;
 
-        $this->foundResources = collect();
     }
 
+    public function getResources()
+    {
+        return $this->resources;
+    }
 
     public function __invoke(SearchResourceQuery $query)
     {
+
+        $this->initializePaginable();
 
         $this->initializeQuery($query);
 
         $this->search();
 
-        $this->processResource();
+        $this->checkPageInRange();
 
         return $this->configView();
     }
@@ -44,27 +49,12 @@ class SearchResourceManager
 
     private function search()
     {
-        $this->resourcesFromQuery = $this->resourceRepository->searchByString($this->query->getSearchedText());
-    }
-
-    private function processResource()
-    {
-
-        foreach ($this->resourcesFromQuery as $resource) {
-
-            $resourceHome = app(ResourceItemList::class, ['resource' => $resource]);
-            $this->foundResources->push($resourceHome);
-
-        }
-
+        $this->resources = $this->resourceRepository->searchByString($this->query->getSearchedText());
     }
 
     private function configView()
     {
-
-        //dd($this->resourcesFromQuery->appends(['busqueda' => $this->query->getSearchedText()])->links());
-
-        return new ListBySearchView($this->foundResources, $this->resourcesFromQuery->appends(['search' => $this->query->getSearchedText()])->links(), $this->query->getSearchedText());
+        return new ListBySearchView($this->resources, $this->resources->appends(['search' => $this->query->getSearchedText()])->links(), $this->query->getSearchedText());
 
     }
 }

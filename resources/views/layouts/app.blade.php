@@ -44,6 +44,7 @@
 
                 <div class="col-sm-3 col-md-3">
                     <form action="{!! route('search-resource') !!}" method="POST" class="navbar-form" role="search">
+                        {{ csrf_field()  }}
                         <div class="input-group">
                             <input type="text" class="form-control" placeholder="Buscar..." name="search">
                             <div class="input-group-btn">

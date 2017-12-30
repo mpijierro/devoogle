@@ -26,6 +26,8 @@ trait Paginable
 
         $this->checkPageIsNumber();
 
+        $this->checkPageNoIsNegative();
+
     }
 
     protected function pageExists()
@@ -33,9 +35,17 @@ trait Paginable
         return ! is_null($this->page);
     }
 
+
     protected function checkPageIsNumber()
     {
         if ( ! is_numeric($this->page)) {
+            throw new InvalidPageNumberException();
+        }
+    }
+
+    protected function checkPageNoIsNegative()
+    {
+        if ($this->page < 0) {
             throw new InvalidPageNumberException();
         }
     }
