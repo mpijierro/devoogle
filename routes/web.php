@@ -11,12 +11,12 @@ Auth::routes();
 Route::get('/buscar', "Resource\SearchResourceController")->name('search-resource-get');
 Route::post('/buscar', "Resource\SearchResourceController")->name('search-resource');
 
-Route::group(['prefix' => 'recursos-de-programacion-de'], function () {
-    Route::get('/{slug}', "Tag\TagListController")->name('list-tag');
+Route::group(['prefix' => \Devoogle\Src\Tag\Library\RouteTag::URL_PREFIX], function () {
+    Route::get('/{slug}', "Tag\TagListController")->name(\Devoogle\Src\Tag\Library\RouteTag::TAG_LIST_NAME);
 });
 
-Route::group(['prefix' => 'recursos-de-programacion-en'], function () {
-    Route::get('/{slug}', "Category\CategoryListController")->name(\Devoogle\Src\Category\Library\RouteCategory::CATEGORY_LIST);
+Route::group(['prefix' => \Devoogle\Src\Category\Library\RouteCategory::URL_PREFIX], function () {
+    Route::get('/{slug}', "Category\CategoryListController")->name(\Devoogle\Src\Category\Library\RouteCategory::CATEGORY_LIST_NAME);
 });
 
 Route::group(['prefix' => 'recursos', 'middleware' => 'auth'], function () {

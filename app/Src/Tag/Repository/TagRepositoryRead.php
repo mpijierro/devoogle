@@ -17,4 +17,8 @@ class TagRepositoryRead
             ->firstOrFail();
     }
 
+    public function all()
+    {
+        return Tag::all();
+    }
 }

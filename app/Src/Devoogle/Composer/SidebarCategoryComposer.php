@@ -3,6 +3,7 @@
 namespace Devoogle\Src\Devoogle\Composer;
 
 use Devoogle\Src\Category\Library\RouteCategory;
+use Devoogle\Src\Tag\Library\RouteTag;
 use Illuminate\Support\Facades\Route;
 use Illuminate\View\View;
 use Devoogle\Src\Category\Repository\CategoryRepositoryRead;
@@ -52,7 +53,7 @@ class SidebarCategoryComposer
 
     private function isCategoryList()
     {
-        return Route::currentRouteName() == RouteCategory::CATEGORY_LIST;
+        return Route::currentRouteName() == RouteCategory::CATEGORY_LIST_NAME;
     }
 
     private function sendSelectedCategorySlugToView(View $view)
