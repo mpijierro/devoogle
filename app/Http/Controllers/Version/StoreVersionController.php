@@ -29,7 +29,7 @@ class StoreVersionController
 
             DB::commit();
 
-            return redirect()->route('edit-resource', $parentUuid);
+            return redirect()->route('edit-version', $uuid);
 
         } catch (\Exception $exception) {
 

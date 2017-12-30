@@ -8,7 +8,6 @@
 
 <div class="col-xs-12" style="margin-top:15px;">
 
-
     <!-- Category -->
     <i class="fa fa-folder-open-o" aria-hidden="true"></i>
     <span class="nice"><a
@@ -46,7 +45,9 @@
         Sin otros formatos.
     @endforelse
 
-
+    <a href="{!! route('create-version', $resource->uuid()) !!}" title="Añadir nuevo formato" class="icon-resource-register">
+        <i class="fa fa-plus-square" aria-hidden="true"></i>
+    </a>
 
 <!-- Adm -->
     @if (isLogged())
@@ -58,6 +59,7 @@
         @endif
 
         @if ( $resource->canCheck())
+            <br>
             <a href="{!! route('check-resource', $resource->uuid()) !!}">Marcar como revisado</a>
         @endif
 

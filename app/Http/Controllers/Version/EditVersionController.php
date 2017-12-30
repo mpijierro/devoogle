@@ -15,13 +15,16 @@ class EditVersionController
     {
 
         $query = new EditVersionQuery($uuid);
-        $handler = app(EditVersionManager::class);
-        $handler($query);
+        $manager = app(EditVersionManager::class);
+        $manager($query);
 
-        view()->share('form', $handler->formEdit());
-        view()->share('version', $handler->version());
-        view()->share('uuid', $uuid);
+        view()->share('versions', $manager->versions());
+        view()->share('resource', $manager->resource());
+        view()->share('form', $manager->formEdit());
+        view()->share('formTitle', 'Actualizar formato');
+        view()->share('textButton', 'Actualizar');
 
-        return view('resource.version_edit');
+        return view('resource.form_version');
+
     }
 }

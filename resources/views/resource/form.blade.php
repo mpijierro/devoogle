@@ -150,7 +150,7 @@
 
     @if (isset($formCreateVersion))
         <hr>
-        @include ('resource.form_version',  ['form' => $formCreateVersion])
+        @include ('resource.form_version_embedded',  ['form' => $formCreateVersion])
 
     @endif
 

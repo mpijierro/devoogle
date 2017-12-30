@@ -12,7 +12,7 @@ class UpdateVersionController
 {
 
 
-    public function __invoke(UpdateVersionRequest $request, VersionRepositoryRead $versionRepositoryRead, string $aUuid)
+    public function __invoke(UpdateVersionRequest $request, string $aUuid)
     {
 
         try {
@@ -21,9 +21,7 @@ class UpdateVersionController
             $handler = app(UpdateVersionHandler::class);
             $handler($command);
 
-            $version = $versionRepositoryRead->findByUuid($aUuid);
-
-            return redirect()->route('edit-resource', $version->resource->uuid());
+            return redirect()->route('edit-version', $aUuid);
 
         } catch (\Exception $exception) {
 

@@ -8,7 +8,7 @@
                     <div class="panel-heading">Editar versión</div>
 
                     <div class="panel-body">
-                        @include ('resource.form_version')
+                        @include ('resource.form_version_embedded')
                     </div>
                 </div>
             </div>
