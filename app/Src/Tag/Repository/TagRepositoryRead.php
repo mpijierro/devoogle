@@ -13,7 +13,6 @@ class TagRepositoryRead
 
         return Tag::query()
             ->where("slug->{$locale}", $aSlug)
-            ->where('type', $type)
             ->firstOrFail();
     }
 

@@ -5,7 +5,6 @@ namespace Devoogle\Src\Resource\Query;
 use Devoogle\Src\Devoogle\Library\Paginable;
 use Devoogle\Src\Resource\Repository\ResourceRepositoryRead;
 use Devoogle\Src\Tag\Repository\TagRepositoryRead;
-use Symfony\Component\Routing\Exception\InvalidParameterException;
 
 class ListByTagManager
 {
@@ -61,7 +60,7 @@ class ListByTagManager
 
     private function search()
     {
-        $this->resources = $this->repository->searchByTag($this->tag->name);
+        $this->resources = $this->repository->searchByTag($this->tag);
     }
 
 

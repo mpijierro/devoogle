@@ -4,6 +4,7 @@ namespace Devoogle\Src\Resource\Repository;
 
 use Devoogle\Src\Category\Model\Category;
 use Devoogle\Src\Resource\Model\Resource;
+use Spatie\Tags\Tag;
 
 class ResourceRepositoryRead
 {
@@ -12,7 +13,7 @@ class ResourceRepositoryRead
 
     public function resourceForHome()
     {
-        return Resource::with(['category', 'lang'])->orderBy('created_at', 'desc')->paginate($this->sizeList());
+        return Resource::orderBy('created_at', 'desc')->paginate($this->sizeList());
     }
 
     public function findByUuid(string $aUuid)
@@ -20,9 +21,9 @@ class ResourceRepositoryRead
         return Resource::where('uuid', $aUuid)->firstOrFail();
     }
 
-    public function searchByTag($tag)
+    public function searchByTag(Tag $tag)
     {
-        return Resource::with(['category'])->withAnyTags([$tag])->paginate($this->sizeList());
+        return Resource::withAnyTags([$tag])->paginate($this->sizeList());
     }
 
     public function searchByCategory(Category $category)
