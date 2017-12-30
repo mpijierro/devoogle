@@ -2,11 +2,14 @@
 
 namespace Devoogle\Src\Resource\Command;
 
+use Devoogle\Src\Resource\Model\Taggable;
 use Devoogle\Src\Resource\Repository\ResourceRepositoryRead;
 use Devoogle\Src\Resource\Repository\ResourceRepositoryWrite;
 
 class UpdateResourceHandler
 {
+
+    use Taggable;
 
     private $command;
 
@@ -38,7 +41,9 @@ class UpdateResourceHandler
 
         $this->update();
 
-        $this->syncTags();
+        $this->syncTags($this->resource, $command->getTag());
+
+        $this->syncTagsAuthor($this->resource, $command->getAuthor());
 
     }
 
@@ -68,24 +73,5 @@ class UpdateResourceHandler
         $this->resourceRepositoryWrite->save($this->resource);
     }
 
-
-    private function syncTags()
-    {
-
-        $inputTags = explode(',', $this->command->getTag());
-
-        $sanitizeTags = [];
-
-        foreach ($inputTags as $tag) {
-
-            $sanitizeTag = trim($tag);
-
-            if ( ! empty($sanitizeTag)) {
-                $sanitizeTags[] = $sanitizeTag;
-            }
-        }
-
-        $this->resource->syncTags($sanitizeTags);
-    }
 
 }

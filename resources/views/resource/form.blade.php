@@ -39,6 +39,20 @@
                 </div>
             </div>
 
+            <div class="form-group{{ $errors->has('author') ? ' has-error' : '' }}">
+                <label for="author" class="col-md-4 control-label">Autor/es</label>
+
+                <div class="col-md-6">
+                    {{ Form::text('author', null, ['class' => 'form-control', 'id' =>'author', 'autofocus'] ) }}
+
+                    @if ($errors->has('author'))
+                        <span class="help-block">
+                                        <strong>{{ $errors->first('author') }}</strong>
+                                    </span>
+                    @endif
+                </div>
+            </div>
+
             <div class="form-group{{ $errors->has('description') ? ' has-error' : '' }}">
                 <label for="description" class="col-md-4 control-label">Descripción</label>
 

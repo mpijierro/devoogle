@@ -3,11 +3,14 @@
 namespace Devoogle\Src\Resource\Command;
 
 use Devoogle\Src\Resource\Model\Resource;
+use Devoogle\Src\Resource\Model\Taggable;
 use Devoogle\Src\Resource\Repository\ResourceRepositoryWrite;
 
 
 class StoreResourceHandler
 {
+
+    use Taggable;
 
     private $command;
 
@@ -33,7 +36,9 @@ class StoreResourceHandler
 
         $this->create();
 
-        $this->attachTags();
+        $this->attachAuthorTags();
+
+        $this->attachResourceTags();
 
     }
 
@@ -63,19 +68,14 @@ class StoreResourceHandler
         $this->resourceRepositoryWrite->save($this->resource);
     }
 
-    private function attachTags()
+    private function attachResourceTags()
     {
+        $this->attachTags($this->resource, $this->command->getTag());
+    }
 
-        $tags = explode(',', $this->command->getTag());
-
-        foreach ($tags as $tag) {
-
-            $sanitizeTag = trim($tag);
-
-            if ( ! empty($sanitizeTag)) {
-                $this->resource->attachTag($sanitizeTag);
-            }
-        }
+    private function attachAuthorTags()
+    {
+        $this->attachTagsWithAuthor($this->resource, $this->command->getAuthor());
     }
 
     private function obtainSlug()

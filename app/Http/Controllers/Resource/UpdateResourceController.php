@@ -19,7 +19,7 @@ class UpdateResourceController
             DB::beginTransaction();
 
             $command = new UpdateResourceCommand($aUuid, $request->get('title'), $request->get('description'), $request->get('url'), $request->get('category_id'), $request->get('lang_id'),
-                request('tag', $default = ''));
+                request('tag', $default = ''), request('author', $default = ''));
 
             $handler = app(UpdateResourceHandler::class);
             $handler($command);

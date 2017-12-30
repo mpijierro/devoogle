@@ -6,6 +6,7 @@ use Devoogle\Src\Category\Repository\CategoryRepositoryRead;
 use Devoogle\Src\Lang\Repository\LangRepositoryRead;
 use Devoogle\Src\Devoogle\Library\Form;
 use Devoogle\Src\Resource\Repository\ResourceRepositoryRead;
+use Devoogle\Src\Tag\Model\Tag;
 use Webpatser\Uuid\Uuid;
 
 class FormEdit extends Form
@@ -96,13 +97,19 @@ class FormEdit extends Form
         $this->model = $this->resource->toArray();
 
         $this->configTagModel();
+
+        $this->configAuthorTagModel();
+
     }
 
     private function configTagModel()
     {
+        $this->model['tag'] = $this->resource->tagsWithType(null)->implode('name', ', ');
+    }
 
-        $this->model['tag'] = $this->resource->tags->implode('name', ', ');
-
+    private function configAuthorTagModel()
+    {
+        $this->model['author'] = $this->resource->tagsWithType(Tag::TYPE_AUTHOR)->implode('name', ', ');
     }
 
     private function configOptionsSelected()
