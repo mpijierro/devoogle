@@ -15,8 +15,8 @@ Route::group(['prefix' => 'recursos-de-programacion-de'], function () {
     Route::get('/{slug}', "Tag\TagListController")->name('list-tag');
 });
 
-Route::group(['prefix' => 'recursos-de-desarrollo-de-software-en'], function () {
-    Route::get('/{slug}', "Category\CategoryListController")->name('list-category');
+Route::group(['prefix' => 'recursos-de-programacion-en'], function () {
+    Route::get('/{slug}', "Category\CategoryListController")->name(\Devoogle\Src\Category\Library\RouteCategory::CATEGORY_LIST);
 });
 
 Route::group(['prefix' => 'recursos', 'middleware' => 'auth'], function () {

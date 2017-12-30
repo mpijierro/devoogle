@@ -177,6 +177,7 @@ return [
         Devoogle\Providers\EventServiceProvider::class,
         Devoogle\Providers\RouteServiceProvider::class,
         Devoogle\Src\Resource\ResourceServiceProvider::class,
+        \Devoogle\Providers\ComposerServiceProvider::class,
 
     ],
 

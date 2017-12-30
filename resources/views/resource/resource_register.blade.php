@@ -25,7 +25,7 @@
 
 
 <!-- Category -->
-    <i class="fa fa-folder-open icon-resource-register" aria-hidden="true"></i>
+    <i class="fa fa-folder-open-o icon-resource-register" aria-hidden="true"></i>
     <span class="nice"><a
                 href="{{route('list-category', $resource->category->slug()) }}">{!! $resource->category->name()  !!}</a></span>
 

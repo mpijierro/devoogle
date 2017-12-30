@@ -12,21 +12,21 @@ class CategorySeeder extends Seeder
     public function run()
     {
         DB::table('category')->insert([
-            'name' => 'Vídeo',
+            'name' => 'Vídeos',
             'slug' => 'video',
             'created_at' => \Carbon\Carbon::now(),
             'updated_at' => \Carbon\Carbon::now()
         ]);
 
         DB::table('category')->insert([
-            'name' => 'Audio',
+            'name' => 'Audios',
             'slug' => 'audio',
             'created_at' => \Carbon\Carbon::now(),
             'updated_at' => \Carbon\Carbon::now()
         ]);
 
         DB::table('category')->insert([
-            'name' => 'Web',
+            'name' => 'Webs',
             'slug' => 'web',
             'created_at' => \Carbon\Carbon::now(),
             'updated_at' => \Carbon\Carbon::now()
@@ -40,7 +40,7 @@ class CategorySeeder extends Seeder
         ]);
 
         DB::table('category')->insert([
-            'name' => 'Documento',
+            'name' => 'Documentos',
             'slug' => 'documento-texto',
             'created_at' => \Carbon\Carbon::now(),
             'updated_at' => \Carbon\Carbon::now()

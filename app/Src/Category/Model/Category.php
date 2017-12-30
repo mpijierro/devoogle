@@ -27,4 +27,9 @@ class Category extends Model
         return $this->attributes['slug'];
     }
 
+    public function hasSlug(string $otherSlug)
+    {
+        return $this->slug() == $otherSlug;
+    }
+
 }
