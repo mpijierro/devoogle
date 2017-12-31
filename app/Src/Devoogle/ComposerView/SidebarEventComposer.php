@@ -1,13 +1,13 @@
 <?php
 
-namespace Devoogle\Src\Devoogle\Composer;
+namespace Devoogle\Src\Devoogle\ComposerView;
 
-use Devoogle\Src\Tag\Library\RouteTag;
+use Devoogle\Src\Tag\Model\Tag;
 use Devoogle\Src\Tag\Repository\TagRepositoryRead;
 use Illuminate\Support\Facades\Route;
 use Illuminate\View\View;
 
-class SidebarTagComposer
+class SidebarEventComposer
 {
     /**
      * @var TagRepositoryRead
@@ -42,9 +42,9 @@ class SidebarTagComposer
 
     private function sendTagsToView()
     {
-        $tags = $this->tagRepositoryRead->allWithoutType();
+        $events = $this->tagRepositoryRead->allWithType(Tag::TYPE_EVENT);
 
-        $this->view->with('tags', $tags);
+        $this->view->with('events', $events);
     }
 
 
@@ -67,7 +67,7 @@ class SidebarTagComposer
 
     private function isTagList()
     {
-        return Route::currentRouteName() == RouteTag::TAG_LIST_NAME;
+        return Route::currentRouteName() == \Devoogle\Src\Devoogle\Library\Route::ROUTE_NAME_TAG_LIST;
     }
 
     private function sendSelectedCategorySlugToView()

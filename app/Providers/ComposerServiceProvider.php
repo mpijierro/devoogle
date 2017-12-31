@@ -2,12 +2,11 @@
 
 namespace Devoogle\Providers;
 
-use Devoogle\Src\Devoogle\Composer\SidebarAuthorComposer;
-use Devoogle\Src\Devoogle\Composer\SidebarCategoryComposer;
-use Devoogle\Src\Devoogle\Composer\SidebarEventComposer;
-use Devoogle\Src\Devoogle\Composer\SidebarTagComposer;
-use Devoogle\Src\Tag\Model\Tag;
-use Devoogle\Src\Tag\Repository\TagRepositoryRead;
+use Devoogle\Src\Devoogle\ComposerView\MetasComposer;
+use Devoogle\Src\Devoogle\ComposerView\SidebarAuthorComposer;
+use Devoogle\Src\Devoogle\ComposerView\SidebarCategoryComposer;
+use Devoogle\Src\Devoogle\ComposerView\SidebarEventComposer;
+use Devoogle\Src\Devoogle\ComposerView\SidebarTagComposer;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\View;
 
@@ -20,6 +19,9 @@ class ComposerServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+
+        View::composer('layouts/metas', MetasComposer::class);
+
         View::composer('sidebar/sidebar_category', SidebarCategoryComposer::class);
 
         View::composer('sidebar/sidebar_tag', SidebarTagComposer::class);

@@ -1,8 +1,7 @@
 <?php
 
-namespace Devoogle\Src\Devoogle\Composer;
+namespace Devoogle\Src\Devoogle\ComposerView;
 
-use Devoogle\Src\Tag\Library\RouteTag;
 use Devoogle\Src\Tag\Model\Tag;
 use Devoogle\Src\Tag\Repository\TagRepositoryRead;
 use Illuminate\Support\Facades\Route;
@@ -68,7 +67,7 @@ class SidebarAuthorComposer
 
     private function isTagList()
     {
-        return Route::currentRouteName() == RouteTag::TAG_LIST_NAME;
+        return Route::currentRouteName() == \Devoogle\Src\Devoogle\Library\Route::ROUTE_NAME_TAG_LIST;
     }
 
     private function sendSelectedCategorySlugToView()
