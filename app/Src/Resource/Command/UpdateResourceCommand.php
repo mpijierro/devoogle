@@ -6,41 +6,25 @@ namespace Devoogle\Src\Resource\Command;
 class UpdateResourceCommand
 {
 
-
-    /**
-     * @var string
-     */
     private $uuid;
-    /**
-     * @var string
-     */
+
     private $title;
-    /**
-     * @var string
-     */
+
     private $description;
-    /**
-     * @var string
-     */
+
     private $url;
-    /**
-     * @var string
-     */
+
     private $categoryId;
-    /**
-     * @var string
-     */
+
     private $langId;
-    /**
-     * @var string
-     */
+
     private $tag;
-    /**
-     * @var string
-     */
+
     private $author;
 
-    public function __construct(string $uuid, string $title, string $description, string $url, string $categoryId, string $langId, string $tag, string $author)
+    private $event;
+
+    public function __construct(string $uuid, string $title, string $description, string $url, string $categoryId, string $langId, string $tag, string $author, string $event)
     {
 
         $this->uuid = $uuid;
@@ -51,6 +35,7 @@ class UpdateResourceCommand
         $this->langId = $langId;
         $this->tag = $tag;
         $this->author = $author;
+        $this->event = $event;
     }
 
     public function getUuid(): string
@@ -92,6 +77,11 @@ class UpdateResourceCommand
     public function getAuthor(): string
     {
         return $this->author;
+    }
+
+    public function getEvent(): string
+    {
+        return $this->event;
     }
 
 }

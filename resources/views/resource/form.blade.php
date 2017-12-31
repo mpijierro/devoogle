@@ -53,21 +53,6 @@
                 </div>
             </div>
 
-            <div class="form-group{{ $errors->has('description') ? ' has-error' : '' }}">
-                <label for="description" class="col-md-4 control-label">Descripción</label>
-
-                <div class="col-md-6">
-                    {{ Form::textarea('description', null, ['class' => 'form-control', 'id' =>'description', 'autofocus', 'rows'=>3] ) }}
-
-                    @if ($errors->has('description'))
-                        <span class="help-block">
-                                        <strong>{{ $errors->first('description') }}</strong>
-                                    </span>
-                    @endif
-                </div>
-            </div>
-
-
             <div class="form-group{{ $errors->has('category_id') ? ' has-error' : '' }}">
                 <label for="category" class="col-md-4 control-label">Formato</label>
 
@@ -100,6 +85,20 @@
                 </div>
             </div>
 
+            <div class="form-group{{ $errors->has('event') ? ' has-error' : '' }}">
+                <label for="event" class="col-md-4 control-label">Evento</label>
+
+                <div class="col-md-6">
+                    {{ Form::text('event', null, ['class' => 'form-control', 'id' =>'event', 'autofocus'] ) }}
+
+                    @if ($errors->has('event'))
+                        <span class="help-block">
+                                        <strong>{{ $errors->first('event') }}</strong>
+                                    </span>
+                    @endif
+                </div>
+            </div>
+
 
             <div class="form-group{{ $errors->has('tag') ? ' has-error' : '' }}">
                 <label for="tag" class="col-md-4 control-label">Etiquetas</label>
@@ -115,6 +114,20 @@
                 </div>
             </div>
 
+            <div class="form-group{{ $errors->has('description') ? ' has-error' : '' }}">
+                <label for="description" class="col-md-4 control-label">Descripción</label>
+
+                <div class="col-md-6">
+                    {{ Form::textarea('description', null, ['class' => 'form-control', 'id' =>'description', 'autofocus', 'rows'=>3] ) }}
+
+                    @if ($errors->has('description'))
+                        <span class="help-block">
+                                        <strong>{{ $errors->first('description') }}</strong>
+                                    </span>
+                    @endif
+                </div>
+            </div>
+
 
             <div class="form-group">
                 <div class="col-md-6 col-md-offset-4">
@@ -125,11 +138,13 @@
             </div>
             {{ Form::close() }}
 
-            <div class="col-xs-12 ">
-                <a href="{!! route('create-version', $uuid) !!}" title="Añadir nuevo formato" class="icon-resource-register">
-                    <i class="fa fa-plus-square" aria-hidden="true"></i> Añadir un nuevo formato
-                </a>
-            </div>
+            @if (isset($uuid))
+                <div class="col-xs-12 ">
+                    <a href="{!! route('create-version', $uuid) !!}" title="Añadir nuevo formato" class="icon-resource-register">
+                        <i class="fa fa-plus-square" aria-hidden="true"></i> Añadir un nuevo formato
+                    </a>
+                </div>
+            @endif
 
         </div>
 

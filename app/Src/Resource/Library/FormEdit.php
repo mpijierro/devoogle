@@ -100,6 +100,8 @@ class FormEdit extends Form
 
         $this->configAuthorTagModel();
 
+        $this->configEventTagModel();
+
     }
 
     private function configTagModel()
@@ -110,6 +112,11 @@ class FormEdit extends Form
     private function configAuthorTagModel()
     {
         $this->model['author'] = $this->resource->tagsWithType(Tag::TYPE_AUTHOR)->implode('name', ', ');
+    }
+
+    private function configEventTagModel()
+    {
+        $this->model['event'] = $this->resource->tagsWithType(Tag::TYPE_EVENT)->implode('name', ', ');
     }
 
     private function configOptionsSelected()

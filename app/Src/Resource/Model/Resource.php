@@ -59,6 +59,11 @@ class Resource extends Model
         return $this->tagsWithType(Tag::TYPE_AUTHOR);
     }
 
+    public function event()
+    {
+        return $this->tagsWithType(Tag::TYPE_EVENT);
+    }
+
     public function tagsWithoutType()
     {
 

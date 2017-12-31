@@ -24,8 +24,10 @@ class StoreResourceCommand
 
     private $author;
 
+    private $event;
 
-    public function __construct(string $uuid, string $userId, string $title, string $description, string $url, string $categoryId, string $langId, string $tag, string $author)
+
+    public function __construct(string $uuid, string $userId, string $title, string $description, string $url, string $categoryId, string $langId, string $tag, string $author, string $event)
     {
         $this->uuid = $uuid;
         $this->userId = $userId;
@@ -36,6 +38,7 @@ class StoreResourceCommand
         $this->description = $description;
         $this->tag = $tag;
         $this->author = $author;
+        $this->event = $event;
     }
 
 
@@ -82,6 +85,11 @@ class StoreResourceCommand
     public function getAuthor(): string
     {
         return $this->author;
+    }
+
+    public function getEvent(): string
+    {
+        return $this->event;
     }
 
 }

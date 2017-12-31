@@ -19,23 +19,34 @@ trait Taggable
         }
     }
 
-    private function fillTagsArray(string $tags)
+    protected function attachTagsWithAuthor(Resource $resource, string $tags)
     {
 
-        $this->tagsInArray = [];
+        $this->fillTagsArray($tags);
 
-        $tags = explode(',', $tags);
+        foreach ($this->tagsInArray as $tag) {
 
-        foreach ($tags as $tag) {
+            $tagWithType = $this->createTagWithTypeAuthor($tag);
 
-            $sanitizeTag = trim($tag);
-
-            if ( ! empty($sanitizeTag)) {
-                $this->tagsInArray[] = $sanitizeTag;
-            }
+            $resource->attachTag($tagWithType);
         }
 
     }
+
+    protected function attachTagsWithEvent(Resource $resource, string $tags)
+    {
+
+        $this->fillTagsArray($tags);
+
+        foreach ($this->tagsInArray as $tag) {
+
+            $tagWithType = $this->createTagWithTypeEvent($tag);
+
+            $resource->attachTag($tagWithType);
+        }
+    }
+
+    //sync
 
     protected function syncTags(Resource $resource, string $tags)
     {
@@ -46,24 +57,6 @@ trait Taggable
 
     }
 
-    protected function attachTagsWithAuthor(Resource $resource, string $tags)
-    {
-
-        $this->fillTagsArray($tags);
-
-        foreach ($this->tagsInArray as $tag) {
-
-            $tagWithType = $this->createTagWithType($tag);
-
-            $resource->attachTag($tagWithType);
-        }
-
-    }
-
-    private function createTagWithType(string $tag)
-    {
-        return \Spatie\Tags\Tag::findOrCreate($tag, Tag::TYPE_AUTHOR);
-    }
 
     protected function syncTagsAuthor(Resource $resource, string $tags)
     {
@@ -71,6 +64,43 @@ trait Taggable
         $this->fillTagsArray($tags);
 
         $resource->syncTagsWithType($this->tagsInArray, Tag::TYPE_AUTHOR);
+
+    }
+
+    protected function syncTagsEvent(Resource $resource, string $tags)
+    {
+
+        $this->fillTagsArray($tags);
+
+        $resource->syncTagsWithType($this->tagsInArray, Tag::TYPE_EVENT);
+
+    }
+
+    private function createTagWithTypeAuthor(string $tag)
+    {
+        return \Spatie\Tags\Tag::findOrCreate($tag, Tag::TYPE_AUTHOR);
+    }
+
+    private function createTagWithTypeEvent(string $tag)
+    {
+        return \Spatie\Tags\Tag::findOrCreate($tag, Tag::TYPE_EVENT);
+    }
+
+    private function fillTagsArray(string $tags)
+    {
+
+        $this->tagsInArray = [];
+
+        $tags = explode(',', $tags);
+
+        foreach ($tags as $tag) {
+
+            $sanitizeTag = trim(mb_strtolower($tag));
+
+            if ( ! empty($sanitizeTag)) {
+                $this->tagsInArray[] = $sanitizeTag;
+            }
+        }
 
     }
 

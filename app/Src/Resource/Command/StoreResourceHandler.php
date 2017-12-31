@@ -38,6 +38,8 @@ class StoreResourceHandler
 
         $this->attachAuthorTags();
 
+        $this->attachEventTags();
+
         $this->attachResourceTags();
 
     }
@@ -77,6 +79,12 @@ class StoreResourceHandler
     {
         $this->attachTagsWithAuthor($this->resource, $this->command->getAuthor());
     }
+
+    private function attachEventTags()
+    {
+        $this->attachTagsWithEvent($this->resource, $this->command->getEvent());
+    }
+
 
     private function obtainSlug()
     {

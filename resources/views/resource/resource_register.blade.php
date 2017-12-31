@@ -18,23 +18,6 @@
     <i class="fa fa-language icon-resource-register" aria-hidden="true"></i> <span
             class="nice">{!! $resource->lang->name() !!}</span>
 
-
-    <!-- Author -->
-    <i class="fa fa-users icon-resource-register" aria-hidden="true"></i>
-    @foreach ($resource->author() as $tag)
-        {{ $loop->first ? '' : ', ' }}
-        <span class="nice"><a href="{{route('list-tag', $tag->slug)}}">{{ $tag->name }}</a></span>
-    @endforeach
-
-
-<!-- Tag -->
-    <i class="fa fa-tags icon-resource-register" aria-hidden="true"></i>
-    @foreach ($resource->tagsWithoutType() as $tag)
-        {{ $loop->first ? '' : ', ' }}
-        <span class="nice"><a href="{{route('list-tag', $tag->slug)}}">{{ $tag->name }}</a></span>
-    @endforeach
-
-
     <!-- Version -->
     <i class="fa fa-caret-square-o-right icon-resource-register" aria-hidden="true" title="Otros formatos disponibles"></i>
     @forelse ($resource->version as $version)
@@ -48,6 +31,36 @@
     <a href="{!! route('create-version', $resource->uuid()) !!}" title="Añadir nuevo formato" class="icon-resource-register">
         <i class="fa fa-plus-square" aria-hidden="true"></i>
     </a>
+
+    <br><br>
+    <!-- Author -->
+    <i class="fa fa-users" aria-hidden="true" title="Autor/es"></i>
+    @forelse ($resource->author() as $tag)
+        {{ $loop->first ? '' : ', ' }}
+        <span class="nice"><a href="{{route('list-tag', $tag->slug)}}">{{ $tag->name }}</a></span>
+    @empty
+        -
+    @endforelse
+
+<!-- Event -->
+    <i class="fa fa-map-signs icon-resource-register" aria-hidden="true" title="Evento"></i>
+    @forelse ($resource->event() as $tag)
+        {{ $loop->first ? '' : ', ' }}
+        <span class="nice"><a href="{{route('list-tag', $tag->slug)}}">{{ $tag->name }}</a></span>
+    @empty
+        -
+    @endforelse
+
+
+<!-- Tag -->
+    <i class="fa fa-tags icon-resource-register" aria-hidden="true"></i>
+    @forelse ($resource->tagsWithoutType() as $tag)
+        {{ $loop->first ? '' : ', ' }}
+        <span class="nice"><a href="{{route('list-tag', $tag->slug)}}">{{ $tag->name }}</a></span>
+    @empty
+        -
+    @endforelse
+
 
 <!-- Adm -->
     @if (isLogged())
