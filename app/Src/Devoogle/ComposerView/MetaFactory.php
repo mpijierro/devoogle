@@ -13,11 +13,11 @@ class MetaFactory
 
     public function __construct()
     {
-
         $this->pages = [
             Route::ROUTE_NAME_HOME => MetaHome::class,
             Route::ROUTE_NAME_CATEGORY_LIST => MetaCategoryList::class,
             Route::ROUTE_NAME_TAG_LIST => MetaTagList::class
+
         ];
 
     }
@@ -26,7 +26,11 @@ class MetaFactory
     public function build()
     {
 
-        return app($this->pages[\Illuminate\Support\Facades\Route::currentRouteName()]);
+        if (isset($this->pages[\Illuminate\Support\Facades\Route::currentRouteName()])) {
+            return app($this->pages[\Illuminate\Support\Facades\Route::currentRouteName()]);
+        }
+
+        return app(MetaHome::class);
 
     }
 
