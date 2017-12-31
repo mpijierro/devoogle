@@ -12,35 +12,35 @@ class CategorySeeder extends Seeder
     public function run()
     {
         DB::table('category')->insert([
-            'name' => 'Vídeos',
+            'name' => 'Vídeo',
             'slug' => 'video',
             'created_at' => \Carbon\Carbon::now(),
             'updated_at' => \Carbon\Carbon::now()
         ]);
 
         DB::table('category')->insert([
-            'name' => 'Audios',
+            'name' => 'Audio',
             'slug' => 'audio',
             'created_at' => \Carbon\Carbon::now(),
             'updated_at' => \Carbon\Carbon::now()
         ]);
 
         DB::table('category')->insert([
-            'name' => 'Webs',
+            'name' => 'Web',
             'slug' => 'web',
             'created_at' => \Carbon\Carbon::now(),
             'updated_at' => \Carbon\Carbon::now()
         ]);
 
         DB::table('category')->insert([
-            'name' => 'Diapositivas',
+            'name' => 'Diapositiva',
             'slug' => 'diapositivas',
             'created_at' => \Carbon\Carbon::now(),
             'updated_at' => \Carbon\Carbon::now()
         ]);
 
         DB::table('category')->insert([
-            'name' => 'Documentos',
+            'name' => 'Documento',
             'slug' => 'documento-texto',
             'created_at' => \Carbon\Carbon::now(),
             'updated_at' => \Carbon\Carbon::now()

@@ -69,12 +69,12 @@
 
 
             <div class="form-group{{ $errors->has('category') ? ' has-error' : '' }}">
-                <label for="category" class="col-md-4 control-label">Categoría</label>
+                <label for="category" class="col-md-4 control-label">Formato</label>
 
                 <div class="col-md-6">
 
                     {{ \Form::select('category_id', $form->categoryOptions(), null,
-                                            ['placeholder' => 'Selecciona categoría',
+                                            ['placeholder' => 'Selecciona formato',
                                             'class' => 'form-control', 'required']) }}
 
                     @if ($errors->has('category'))
@@ -90,7 +90,7 @@
 
                 <div class="col-md-6">
 
-                    {{ \Form::select('lang_id', $form->langOptions(), null, ['placeholder' => 'Selecciona categoría', 'class' => 'form-control', 'required']) }}
+                    {{ \Form::select('lang_id', $form->langOptions(), null, ['placeholder' => 'Selecciona formato', 'class' => 'form-control', 'required']) }}
 
                     @if ($errors->has('lang'))
                         <span class="help-block">
