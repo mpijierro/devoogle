@@ -16,6 +16,16 @@ class TagRepositoryRead
             ->firstOrFail();
     }
 
+    public function searchByText(string $text)
+    {
+
+        $locale = 'es';
+
+        return Tag::query()
+            ->where("slug->{$locale}", 'like', '%' . $text . '%')
+            ->get();
+    }
+
     public function all()
     {
         return Tag::all();

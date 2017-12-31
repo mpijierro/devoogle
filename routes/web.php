@@ -19,6 +19,12 @@ Route::group(['prefix' => \Devoogle\Src\Devoogle\Library\Route::PREFIX_URL_CATEG
     Route::get('/{slug}', "Category\CategoryListController")->name(\Devoogle\Src\Devoogle\Library\Route::ROUTE_NAME_CATEGORY_LIST);
 });
 
+
+Route::group(['prefix' => 'api'], function () {
+    Route::get('/tag/', "Tag\ApiController")->name('api-tag');
+});
+
+
 Route::group(['prefix' => 'recursos', 'middleware' => 'auth'], function () {
 
     Route::get('/crear', "Resource\CreateResourceController")->name('create-resource');

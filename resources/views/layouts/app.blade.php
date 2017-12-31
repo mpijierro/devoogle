@@ -4,9 +4,17 @@
 
     @include('layouts.metas')
 
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+
+    <link href="{{ asset('css/token-input.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/token-input-facebook.css') }}" rel="stylesheet">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+
 </head>
 <body>
 <div id="app">
@@ -109,5 +117,22 @@
 
 <!-- Scripts -->
 <script src="{{ asset('js/app.js') }}"></script>
+
+<script src="{{ asset('js/tag-it.js') }}" type="text/javascript" charset="utf-8"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#author").tokenInput('{{route('api-tag')}}', {
+            theme: "facebook",
+            minChars: 2,
+            noResultsText: "Sin resultados",
+            searchingText: "Buscando...",
+            preventDuplicates: true
+
+
+        });
+    });
+</script>
+
 </body>
 </html>
