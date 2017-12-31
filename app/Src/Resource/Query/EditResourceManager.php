@@ -16,10 +16,6 @@ class EditResourceManager
 
     private $formEdit;
 
-    /**
-     * @var FormCreateVersion
-     */
-    private $formCreateVersion;
 
     /**
      * @var ResourceRepositoryRead
@@ -27,11 +23,10 @@ class EditResourceManager
     private $resourceRepository;
 
 
-    public function __construct(FormEdit $formEdit, FormCreate $formCreateVersion, ResourceRepositoryRead $resourceRepository)
+    public function __construct(FormEdit $formEdit, ResourceRepositoryRead $resourceRepository)
     {
         $this->formEdit = $formEdit;
         $this->resourceRepository = $resourceRepository;
-        $this->formCreateVersion = $formCreateVersion;
 
         $this->versions = collect();
     }
@@ -41,10 +36,6 @@ class EditResourceManager
         return $this->formEdit;
     }
 
-    public function getFormCreateVersion(): FormCreate
-    {
-        return $this->formCreateVersion;
-    }
 
     public function resource()
     {
@@ -59,8 +50,6 @@ class EditResourceManager
     public function __invoke(EditResourceQuery $query)
     {
         ($this->formEdit)($query->getUuid());
-
-        ($this->formCreateVersion)($query->getUuid());
 
         $this->obtainVersions($query->getUuid());
 

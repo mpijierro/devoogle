@@ -75,7 +75,7 @@ class CreateVersionManager
 
     private function initializeForm()
     {
-        ($this->formCreate)($query->getUuid());
+        ($this->formCreate)($this->query->getUuid());
     }
 
     private function findResource()

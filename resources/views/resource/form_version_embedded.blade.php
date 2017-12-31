@@ -10,7 +10,7 @@
             <label for="url" class="col-md-4 control-label">Url</label>
 
             <div class="col-md-6">
-                {{ Form::url('url', null, ['class' => 'form-control', 'id' =>'url', 'required'] ) }}
+                {{ Form::url('url', null, ['class' => 'form-control', 'id' =>'url', 'required1'] ) }}
 
                 @if ($errors->has('url'))
                     <span class="help-block">
@@ -21,18 +21,18 @@
         </div>
 
 
-        <div class="form-group{{ $errors->has('category') ? ' has-error' : '' }}">
+        <div class="form-group{{ $errors->has('category_id') ? ' has-error' : '' }}">
             <label for="category" class="col-md-4 control-label">Formato</label>
 
             <div class="col-md-6">
 
                 {{ \Form::select('category_id', $form->categoryOptions(), null,
                                         ['placeholder' => 'Selecciona formato',
-                                        'class' => 'form-control', 'required']) }}
+                                        'class' => 'form-control', 'required1']) }}
 
-                @if ($errors->has('category'))
+                @if ($errors->has('category_id'))
                     <span class="help-block">
-                                        <strong>{{ $errors->first('category') }}</strong>
+                                        <strong>{{ $errors->first('category_id') }}</strong>
                                     </span>
                 @endif
             </div>
@@ -43,7 +43,7 @@
             <label for="comment" class="col-md-4 control-label">Descripción</label>
 
             <div class="col-md-6">
-                {{ Form::textarea('comment', null, ['class' => 'form-control', 'id' =>'comment', 'autofocus', 'rows'=>3] ) }}
+                {{ Form::textarea('comment', null, ['class' => 'form-control', 'id' =>'comment', 'autofocus', 'rows'=>2] ) }}
 
                 @if ($errors->has('comment'))
                     <span class="help-block">

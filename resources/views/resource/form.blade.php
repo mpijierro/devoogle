@@ -125,7 +125,15 @@
             </div>
             {{ Form::close() }}
 
+            <div class="col-xs-12 ">
+                <a href="{!! route('create-version', $uuid) !!}" title="Añadir nuevo formato" class="icon-resource-register">
+                    <i class="fa fa-plus-square" aria-hidden="true"></i> Añadir un nuevo formato
+                </a>
+            </div>
+
         </div>
+
+
     </div>
 
     @if (isset($versions))
@@ -148,10 +156,5 @@
         @endif
     @endif
 
-    @if (isset($formCreateVersion))
-        <hr>
-        @include ('resource.form_version_embedded',  ['form' => $formCreateVersion])
-
-    @endif
 
 @endsection

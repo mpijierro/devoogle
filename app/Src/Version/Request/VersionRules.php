@@ -1,9 +1,8 @@
 <?php
 
-namespace Devoogle\Src\Resource\Request;
+namespace Devoogle\Src\Version\Request;
 
-
-trait ResourceRules
+trait VersionRules
 {
 
     protected function commonMessages()
@@ -12,24 +11,19 @@ trait ResourceRules
         return [
             'url.required' => trans('devoogle_validation.url_required'),
             'url.url' => trans('devoogle_validation.url_url'),
-            'title.required' => trans('devoogle_validation.title_required'),
             'category_id.required' => trans('devoogle_validation.category_id_required'),
             'category_id.exists' => trans('devoogle_validation.category_id_required'),
-            'lang_id.required' => trans('devoogle_validation.lang_id_required'),
-            'lang_id.exists' => trans('devoogle_validation.lang_id_required')
         ];
+
 
     }
 
 
     protected function commonRules()
     {
-
         return [
-            'title' => 'required',
             'url' => 'required|url',
-            'category_id' => 'required|exists:category,id',
-            'lang_id' => 'required|exists:lang,id'
+            'category_id' => 'required|exists:category,id'
         ];
     }
 
