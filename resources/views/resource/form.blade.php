@@ -11,7 +11,7 @@
             {{ Form::model($form->model(), ['url' => $form->action(), 'method'=>'POST', 'class' => 'form-horizontal']) }}
 
             <div class="form-group{{ $errors->has('url') ? ' has-error' : '' }}">
-                <label for="url" class="col-md-4 control-label">Url</label>
+                <label for="url" class="col-md-4 control-label">Dirección web</label>
 
                 <div class="col-md-6">
                     {{ Form::url('url', null, ['class' => 'form-control', 'id' =>'url', 'required'] ) }}
@@ -57,7 +57,7 @@
                 <label for="description" class="col-md-4 control-label">Descripción</label>
 
                 <div class="col-md-6">
-                    {{ Form::textarea('description', null, ['class' => 'form-control', 'id' =>'description', 'autofocus', 'rows'=>5] ) }}
+                    {{ Form::textarea('description', null, ['class' => 'form-control', 'id' =>'description', 'autofocus', 'rows'=>3] ) }}
 
                     @if ($errors->has('description'))
                         <span class="help-block">
@@ -68,7 +68,7 @@
             </div>
 
 
-            <div class="form-group{{ $errors->has('category') ? ' has-error' : '' }}">
+            <div class="form-group{{ $errors->has('category_id') ? ' has-error' : '' }}">
                 <label for="category" class="col-md-4 control-label">Formato</label>
 
                 <div class="col-md-6">
@@ -77,24 +77,24 @@
                                             ['placeholder' => 'Selecciona formato',
                                             'class' => 'form-control', 'required']) }}
 
-                    @if ($errors->has('category'))
+                    @if ($errors->has('category_id'))
                         <span class="help-block">
-                                        <strong>{{ $errors->first('category') }}</strong>
+                                        <strong>{{ $errors->first('category_id') }}</strong>
                                     </span>
                     @endif
                 </div>
             </div>
 
-            <div class="form-group{{ $errors->has('lang') ? ' has-error' : '' }}">
+            <div class="form-group{{ $errors->has('lang_id') ? ' has-error' : '' }}">
                 <label for="lang" class="col-md-4 control-label">Idioma</label>
 
                 <div class="col-md-6">
 
                     {{ \Form::select('lang_id', $form->langOptions(), null, ['placeholder' => 'Selecciona formato', 'class' => 'form-control', 'required']) }}
 
-                    @if ($errors->has('lang'))
+                    @if ($errors->has('lang_id'))
                         <span class="help-block">
-                                        <strong>{{ $errors->first('lang') }}</strong>
+                                        <strong>{{ $errors->first('lang_id') }}</strong>
                                     </span>
                     @endif
                 </div>
