@@ -23,6 +23,8 @@ class StoreResourceController
             $user = Auth::user();
             $uuid = Uuid::generate();
 
+            dd(request()->all());
+
             $command = new StoreResourceCommand($uuid, $user->id, $request->get('title'), request('description', $default = ''), $request->get('url'), $request->get('category_id'),
                 $request->get('lang_id'),
                 request('tag', $default = ''), request('author', $default = ''), request('event', $default = ''));

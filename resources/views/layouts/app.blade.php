@@ -6,14 +6,22 @@
 
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/tagmanager/3.0.2/tagmanager.min.css">
 
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    <script
+            src="https://code.jquery.com/jquery-3.2.1.min.js"
+            integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+            crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tagmanager/3.0.2/tagmanager.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.1/bootstrap3-typeahead.min.js"></script>
 
-    <link href="{{ asset('css/token-input.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/token-input-facebook.css') }}" rel="stylesheet">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
+
+
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
 
 </head>
 <body>
@@ -116,21 +124,28 @@
 </div>
 
 <!-- Scripts -->
-<script src="{{ asset('js/app.js') }}"></script>
 
-<script src="{{ asset('js/tag-it.js') }}" type="text/javascript" charset="utf-8"></script>
 
 <script type="text/javascript">
     $(document).ready(function () {
-        $("#author").tokenInput('{{route('api-tag')}}', {
-            theme: "facebook",
-            minChars: 2,
-            noResultsText: "Sin resultados",
-            searchingText: "Buscando...",
-            preventDuplicates: true
 
+        var tagApi = $(".tm-input").tagsManager();
 
+        jQuery(".typeahead").typeahead({
+            name: 'tags',
+            displayKey: 'name',
+            source: function (query, process) {
+                return $.get('{{route('api-tag')}}', {q: query}, function (data) {
+                    //data = $.parseJSON(data);
+                    return process(data);
+                });
+            },
+            afterSelect: function (item) {
+                tagApi.tagsManager("pushTag", item.name);
+            }
         });
+
+
     });
 </script>
 

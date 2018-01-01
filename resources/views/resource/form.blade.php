@@ -43,7 +43,7 @@
                 <label for="author" class="col-md-4 control-label">Autor/es</label>
 
                 <div class="col-md-6">
-                    {{ Form::text('author', null, ['class' => 'form-control', 'id' =>'author', 'autofocus'] ) }}
+                    {{ Form::text('author', null, ['class' => 'form-control typeahead', 'id' =>'author',"data-role"=>"tagsinput" , 'autofocus'] ) }}
 
                     @if ($errors->has('author'))
                         <span class="help-block">
@@ -52,6 +52,13 @@
                     @endif
                 </div>
             </div>
+
+
+            <div class="form-group">
+                <label>Add Tags:</label><br/>
+                <input type="text" name="tags" placeholder="Autores" class="typeahead tm-input form-control tm-input-info"/>
+            </div>
+
 
             <div class="form-group{{ $errors->has('category_id') ? ' has-error' : '' }}">
                 <label for="category" class="col-md-4 control-label">Formato</label>
