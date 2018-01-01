@@ -6,23 +6,27 @@ namespace Devoogle\Src\Tag\Query;
 
 class SearchTagQuery
 {
-    /**
-     * @var string
-     */
+
     private $search;
 
-    public function __construct(string $search)
+    private $type;
+
+    public function __construct(string $search, string $type = null)
     {
         $this->search = $search;
+        $this->type = $type;
     }
 
-    /**
-     * @return string
-     */
+
     public function getSearch(): string
     {
         return $this->search;
     }
 
+
+    public function getType()
+    {
+        return $this->type;
+    }
 
 }

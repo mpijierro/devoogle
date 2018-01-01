@@ -20,8 +20,8 @@ Route::group(['prefix' => \Devoogle\Src\Devoogle\Library\Route::PREFIX_URL_CATEG
 });
 
 
-Route::group(['prefix' => 'api'], function () {
-    Route::get('/tag/', "Tag\ApiController")->name('api-tag');
+Route::group(['prefix' => 'input'], function () {
+    Route::get('/tag/{type}', "Tag\SearchTagController")->name('input-tag');
 });
 
 

@@ -24,19 +24,13 @@ class SearchTagManager
 
     public function arrayTagsForInputForm()
     {
-
         $tags = [];
-        foreach ($this->tags as $tag) {
-            $rainInFregenal = [
-                'id' => $tag->id,
-                'name' => $tag->name
-            ];
 
-            $tags[] = $rainInFregenal;
+        foreach ($this->tags as $tag) {
+            $tags[] = $tag->name;
         }
 
         return $tags;
-
     }
 
     public function __invoke(SearchTagQuery $query)
@@ -54,7 +48,7 @@ class SearchTagManager
     private function search()
     {
 
-        $this->tags = $this->tagRepositoryRead->searchByText($this->query->getSearch());
+        $this->tags = $this->tagRepositoryRead->searchByTextWithType($this->query->getSearch(), $this->query->getType());
     }
 
 }

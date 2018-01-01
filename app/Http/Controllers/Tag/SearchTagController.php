@@ -6,19 +6,14 @@ use Devoogle\Src\Tag\Query\SearchTagManager;
 use Devoogle\Src\Tag\Query\SearchTagQuery;
 use Spatie\Tags\Tag;
 
-class ApiController
+class SearchTagController
 {
 
-    private $tags;
-
-    public function __invoke()
+    public function __invoke(string $type)
     {
-
-
         \Debugbar::disable();
 
-
-        $query = new SearchTagQuery(request()->get('q'));
+        $query = new SearchTagQuery(request()->get('q'), $type);
         $manager = app(SearchTagManager::class);
 
         $manager($query);

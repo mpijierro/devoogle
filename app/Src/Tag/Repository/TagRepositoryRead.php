@@ -16,13 +16,14 @@ class TagRepositoryRead
             ->firstOrFail();
     }
 
-    public function searchByText(string $text)
+    public function searchByTextWithType(string $text, string $type = null)
     {
 
         $locale = 'es';
 
         return Tag::query()
             ->where("slug->{$locale}", 'like', '%' . $text . '%')
+            ->where("type", $type)
             ->get();
     }
 

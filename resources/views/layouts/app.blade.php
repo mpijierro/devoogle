@@ -10,13 +10,24 @@
             crossorigin="anonymous"></script>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
+
 
 
     @if (isset($loadTagManager))
-        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/tagmanager/3.0.2/tagmanager.min.css">
+        <link rel="stylesheet" href="/css/textext.core.css" type="text/css"/>
+        <link rel="stylesheet" href="/css/textext.plugin.tags.css" type="text/css"/>
+        <link rel="stylesheet" href="/css/textext.plugin.autocomplete.css" type="text/css"/>
+        <link rel="stylesheet" href="/css/textext.plugin.prompt.css" type="text/css"/>
+        <script src="/js/textext.core.js" type="text/javascript" charset="utf-8"></script>
+        <script src="/js/textext.plugin.tags.js" type="text/javascript" charset="utf-8"></script>
+        <script src="/js/textext.plugin.autocomplete.js" type="text/javascript" charset="utf-8"></script>
+        <script src="/js/textext.plugin.suggestions.js" type="text/javascript" charset="utf-8"></script>
+        <script src="/js/textext.plugin.prompt.js" type="text/javascript" charset="utf-8"></script>
+        <script src="/js/textext.plugin.ajax.js" type="text/javascript" charset="utf-8"></script>
     @endif
+
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
 
 </head>
 <body>

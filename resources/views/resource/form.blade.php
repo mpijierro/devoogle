@@ -39,19 +39,7 @@
                 </div>
             </div>
 
-            <div class="form-group{{ $errors->has('author') ? ' has-error' : '' }}">
-                <label for="author" class="col-md-4 control-label">Autor/es</label>
-
-                <div class="col-md-6">
-                    {{ Form::text('author', 'manu,juan', ['class' => 'typeahead tm-input form-control tm-input-info', 'id' =>'author',"data-role"=>"tagsinput" , 'autofocus'] ) }}
-
-                    @if ($errors->has('author'))
-                        <span class="help-block">
-                                        <strong>{{ $errors->first('author') }}</strong>
-                                    </span>
-                    @endif
-                </div>
-            </div>
+            @include('resource.tag_field', ['title' => 'Autor/es', 'key' => 'author'])
 
 
             <div class="form-group{{ $errors->has('category_id') ? ' has-error' : '' }}">
@@ -86,19 +74,8 @@
                 </div>
             </div>
 
-            <div class="form-group{{ $errors->has('event') ? ' has-error' : '' }}">
-                <label for="event" class="col-md-4 control-label">Evento</label>
 
-                <div class="col-md-6">
-                    {{ Form::text('event', null, ['class' => 'form-control', 'id' =>'event', 'autofocus'] ) }}
-
-                    @if ($errors->has('event'))
-                        <span class="help-block">
-                                        <strong>{{ $errors->first('event') }}</strong>
-                                    </span>
-                    @endif
-                </div>
-            </div>
+            @include('resource.tag_field', ['title' => 'Evento', 'key' => 'event'])
 
 
             <div class="form-group{{ $errors->has('tag') ? ' has-error' : '' }}">
@@ -172,31 +149,33 @@
         @endif
     @endif
 
-
-    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tagmanager/3.0.2/tagmanager.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.1/bootstrap3-typeahead.min.js"></script>
-
     <script type="text/javascript">
         $(document).ready(function () {
 
-            var tagApi = $(".tm-input").tagsManager();
+            $('#author')
+                .textext({
+                    plugins: 'tags autocomplete prompt ajax suggestions',
+                    prompt: 'Busca autores...',
+                    ajax: {
+                        url: '{{route('input-tag', 'author')}}',
+                        dataType: 'json',
+                        cacheResults: false
+                    }
+                });
 
-            jQuery(".typeahead").typeahead({
-                name: 'author',
-                displayKey: 'name',
-                source: function (query, process) {
-                    return $.get('{{route('api-tag')}}', {q: query}, function (data) {
-                        //data = $.parseJSON(data);
-                        return process(data);
-                    });
-                },
-                afterSelect: function (item) {
-                    tagApi.tagsManager("pushTag", item.name);
-                }
-            });
+            $('#event')
+                .textext({
+                    plugins: 'tags autocomplete prompt ajax suggestions',
+                    prompt: 'Busca eventos...',
+                    ajax: {
+                        url: '{{route('input-tag', 'event')}}',
+                        dataType: 'json',
+                        cacheResults: false
+                    }
+                });
 
 
+            //$('#temp').textext()[0].tags().addTags(["xavi gost","carlos buenosvinos"]);
         });
     </script>
 
