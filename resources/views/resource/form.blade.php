@@ -43,7 +43,7 @@
                 <label for="author" class="col-md-4 control-label">Autor/es</label>
 
                 <div class="col-md-6">
-                    {{ Form::text('author', null, ['class' => 'form-control typeahead', 'id' =>'author',"data-role"=>"tagsinput" , 'autofocus'] ) }}
+                    {{ Form::text('author', 'manu,juan', ['class' => 'typeahead tm-input form-control tm-input-info', 'id' =>'author',"data-role"=>"tagsinput" , 'autofocus'] ) }}
 
                     @if ($errors->has('author'))
                         <span class="help-block">
@@ -51,12 +51,6 @@
                                     </span>
                     @endif
                 </div>
-            </div>
-
-
-            <div class="form-group">
-                <label>Add Tags:</label><br/>
-                <input type="text" name="tags" placeholder="Autores" class="typeahead tm-input form-control tm-input-info"/>
             </div>
 
 
@@ -178,5 +172,32 @@
         @endif
     @endif
 
+
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tagmanager/3.0.2/tagmanager.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.1/bootstrap3-typeahead.min.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            var tagApi = $(".tm-input").tagsManager();
+
+            jQuery(".typeahead").typeahead({
+                name: 'author',
+                displayKey: 'name',
+                source: function (query, process) {
+                    return $.get('{{route('api-tag')}}', {q: query}, function (data) {
+                        //data = $.parseJSON(data);
+                        return process(data);
+                    });
+                },
+                afterSelect: function (item) {
+                    tagApi.tagsManager("pushTag", item.name);
+                }
+            });
+
+
+        });
+    </script>
 
 @endsection

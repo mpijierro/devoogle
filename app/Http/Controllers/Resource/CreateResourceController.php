@@ -18,6 +18,7 @@ class CreateResourceController
 
         view()->share('titleForm', 'Crear recurso');
         view()->share('textActionButton', 'Crear');
+        view()->share('loadTagManager', true);
 
         return view('resource.form');
     }
