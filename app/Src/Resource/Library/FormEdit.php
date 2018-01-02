@@ -71,6 +71,34 @@ class FormEdit extends Form
         return $this->langIdSelected;
     }
 
+    public function repopulateAuthor()
+    {
+        return ((isset($this->model['author'])) and ( ! empty($this->model['author'])));
+    }
+
+    public function populateAuthor()
+    {
+
+        if ( ! isset($this->model['author'])) {
+            return '';
+        }
+
+        return $this->model['author'];
+
+        $authores = explode(',', $this->model['author']);
+
+        $string = '[';
+
+        foreach ($authores as $author) {
+            $string .= '"' . trim($author) . '"';
+        }
+        $string .= ']';
+
+        return $string;
+
+        return $this->model['author'];
+    }
+
     public function __invoke(string $uuid)
     {
 
@@ -101,6 +129,7 @@ class FormEdit extends Form
         $this->configAuthorTagModel();
 
         $this->configEventTagModel();
+
 
     }
 

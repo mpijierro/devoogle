@@ -44,6 +44,11 @@ class FormCreate extends Form
         return $this->langOptions;
     }
 
+    public function repopulateAuthor()
+    {
+        return false;
+    }
+
     public function __invoke()
     {
 

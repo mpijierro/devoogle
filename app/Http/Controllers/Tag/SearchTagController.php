@@ -9,7 +9,7 @@ use Spatie\Tags\Tag;
 class SearchTagController
 {
 
-    public function __invoke(string $type)
+    public function __invoke(string $type = '')
     {
         \Debugbar::disable();
 

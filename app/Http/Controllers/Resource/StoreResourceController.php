@@ -2,6 +2,7 @@
 
 namespace Devoogle\Http\Controllers\Resource;
 
+use Devoogle\Src\Tag\Model\Tag;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Devoogle\Src\Resource\Command\StoreResourceCommand;
@@ -23,11 +24,15 @@ class StoreResourceController
             $user = Auth::user();
             $uuid = Uuid::generate();
 
-            dd(request()->all());
-
-            $command = new StoreResourceCommand($uuid, $user->id, $request->get('title'), request('description', $default = ''), $request->get('url'), $request->get('category_id'),
+            $command = new StoreResourceCommand($uuid, $user->id,
+                $request->get('title'),
+                request('description', $default = ''),
+                $request->get('url'),
+                $request->get('category_id'),
                 $request->get('lang_id'),
-                request('tag', $default = ''), request('author', $default = ''), request('event', $default = ''));
+                Tag::sanitizeFromInput(request('tag', $default = '')),
+                Tag::sanitizeFromInput(request('author', $default = '')),
+                Tag::sanitizeFromInput(request('event', $default = '')));
 
             $handler = app(StoreResourceHandler::class);
             $handler($command);
@@ -44,4 +49,6 @@ class StoreResourceController
         }
 
     }
+
+
 }

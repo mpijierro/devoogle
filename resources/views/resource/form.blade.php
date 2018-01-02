@@ -78,19 +78,7 @@
             @include('resource.tag_field', ['title' => 'Evento', 'key' => 'event'])
 
 
-            <div class="form-group{{ $errors->has('tag') ? ' has-error' : '' }}">
-                <label for="tag" class="col-md-4 control-label">Etiquetas</label>
-
-                <div class="col-md-6">
-                    {{ Form::text('tag', null, ['class' => 'form-control', 'id' =>'tag', 'autofocus'] ) }}
-
-                    @if ($errors->has('tag'))
-                        <span class="help-block">
-                                        <strong>{{ $errors->first('tag') }}</strong>
-                                    </span>
-                    @endif
-                </div>
-            </div>
+            @include('resource.tag_field', ['title' => 'Etiquetas', 'key' => 'tag'])
 
             <div class="form-group{{ $errors->has('description') ? ' has-error' : '' }}">
                 <label for="description" class="col-md-4 control-label">Descripción</label>
@@ -163,12 +151,35 @@
                     }
                 });
 
+            @if ($form->repopulateAuthor())
+
+            //var strAuthor = "{{$form->populateAuthor()}}";
+            //alert (str);
+            //var strInArray = str.split(',');
+
+            //$('#author').textext()[0].tags().addTags(strInArray);
+
+            @endif
+
+
             $('#event')
                 .textext({
                     plugins: 'tags autocomplete prompt ajax suggestions',
                     prompt: 'Busca eventos...',
                     ajax: {
                         url: '{{route('input-tag', 'event')}}',
+                        dataType: 'json',
+                        cacheResults: false
+                    }
+                });
+
+
+            $('#tag')
+                .textext({
+                    plugins: 'tags autocomplete prompt ajax suggestions',
+                    prompt: 'Buscar etiquetas...',
+                    ajax: {
+                        url: '{{route('input-tag', '')}}',
                         dataType: 'json',
                         cacheResults: false
                     }

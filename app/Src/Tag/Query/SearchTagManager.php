@@ -48,7 +48,20 @@ class SearchTagManager
     private function search()
     {
 
-        $this->tags = $this->tagRepositoryRead->searchByTextWithType($this->query->getSearch(), $this->query->getType());
+        $this->tags = $this->tagRepositoryRead->searchByTextWithType($this->query->getSearch(), $this->type());
+    }
+
+    private function type()
+    {
+        $type = $this->query->getType();
+
+        if (empty($type)) {
+            return null;
+        }
+
+        return $type;
+
+
     }
 
 }
