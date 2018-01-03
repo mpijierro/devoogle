@@ -35,6 +35,11 @@ class User extends Authenticatable
         return $this->hasMany(Resource::class);
     }
 
+    public function favourite()
+    {
+        return $this->belongsToMany(Resource::class, 'favourite')->withTimestamps();
+    }
+
     public function isAdmin()
     {
         return $this->attributes['is_admin'];

@@ -20,4 +20,9 @@ class UserRepository
     }
 
 
+    public function findByIdOrFail(int $id)
+    {
+        return $this->user->findOrFail($id);
+    }
+
 }

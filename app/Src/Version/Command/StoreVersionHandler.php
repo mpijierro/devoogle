@@ -32,7 +32,7 @@ class StoreVersionHandler
     }
 
 
-    public function __invoke(StoreVersionCommand $command)
+    public function __invoke(MarkFavouriteCommand $command)
     {
 
         $this->initializeCommand($command);
@@ -45,7 +45,7 @@ class StoreVersionHandler
 
     }
 
-    private function initializeCommand(StoreVersionCommand $command)
+    private function initializeCommand(MarkFavouriteCommand $command)
     {
         $this->command = $command;
     }

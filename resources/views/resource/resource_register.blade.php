@@ -85,4 +85,5 @@
 
     @endif
 
+    <a href="{!! route('mark-favourite', $resource->uuid()) !!}">Marcar como favorito</a>&nbsp;&nbsp;&nbsp;
 </div>
