@@ -85,5 +85,6 @@
 
     @endif
 
-    <a href="{!! route('mark-favourite', $resource->uuid()) !!}">Marcar como favorito</a>&nbsp;&nbsp;&nbsp;
+    <a href="{!! route('toggle-favourite', $resource->uuid()) !!}">{{ $resource->isFavourite()?'Desmarcar':'Marcar'}} como favorito</a>&nbsp;&nbsp;&nbsp;
+
 </div>

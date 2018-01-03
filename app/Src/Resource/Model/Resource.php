@@ -56,6 +56,11 @@ class Resource extends Model
         return $this->hasMany(Version::class);
     }
 
+    public function favourite()
+    {
+        return $this->belongsToMany(Resource::class, 'favourite')->withTimestamps();
+    }
+
     public function author()
     {
         return $this->tagsWithType(Tag::TYPE_AUTHOR);
@@ -151,5 +156,12 @@ class Resource extends Model
     public function canCheck()
     {
         return (isAdmin() and ! $this->isReviewed());
+    }
+
+    public function isFavourite()
+    {
+
+        return $this->favourite()->count();
+
     }
 }

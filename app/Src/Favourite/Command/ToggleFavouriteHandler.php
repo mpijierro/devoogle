@@ -5,7 +5,7 @@ namespace Devoogle\Src\Favourite\Command;
 use Devoogle\Src\Resource\Repository\ResourceRepositoryRead;
 use Devoogle\Src\User\Repository\UserRepository;
 
-class MarkFavouriteHandler
+class ToggleFavouriteHandler
 {
 
     private $command;
@@ -24,12 +24,11 @@ class MarkFavouriteHandler
 
     public function __construct(ResourceRepositoryRead $repositoryRead, UserRepository $userRepository)
     {
-
         $this->repositoryRead = $repositoryRead;
         $this->userRepository = $userRepository;
     }
 
-    public function __invoke(MarkFavouriteCommand $command)
+    public function __invoke(ToggleFavouriteCommand $command)
     {
 
         $this->initializeCommand($command);
@@ -38,11 +37,11 @@ class MarkFavouriteHandler
 
         $this->findUser();
 
-        $this->mark();
+        $this->toggle();
 
     }
 
-    private function initializeCommand(MarkFavouriteCommand $command)
+    private function initializeCommand(ToggleFavouriteCommand $command)
     {
         $this->command = $command;
     }
@@ -57,9 +56,9 @@ class MarkFavouriteHandler
         $this->user = $this->userRepository->findByIdOrFail($this->command->getUserId());
     }
 
-    private function mark()
+    private function toggle()
     {
-        $this->user->favourite()->attach($this->resource);
+        $this->user->favourite()->toggle([$this->resource->id]);
     }
 
 }

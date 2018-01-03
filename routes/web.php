@@ -41,7 +41,7 @@ Route::group(['prefix' => 'recursos', 'middleware' => 'auth'], function () {
     Route::post('/editar-version/{uuid}', "Version\UpdateVersionController")->name('update-version')->middleware(['is.version.owner', 'is.not.reviewed']);
     Route::get('/eliminar-version/{uuid}', "Version\DeleteVersionController")->name('delete-version')->middleware(['is.version.owner', 'is.not.reviewed']);
 
-    Route::get('/favorito/{uuid}', "Favourite\MarkFavouriteController")->name('mark-favourite');
+    Route::get('/favorito/{uuid}', "Favourite\ToggleFavouriteController")->name('toggle-favourite');
 
     Route::group(['middleware' => 'is.admin'], function () {
 

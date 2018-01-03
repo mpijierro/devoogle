@@ -3,7 +3,7 @@
 namespace Devoogle\Src\Favourite\Command;
 
 
-class MarkFavouriteCommand
+class ToggleFavouriteCommand
 {
 
     private $uuid;
