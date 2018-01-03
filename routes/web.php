@@ -37,7 +37,6 @@ Route::group(['prefix' => 'recursos', 'middleware' => 'auth'], function () {
     Route::post('/editar/{uuid}', "Resource\UpdateResourceController")->name('update-resource')->middleware(['is.resource.owner', 'is.not.reviewed']);
     Route::get('/eliminar/{uuid}', "Resource\DeleteResourceController")->name('delete-resource')->middleware(['is.resource.owner', 'is.not.reviewed']);
 
-
     Route::get('/editar-version/{uuid}', "Version\EditVersionController")->name('edit-version')->middleware(['is.version.owner', 'is.not.reviewed']);
     Route::post('/editar-version/{uuid}', "Version\UpdateVersionController")->name('update-version')->middleware(['is.version.owner', 'is.not.reviewed']);
     Route::get('/eliminar-version/{uuid}', "Version\DeleteVersionController")->name('delete-version')->middleware(['is.version.owner', 'is.not.reviewed']);
@@ -48,6 +47,8 @@ Route::group(['prefix' => 'recursos', 'middleware' => 'auth'], function () {
         Route::get('/revisar-recurso/{uuid}', "Resource\CheckResourceController")->name('check-resource');
 
         Route::get('/revisar-version/{uuid}', "Version\CheckVersionController")->name('check-version');
+
+        Route::get('/destruir/{uuid}', "Resource\DestroyResourceController")->name('destroy-resource');
 
 
     });

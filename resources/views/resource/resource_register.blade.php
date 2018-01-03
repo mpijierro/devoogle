@@ -76,6 +76,10 @@
             <a href="{!! route('check-resource', $resource->uuid()) !!}">Marcar como revisado</a>
         @endif
 
+        @if ( isAdmin() )
+            <br><a href="{!! route('destroy-resource', $resource->uuid()) !!}">Eliminar</a>&nbsp;
+        @endif
+
     @endif
 
 </div>

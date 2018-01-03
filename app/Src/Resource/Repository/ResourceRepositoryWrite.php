@@ -26,4 +26,10 @@ class ResourceRepositoryWrite
     }
 
 
+    public function destroy(Resource $resource)
+    {
+        $resource->forceDelete();
+    }
+
+
 }

@@ -19,5 +19,9 @@ class VersionRepositoryWrite
         $version->delete();
     }
 
+    public function destroy(Version $version)
+    {
+        return $version->forceDelete();
+    }
 
 }
