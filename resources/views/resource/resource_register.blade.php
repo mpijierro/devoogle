@@ -19,9 +19,11 @@
             class="nice">{!! $resource->lang->name() !!}</span>
 
     <!-- Version -->
-    <i class="fa fa-caret-square-o-right icon-resource-register" aria-hidden="true" title="Otros formatos disponibles"></i>
+    <i class="icon-resource-register" aria-hidden="true" title="Otros formatos disponibles"></i>
     @forelse ($resource->version as $version)
         {{ $loop->first ? '' : ', ' }}
+
+        @include ('layouts.icons_category', ['slug' => $version->category->slug])
         <span class="nice"><a href="{{ $version->url() }}" target="_blank"
                               title="{!! $version->comment() !!}">{{ $version->category->name() }}</a></span>
     @empty

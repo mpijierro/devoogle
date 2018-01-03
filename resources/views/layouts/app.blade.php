@@ -11,8 +11,6 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
 
-
-
     @if (isset($loadTagManager))
         <link rel="stylesheet" href="/css/textext.core.css" type="text/css"/>
         <link rel="stylesheet" href="/css/textext.plugin.tags.css" type="text/css"/>
