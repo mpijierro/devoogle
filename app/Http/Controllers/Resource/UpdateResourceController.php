@@ -2,6 +2,7 @@
 
 namespace Devoogle\Http\Controllers\Resource;
 
+use Devoogle\Src\Tag\Model\Tag;
 use Illuminate\Support\Facades\DB;
 use Devoogle\Src\Resource\Command\UpdateResourceCommand;
 use Devoogle\Src\Resource\Command\UpdateResourceHandler;
@@ -18,8 +19,18 @@ class UpdateResourceController
 
             DB::beginTransaction();
 
-            $command = new UpdateResourceCommand($aUuid, $request->get('title'), request('description', $default = ''), $request->get('url'), $request->get('category_id'), $request->get('lang_id'),
-                request('tag', $default = ''), request('author', $default = ''), request('event', $default = ''));
+            $command = new UpdateResourceCommand(
+                $aUuid,
+                $request->get('title'),
+                request('description', $default = ''),
+                $request->get('url'),
+                $request->get('category_id'),
+                $request->get('lang_id'),
+                Tag::sanitizeFromInput(request('tag', $default = '')),
+                Tag::sanitizeFromInput(request('author', $default = '')),
+                Tag::sanitizeFromInput(request('event', $default = '')));
+
+            dd($command);
 
             $handler = app(UpdateResourceHandler::class);
             $handler($command);

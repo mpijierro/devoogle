@@ -29,7 +29,7 @@
                 <label for="title" class="col-md-4 control-label">Título</label>
 
                 <div class="col-md-6">
-                    {{ Form::text('title', null, ['class' => 'form-control', 'id' =>'title', 'required', 'autofocus'] ) }}
+                    {{ Form::text('title', null, ['class' => 'form-control', 'id' =>'title', 'required1', 'autofocus'] ) }}
 
                     @if ($errors->has('title'))
                         <span class="help-block">
@@ -140,53 +140,73 @@
     <script type="text/javascript">
         $(document).ready(function () {
 
-            $('#author')
-                .textext({
-                    plugins: 'tags autocomplete prompt ajax suggestions',
-                    prompt: 'Busca autores...',
-                    ajax: {
-                        url: '{{route('input-tag', 'author')}}',
-                        dataType: 'json',
-                        cacheResults: false
-                    }
-                });
+            $('#author').textext({
+                plugins: 'tags autocomplete prompt ajax suggestions',
+                prompt: 'Buscar...',
+                ajax: {
+                    url: '{{route('input-tag', 'author')}}',
+                    dataType: 'json',
+                    cacheResults: false
+                }
+            });
 
-            @if ($form->repopulateAuthor())
+                    @if ($form->repopulateTagField('author'))
 
-            //var strAuthor = "{{$form->populateAuthor()}}";
-            //alert (str);
-            //var strInArray = str.split(',');
+            var strTagField = "{{$form->populateTagField('author')}}";
 
-            //$('#author').textext()[0].tags().addTags(strInArray);
+            var strTagFieldInArray = strTagField.split(',');
+
+            $('#author').val('');
+            $('#author').textext()[0].tags().addTags(strTagFieldInArray);
 
             @endif
 
 
-            $('#event')
-                .textext({
-                    plugins: 'tags autocomplete prompt ajax suggestions',
-                    prompt: 'Busca eventos...',
-                    ajax: {
-                        url: '{{route('input-tag', 'event')}}',
-                        dataType: 'json',
-                        cacheResults: false
-                    }
-                });
+            $('#event').textext({
+                plugins: 'tags autocomplete prompt ajax suggestions',
+                prompt: 'Buscar...',
+                ajax: {
+                    url: '{{route('input-tag', 'event')}}',
+                    dataType: 'json',
+                    cacheResults: false
+                }
+            });
+
+                    @if ($form->repopulateTagField('event'))
+
+            var strTagField = "{{$form->populateTagField('event')}}";
+
+            var strTagFieldInArray = strTagField.split(',');
+
+            $('#event').val('');
+            $('#event').textext()[0].tags().addTags(strTagFieldInArray);
+
+            @endif
 
 
-            $('#tag')
-                .textext({
-                    plugins: 'tags autocomplete prompt ajax suggestions',
-                    prompt: 'Buscar etiquetas...',
-                    ajax: {
-                        url: '{{route('input-tag', '')}}',
-                        dataType: 'json',
-                        cacheResults: false
-                    }
-                });
+            $('#tag').textext({
+                plugins: 'tags autocomplete prompt ajax suggestions',
+                prompt: 'Buscar...',
+                ajax: {
+                    url: '{{route('input-tag', '')}}',
+                    dataType: 'json',
+                    cacheResults: false
+                }
+            });
+
+                    @if ($form->repopulateTagField('tag'))
+
+            var strTagField = "{{$form->populateTagField('tag')}}";
+
+            var strTagFieldInArray = strTagField.split(',');
+
+            $('#tag').val('');
+            $('#tag').textext()[0].tags().addTags(strTagFieldInArray);
+
+            @endif
 
 
-            //$('#temp').textext()[0].tags().addTags(["xavi gost","carlos buenosvinos"]);
+            //$('#temp').textext()[0].tags().addTags(["author 1","author 2"]);
         });
     </script>
 

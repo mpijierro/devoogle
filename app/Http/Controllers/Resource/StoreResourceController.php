@@ -24,7 +24,9 @@ class StoreResourceController
             $user = Auth::user();
             $uuid = Uuid::generate();
 
-            $command = new StoreResourceCommand($uuid, $user->id,
+            $command = new StoreResourceCommand(
+                $uuid,
+                $user->id,
                 $request->get('title'),
                 request('description', $default = ''),
                 $request->get('url'),

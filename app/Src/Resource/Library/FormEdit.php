@@ -46,6 +46,21 @@ class FormEdit extends Form
         $this->langIdSelected = 0;
     }
 
+    public function __invoke(string $uuid)
+    {
+
+        $this->obtainResource($uuid);
+
+        $this->configModel();
+
+        $this->configAction();
+
+        $this->configOptionsSelected();
+
+        $this->configDropdownOptions();
+
+    }
+
     public function model()
     {
         return $this->model;
@@ -71,46 +86,28 @@ class FormEdit extends Form
         return $this->langIdSelected;
     }
 
-    public function repopulateAuthor()
+    public function repopulateTagField($field)
     {
-        return ((isset($this->model['author'])) and ( ! empty($this->model['author'])));
+
+        if ( ! is_null(old($field))) {
+            return true;
+        }
+
+        return ((isset($this->model[$field])) and ( ! empty($this->model[$field])));
     }
 
-    public function populateAuthor()
+    public function populateTagField($field)
     {
 
-        if ( ! isset($this->model['author'])) {
+        if ( ! is_null(old($field))) {
+            return Tag::sanitizeFromInput(old($field));
+        }
+
+        if ( ! isset($this->model[$field])) {
             return '';
         }
 
-        return $this->model['author'];
-
-        $authores = explode(',', $this->model['author']);
-
-        $string = '[';
-
-        foreach ($authores as $author) {
-            $string .= '"' . trim($author) . '"';
-        }
-        $string .= ']';
-
-        return $string;
-
-        return $this->model['author'];
-    }
-
-    public function __invoke(string $uuid)
-    {
-
-        $this->obtainResource($uuid);
-
-        $this->configModel();
-
-        $this->configAction();
-
-        $this->configOptionsSelected();
-
-        $this->configDropdownOptions();
+        return $this->model[$field];
 
     }
 
@@ -124,7 +121,7 @@ class FormEdit extends Form
     {
         $this->model = $this->resource->toArray();
 
-        $this->configTagModel();
+        $this->configCommonTagModel();
 
         $this->configAuthorTagModel();
 
@@ -133,7 +130,7 @@ class FormEdit extends Form
 
     }
 
-    private function configTagModel()
+    private function configCommonTagModel()
     {
         $this->model['tag'] = $this->resource->tagsWithType(null)->implode('name', ', ');
     }

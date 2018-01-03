@@ -23,6 +23,7 @@ class EditResourceController
 
         view()->share('titleForm', 'Actualizar recurso');
         view()->share('textActionButton', 'Actualizar');
+        view()->share('loadTagManager', true);
 
 
         return view('resource.form');
