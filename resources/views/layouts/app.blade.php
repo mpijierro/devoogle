@@ -9,9 +9,12 @@
             integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
             crossorigin="anonymous"></script>
 
+    <script src="{{ asset('js/app.js') }}"></script>
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
 
     @if (isset($loadTagManager))
+
         <link rel="stylesheet" href="/css/textext.core.css" type="text/css"/>
         <link rel="stylesheet" href="/css/textext.plugin.tags.css" type="text/css"/>
         <link rel="stylesheet" href="/css/textext.plugin.autocomplete.css" type="text/css"/>
@@ -126,6 +129,6 @@
     </div>
 
 </div>
-<script src="{{ asset('js/app.js') }}"></script>
+
 </body>
 </html>

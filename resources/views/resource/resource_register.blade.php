@@ -21,11 +21,12 @@
     <!-- Version -->
     <i class="icon-resource-register" aria-hidden="true" title="Otros formatos disponibles"></i>
     @forelse ($resource->version as $version)
-        {{ $loop->first ? '' : ', ' }}
+        {{ $loop->first ? '' : ' ' }}
 
         @include ('layouts.icons_category', ['slug' => $version->category->slug])
         <span class="nice"><a href="{{ $version->url() }}" target="_blank"
                               title="{!! $version->comment() !!}">{{ $version->category->name() }}</a></span>
+        <i class="icon-resource-register"></i>
     @empty
         Sin otros formatos.
     @endforelse
