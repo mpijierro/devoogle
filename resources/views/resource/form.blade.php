@@ -29,7 +29,7 @@
                 <label for="title" class="col-md-4 control-label">Título</label>
 
                 <div class="col-md-6">
-                    {{ Form::text('title', null, ['class' => 'form-control', 'id' =>'title', 'required1', 'autofocus'] ) }}
+                    {{ Form::text('title', null, ['class' => 'form-control', 'id' =>'title', 'required', 'autofocus'] ) }}
 
                     @if ($errors->has('title'))
                         <span class="help-block">
@@ -188,7 +188,7 @@
                 plugins: 'tags autocomplete prompt ajax suggestions',
                 prompt: 'Buscar...',
                 ajax: {
-                    url: '{{route('input-tag', '')}}',
+                    url: '{{route('input-tag', 'tag')}}',
                     dataType: 'json',
                     cacheResults: false
                 }

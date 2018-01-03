@@ -30,8 +30,6 @@ class UpdateResourceController
                 Tag::sanitizeFromInput(request('author', $default = '')),
                 Tag::sanitizeFromInput(request('event', $default = '')));
 
-            dd($command);
-
             $handler = app(UpdateResourceHandler::class);
             $handler($command);
 

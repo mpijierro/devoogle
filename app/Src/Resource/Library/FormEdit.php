@@ -12,6 +12,8 @@ use Webpatser\Uuid\Uuid;
 class FormEdit extends Form
 {
 
+    use FormTaggable;
+
     private $resource;
     private $categoryOptions;
     private $langOptions;
@@ -86,30 +88,6 @@ class FormEdit extends Form
         return $this->langIdSelected;
     }
 
-    public function repopulateTagField($field)
-    {
-
-        if ( ! is_null(old($field))) {
-            return true;
-        }
-
-        return ((isset($this->model[$field])) and ( ! empty($this->model[$field])));
-    }
-
-    public function populateTagField($field)
-    {
-
-        if ( ! is_null(old($field))) {
-            return Tag::sanitizeFromInput(old($field));
-        }
-
-        if ( ! isset($this->model[$field])) {
-            return '';
-        }
-
-        return $this->model[$field];
-
-    }
 
     private function obtainResource(string $uuid)
     {

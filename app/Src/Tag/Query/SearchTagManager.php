@@ -59,6 +59,10 @@ class SearchTagManager
             return null;
         }
 
+        if ($type == 'tag') {
+            return null;
+        }
+
         return $type;
 
 

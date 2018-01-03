@@ -9,6 +9,8 @@ use Devoogle\Src\Devoogle\Library\Form;
 class FormCreate extends Form
 {
 
+    use FormTaggable;
+
     private $categoryOptions;
     private $langOptions;
 
@@ -42,11 +44,6 @@ class FormCreate extends Form
     public function langOptions()
     {
         return $this->langOptions;
-    }
-
-    public function repopulateAuthor()
-    {
-        return false;
     }
 
     public function __invoke()
