@@ -178,6 +178,7 @@ return [
         Devoogle\Providers\RouteServiceProvider::class,
         Devoogle\Src\Resource\ResourceServiceProvider::class,
         \Devoogle\Providers\ComposerServiceProvider::class,
+        Alaouy\Youtube\YoutubeServiceProvider::class,
 
     ],
 
@@ -226,7 +227,8 @@ return [
         'Storage' => Illuminate\Support\Facades\Storage::class,
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
-        'View' => Illuminate\Support\Facades\View::class
+        'View' => Illuminate\Support\Facades\View::class,
+        'Youtube' => Alaouy\Youtube\Facades\Youtube::class,
 
     ],
 
