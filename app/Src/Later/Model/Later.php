@@ -1,15 +1,15 @@
 <?php
 
-namespace Devoogle\Src\Favourite\Model;
+namespace Devoogle\Src\Later\Model;
 
 use Illuminate\Database\Eloquent\Model;
 use Devoogle\Src\User\Model\User;
 
 
-class Favourite extends Model
+class Later extends Model
 {
 
-    protected $table = 'favourite';
+    protected $table = 'later';
 
     protected $fillable = [
 

@@ -43,6 +43,9 @@ Route::group(['prefix' => 'recursos', 'middleware' => 'auth'], function () {
     Route::get('/favorito/{uuid}', "Favourite\ToggleFavouriteController")->name('toggle-favourite');
     Route::get('/favoritos', "Favourite\UserListFavouriteController")->name('user-list-favourite');
 
+    Route::get('/para-despues/{uuid}', "Later\ToggleLaterController")->name('toggle-later');
+    Route::get('/para-despues', "Later\UserListLaterController")->name('user-list-later');
+
     Route::group(['middleware' => 'is.admin'], function () {
 
 

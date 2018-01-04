@@ -2,6 +2,7 @@
 
 namespace Devoogle\Src\Resource\Model;
 
+use Devoogle\Src\resourceLater\Model\Later;
 use Devoogle\Src\Tag\Model\Tag;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -58,7 +59,12 @@ class Resource extends Model
 
     public function favourite()
     {
-        return $this->belongsToMany(Resource::class, 'favourite')->withTimestamps();
+        return $this->belongsToMany(User::class, 'favourite')->withTimestamps();
+    }
+
+    public function later()
+    {
+        return $this->belongsToMany(User::class, 'later')->withTimestamps();
     }
 
     public function author()
@@ -160,8 +166,11 @@ class Resource extends Model
 
     public function isFavourite()
     {
-
         return $this->favourite()->count();
+    }
 
+    public function isLater()
+    {
+        return $this->later()->count();
     }
 }

@@ -2,6 +2,7 @@
 
 namespace Devoogle\Src\User\Model;
 
+use Devoogle\Src\resourceLater\Model\Later;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Devoogle\Src\Resource\Model\Resource;
@@ -38,6 +39,11 @@ class User extends Authenticatable
     public function favourite()
     {
         return $this->belongsToMany(Resource::class, 'favourite')->withTimestamps();
+    }
+
+    public function later()
+    {
+        return $this->belongsToMany(Resource::class, 'later')->withTimestamps();
     }
 
     public function isAdmin()

@@ -79,6 +79,30 @@
                         <li><a href="{{ route('register') }}">Crear cuenta</a></li>
 
                         @else
+
+                            <li>
+                                <a href="{!! route('create-resource') !!}" class="btn">
+                                    <i class="fa fa-plus" aria-hidden="true"></i>
+                                    Añadir recurso
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="{{route('user-list-favourite')}}">
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    Favoritos
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="{{route('user-list-later')}}">
+                                    <i class="fa fa-clock-o" aria-hidden="true"></i>
+                                    Para después
+                                </a>
+                            </li>
+
+
+
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
                                    aria-expanded="false" aria-haspopup="true">
@@ -103,21 +127,6 @@
                                 </ul>
                             </li>
                             @endguest
-
-                            <li>
-
-                                <a href="{{route('user-list-favourite')}}">
-                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                    Favoritos
-                                </a>
-                            </li>
-
-                            <li>
-                                <a href="{!! route('create-resource') !!}" class="btn">
-                                    <i class="fa fa-plus" aria-hidden="true"></i>
-                                    Añadir recurso
-                                </a>
-                            </li>
                 </ul>
             </div>
         </div>

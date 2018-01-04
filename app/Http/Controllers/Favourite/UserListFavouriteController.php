@@ -2,7 +2,6 @@
 
 namespace Devoogle\Http\Controllers\Favourite;
 
-use Devoogle\Src\Devoogle\Exceptions\InvalidPageNumberException;
 use Devoogle\Src\Favourite\Query\FavouriteUserListManager;
 use Devoogle\Src\Favourite\Query\FavouriteUserListQuery;
 
