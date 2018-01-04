@@ -7,7 +7,6 @@ Route::get('/social/handle/{provider}', 'Auth\SocialController@getSocialHandle')
 
 Auth::routes();
 
-
 Route::get('/buscar', "Resource\SearchResourceController")->name('search-resource-get');
 Route::post('/buscar', "Resource\SearchResourceController")->name('search-resource');
 
@@ -42,6 +41,7 @@ Route::group(['prefix' => 'recursos', 'middleware' => 'auth'], function () {
     Route::get('/eliminar-version/{uuid}', "Version\DeleteVersionController")->name('delete-version')->middleware(['is.version.owner', 'is.not.reviewed']);
 
     Route::get('/favorito/{uuid}', "Favourite\ToggleFavouriteController")->name('toggle-favourite');
+    Route::get('/favoritos', "Favourite\UserListFavouriteController")->name('user-list-favourite');
 
     Route::group(['middleware' => 'is.admin'], function () {
 
@@ -56,5 +56,4 @@ Route::group(['prefix' => 'recursos', 'middleware' => 'auth'], function () {
     });
 
 });
-
 

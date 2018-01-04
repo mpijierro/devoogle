@@ -72,11 +72,8 @@
                     </form>
                 </div>
 
-
-                <!-- Right Side Of Navbar -->
                 <ul class="nav navbar-nav navbar-right">
 
-                    <!-- Authentication Links -->
                     @guest
                         <li><a href="{{ route('login') }}">Entrar</a></li>
                         <li><a href="{{ route('register') }}">Crear cuenta</a></li>
@@ -85,8 +82,9 @@
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
                                    aria-expanded="false" aria-haspopup="true">
-                                    {{ Auth::user()->name }} <span class="caret"></span>
+                                    <i class="fa fa-user" aria-hidden="true"></i> {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
+
 
                                 <ul class="dropdown-menu">
                                     <li>
@@ -106,7 +104,20 @@
                             </li>
                             @endguest
 
-                            <li><a href="{!! route('create-resource') !!}" class="btn">Añadir recurso</a></li>
+                            <li>
+
+                                <a href="{{route('user-list-favourite')}}">
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    Favoritos
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="{!! route('create-resource') !!}" class="btn">
+                                    <i class="fa fa-plus" aria-hidden="true"></i>
+                                    Añadir recurso
+                                </a>
+                            </li>
                 </ul>
             </div>
         </div>
