@@ -36,6 +36,6 @@ class CreateLater extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('favourite');
+        Schema::dropIfExists('later');
     }
 }

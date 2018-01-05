@@ -7,6 +7,7 @@ use Devoogle\Src\ThirdParty\Platform\Library\YoutubeGateway;
 use Devoogle\Src\ThirdParty\Platform\Library\YoutubeProcessor;
 use Devoogle\Src\ThirdParty\Platform\Repository\PlatformRepositoryRead;
 use Devoogle\Src\ThirdParty\VideoChannel\Repository\VideoChannelRepositoryRead;
+use Illuminate\Support\Facades\DB;
 
 class CollectYoutubeHandler
 {
@@ -64,7 +65,7 @@ class CollectYoutubeHandler
     {
         foreach ($this->videoChannels as $videoChannel) {
 
-            $channelVideos = Youtube::listChannelVideos($videoChannel->slugId(), 30);
+            $channelVideos = Youtube::listChannelVideos($videoChannel->slugId(), 50);
 
             $this->processVideos($channelVideos);
         }

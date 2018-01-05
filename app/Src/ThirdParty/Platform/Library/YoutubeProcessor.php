@@ -10,12 +10,14 @@ use Devoogle\Src\Resource\Repository\ResourceRepositoryRead;
 use Devoogle\Src\Resource\Repository\ResourceRepositoryWrite;
 use Devoogle\Src\ThirdParty\Platform\Exceptions\ResourceExistsException;
 use Devoogle\Src\User\Model\User;
+use Illuminate\Support\Collection;
 use Webpatser\Uuid\Uuid;
 
 class YoutubeProcessor
 {
     private $youtubeGateway;
-    private $resource;
+
+    private $textsForTagSearch;
 
     /**
      * @var ResourceRepositoryWrite
@@ -25,12 +27,35 @@ class YoutubeProcessor
      * @var ResourceRepositoryRead
      */
     private $resourceRepositoryRead;
+    /**
+     * @var EventTagExtractor
+     */
+    private $eventTagExtractor;
+    /**
+     * @var AuthorTagExtractor
+     */
+    private $authorTagExtractor;
+    /**
+     * @var CommonTagExtractor
+     */
+    private $commonTagExtractor;
 
 
-    public function __construct(ResourceRepositoryWrite $resourceRepositoryWrite, ResourceRepositoryRead $resourceRepositoryRead)
+    public function __construct(
+        ResourceRepositoryWrite $resourceRepositoryWrite,
+        ResourceRepositoryRead $resourceRepositoryRead,
+        EventTagExtractor $tagExtractor,
+        AuthorTagExtractor $authorTagExtractor,
+        CommonTagExtractor $commonTagExtractor
+    )
     {
         $this->resourceRepositoryWrite = $resourceRepositoryWrite;
         $this->resourceRepositoryRead = $resourceRepositoryRead;
+        $this->eventTagExtractor = $tagExtractor;
+        $this->authorTagExtractor = $authorTagExtractor;
+        $this->commonTagExtractor = $commonTagExtractor;
+
+        $this->textsForTagSearch = collect();
     }
 
     public function __invoke(YoutubeGateway $youtubeGateway)
@@ -39,6 +64,8 @@ class YoutubeProcessor
         $this->initializeVideo($youtubeGateway);
 
         $this->checkExists();
+
+        $this->initializeTagSearch();
 
         $this->createResource();
 
@@ -69,15 +96,44 @@ class YoutubeProcessor
         $categoryId = Category::VIDEO_CATEGORY_ID;
         $langId = Lang::LANG_UNSPECIFIED;
         $description = $this->youtubeGateway->description();
-        $tag = '';
-        $author = '';
-        $event = '';
-
-        //public function __construct($uuid, $userId, $title, $description, $url, $categoryId, $langId, $tag, $author, $event)
+        $tag = $this->searchTags($this->commonTagExtractor);
+        $author = $this->searchTags($this->authorTagExtractor);
+        $event = $this->searchTags($this->eventTagExtractor);;
 
         $command = new StoreResourceCommand($uuid, $userId, $title, $description, $url, $categoryId, $langId, $tag, $author, $event);
         $handler = app(StoreResourceHandler::class);
         $handler($command);
 
+    }
+
+    private function searchTags(TagExtractor $tagExtractor)
+    {
+
+        if ( ! $this->textsForTagSearch->count()) {
+            return '';
+        }
+
+        ($tagExtractor)($this->textsForTagSearch);
+
+        if ($tagExtractor->isTagFound()) {
+            return $tagExtractor->tagFound();
+        }
+
+        return '';
+
+    }
+
+    private function initializeTagSearch()
+    {
+
+        $this->textsForTagSearch = collect();
+
+        if ( ! empty($this->youtubeGateway->title())) {
+            $this->textsForTagSearch->push($this->youtubeGateway->title());
+        }
+
+        if ( ! empty($this->youtubeGateway->description())) {
+            $this->textsForTagSearch->push($this->youtubeGateway->description());
+        }
     }
 }

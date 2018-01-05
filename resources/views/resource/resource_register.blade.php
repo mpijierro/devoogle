@@ -64,29 +64,35 @@
         -
     @endforelse
 
+    <div class="row" style="margin-top:20px">
+        <div class="col-sm-6">
+            <!-- Adm -->
+            @if (isLogged())
 
-<!-- Adm -->
-    @if (isLogged())
+                @if ( $resource->canWrite(user()) )
+                    <a href="{!! route('edit-resource', $resource->uuid()) !!}">Editar</a>&nbsp;&nbsp;&nbsp;
+                    <a href="{!! route('delete-resource', $resource->uuid()) !!}">Borrar</a>&nbsp;
+                @endif
 
-        @if ( $resource->canWrite(user()) )
-            <br><br>
-            <a href="{!! route('edit-resource', $resource->uuid()) !!}">Editar</a>&nbsp;&nbsp;&nbsp;
-            <a href="{!! route('delete-resource', $resource->uuid()) !!}">Borrar</a>&nbsp;
-        @endif
+                @if ( $resource->canCheck())
+                    <br>
+                    <a href="{!! route('check-resource', $resource->uuid()) !!}">Marcar como revisado</a>
+                @endif
 
-        @if ( $resource->canCheck())
-            <br>
-            <a href="{!! route('check-resource', $resource->uuid()) !!}">Marcar como revisado</a>
-        @endif
+                @if ( isAdmin() )
+                    <br><a href="{!! route('destroy-resource', $resource->uuid()) !!}">Eliminar</a>&nbsp;
+                @endif
 
-        @if ( isAdmin() )
-            <br><a href="{!! route('destroy-resource', $resource->uuid()) !!}">Eliminar</a>&nbsp;
-        @endif
+            @endif
+        </div>
+        <div class="col-sm-6">
+            @if (isLogged())
+                <a href="{!! route('toggle-favourite', $resource->uuid()) !!}">{{ $resource->isFavourite()?'Desmarcar':'Marcar'}} como favorito</a>&nbsp;&nbsp;&nbsp;<br>
+                <a href="{!! route('toggle-later', $resource->uuid()) !!}">{{ $resource->isLater()?'Desmarcar':'Marcar'}} para ver después</a>&nbsp;&nbsp;&nbsp;
+            @endif
+        </div>
 
-    @endif
+    </div>
 
-    <br><br>
-    <a href="{!! route('toggle-favourite', $resource->uuid()) !!}">{{ $resource->isFavourite()?'Desmarcar':'Marcar'}} como favorito</a>&nbsp;&nbsp;&nbsp;<br>
-    <a href="{!! route('toggle-later', $resource->uuid()) !!}">{{ $resource->isLater()?'Desmarcar':'Marcar'}} para ver después</a>&nbsp;&nbsp;&nbsp;
 
 </div>
