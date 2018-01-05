@@ -2,6 +2,7 @@
 
 namespace Devoogle\Console\Commands;
 
+use Devoogle\Src\ThirdParty\Platform\Command\CollectYoutubeHandler;
 use Illuminate\Console\Command;
 
 class CollectVideos extends Command
@@ -37,6 +38,16 @@ class CollectVideos extends Command
      */
     public function handle()
     {
-        //
+
+        if ($this->collectFromYoutube()) {
+            $handler = app(CollectYoutubeHandler::class);
+            $handler();
+        }
+
+    }
+
+    private function collectFromYoutube()
+    {
+        return ($this->argument('platform') == 'youtube');
     }
 }

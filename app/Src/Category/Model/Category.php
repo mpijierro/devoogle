@@ -8,6 +8,8 @@ use Devoogle\Src\Resource\Model\Resource;
 class Category extends Model
 {
 
+    const VIDEO_CATEGORY_ID = 1;
+
     protected $table = 'category';
 
     protected $attributes = ['name', 'slug'];

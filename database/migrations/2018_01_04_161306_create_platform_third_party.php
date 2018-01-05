@@ -17,6 +17,7 @@ class CreatePlatformThirdParty extends Migration
 
             $table->increments('id');
 
+            $table->string('key');
             $table->string('name');
 
         });

@@ -2,7 +2,6 @@
 
 namespace Devoogle\Src\User\Model;
 
-use Devoogle\Src\resourceLater\Model\Later;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Devoogle\Src\Resource\Model\Resource;
@@ -12,6 +11,7 @@ class User extends Authenticatable
 {
     use Notifiable;
 
+    const ADMIN_ID = 1;
 
     protected $fillable = [
         'name',

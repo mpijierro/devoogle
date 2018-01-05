@@ -12,6 +12,7 @@ class PlatformSeeder extends Seeder
     public function run()
     {
         DB::table('platform')->insert([
+            'key' => 'youtube',
             'name' => 'Youtube',
         ]);
     }

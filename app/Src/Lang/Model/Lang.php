@@ -8,6 +8,8 @@ use Devoogle\Src\Resource\Model\Resource;
 class Lang extends Model
 {
 
+    const LANG_UNSPECIFIED = 1;
+
     protected $table = 'lang';
 
     protected $fillable = [

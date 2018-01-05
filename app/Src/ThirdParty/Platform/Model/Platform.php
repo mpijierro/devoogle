@@ -2,7 +2,7 @@
 
 namespace Devoogle\Src\ThirdParty\Platform\Model;
 
-use Devoogle\Src\ThirdParty\Video\Model\VideoChannel;
+use Devoogle\Src\ThirdParty\VideoChannel\Model\VideoChannel;
 use Illuminate\Database\Eloquent\Model;
 
 class Platform extends Model
