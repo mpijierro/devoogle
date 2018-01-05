@@ -2,14 +2,11 @@
 
 namespace Devoogle\Src\ThirdParty\Platform\Command;
 
-
 use Alaouy\Youtube\Facades\Youtube;
 use Devoogle\Src\ThirdParty\Platform\Library\YoutubeGateway;
 use Devoogle\Src\ThirdParty\Platform\Library\YoutubeProcessor;
 use Devoogle\Src\ThirdParty\Platform\Repository\PlatformRepositoryRead;
 use Devoogle\Src\ThirdParty\VideoChannel\Repository\VideoChannelRepositoryRead;
-use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Support\Facades\DB;
 
 class CollectYoutubeHandler
 {
@@ -67,7 +64,7 @@ class CollectYoutubeHandler
     {
         foreach ($this->videoChannels as $videoChannel) {
 
-            $channelVideos = Youtube::listChannelVideos($videoChannel->slugId(), 10);
+            $channelVideos = Youtube::listChannelVideos($videoChannel->slugId(), 30);
 
             $this->processVideos($channelVideos);
         }
@@ -87,7 +84,7 @@ class CollectYoutubeHandler
                 ($this->youtubeProcessor)($youtubeGatewary);
 
             } catch (\Exception $e) {
-                throw $e;
+
                 continue;
 
             }

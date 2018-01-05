@@ -52,11 +52,9 @@ class YoutubeProcessor
 
     private function checkExists()
     {
+        $exists = $this->resourceRepositoryRead->existsUrlPattern($this->youtubeGateway->videoId());
 
-        return true;
-        $resource = $this->resourceRepositoryRead->searchByUrlPattern($this->youtubeGateway);
-
-        if ($resource) {
+        if ($exists) {
             throw new ResourceExistsException();
         }
     }

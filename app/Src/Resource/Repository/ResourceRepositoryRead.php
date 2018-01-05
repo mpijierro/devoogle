@@ -36,6 +36,11 @@ class ResourceRepositoryRead
         return Resource::where('title', 'like', '%' . $string . '%')->orWhere('description', 'like', '%' . $string . '%')->paginate($this->sizeList());
     }
 
+    public function existsUrlPattern(string $pattern)
+    {
+        return Resource::where('url', 'like', '%' . $pattern . '%')->count();
+    }
+
     private function sizeList()
     {
         return env('SIZE_LIST', self::SIZE_PAGE);
