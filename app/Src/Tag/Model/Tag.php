@@ -8,6 +8,9 @@ class Tag
 
     const TYPE_EVENT = 'event';
 
+    const TYPE_TECHNOLOGY = 'technology';
+
+    const TYPE_COMMON = 'tag';
 
     public static function sanitizeFromInput(string $input)
     {

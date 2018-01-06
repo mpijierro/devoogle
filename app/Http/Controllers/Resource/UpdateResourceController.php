@@ -26,9 +26,10 @@ class UpdateResourceController
                 $request->get('url'),
                 $request->get('category_id'),
                 $request->get('lang_id'),
-                Tag::sanitizeFromInput(request('tag', $default = '')),
-                Tag::sanitizeFromInput(request('author', $default = '')),
-                Tag::sanitizeFromInput(request('event', $default = '')));
+                Tag::sanitizeFromInput(request(Tag::TYPE_COMMON, $default = '')),
+                Tag::sanitizeFromInput(request(Tag::TYPE_AUTHOR, $default = '')),
+                Tag::sanitizeFromInput(request(Tag::TYPE_EVENT, $default = '')),
+                Tag::sanitizeFromInput(request(Tag::TYPE_TECHNOLOGY, $default = '')));
 
             $handler = app(UpdateResourceHandler::class);
             $handler($command);

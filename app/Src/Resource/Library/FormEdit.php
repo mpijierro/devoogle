@@ -105,22 +105,28 @@ class FormEdit extends Form
 
         $this->configEventTagModel();
 
+        $this->configTechnologyTagModel();
 
     }
 
     private function configCommonTagModel()
     {
-        $this->model['tag'] = $this->resource->tagsWithType(null)->implode('name', ', ');
+        $this->model[Tag::TYPE_COMMON] = $this->resource->tagsWithType(null)->implode('name', ', ');
     }
 
     private function configAuthorTagModel()
     {
-        $this->model['author'] = $this->resource->tagsWithType(Tag::TYPE_AUTHOR)->implode('name', ', ');
+        $this->model[Tag::TYPE_AUTHOR] = $this->resource->tagsWithType(Tag::TYPE_AUTHOR)->implode('name', ', ');
     }
 
     private function configEventTagModel()
     {
-        $this->model['event'] = $this->resource->tagsWithType(Tag::TYPE_EVENT)->implode('name', ', ');
+        $this->model[Tag::TYPE_EVENT] = $this->resource->tagsWithType(Tag::TYPE_EVENT)->implode('name', ', ');
+    }
+
+    private function configTechnologyTagModel()
+    {
+        $this->model[Tag::TYPE_TECHNOLOGY] = $this->resource->tagsWithType(Tag::TYPE_TECHNOLOGY)->implode('name', ', ');
     }
 
     private function configOptionsSelected()

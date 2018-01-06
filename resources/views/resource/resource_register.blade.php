@@ -55,6 +55,16 @@
     @endforelse
 
 
+<!-- Technology / Language -->
+    <i class="fa fa-microchip icon-resource-register" aria-hidden="true" title="Tecnología / Lenguaje"></i>
+    @forelse ($resource->technology() as $tag)
+        {{ $loop->first ? '' : ', ' }}
+        <span class="nice"><a href="{{route('list-tag', $tag->slug)}}">{{ $tag->name }}</a></span>
+    @empty
+        -
+    @endforelse
+
+
 <!-- Tag -->
     <i class="fa fa-tags icon-resource-register" aria-hidden="true"></i>
     @forelse ($resource->tagsWithoutType() as $tag)

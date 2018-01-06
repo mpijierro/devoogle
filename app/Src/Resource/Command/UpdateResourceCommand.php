@@ -24,7 +24,9 @@ class UpdateResourceCommand
 
     private $event;
 
-    public function __construct(string $uuid, string $title, string $description, string $url, string $categoryId, string $langId, string $tag, string $author, string $event)
+    private $technology;
+
+    public function __construct(string $uuid, string $title, string $description, string $url, string $categoryId, string $langId, string $tag, string $author, string $event, string $technology)
     {
 
         $this->uuid = $uuid;
@@ -36,6 +38,7 @@ class UpdateResourceCommand
         $this->tag = $tag;
         $this->author = $author;
         $this->event = $event;
+        $this->technology = $technology;
     }
 
     public function getUuid(): string
@@ -82,6 +85,11 @@ class UpdateResourceCommand
     public function getEvent(): string
     {
         return $this->event;
+    }
+
+    public function getTechnology(): string
+    {
+        return $this->technology;
     }
 
 }

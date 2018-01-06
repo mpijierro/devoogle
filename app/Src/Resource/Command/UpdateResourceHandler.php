@@ -47,6 +47,8 @@ class UpdateResourceHandler
 
         $this->syncTagsEvent($this->resource, $command->getEvent());
 
+        $this->syncTagsTechnology($this->resource, $command->getTechnology());
+
     }
 
     private function initializeCommand(UpdateResourceCommand $command)

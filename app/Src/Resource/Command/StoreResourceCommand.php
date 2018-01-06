@@ -26,9 +26,22 @@ class StoreResourceCommand
 
     private $event;
 
+    private $technology;
 
-    public function __construct(string $uuid, string $userId, string $title, string $description, string $url, string $categoryId, string $langId, string $tag, string $author, string $event)
-    {
+
+    public function __construct(
+        string $uuid,
+        string $userId,
+        string $title,
+        string $description,
+        string $url,
+        string $categoryId,
+        string $langId,
+        string $tag,
+        string $author,
+        string $event,
+        string $technology
+    ) {
         $this->uuid = $uuid;
         $this->userId = $userId;
         $this->title = $title;
@@ -39,6 +52,7 @@ class StoreResourceCommand
         $this->tag = $tag;
         $this->author = $author;
         $this->event = $event;
+        $this->technology = $technology;
     }
 
 
@@ -90,6 +104,11 @@ class StoreResourceCommand
     public function getEvent(): string
     {
         return $this->event;
+    }
+
+    public function getTechnology(): string
+    {
+        return $this->technology;
     }
 
 }

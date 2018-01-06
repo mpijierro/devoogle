@@ -39,6 +39,10 @@ class YoutubeProcessor
      * @var CommonTagExtractor
      */
     private $commonTagExtractor;
+    /**
+     * @var TechnologyTagExtractor
+     */
+    private $technologyTagExtractor;
 
 
     public function __construct(
@@ -46,7 +50,8 @@ class YoutubeProcessor
         ResourceRepositoryRead $resourceRepositoryRead,
         EventTagExtractor $tagExtractor,
         AuthorTagExtractor $authorTagExtractor,
-        CommonTagExtractor $commonTagExtractor
+        CommonTagExtractor $commonTagExtractor,
+        TechnologyTagExtractor $technologyTagExtractor
     )
     {
         $this->resourceRepositoryWrite = $resourceRepositoryWrite;
@@ -56,6 +61,7 @@ class YoutubeProcessor
         $this->commonTagExtractor = $commonTagExtractor;
 
         $this->textsForTagSearch = collect();
+        $this->technologyTagExtractor = $technologyTagExtractor;
     }
 
     public function __invoke(YoutubeGateway $youtubeGateway)
@@ -99,8 +105,9 @@ class YoutubeProcessor
         $tag = $this->searchTags($this->commonTagExtractor);
         $author = $this->searchTags($this->authorTagExtractor);
         $event = $this->searchTags($this->eventTagExtractor);;
+        $technology = $this->searchTags($this->technologyTagExtractor);;
 
-        $command = new StoreResourceCommand($uuid, $userId, $title, $description, $url, $categoryId, $langId, $tag, $author, $event);
+        $command = new StoreResourceCommand($uuid, $userId, $title, $description, $url, $categoryId, $langId, $tag, $author, $event, $technology);
         $handler = app(StoreResourceHandler::class);
         $handler($command);
 

@@ -7,6 +7,7 @@ use Devoogle\Src\Devoogle\ComposerView\SidebarAuthorComposer;
 use Devoogle\Src\Devoogle\ComposerView\SidebarCategoryComposer;
 use Devoogle\Src\Devoogle\ComposerView\SidebarEventComposer;
 use Devoogle\Src\Devoogle\ComposerView\SidebarTagComposer;
+use Devoogle\Src\Devoogle\ComposerView\SidebarTechnologyComposer;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\View;
 
@@ -29,6 +30,10 @@ class ComposerServiceProvider extends ServiceProvider
         View::composer('sidebar/sidebar_author', SidebarAuthorComposer::class);
 
         View::composer('sidebar/sidebar_event', SidebarEventComposer::class);
+
+        View::composer('sidebar/sidebar_technology', SidebarTechnologyComposer::class);
+
+
 
 
     }

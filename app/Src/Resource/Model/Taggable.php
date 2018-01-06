@@ -46,6 +46,19 @@ trait Taggable
         }
     }
 
+    protected function attachTagsWithTechnology(Resource $resource, string $tags)
+    {
+
+        $this->fillTagsArray($tags);
+
+        foreach ($this->tagsInArray as $tag) {
+
+            $tagWithType = $this->createTagWithTypeTechnology($tag);
+
+            $resource->attachTag($tagWithType);
+        }
+    }
+
     //sync
 
     protected function syncTags(Resource $resource, string $tags)
@@ -76,6 +89,15 @@ trait Taggable
 
     }
 
+    protected function syncTagsTechnology(Resource $resource, string $tags)
+    {
+
+        $this->fillTagsArray($tags);
+
+        $resource->syncTagsWithType($this->tagsInArray, Tag::TYPE_TECHNOLOGY);
+
+    }
+
     private function createTagWithTypeAuthor(string $tag)
     {
         return \Spatie\Tags\Tag::findOrCreate($tag, Tag::TYPE_AUTHOR);
@@ -84,6 +106,11 @@ trait Taggable
     private function createTagWithTypeEvent(string $tag)
     {
         return \Spatie\Tags\Tag::findOrCreate($tag, Tag::TYPE_EVENT);
+    }
+
+    private function createTagWithTypeTechnology(string $tag)
+    {
+        return \Spatie\Tags\Tag::findOrCreate($tag, Tag::TYPE_TECHNOLOGY);
     }
 
     private function fillTagsArray(string $tags)

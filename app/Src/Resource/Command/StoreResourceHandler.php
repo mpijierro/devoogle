@@ -40,7 +40,10 @@ class StoreResourceHandler
 
         $this->attachEventTags();
 
+        $this->attachTechnologyTags();
+
         $this->attachResourceTags();
+
 
     }
 
@@ -70,11 +73,6 @@ class StoreResourceHandler
         $this->resourceRepositoryWrite->save($this->resource);
     }
 
-    private function attachResourceTags()
-    {
-        $this->attachTags($this->resource, $this->command->getTag());
-    }
-
     private function attachAuthorTags()
     {
         $this->attachTagsWithAuthor($this->resource, $this->command->getAuthor());
@@ -85,6 +83,15 @@ class StoreResourceHandler
         $this->attachTagsWithEvent($this->resource, $this->command->getEvent());
     }
 
+    private function attachTechnologyTags()
+    {
+        $this->attachTagsWithTechnology($this->resource, $this->command->getTechnology());
+    }
+
+    private function attachResourceTags()
+    {
+        $this->attachTags($this->resource, $this->command->getTag());
+    }
 
     private function obtainSlug()
     {

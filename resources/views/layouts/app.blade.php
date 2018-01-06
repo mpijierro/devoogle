@@ -139,6 +139,7 @@
                 @include('sidebar.sidebar_category')
                 @include('sidebar.sidebar_author')
                 @include('sidebar.sidebar_event')
+                @include('sidebar.sidebar_technology')
                 @include('sidebar.sidebar_tag')
             </div>
 

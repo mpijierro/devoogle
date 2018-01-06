@@ -39,9 +39,6 @@
                 </div>
             </div>
 
-            @include('resource.tag_field', ['title' => 'Autor/es', 'key' => 'author'])
-
-
             <div class="form-group{{ $errors->has('category_id') ? ' has-error' : '' }}">
                 <label for="category" class="col-md-4 control-label">Formato</label>
 
@@ -74,11 +71,13 @@
                 </div>
             </div>
 
+            @include('resource.tag_field', ['title' => 'Autor/es', 'key' => \Devoogle\Src\Tag\Model\Tag::TYPE_AUTHOR])
 
-            @include('resource.tag_field', ['title' => 'Evento', 'key' => 'event'])
+            @include('resource.tag_field', ['title' => 'Evento', 'key' => \Devoogle\Src\Tag\Model\Tag::TYPE_EVENT])
 
+            @include('resource.tag_field', ['title' => 'Lenguaje/Tecnología', 'key' => \Devoogle\Src\Tag\Model\Tag::TYPE_TECHNOLOGY])
 
-            @include('resource.tag_field', ['title' => 'Etiquetas', 'key' => 'tag'])
+            @include('resource.tag_field', ['title' => 'Etiquetas', 'key' => \Devoogle\Src\Tag\Model\Tag::TYPE_COMMON])
 
             <div class="form-group{{ $errors->has('description') ? ' has-error' : '' }}">
                 <label for="description" class="col-md-4 control-label">Descripción</label>
@@ -144,15 +143,15 @@
                 plugins: 'tags autocomplete prompt ajax suggestions',
                 prompt: 'Buscar...',
                 ajax: {
-                    url: '{{route('input-tag', 'author')}}',
+                    url: '{{route('input-tag', \Devoogle\Src\Tag\Model\Tag::TYPE_AUTHOR)}}',
                     dataType: 'json',
                     cacheResults: false
                 }
             });
 
-                    @if ($form->repopulateTagField('author'))
+                    @if ($form->repopulateTagField(\Devoogle\Src\Tag\Model\Tag::TYPE_AUTHOR))
 
-            var strTagField = "{{$form->populateTagField('author')}}";
+            var strTagField = "{{$form->populateTagField(\Devoogle\Src\Tag\Model\Tag::TYPE_AUTHOR)}}";
 
             var strTagFieldInArray = strTagField.split(',');
 
@@ -162,19 +161,41 @@
             @endif
 
 
-            $('#event').textext({
+            $('#technology').textext({
                 plugins: 'tags autocomplete prompt ajax suggestions',
                 prompt: 'Buscar...',
                 ajax: {
-                    url: '{{route('input-tag', 'event')}}',
+                    url: '{{route('input-tag', \Devoogle\Src\Tag\Model\Tag::TYPE_TECHNOLOGY)}}',
                     dataType: 'json',
                     cacheResults: false
                 }
             });
 
-                    @if ($form->repopulateTagField('event'))
+                    @if ($form->repopulateTagField(\Devoogle\Src\Tag\Model\Tag::TYPE_TECHNOLOGY))
 
-            var strTagField = "{{$form->populateTagField('event')}}";
+            var strTagField = "{{$form->populateTagField(\Devoogle\Src\Tag\Model\Tag::TYPE_TECHNOLOGY)}}";
+
+            var strTagFieldInArray = strTagField.split(',');
+
+            $('#technology').val('');
+            $('#technology').textext()[0].tags().addTags(strTagFieldInArray);
+
+            @endif
+
+
+            $('#event').textext({
+                plugins: 'tags autocomplete prompt ajax suggestions',
+                prompt: 'Buscar...',
+                ajax: {
+                    url: '{{route('input-tag', \Devoogle\Src\Tag\Model\Tag::TYPE_EVENT)}}',
+                    dataType: 'json',
+                    cacheResults: false
+                }
+            });
+
+                    @if ($form->repopulateTagField(\Devoogle\Src\Tag\Model\Tag::TYPE_EVENT))
+
+            var strTagField = "{{$form->populateTagField(\Devoogle\Src\Tag\Model\Tag::TYPE_EVENT)}}";
 
             var strTagFieldInArray = strTagField.split(',');
 
@@ -188,15 +209,15 @@
                 plugins: 'tags autocomplete prompt ajax suggestions',
                 prompt: 'Buscar...',
                 ajax: {
-                    url: '{{route('input-tag', 'tag')}}',
+                    url: '{{route('input-tag', \Devoogle\Src\Tag\Model\Tag::TYPE_COMMON)}}',
                     dataType: 'json',
                     cacheResults: false
                 }
             });
 
-                    @if ($form->repopulateTagField('tag'))
+                    @if ($form->repopulateTagField(\Devoogle\Src\Tag\Model\Tag::TYPE_COMMON))
 
-            var strTagField = "{{$form->populateTagField('tag')}}";
+            var strTagField = "{{$form->populateTagField(\Devoogle\Src\Tag\Model\Tag::TYPE_COMMON)}}";
 
             var strTagFieldInArray = strTagField.split(',');
 

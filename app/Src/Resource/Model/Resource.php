@@ -77,6 +77,11 @@ class Resource extends Model
         return $this->tagsWithType(Tag::TYPE_EVENT);
     }
 
+    public function technology()
+    {
+        return $this->tagsWithType(Tag::TYPE_TECHNOLOGY);
+    }
+
     public function tagsWithoutType()
     {
 
