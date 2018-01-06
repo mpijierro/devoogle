@@ -1,6 +1,6 @@
 <?php
 
-namespace Devoogle\Src\ApiReader\Platform\Library;
+namespace Devoogle\Src\ApiReader\Library;
 
 use Devoogle\Src\Category\Model\Category;
 use Devoogle\Src\Lang\Model\Lang;
@@ -8,7 +8,7 @@ use Devoogle\Src\Resource\Command\StoreResourceCommand;
 use Devoogle\Src\Resource\Command\StoreResourceHandler;
 use Devoogle\Src\Resource\Repository\ResourceRepositoryRead;
 use Devoogle\Src\Resource\Repository\ResourceRepositoryWrite;
-use Devoogle\Src\ApiReader\Platform\Exceptions\ResourceExistsException;
+use Devoogle\Src\ApiReader\Exceptions\ResourceExistsException;
 use Devoogle\Src\User\Model\User;
 use Illuminate\Support\Collection;
 use Webpatser\Uuid\Uuid;

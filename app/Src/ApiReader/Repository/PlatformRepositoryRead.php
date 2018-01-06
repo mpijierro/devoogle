@@ -1,9 +1,9 @@
 <?php
 
-namespace Devoogle\Src\ApiReader\Platform\Repository;
+namespace Devoogle\Src\ApiReader\Repository;
 
 
-use Devoogle\Src\ApiReader\Platform\Model\Platform;
+use Devoogle\Src\ApiReader\Model\Platform;
 
 class PlatformRepositoryRead
 {

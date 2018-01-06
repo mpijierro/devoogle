@@ -1,6 +1,6 @@
 <?php
 
-namespace Devoogle\Src\ApiReader\Platform\Library;
+namespace Devoogle\Src\ApiReader\Library;
 
 
 class YoutubeGateway

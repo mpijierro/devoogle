@@ -1,6 +1,6 @@
 <?php
 
-namespace Devoogle\Src\ApiReader\Platform\Model;
+namespace Devoogle\Src\ApiReader\Model;
 
 use Devoogle\Src\ApiReader\VideoChannel\Model\VideoChannel;
 use Illuminate\Database\Eloquent\Model;

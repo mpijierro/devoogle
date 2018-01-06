@@ -1,11 +1,13 @@
 <?php
 
-namespace Devoogle\Src\ApiReader\Platform\Command;
+namespace Devoogle\Src\ApiReader\Command;
 
 use Alaouy\Youtube\Facades\Youtube;
-use Devoogle\Src\ApiReader\Platform\Library\YoutubeGateway;
-use Devoogle\Src\ApiReader\Platform\Library\YoutubeProcessor;
-use Devoogle\Src\ApiReader\Platform\Repository\PlatformRepositoryRead;
+use Devoogle\Src\ApiReader\Library\YoutubeChannelProcessor;
+use Devoogle\Src\ApiReader\Library\YoutubeGateway;
+use Devoogle\Src\ApiReader\Library\YoutubeProcessor;
+use Devoogle\Src\ApiReader\Repository\PlatformRepositoryRead;
+use Devoogle\Src\ApiReader\VideoChannel\Model\VideoChannel;
 use Devoogle\Src\ApiReader\VideoChannel\Repository\VideoChannelRepositoryRead;
 use Illuminate\Support\Facades\DB;
 
@@ -29,15 +31,21 @@ class CollectYoutubeHandler
      * @var YoutubeProcessor
      */
     private $youtubeProcessor;
+    /**
+     * @var YoutubeChannelProcessor
+     */
+    private $youtubeChannelProcessor;
 
     public function __construct(
         VideoChannelRepositoryRead $videoChannelRepositoryRead,
         PlatformRepositoryRead $platformRepositoryRead,
-        YoutubeProcessor $youtubeProcessor
+        YoutubeProcessor $youtubeProcessor,
+        YoutubeChannelProcessor $youtubeChannelProcessor
     ) {
         $this->videoChannelRepositoryRead = $videoChannelRepositoryRead;
         $this->platformRepositoryRead = $platformRepositoryRead;
         $this->youtubeProcessor = $youtubeProcessor;
+        $this->youtubeChannelProcessor = $youtubeChannelProcessor;
     }
 
 
@@ -63,32 +71,11 @@ class CollectYoutubeHandler
 
     private function obtainVideos()
     {
+
+
         foreach ($this->videoChannels as $videoChannel) {
 
-            $channelVideos = Youtube::listChannelVideos($videoChannel->slugId(), 50);
-
-            $this->processVideos($channelVideos);
-        }
-
-    }
-
-
-    private function processVideos(array $videos)
-    {
-
-        foreach ($videos as $video) {
-
-            try {
-
-                $youtubeGatewary = app(YoutubeGateway::class, ['video' => $video]);
-
-                ($this->youtubeProcessor)($youtubeGatewary);
-
-            } catch (\Exception $e) {
-
-                continue;
-
-            }
+            ($this->youtubeChannelProcessor)($videoChannel);
         }
 
     }

@@ -2,8 +2,9 @@
 
 namespace Devoogle\Console\Commands;
 
-use Devoogle\Src\ApiReader\Platform\Command\CollectYoutubeHandler;
+use Devoogle\Src\ApiReader\Command\CollectYoutubeHandler;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\DB;
 
 class CollectVideos extends Command
 {
@@ -38,11 +39,14 @@ class CollectVideos extends Command
      */
     public function handle()
     {
+        DB::beginTransaction();
 
         if ($this->collectFromYoutube()) {
             $handler = app(CollectYoutubeHandler::class);
             $handler();
         }
+
+        DB::rollback();
 
     }
 
