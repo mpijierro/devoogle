@@ -2,6 +2,7 @@
 
 namespace Devoogle\Src\Resource\Model;
 
+use Devoogle\Src\Favourite\Model\Favourite;
 use Devoogle\Src\resourceLater\Model\Later;
 use Devoogle\Src\Tag\Model\Tag;
 use Illuminate\Database\Eloquent\Model;
@@ -171,7 +172,12 @@ class Resource extends Model
 
     public function isFavourite()
     {
-        return $this->favourite()->count();
+
+        if ( ! isLogged()) {
+            return false;
+        }
+
+        return $this->favourite()->wherePivot('user_id', user()->id)->count();
     }
 
     public function isLater()
