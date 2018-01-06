@@ -83,7 +83,7 @@
                 <label for="description" class="col-md-4 control-label">Descripción</label>
 
                 <div class="col-md-6">
-                    {{ Form::textarea('description', null, ['class' => 'form-control', 'id' =>'description', 'autofocus', 'rows'=>3] ) }}
+                    {{ Form::textarea('description', null, ['class' => 'form-control', 'id' =>'description',  'rows'=>3] ) }}
 
                     @if ($errors->has('description'))
                         <span class="help-block">

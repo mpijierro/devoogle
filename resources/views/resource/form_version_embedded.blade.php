@@ -10,7 +10,7 @@
             <label for="url" class="col-md-4 control-label">Url</label>
 
             <div class="col-md-6">
-                {{ Form::url('url', null, ['class' => 'form-control', 'id' =>'url', 'required1'] ) }}
+                {{ Form::url('url', null, ['class' => 'form-control', 'id' =>'url', 'autofocus', 'required1'] ) }}
 
                 @if ($errors->has('url'))
                     <span class="help-block">
@@ -43,7 +43,7 @@
             <label for="comment" class="col-md-4 control-label">Descripción</label>
 
             <div class="col-md-6">
-                {{ Form::textarea('comment', null, ['class' => 'form-control', 'id' =>'comment', 'autofocus', 'rows'=>2] ) }}
+                {{ Form::textarea('comment', null, ['class' => 'form-control', 'id' =>'comment', 'rows'=>2] ) }}
 
                 @if ($errors->has('comment'))
                     <span class="help-block">
