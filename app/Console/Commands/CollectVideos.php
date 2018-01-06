@@ -2,7 +2,7 @@
 
 namespace Devoogle\Console\Commands;
 
-use Devoogle\Src\ThirdParty\Platform\Command\CollectYoutubeHandler;
+use Devoogle\Src\ApiReader\Platform\Command\CollectYoutubeHandler;
 use Illuminate\Console\Command;
 
 class CollectVideos extends Command

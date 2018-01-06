@@ -1,6 +1,6 @@
 <?php
 
-namespace Devoogle\Http\Controllers\ThirdPartyVideo;
+namespace Devoogle\Http\Controllers\ApiReader;
 
 
 use Alaouy\Youtube\Facades\Youtube;

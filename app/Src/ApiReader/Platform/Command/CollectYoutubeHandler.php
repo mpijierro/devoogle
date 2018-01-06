@@ -1,12 +1,12 @@
 <?php
 
-namespace Devoogle\Src\ThirdParty\Platform\Command;
+namespace Devoogle\Src\ApiReader\Platform\Command;
 
 use Alaouy\Youtube\Facades\Youtube;
-use Devoogle\Src\ThirdParty\Platform\Library\YoutubeGateway;
-use Devoogle\Src\ThirdParty\Platform\Library\YoutubeProcessor;
-use Devoogle\Src\ThirdParty\Platform\Repository\PlatformRepositoryRead;
-use Devoogle\Src\ThirdParty\VideoChannel\Repository\VideoChannelRepositoryRead;
+use Devoogle\Src\ApiReader\Platform\Library\YoutubeGateway;
+use Devoogle\Src\ApiReader\Platform\Library\YoutubeProcessor;
+use Devoogle\Src\ApiReader\Platform\Repository\PlatformRepositoryRead;
+use Devoogle\Src\ApiReader\VideoChannel\Repository\VideoChannelRepositoryRead;
 use Illuminate\Support\Facades\DB;
 
 class CollectYoutubeHandler

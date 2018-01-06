@@ -1,8 +1,8 @@
 <?php
 
-namespace Devoogle\Src\ThirdParty\VideoChannel\Model;
+namespace Devoogle\Src\ApiReader\VideoChannel\Model;
 
-use Devoogle\Src\ThirdParty\Platform\Model\Platform;
+use Devoogle\Src\ApiReader\Platform\Model\Platform;
 use Illuminate\Database\Eloquent\Model;
 
 class VideoChannel extends Model

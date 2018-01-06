@@ -1,9 +1,9 @@
 <?php
 
 
-namespace Devoogle\Src\ThirdParty\VideoChannel\Repository;
+namespace Devoogle\Src\ApiReader\VideoChannel\Repository;
 
-use Devoogle\Src\ThirdParty\VideoChannel\Model\VideoChannel;
+use Devoogle\Src\ApiReader\VideoChannel\Model\VideoChannel;
 
 class VideoChannelRepositoryRead
 {

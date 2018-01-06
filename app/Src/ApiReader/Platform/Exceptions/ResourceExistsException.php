@@ -1,6 +1,6 @@
 <?php
 
-namespace Devoogle\Src\ThirdParty\Platform\Exceptions;
+namespace Devoogle\Src\ApiReader\Platform\Exceptions;
 
 
 class ResourceExistsException extends \Exception

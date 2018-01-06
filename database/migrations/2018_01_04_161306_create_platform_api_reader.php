@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateVideoChannelThirdParty extends Migration
+class CreatePlatformApiReader extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,11 @@ class CreateVideoChannelThirdParty extends Migration
      */
     public function up()
     {
-        Schema::create('video_channel', function (Blueprint $table) {
+        Schema::create('platform', function (Blueprint $table) {
 
             $table->increments('id');
 
-            $table->integer('platform_id')->unsigned();
-            $table->foreign('platform_id')->references('id')->on('platform');
-
-            $table->string('slug_id');
-            $table->string('slug_name');
+            $table->string('key');
             $table->string('name');
 
         });
@@ -34,6 +30,6 @@ class CreateVideoChannelThirdParty extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('video_channel');
+        Schema::dropIfExists('platform');
     }
 }

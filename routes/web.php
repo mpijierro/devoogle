@@ -23,7 +23,7 @@ Route::group(['prefix' => 'input'], function () {
     Route::get('/tag/{type}', "Tag\SearchTagController")->name('input-tag');
 });
 
-Route::get('/youtube', "ThirdPartyVideo\ChannelListController")->name('channel-youtube-list');
+Route::get('/youtube', "ApiReader\ChannelListController")->name('channel-youtube-list');
 
 Route::group(['prefix' => 'recursos', 'middleware' => 'auth'], function () {
 
