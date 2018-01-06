@@ -1,8 +1,36 @@
 <div class="col-xs-12">
-    <a href="{!! $resource->url() !!}" target="_blank" style="font-size: 18px">{!! $resource->title() !!}</a>
+    <div class="row">
+        <div class="col-sm-10">
+            <a href="{!! $resource->url() !!}" target="_blank" style="font-size: 18px;">{!! $resource->title() !!}</a>
+        </div>
+        <div class="col-sm-2" align="right">
+            @if (isLogged())
+                <a href="{!! route('toggle-favourite', $resource->uuid()) !!}">
+                    @if($resource->isFavourite())
+                        <i class="fa fa-heart fa-sm red" aria-hidden="true" title="Desmarcar como favorito"></i>
+                    @else
+                        <i class="fa fa-heart fa-sm gray" aria-hidden="true" title="Marcar como favorito"></i>
+                    @endif
+                </a>&nbsp;&nbsp;&nbsp;
+                &nbsp;
+                <a href="{!! route('toggle-later', $resource->uuid()) !!}">
+                    @if ($resource->isLater())
+                        <i class="fa fa-clock-o fa-sm orange" aria-hidden="true" title="Desmarcar para ver después"></i>
+                    @else
+                        <i class="fa fa-clock-o fa-sm gray" aria-hidden="true" title="Marcar para ver después"></i>
+                    @endif
+                </a>&nbsp;&nbsp;
+                &nbsp;
+            @endif
+        </div>
+    </div>
     @if ($resource->hasDescription())
-        <br>
-        {!! $resource->description()  !!}
+        <div class="row">
+            <div class="col-xs-12">
+                {!! $resource->description()  !!}
+            </div>
+        </div>
+
     @endif
 </div>
 
@@ -75,33 +103,34 @@
     @endforelse
 
     <div class="row" style="margin-top:20px">
-        <div class="col-sm-6">
+        <div class="col-sm-12">
             <!-- Adm -->
             @if (isLogged())
 
                 @if ( $resource->canWrite(user()) )
-                    <a href="{!! route('edit-resource', $resource->uuid()) !!}">Editar</a>&nbsp;&nbsp;&nbsp;
-                    <a href="{!! route('delete-resource', $resource->uuid()) !!}">Borrar</a>&nbsp;
+                    <a href="{!! route('edit-resource', $resource->uuid()) !!}">
+                        <i class="fa fa-edit fa-lg" aria-hidden="true" title="Editar recurso"></i>
+                    </a>&nbsp;&nbsp;&nbsp;
+                    <a href="{!! route('delete-resource', $resource->uuid()) !!}">
+                        <i class="fa fa-trash fa-lg" aria-hidden="true" title="Eliminar recurso"></i>
+                    </a>&nbsp;
                 @endif
 
                 @if ( $resource->canCheck())
                     <br>
-                    <a href="{!! route('check-resource', $resource->uuid()) !!}">Marcar como revisado</a>
+                    <a href="{!! route('check-resource', $resource->uuid()) !!}">
+                        <i class="fa fa-check-square-o fa-lg green" aria-hidden="true"></i>
+                    </a>
                 @endif
 
                 @if ( isAdmin() )
-                    <br><a href="{!! route('destroy-resource', $resource->uuid()) !!}">Eliminar</a>&nbsp;
+                    <a href="{!! route('destroy-resource', $resource->uuid()) !!}" class="icon-resource-register">
+                        <i class="fa fa-trash fa-lg red" aria-hidden="true" title="Eliminar recurso"></i>
+                    </a>&nbsp;
                 @endif
 
             @endif
         </div>
-        <div class="col-sm-6">
-            @if (isLogged())
-                <a href="{!! route('toggle-favourite', $resource->uuid()) !!}">{{ $resource->isFavourite()?'Desmarcar':'Marcar'}} como favorito</a>&nbsp;&nbsp;&nbsp;<br>
-                <a href="{!! route('toggle-later', $resource->uuid()) !!}">{{ $resource->isLater()?'Desmarcar':'Marcar'}} para ver después</a>&nbsp;&nbsp;&nbsp;
-            @endif
-        </div>
-
     </div>
 
 

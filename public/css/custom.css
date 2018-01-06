@@ -6,6 +6,30 @@
     margin-left: 5px;
 }
 
+.category-sidebar {
+    margin-bottom: 8px;
+}
+
 .bold {
     font-weight: bold;
+}
+
+.green {
+    color: green;
+}
+
+.gray {
+    color: gray;
+}
+
+.red {
+    color: red;
+}
+
+.orange {
+    color: orange;
+}
+
+.blue {
+    color: blue;
 }

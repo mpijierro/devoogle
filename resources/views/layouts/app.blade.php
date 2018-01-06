@@ -89,14 +89,14 @@
 
                             <li>
                                 <a href="{{route('user-list-favourite')}}">
-                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-heart red" aria-hidden="true"></i>
                                     Favoritos
                                 </a>
                             </li>
 
                             <li>
                                 <a href="{{route('user-list-later')}}">
-                                    <i class="fa fa-clock-o" aria-hidden="true"></i>
+                                    <i class="fa fa-clock-o orange" aria-hidden="true"></i>
                                     Para después
                                 </a>
                             </li>
