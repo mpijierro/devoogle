@@ -6,7 +6,22 @@ namespace Devoogle\Src\ApiReader\Library;
 class AuthorTagExtractor extends TagExtractor
 {
 
-    // Añadir sinónimos
-    protected $tags = ['Jerónimo Palacios', 'Xavi Gost', 'David Bonilla', 'Carlos Blé', 'Javi Santana', 'Javier Garzas'];
+    protected $tags = [
+        'Angel Medinilla',
+        'Carlos Blé',
+        'Carlos Buenosvinos',
+        'Dani Latorre',
+        'David Bonilla',
+        'Israel Alcázar',
+        'IÑAKI ARROLA',
+        'Jerónimo Palacios',
+        'JORGE BARROSO',
+        'Kini',
+        'Modesto San Juan',
+        'Nestor Salceda',
+        'Javi Santana',
+        'Javier Garzas',
+        'Xavi Gost',
+    ];
 
 }

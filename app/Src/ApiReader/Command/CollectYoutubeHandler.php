@@ -2,35 +2,25 @@
 
 namespace Devoogle\Src\ApiReader\Command;
 
-use Alaouy\Youtube\Facades\Youtube;
 use Devoogle\Src\ApiReader\Library\YoutubeChannelProcessor;
-use Devoogle\Src\ApiReader\Library\YoutubeGateway;
-use Devoogle\Src\ApiReader\Library\YoutubeProcessor;
 use Devoogle\Src\ApiReader\Repository\PlatformRepositoryRead;
-use Devoogle\Src\ApiReader\VideoChannel\Model\VideoChannel;
 use Devoogle\Src\ApiReader\VideoChannel\Repository\VideoChannelRepositoryRead;
-use Illuminate\Support\Facades\DB;
 
 class CollectYoutubeHandler
 {
 
-    /**
-     * @var PlatformRepositoryRead
-     */
-    private $platformRepositoryRead;
+    private $platform;
+
+    private $videoChannels;
 
     /**
      * @var VideoChannelRepositoryRead
      */
     private $videoChannelRepositoryRead;
-
-    private $platform;
-
-    private $videoChannels;
     /**
-     * @var YoutubeProcessor
+     * @var PlatformRepositoryRead
      */
-    private $youtubeProcessor;
+    private $platformRepositoryRead;
     /**
      * @var YoutubeChannelProcessor
      */
@@ -39,19 +29,16 @@ class CollectYoutubeHandler
     public function __construct(
         VideoChannelRepositoryRead $videoChannelRepositoryRead,
         PlatformRepositoryRead $platformRepositoryRead,
-        YoutubeProcessor $youtubeProcessor,
         YoutubeChannelProcessor $youtubeChannelProcessor
     ) {
         $this->videoChannelRepositoryRead = $videoChannelRepositoryRead;
         $this->platformRepositoryRead = $platformRepositoryRead;
-        $this->youtubeProcessor = $youtubeProcessor;
         $this->youtubeChannelProcessor = $youtubeChannelProcessor;
     }
 
 
     public function __invoke()
     {
-
         $this->findPlatform();
 
         $this->findVideoChannels();
@@ -71,7 +58,6 @@ class CollectYoutubeHandler
 
     private function obtainVideos()
     {
-
 
         foreach ($this->videoChannels as $videoChannel) {
 

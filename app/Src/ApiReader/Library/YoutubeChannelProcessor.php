@@ -14,7 +14,15 @@ class YoutubeChannelProcessor
     private $videoChannel = null;
 
     private $pageInfo = [];
+    /**
+     * @var YoutubeVideoProcessor
+     */
+    private $youtubeVideoProcessor;
 
+    public function __construct(YoutubeVideoProcessor $youtubeVideoProcessor)
+    {
+        $this->youtubeVideoProcessor = $youtubeVideoProcessor;
+    }
 
     public function __invoke(VideoChannel $videoChannel)
     {
@@ -23,7 +31,9 @@ class YoutubeChannelProcessor
 
         $this->initializePageInfo();
 
-        $this->processChannel();
+        $this->initialProcess();
+
+        $this->pagesProcess();
     }
 
     private function initializeChannel(VideoChannel $videoChannel)
@@ -36,24 +46,27 @@ class YoutubeChannelProcessor
         $this->pageInfo = [];
     }
 
-    private function processChannel()
+    private function pagesProcess()
     {
 
-        $this->initialProcess();
-
-        $page = 0;
-        $end = false;
+        //$page = 0;
+        //$end = false;
 
         do {
 
+            $this->pageProcess();
+
+            /*
             if ($this->thereIsNextPage()) {
                 $this->pageProcess();
                 $page++;
             } else {
                 $end = true;
             }
+            */
 
-        } while ($page < 2 and $end == false);
+            //} while ($page < 3 and $end == false);
+        } while ($this->thereIsNextPage());
 
 
     }
@@ -94,17 +107,16 @@ class YoutubeChannelProcessor
         foreach ($videos as $video) {
 
             echo "\r\nvideo: " . $video->snippet->title;
-            continue;
-
 
             try {
 
                 $youtubeGateway = app(YoutubeGateway::class, ['video' => $video]);
 
-                ($this->youtubeProcessor)($youtubeGateway);
+                ($this->youtubeVideoProcessor)($youtubeGateway);
 
             } catch (\Exception $e) {
 
+                throw $e;
                 continue;
 
             }

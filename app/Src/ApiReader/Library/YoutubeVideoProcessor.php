@@ -13,7 +13,7 @@ use Devoogle\Src\User\Model\User;
 use Illuminate\Support\Collection;
 use Webpatser\Uuid\Uuid;
 
-class YoutubeProcessor
+class YoutubeVideoProcessor
 {
     private $youtubeGateway;
 
