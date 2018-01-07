@@ -17,8 +17,8 @@ class YoutubeChannelProcessor
 
     private $pageInfo = [];
 
-    //private $years = [2013, 2014, 2015, 2016, 2017, 2018];
-    private $years = [2016];
+    private $years = [2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018];
+
     /**
      * @var YoutubeVideoProcessor
      */
@@ -27,6 +27,8 @@ class YoutubeChannelProcessor
     private $publishedAfter;
 
     private $publishedBefore;
+
+    private $num;
 
     public function __construct(YoutubeVideoProcessor $youtubeVideoProcessor)
     {
@@ -58,13 +60,17 @@ class YoutubeChannelProcessor
 
         foreach ($this->years as $year) {
 
+            $this->num = 0;
+
             $this->processFirstTrimester($year);
 
-            $this->processSecondTimester($year);
+            $this->processSecondTrimester($year);
 
-            $this->processThirdTimester($year);
+            $this->processThirdTrimester($year);
 
-            $this->processFourthTimester($year);
+            $this->processFourthTrimester($year);
+
+            echo "\r\n num: " . $year . ' - ' . $this->num;
 
         }
     }
@@ -79,7 +85,7 @@ class YoutubeChannelProcessor
 
     }
 
-    private function processSecondTimester($year)
+    private function processSecondTrimester($year)
     {
 
         $this->publishedAfter = Carbon::parse('01-04-' . $year . ' 00:00:00')->toRfc3339String();
@@ -89,7 +95,7 @@ class YoutubeChannelProcessor
 
     }
 
-    private function processThirdTimester($year)
+    private function processThirdTrimester($year)
     {
 
         $this->publishedAfter = Carbon::parse('01-07-' . $year . ' 00:00:00')->toRfc3339String();
@@ -99,7 +105,7 @@ class YoutubeChannelProcessor
 
     }
 
-    private function processFourthTimester($year)
+    private function processFourthTrimester($year)
     {
 
         $this->publishedAfter = Carbon::parse('01-10-' . $year . ' 00:00:00')->toRfc3339String();
@@ -118,6 +124,7 @@ class YoutubeChannelProcessor
             $end = $this->pageProcess();
 
         } while ($this->thereIsNextPage() and $end == true);
+
     }
 
 
@@ -163,11 +170,11 @@ class YoutubeChannelProcessor
     private function processVideos(array $videos)
     {
 
-        echo "\r\n count: " . count($videos);
+        $this->num += count($videos);
 
         foreach ($videos as $video) {
 
-            echo "\r\nvideo: " . $video->snippet->title . ' - ' . $video->snippet->publishedAt;
+            //echo "\r\nvideo: " . $video->snippet->title . ' - ' . $video->snippet->publishedAt;
 
             try {
 

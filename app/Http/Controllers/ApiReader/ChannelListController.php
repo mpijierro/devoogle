@@ -17,6 +17,8 @@ class ChannelListController
 
         $channel = Youtube::getChannelByName($autentiaChannel);
 
+        dd($channel);
+
         $channelId = 'UCvZ6HKYcDtqtK1SfbIpB97g';
 
         // List videos in a given channel, return an array of PHP objects
