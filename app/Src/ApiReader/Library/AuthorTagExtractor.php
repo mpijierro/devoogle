@@ -12,19 +12,48 @@ class AuthorTagExtractor extends TagExtractor
         'Carlos Blé',
         'Carlos Buenosvinos',
         'Dani Latorre',
-        'David Bonilla',
+        'David Bonilla' => [
+            '@david_bonilla'
+        ],
+        'Eduardo Ferro' => [
+            '@eferro'
+        ],
+        'Fina Pérez' => [
+            '@finuka'
+        ],
         'Israel Alcázar',
         'IÑAKI ARROLA',
         'Javi Santana',
         'Javier Garzas',
         'Jerónimo Palacios',
-        'JORGE BARROSO',
-        'Kini',
+        'JORGE BARROSO' => [
+            '@flipper83'
+        ],
+        'Jose Manuel Beas',
+        'Kini' => [
+            'Engelmo',
+            '@kinisoftware'
+
+        ],
+        'Laura Morillo' => [
+            '@Laura_Morillo'
+        ],
+        'Luis Artola' => [
+            '@artolamol'
+        ],
         'Luis Ruiz Pavón',
-        'Modesto San Juan',
+        'Modesto San Juan' => [
+            '@msanjuan'
+        ],
         'Nestor Salceda',
-        'Roberto Canales',
+        'Rafa Gómez' => [
+            '@rafaoe'
+        ],
+        'Roberto Canales Mora',
         'Xavi Gost',
+        'Vicenç García' => [
+            '@vgaltes'
+        ]
     ];
 
 }

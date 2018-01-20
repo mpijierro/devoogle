@@ -174,8 +174,6 @@ class YoutubeChannelProcessor
 
         foreach ($videos as $video) {
 
-            //echo "\r\nvideo: " . $video->snippet->title . ' - ' . $video->snippet->publishedAt;
-
             try {
 
                 $youtubeGateway = app(YoutubeGateway::class, ['video' => $video]);

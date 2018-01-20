@@ -92,6 +92,20 @@ class YoutubeVideoProcessor
         }
     }
 
+    private function initializeTagSearch()
+    {
+
+        $this->textsForTagSearch = collect();
+
+        if ( ! empty($this->youtubeGateway->title())) {
+            $this->textsForTagSearch->push($this->youtubeGateway->title());
+        }
+
+        if ( ! empty($this->youtubeGateway->description())) {
+            $this->textsForTagSearch->push($this->youtubeGateway->description());
+        }
+    }
+
     private function createResource()
     {
 
@@ -130,17 +144,5 @@ class YoutubeVideoProcessor
 
     }
 
-    private function initializeTagSearch()
-    {
 
-        $this->textsForTagSearch = collect();
-
-        if ( ! empty($this->youtubeGateway->title())) {
-            $this->textsForTagSearch->push($this->youtubeGateway->title());
-        }
-
-        if ( ! empty($this->youtubeGateway->description())) {
-            $this->textsForTagSearch->push($this->youtubeGateway->description());
-        }
-    }
 }
