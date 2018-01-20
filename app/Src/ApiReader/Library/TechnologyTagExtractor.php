@@ -8,8 +8,8 @@ class TechnologyTagExtractor extends TagExtractor
 
     protected $tags = [
         'Android',
-        'C++',
-        'Go',
+        ' C++ ',
+        ' Go ',
         'GraphQl',
         'Groovy',
         'IOS',
