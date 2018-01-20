@@ -17,5 +17,16 @@ class VideoChannelSeeder extends Seeder
             'slug_name' => 'AutentiaMedia',
             'name' => 'AutentiaMedia'
         ]);
+
+        DB::table('video_channel')->insert([
+            'platform_id' => 1,
+            'slug_id' => 'UC9IKtxn9AIGelnYmwYr0Lxw',
+            'slug_name' => 'CodelyTv',
+            'name' => 'CodelyTv'
+        ]);
+
+
+
+
     }
 }
