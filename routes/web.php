@@ -47,6 +47,8 @@ Route::group(['prefix' => 'recursos', 'middleware' => 'auth'], function () {
     Route::get('/para-despues/{uuid}', "Later\ToggleLaterController")->name('toggle-later');
     Route::get('/para-despues', "Later\UserListLaterController")->name('user-list-later');
 
+    Route::get('/mis-recursos', "Profile\UserListAddedController")->name('my-resources');
+
     Route::group(['middleware' => 'is.admin'], function () {
 
 

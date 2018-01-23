@@ -82,8 +82,15 @@
 
                             <li>
                                 <a href="{!! route('create-resource') !!}" class="btn">
-                                    <i class="fa fa-plus" aria-hidden="true"></i>
+                                    <i class="fa fa-plus green" aria-hidden="true"></i>
                                     Añadir recurso
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="{{route('my-resources')}}">
+                                    <i class="fa fa-suitcase" aria-hidden="true"></i>
+                                    Mis recursos
                                 </a>
                             </li>
 
