@@ -18,6 +18,9 @@ Route::group(['prefix' => \Devoogle\Src\Devoogle\Library\Route::PREFIX_URL_CATEG
     Route::get('/{slug}', "Category\CategoryListController")->name(\Devoogle\Src\Devoogle\Library\Route::ROUTE_NAME_CATEGORY_LIST);
 });
 
+Route::group(['prefix' => \Devoogle\Src\Devoogle\Library\Route::PREFIX_URL_MOST_FAVOURITE], function () {
+    Route::get('/', "Favourite\MostFavouriteListController")->name(\Devoogle\Src\Devoogle\Library\Route::ROUTE_NAME_MOST_FAVOURITE_LIST);
+});
 
 Route::group(['prefix' => 'input'], function () {
     Route::get('/tag/{type}', "Tag\SearchTagController")->name('input-tag');

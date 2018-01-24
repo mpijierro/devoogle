@@ -41,6 +41,15 @@ class ResourceRepositoryRead
         return Resource::where('url', 'like', '%' . $pattern . '%')->count();
     }
 
+    public function moreValued($sizeList)
+    {
+        return Resource::withCount('favourite')
+            ->orderBy('favourite_count', 'desc')
+            ->havingRaw('favourite_count > 0')
+            ->limit($sizeList)
+            ->get();
+    }
+
     private function sizeList()
     {
         return env('SIZE_LIST', self::SIZE_PAGE);

@@ -4,6 +4,7 @@
             <a href="{!! $resource->url() !!}" target="_blank" style="font-size: 18px;">{!! $resource->title() !!}</a>
         </div>
         <div class="col-sm-2" align="right">
+
             @if (isLogged())
                 <a href="{!! route('toggle-favourite', $resource->uuid()) !!}">
                     @if($resource->isFavourite())
@@ -11,7 +12,7 @@
                     @else
                         <i class="fa fa-heart fa-sm gray" aria-hidden="true" title="Marcar como favorito"></i>
                     @endif
-                </a>&nbsp;&nbsp;&nbsp;
+                </a>&nbsp;
                 &nbsp;
                 <a href="{!! route('toggle-later', $resource->uuid()) !!}">
                     @if ($resource->isLater())
@@ -21,6 +22,12 @@
                     @endif
                 </a>&nbsp;&nbsp;
                 &nbsp;
+            @endif
+
+            @if (isset($showCountFavourite))
+                <a href="#" rel="nofollow">
+                    <i class="fa fa-star yellow icon-resource-register" aria-hidden="true"></i> <b>{{$resource->favouriteCount()}}</b>
+                </a>
             @endif
         </div>
     </div>

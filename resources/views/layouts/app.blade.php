@@ -4,7 +4,6 @@
 
     @include('layouts.metas')
 
-
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"
             integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
             crossorigin="anonymous"></script>
@@ -74,9 +73,16 @@
 
                 <ul class="nav navbar-nav navbar-right">
 
+                    <li>
+                        <a href="{!! route('more-valued') !!}" class="btn">
+                            <i class="fa fa-star yellow" aria-hidden="true"></i>
+                            Más valorados
+                        </a>
+                    </li>
+
                     @guest
-                        <li><a href="{{ route('login') }}">Entrar</a></li>
-                        <li><a href="{{ route('register') }}">Crear cuenta</a></li>
+                        <li><a href="{{ route('login') }}"><i class="fa fa-sign-in" aria-hidden="true"></i> Entrar</a></li>
+                        <li><a href="{{ route('register') }}"><i class="fa fa-user-plus" aria-hidden="true"></i> Crear cuenta</a></li>
 
                         @else
 

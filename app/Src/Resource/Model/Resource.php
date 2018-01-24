@@ -184,4 +184,9 @@ class Resource extends Model
     {
         return $this->later()->count();
     }
+
+    public function favouriteCount()
+    {
+        return $this->attributes['favourite_count'];
+    }
 }
