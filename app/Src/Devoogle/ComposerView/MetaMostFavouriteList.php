@@ -34,7 +34,7 @@ class MetaMostFavouriteList implements MetaInteface
 
     private function configTitle()
     {
-        $this->title = 'Los recursos de programación gratis más valorados ';
+        $this->title = 'Los recursos de programación gratis más valorados';
     }
 
     private function configDescription()
