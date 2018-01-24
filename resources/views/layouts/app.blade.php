@@ -87,29 +87,6 @@
                                 </a>
                             </li>
 
-                            <li>
-                                <a href="{{route('my-resources')}}">
-                                    <i class="fa fa-suitcase" aria-hidden="true"></i>
-                                    Mis recursos
-                                </a>
-                            </li>
-
-                            <li>
-                                <a href="{{route('user-list-favourite')}}">
-                                    <i class="fa fa-heart red" aria-hidden="true"></i>
-                                    Favoritos
-                                </a>
-                            </li>
-
-                            <li>
-                                <a href="{{route('user-list-later')}}">
-                                    <i class="fa fa-clock-o orange" aria-hidden="true"></i>
-                                    Para después
-                                </a>
-                            </li>
-
-
-
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
                                    aria-expanded="false" aria-haspopup="true">
@@ -118,11 +95,33 @@
 
 
                                 <ul class="dropdown-menu">
+
+                                    <li>
+                                        <a href="{{route('my-resources')}}">
+                                            <i class="fa fa-suitcase" aria-hidden="true"></i>
+                                            Mis recursos
+                                        </a>
+                                    </li>
+
+                                    <li>
+                                        <a href="{{route('user-list-favourite')}}">
+                                            <i class="fa fa-heart red" aria-hidden="true"></i>
+                                            Mis favoritos
+                                        </a>
+                                    </li>
+
+                                    <li>
+                                        <a href="{{route('user-list-later')}}">
+                                            <i class="fa fa-clock-o orange" aria-hidden="true"></i>
+                                            Para después
+                                        </a>
+                                    </li>
+
                                     <li>
                                         <a href="{{ route('logout') }}"
                                            onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                            Salir
+                                            <i class="fa fa-sign-out" aria-hidden="true"></i> Salir
                                         </a>
 
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST"
