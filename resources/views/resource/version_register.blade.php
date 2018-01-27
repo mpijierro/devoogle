@@ -5,8 +5,10 @@
 @endif
 
 @if ( ! $version->isReviewed() or isAdmin() )
-    <br><a href="{!! route('edit-version', $version->uuid()) !!}">Editar</a>&nbsp;
-    <a href="{!! route('delete-version', $version->uuid()) !!}">Borrar</a>&nbsp;
+    <br><a href="{!! route('edit-version', $version->uuid()) !!}"> <i class="fa fa-edit fa-lg" aria-hidden="true" title="Editar recurso"></i></a>&nbsp;
+    <a href="{!! route('delete-version', $version->uuid()) !!}" onclick="return confirm('¿Estás seguro/a de ELIMINAR esta versión?')">
+        <i class="fa fa-trash fa-lg" aria-hidden="true" title="Eliminar versión"></i>
+    </a>&nbsp;
 @endif
 
 

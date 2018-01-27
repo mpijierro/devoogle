@@ -118,7 +118,7 @@
                     <a href="{!! route('edit-resource', $resource->uuid()) !!}">
                         <i class="fa fa-edit fa-lg" aria-hidden="true" title="Editar recurso"></i>
                     </a>&nbsp;&nbsp;&nbsp;
-                    <a href="{!! route('delete-resource', $resource->uuid()) !!}">
+                    <a href="{!! route('delete-resource', $resource->uuid()) !!}" onclick="return confirm('¿Estás seguro/a de ELIMINAR este recurso?')">
                         <i class="fa fa-trash fa-lg" aria-hidden="true" title="Eliminar recurso"></i>
                     </a>&nbsp;
                 @endif
@@ -131,7 +131,7 @@
                 @endif
 
                 @if ( isAdmin() )
-                    <a href="{!! route('destroy-resource', $resource->uuid()) !!}" class="icon-resource-register">
+                    <a href="{!! route('destroy-resource', $resource->uuid()) !!}" class="icon-resource-register" onclick="return confirm('¿Estás seguro/a de ELIMINAR para siempre este recurso?')">
                         <i class="fa fa-trash fa-lg red" aria-hidden="true" title="Eliminar recurso"></i>
                     </a>&nbsp;
                 @endif

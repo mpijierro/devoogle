@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 use Devoogle\Src\Resource\Command\StoreResourceCommand;
 use Devoogle\Src\Resource\Command\StoreResourceHandler;
 use Devoogle\Src\Resource\Request\StoreResourceRequest;
+use Krucas\Notification\Facades\Notification;
 use Webpatser\Uuid\Uuid;
 
 class StoreResourceController
@@ -41,6 +42,8 @@ class StoreResourceController
             $handler($command);
 
             DB::commit();
+
+            Notification::success(trans('resource.actions.resource.created_succesfully'));
 
             return redirect()->route('edit-resource', $uuid);
 

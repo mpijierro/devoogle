@@ -7,6 +7,7 @@ use Devoogle\Src\Version\Command\StoreVersionHandler;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Devoogle\Src\Version\Request\StoreVersionRequest;
+use Krucas\Notification\Facades\Notification;
 use Webpatser\Uuid\Uuid;
 
 class StoreVersionController
@@ -28,6 +29,8 @@ class StoreVersionController
             $handler($command);
 
             DB::commit();
+
+            Notification::success(trans('resource.actions.version.created_succesfully'));
 
             return redirect()->route('edit-version', $uuid);
 

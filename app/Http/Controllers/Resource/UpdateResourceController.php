@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use Devoogle\Src\Resource\Command\UpdateResourceCommand;
 use Devoogle\Src\Resource\Command\UpdateResourceHandler;
 use Devoogle\Src\Resource\Request\StoreResourceRequest;
+use Krucas\Notification\Facades\Notification;
 
 class UpdateResourceController
 {
@@ -35,6 +36,8 @@ class UpdateResourceController
             $handler($command);
 
             DB::commit();
+
+            Notification::success(trans('resource.actions.resource.updated_succesfully'));
 
             return redirect()->route('edit-resource', $aUuid);
 
