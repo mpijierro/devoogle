@@ -16,6 +16,8 @@ class SidebarTechnologyComposer
 
     private $view;
 
+    private $technologiesTags;
+
     public function __construct(TagRepositoryRead $tagRepositoryRead)
     {
 
@@ -28,6 +30,8 @@ class SidebarTechnologyComposer
 
         $this->initializeView($view);
 
+        $this->obtainTags();
+
         $this->sendTagsToView();
 
         $this->configureTagSelected();
@@ -39,12 +43,14 @@ class SidebarTechnologyComposer
         $this->view = $view;
     }
 
+    private function obtainTags()
+    {
+        $this->technologiesTags = $this->tagRepositoryRead->allWithType(Tag::TYPE_TECHNOLOGY)->sortBy('name');
+    }
 
     private function sendTagsToView()
     {
-        $technologies = $this->tagRepositoryRead->allWithType(Tag::TYPE_TECHNOLOGY);
-
-        $this->view->with('technologies', $technologies);
+        $this->view->with('technologies', $this->technologiesTags);
     }
 
 

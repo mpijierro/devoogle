@@ -15,6 +15,8 @@ class SidebarTagComposer
 
     private $view;
 
+    private $commonTags;
+
     public function __construct(TagRepositoryRead $tagRepositoryRead)
     {
 
@@ -27,6 +29,8 @@ class SidebarTagComposer
 
         $this->initializeView($view);
 
+        $this->obtainTags();
+
         $this->sendTagsToView();
 
         $this->configureTagSelected();
@@ -38,12 +42,15 @@ class SidebarTagComposer
         $this->view = $view;
     }
 
+    private function obtainTags()
+    {
+        $this->commonTags = $this->tagRepositoryRead->allWithoutType()->sortBy('name');
+    }
+
 
     private function sendTagsToView()
     {
-        $tags = $this->tagRepositoryRead->allWithoutType();
-
-        $this->view->with('tags', $tags);
+        $this->view->with('tags', $this->commonTags);
     }
 
 

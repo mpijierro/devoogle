@@ -16,6 +16,8 @@ class SidebarAuthorComposer
 
     private $view;
 
+    private $authorsTags;
+
     public function __construct(TagRepositoryRead $tagRepositoryRead)
     {
 
@@ -28,6 +30,8 @@ class SidebarAuthorComposer
 
         $this->initializeView($view);
 
+        $this->obtainTags();
+
         $this->sendTagsToView();
 
         $this->configureTagSelected();
@@ -39,12 +43,15 @@ class SidebarAuthorComposer
         $this->view = $view;
     }
 
+    private function obtainTags()
+    {
+        $this->authorsTags = $this->tagRepositoryRead->allWithType(Tag::TYPE_AUTHOR)->sortBy('name');
+    }
 
     private function sendTagsToView()
     {
-        $authors = $this->tagRepositoryRead->allWithType(Tag::TYPE_AUTHOR);
 
-        $this->view->with('authors', $authors);
+        $this->view->with('authors', $this->authorsTags);
     }
 
 

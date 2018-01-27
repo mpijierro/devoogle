@@ -16,6 +16,8 @@ class SidebarEventComposer
 
     private $view;
 
+    private $eventsTags;
+
     public function __construct(TagRepositoryRead $tagRepositoryRead)
     {
 
@@ -28,6 +30,8 @@ class SidebarEventComposer
 
         $this->initializeView($view);
 
+        $this->obtainEventTags();
+
         $this->sendTagsToView();
 
         $this->configureTagSelected();
@@ -39,12 +43,14 @@ class SidebarEventComposer
         $this->view = $view;
     }
 
+    private function obtainEventTags()
+    {
+        $this->eventsTags = $this->tagRepositoryRead->allWithType(Tag::TYPE_EVENT)->sortBy('name');;
+    }
 
     private function sendTagsToView()
     {
-        $events = $this->tagRepositoryRead->allWithType(Tag::TYPE_EVENT);
-
-        $this->view->with('events', $events);
+        $this->view->with('events', $this->eventsTags);
     }
 
 
