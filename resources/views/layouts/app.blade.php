@@ -144,19 +144,21 @@
         </div>
     </nav>
 
-    <div class="container">
+    <div class="container-fluid">
         <div class="row">
 
-            <div class="col-sm-2 sidebar">
+            <div class="col-sm-2 col-sm-offset-1 sidebar">
                 @include('sidebar.sidebar_category')
                 @include('sidebar.sidebar_author')
                 @include('sidebar.sidebar_event')
-                @include('sidebar.sidebar_technology')
-                @include('sidebar.sidebar_tag')
             </div>
 
-            <div class="col-sm-10 ">
+            <div class="col-sm-7">
                 @yield('content')
+            </div>
+            <div class="col-sm-2 sidebar">
+                @include('sidebar.sidebar_technology')
+                @include('sidebar.sidebar_tag')
             </div>
         </div>
     </div>

@@ -8,14 +8,15 @@ class ListByCategoryView
 
     private $resources;
     private $aCategoryName;
+    private $aDescriptionCategory;
     private $paginator;
 
-
-    public function __construct($resources, $paginator, string $aCategoryName)
+    public function __construct($resources, $paginator, string $aCategoryName, string $aDescriptionCategory)
     {
         $this->resources = $resources;
         $this->aCategoryName = $aCategoryName;
         $this->paginator = $paginator;
+        $this->aDescriptionCategory = $aDescriptionCategory;
     }
 
 
@@ -27,6 +28,11 @@ class ListByCategoryView
     public function categoryName(): string
     {
         return $this->aCategoryName;
+    }
+
+    public function descriptionCategory(): string
+    {
+        return $this->aDescriptionCategory;
     }
 
     public function paginator()
