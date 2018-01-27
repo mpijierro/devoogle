@@ -17,7 +17,8 @@
     "laravelcollective/html": "^5.4.0",
     "socialiteproviders/twitter": "^3.0",
     "spatie/laravel-tags": "^2.0",
-    "webpatser/laravel-uuid": "^3.0"
+    "webpatser/laravel-uuid": "^3.0",
+    "edvinaskrucas/notification": "5.*"
   },
   "require-dev": {
     "barryvdh/laravel-debugbar": "^3.1",

@@ -1,3 +1,8 @@
+<?php
+
+use Krucas\Notification\Facades\Notification;
+
+?>
 <!DOCTYPE html>
 <html lang="{{ app()->getLocale() }}">
 <head>
@@ -154,6 +159,10 @@
             </div>
 
             <div class="col-sm-7">
+
+                {!! Notification::showAll() !!}
+
+
                 @yield('content')
             </div>
             <div class="col-sm-2 sidebar">

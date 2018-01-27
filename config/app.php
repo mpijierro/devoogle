@@ -179,6 +179,7 @@ return [
         Devoogle\Src\Resource\ResourceServiceProvider::class,
         \Devoogle\Providers\ComposerServiceProvider::class,
         Alaouy\Youtube\YoutubeServiceProvider::class,
+        \Krucas\Notification\NotificationServiceProvider::class,
 
     ],
 

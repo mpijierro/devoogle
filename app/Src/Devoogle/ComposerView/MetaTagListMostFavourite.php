@@ -3,11 +3,9 @@
 
 namespace Devoogle\Src\Devoogle\ComposerView;
 
-
-use Devoogle\Src\Category\Repository\CategoryRepositoryRead;
 use Devoogle\Src\Tag\Repository\TagRepositoryRead;
 
-class MetaTagList implements MetaInteface
+class MetaTagListMostFavourite implements MetaInteface
 {
 
     use Pageable;
