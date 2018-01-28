@@ -4,7 +4,7 @@ namespace Devoogle\Http\Controllers\Resource;
 
 use Devoogle\Src\Resource\Command\DeleteResourceCommand;
 use Devoogle\Src\Resource\Command\DeleteResourceHandler;
-use Illuminate\Support\Facades\Notification;
+use Krucas\Notification\Facades\Notification;
 
 class DeleteResourceController
 {
