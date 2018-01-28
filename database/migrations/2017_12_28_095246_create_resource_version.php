@@ -28,6 +28,7 @@ class CreateResourceVersion extends Migration
             $table->boolean('reviewed')->default(false);
 
             $table->timestamps();
+            $table->softDeletes();
 
         });
     }

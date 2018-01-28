@@ -7,10 +7,13 @@ use Devoogle\Src\Category\Model\Category;
 use Devoogle\Src\Lang\Model\Lang;
 use Devoogle\Src\Resource\Model\Resource;
 use Devoogle\Src\User\Model\User;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 
 class Version extends Model
 {
+
+    use SoftDeletes;
 
     protected $table = 'resource_version';
 
