@@ -31,6 +31,8 @@ class DeleteResourceHandler
 
         $this->find($command->getUuid());
 
+        $this->deleteVersions();
+
         $this->delete();
 
     }
@@ -38,6 +40,11 @@ class DeleteResourceHandler
     private function find($uuid)
     {
         $this->resource = $this->resourceRepositoryRead->findByUuid($uuid);
+    }
+
+    private function deleteVersions()
+    {
+        $this->resource->version()->delete();
     }
 
 
