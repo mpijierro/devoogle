@@ -28,6 +28,8 @@ Route::group(['prefix' => 'input'], function () {
 
 Route::get('/youtube', "ApiReader\ChannelListController")->name('channel-youtube-list');
 
+Route::get('/politica-privacidad', "Legal\PrivacyPolicyController")->name('privacy-policy');
+
 Route::group(['prefix' => 'recursos', 'middleware' => 'auth'], function () {
 
     Route::get('/crear', "Resource\CreateResourceController")->name('create-resource');
