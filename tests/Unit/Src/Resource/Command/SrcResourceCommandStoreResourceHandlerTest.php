@@ -7,6 +7,7 @@ use Devoogle\Src\Lang\Model\Lang;
 use Devoogle\Src\Resource\Command\StoreResourceCommand;
 use Devoogle\Src\Resource\Command\StoreResourceHandler;
 use Devoogle\Src\Resource\Model\Resource;
+use Devoogle\Src\User\Model\User;
 use Illuminate\Support\Facades\DB;
 use Spatie\Tags\Tag;
 use Tests\TestCase;
@@ -24,7 +25,7 @@ class SrcResourceCommandStoreResourceHandlerTest extends TestCase
      *
      * @return void
      */
-    public function testExample()
+    public function testResourceCreatedSuccessfully()
     {
 
         DB::beginTransaction();
@@ -64,6 +65,12 @@ class SrcResourceCommandStoreResourceHandlerTest extends TestCase
         foreach ($techs as $tech) {
             $this->assertEquals('technology name', $tech->name);
         }
+
+        $this->assertFalse($resource->isReviewed());
+        $this->assertTrue($resource->isOwner($user));
+
+        $otherUser = factory(User::class)->create();
+        $this->assertFalse($resource->isOwner($otherUser));
 
 
         DB::rollback();
