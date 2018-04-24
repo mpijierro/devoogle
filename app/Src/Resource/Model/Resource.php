@@ -150,12 +150,12 @@ class Resource extends Model
         return ( ! empty($this->title()) AND ! empty($this->url()));
     }
 
-    public function isReviewed()
+    public function isReviewed(): bool
     {
-        return $this->attributes['reviewed'];
+        return $this->attributes['reviewed'] ? true : false;
     }
 
-    public function isOwner(User $user)
+    public function isOwner(User $user): bool
     {
         return $this->user_id == $user->id();
     }
