@@ -12,11 +12,16 @@ class Category extends Model
 
     protected $table = 'category';
 
-    protected $attributes = ['name', 'slug'];
+    protected $fillable = ['name', 'slug', 'description'];
 
     public function resource()
     {
         return $this->hasMany(Resource::class);
+    }
+
+    public function id()
+    {
+        return $this->attributes['id'];
     }
 
     public function name()

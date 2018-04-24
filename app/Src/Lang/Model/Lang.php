@@ -22,6 +22,11 @@ class Lang extends Model
         return $this->hasMany(Resource::class);
     }
 
+    public function id()
+    {
+        return $this->attributes['id'];
+    }
+
     public function name()
     {
         return $this->attributes['name'];
