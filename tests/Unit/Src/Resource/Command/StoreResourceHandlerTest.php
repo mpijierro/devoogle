@@ -15,10 +15,8 @@ use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Webpatser\Uuid\Uuid;
 
-class SrcResourceCommandStoreResourceHandlerTest extends TestCase
+class StoreResourceHandlerTest extends TestCase
 {
-
-    use RefreshDatabase;
 
     /**
      * A basic test example.
