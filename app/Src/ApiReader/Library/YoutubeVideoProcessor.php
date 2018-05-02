@@ -10,6 +10,7 @@ use Devoogle\Src\Resource\Repository\ResourceRepositoryRead;
 use Devoogle\Src\Resource\Repository\ResourceRepositoryWrite;
 use Devoogle\Src\ApiReader\Exceptions\ResourceExistsException;
 use Devoogle\Src\User\Model\User;
+use Devoogle\Src\User\Repository\UserRepository;
 use Illuminate\Support\Collection;
 use Webpatser\Uuid\Uuid;
 
@@ -43,11 +44,16 @@ class YoutubeVideoProcessor
      * @var TechnologyTagExtractor
      */
     private $technologyTagExtractor;
+    /**
+     * @var UserRepository
+     */
+    private $userRepository;
 
 
     public function __construct(
         ResourceRepositoryWrite $resourceRepositoryWrite,
         ResourceRepositoryRead $resourceRepositoryRead,
+        UserRepository $userRepository,
         EventTagExtractor $tagExtractor,
         AuthorTagExtractor $authorTagExtractor,
         CommonTagExtractor $commonTagExtractor,
@@ -62,6 +68,7 @@ class YoutubeVideoProcessor
 
         $this->textsForTagSearch = collect();
         $this->technologyTagExtractor = $technologyTagExtractor;
+        $this->userRepository = $userRepository;
     }
 
     public function __invoke(YoutubeGateway $youtubeGateway)
@@ -110,7 +117,7 @@ class YoutubeVideoProcessor
     {
 
         $uuid = $uuid = Uuid::generate();
-        $userId = User::ADMIN_ID;
+        $userId = $this->obtainUserAdminId();
         $title = $this->youtubeGateway->title();
         $url = $this->youtubeGateway->url();
         $categoryId = Category::VIDEO_CATEGORY_ID;
@@ -125,6 +132,13 @@ class YoutubeVideoProcessor
         $handler = app(StoreResourceHandler::class);
         $handler($command);
 
+    }
+
+    private function obtainUserAdminId()
+    {
+        $user = $this->userRepository->findAdmin();
+
+        return $user->id();
     }
 
     private function searchTags(TagExtractor $tagExtractor)

@@ -25,4 +25,10 @@ class UserRepository
         return $this->user->findOrFail($id);
     }
 
+    public function findAdmin()
+    {
+        return $this->user->where('is_admin', true)->first();
+    }
+
+
 }

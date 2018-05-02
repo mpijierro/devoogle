@@ -11,8 +11,6 @@ class User extends Authenticatable
 {
     use Notifiable;
 
-    const ADMIN_ID = 1;
-
     protected $fillable = [
         'name',
         'email',
