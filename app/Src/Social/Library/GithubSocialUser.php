@@ -10,10 +10,12 @@ class GithubSocialUser extends SocialUser
         parent::__construct((array)$socialUserObject);
     }
 
+
     public function id()
     {
         return $this->getField('id');
     }
+
 
     public function username()
     {
@@ -26,12 +28,14 @@ class GithubSocialUser extends SocialUser
         return $username;
     }
 
+
     public function name()
     {
         $user = $this->getField('user');
 
         return $user['name'];
     }
+
 
     public function firstName()
     {
@@ -49,6 +53,7 @@ class GithubSocialUser extends SocialUser
 
         return $user['name'];
     }
+
 
     public function email()
     {

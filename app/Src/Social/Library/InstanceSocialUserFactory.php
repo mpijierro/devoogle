@@ -7,6 +7,7 @@ use Laravel\Socialite\Facades\Socialite;
 
 class InstanceSocialUserFactory
 {
+
     public function instanceUserFromSocialite($provider = '')
     {
 
@@ -23,6 +24,7 @@ class InstanceSocialUserFactory
         throw new \InvalidArgumentException(sprintf("Provider %s not found", $provider));
     }
 
+
     private function obtainSocialUserObject($provider)
     {
 
@@ -33,6 +35,7 @@ class InstanceSocialUserFactory
         return $socialUserObject;
 
     }
+
 
     private function checkSocialUserObject($socialUserObject)
     {

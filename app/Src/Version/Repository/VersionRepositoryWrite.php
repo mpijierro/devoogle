@@ -2,9 +2,7 @@
 
 namespace Devoogle\Src\Version\Repository;
 
-use Devoogle\Src\Resource\Model\Resource;
 use Devoogle\Src\Version\Model\Version;
-
 
 class VersionRepositoryWrite
 {
@@ -14,10 +12,12 @@ class VersionRepositoryWrite
         return $version->save();
     }
 
+
     public function delete(Version $version)
     {
         $version->delete();
     }
+
 
     public function destroy(Version $version)
     {

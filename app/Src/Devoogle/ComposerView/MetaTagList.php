@@ -1,10 +1,7 @@
 <?php
 
-
 namespace Devoogle\Src\Devoogle\ComposerView;
 
-
-use Devoogle\Src\Category\Repository\CategoryRepositoryRead;
 use Devoogle\Src\Tag\Repository\TagRepositoryRead;
 
 class MetaTagList implements MetaInteface
@@ -13,12 +10,16 @@ class MetaTagList implements MetaInteface
     use Pageable;
 
     protected $title = '';
+
     protected $description = '';
+
     private $tag;
+
     /**
      * @var TagRepositoryRead
      */
     private $tagRepositoryRead;
+
 
     public function __construct(TagRepositoryRead $tagRepositoryRead)
     {
@@ -35,6 +36,7 @@ class MetaTagList implements MetaInteface
 
     }
 
+
     private function findTag()
     {
 
@@ -46,12 +48,13 @@ class MetaTagList implements MetaInteface
 
     private function configTitle()
     {
-        $this->title = 'Recursos de programación de ' . $this->tag->name;
+        $this->title = 'Recursos de programación de '.$this->tag->name;
     }
+
 
     private function configDescription()
     {
-        $this->description = 'Recursos de programación y desarrollo de software, vídeos de programación y desarrollo de software ' . $this->tag->name;
+        $this->description = 'Recursos de programación y desarrollo de software, vídeos de programación y desarrollo de software '.$this->tag->name;
     }
 
 
@@ -59,6 +62,7 @@ class MetaTagList implements MetaInteface
     {
         return $this->title;
     }
+
 
     public function description()
     {

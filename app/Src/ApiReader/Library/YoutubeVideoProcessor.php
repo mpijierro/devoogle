@@ -2,20 +2,19 @@
 
 namespace Devoogle\Src\ApiReader\Library;
 
+use Devoogle\Src\ApiReader\Exceptions\ResourceExistsException;
 use Devoogle\Src\Category\Model\Category;
 use Devoogle\Src\Lang\Model\Lang;
 use Devoogle\Src\Resource\Command\StoreResourceCommand;
 use Devoogle\Src\Resource\Command\StoreResourceHandler;
 use Devoogle\Src\Resource\Repository\ResourceRepositoryRead;
 use Devoogle\Src\Resource\Repository\ResourceRepositoryWrite;
-use Devoogle\Src\ApiReader\Exceptions\ResourceExistsException;
-use Devoogle\Src\User\Model\User;
 use Devoogle\Src\User\Repository\UserRepository;
-use Illuminate\Support\Collection;
 use Webpatser\Uuid\Uuid;
 
 class YoutubeVideoProcessor
 {
+
     private $youtubeGateway;
 
     private $textsForTagSearch;
@@ -24,26 +23,32 @@ class YoutubeVideoProcessor
      * @var ResourceRepositoryWrite
      */
     private $resourceRepositoryWrite;
+
     /**
      * @var ResourceRepositoryRead
      */
     private $resourceRepositoryRead;
+
     /**
      * @var EventTagExtractor
      */
     private $eventTagExtractor;
+
     /**
      * @var AuthorTagExtractor
      */
     private $authorTagExtractor;
+
     /**
      * @var CommonTagExtractor
      */
     private $commonTagExtractor;
+
     /**
      * @var TechnologyTagExtractor
      */
     private $technologyTagExtractor;
+
     /**
      * @var UserRepository
      */
@@ -58,8 +63,7 @@ class YoutubeVideoProcessor
         AuthorTagExtractor $authorTagExtractor,
         CommonTagExtractor $commonTagExtractor,
         TechnologyTagExtractor $technologyTagExtractor
-    )
-    {
+    ) {
         $this->resourceRepositoryWrite = $resourceRepositoryWrite;
         $this->resourceRepositoryRead = $resourceRepositoryRead;
         $this->eventTagExtractor = $tagExtractor;
@@ -70,6 +74,7 @@ class YoutubeVideoProcessor
         $this->technologyTagExtractor = $technologyTagExtractor;
         $this->userRepository = $userRepository;
     }
+
 
     public function __invoke(YoutubeGateway $youtubeGateway)
     {
@@ -90,6 +95,7 @@ class YoutubeVideoProcessor
         $this->youtubeGateway = $youtubeGateway;
     }
 
+
     private function checkExists()
     {
         $exists = $this->resourceRepositoryRead->existsUrlPattern($this->youtubeGateway->videoId());
@@ -98,6 +104,7 @@ class YoutubeVideoProcessor
             throw new ResourceExistsException();
         }
     }
+
 
     private function initializeTagSearch()
     {
@@ -112,6 +119,7 @@ class YoutubeVideoProcessor
             $this->textsForTagSearch->push($this->youtubeGateway->description());
         }
     }
+
 
     private function createResource()
     {
@@ -134,12 +142,14 @@ class YoutubeVideoProcessor
 
     }
 
+
     private function obtainUserAdminId()
     {
         $user = $this->userRepository->findAdmin();
 
         return $user->id();
     }
+
 
     private function searchTags(TagExtractor $tagExtractor)
     {
@@ -157,6 +167,5 @@ class YoutubeVideoProcessor
         return '';
 
     }
-
 
 }

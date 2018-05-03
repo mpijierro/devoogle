@@ -11,10 +11,12 @@ class TwitterSocialUser extends SocialUser
 
     }
 
+
     public function id()
     {
         return $this->getField('id');
     }
+
 
     public function username()
     {
@@ -27,20 +29,24 @@ class TwitterSocialUser extends SocialUser
         return $username;
     }
 
+
     public function name()
     {
         return $this->getField('name');
     }
+
 
     public function firstName()
     {
         return $this->getField('name');
     }
 
+
     public function lastName()
     {
         return $this->getField('user');
     }
+
 
     public function email()
     {

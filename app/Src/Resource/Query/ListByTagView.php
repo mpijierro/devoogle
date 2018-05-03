@@ -2,11 +2,9 @@
 
 namespace Devoogle\Src\Resource\Query;
 
-
-use Illuminate\Support\Collection;
-
 class ListByTagView
 {
+
     private $foundResources;
 
     private $paginator;
@@ -29,10 +27,12 @@ class ListByTagView
         return $this->foundResources;
     }
 
+
     public function tagName(): string
     {
         return $this->aTagName;
     }
+
 
     public function paginator()
     {

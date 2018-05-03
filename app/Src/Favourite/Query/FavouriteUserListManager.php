@@ -1,15 +1,16 @@
 <?php
 
-
 namespace Devoogle\Src\Favourite\Query;
-
 
 class FavouriteUserListManager
 {
 
     private $query;
+
     private $user;
+
     private $favourites;
+
 
     public function __invoke(FavouriteUserListQuery $favouriteUserListQuery)
     {
@@ -32,6 +33,7 @@ class FavouriteUserListManager
     {
         $this->user = user();
     }
+
 
     private function findFavourites()
     {

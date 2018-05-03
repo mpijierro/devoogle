@@ -14,14 +14,17 @@ class UpdateResourceHandler
     private $command;
 
     private $resource;
+
     /**
      * @var ResourceRepositoryRead
      */
     private $resourceRepositoryRead;
+
     /**
      * @var ResourceRepositoryWrite
      */
     private $resourceRepositoryWrite;
+
 
     public function __construct(ResourceRepositoryRead $resourceRepositoryRead, ResourceRepositoryWrite $resourceRepositoryWrite)
     {
@@ -51,15 +54,18 @@ class UpdateResourceHandler
 
     }
 
+
     private function initializeCommand(UpdateResourceCommand $command)
     {
         $this->command = $command;
     }
 
+
     private function find(string $aUuid)
     {
         $this->resource = $this->resourceRepositoryRead->findByUuid($aUuid);
     }
+
 
     private function fill()
     {
@@ -72,10 +78,10 @@ class UpdateResourceHandler
 
     }
 
+
     private function update()
     {
         $this->resourceRepositoryWrite->save($this->resource);
     }
-
 
 }

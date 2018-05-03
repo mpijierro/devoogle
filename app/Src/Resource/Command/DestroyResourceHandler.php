@@ -10,18 +10,22 @@ class DestroyResourceHandler
 {
 
     private $resource;
+
     /**
      * @var ResourceRepositoryRead
      */
     private $resourceRepositoryRead;
+
     /**
      * @var ResourceRepositoryWrite
      */
     private $resourceRepositoryWrite;
+
     /**
      * @var VersionRepositoryWrite
      */
     private $versionRepositoryWrite;
+
 
     public function __construct(ResourceRepositoryRead $resourceRepositoryRead, ResourceRepositoryWrite $resourceRepositoryWrite, VersionRepositoryWrite $versionRepositoryWrite)
     {
@@ -30,6 +34,7 @@ class DestroyResourceHandler
         $this->resourceRepositoryWrite = $resourceRepositoryWrite;
         $this->versionRepositoryWrite = $versionRepositoryWrite;
     }
+
 
     public function __invoke(DestroyResourceCommand $command)
     {
@@ -44,11 +49,13 @@ class DestroyResourceHandler
 
     }
 
+
     private function find($uuid)
     {
         $this->resource = $this->resourceRepositoryRead->findByUuid($uuid);
 
     }
+
 
     private function detachTags()
     {
@@ -60,12 +67,14 @@ class DestroyResourceHandler
         }
     }
 
+
     private function deleteVersions()
     {
 
         $this->resource->version()->forceDelete();
 
     }
+
 
     private function destroy()
     {

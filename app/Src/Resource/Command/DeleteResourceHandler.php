@@ -9,14 +9,17 @@ class DeleteResourceHandler
 {
 
     private $resource;
+
     /**
      * @var ResourceRepositoryRead
      */
     private $resourceRepositoryRead;
+
     /**
      * @var ResourceRepositoryWrite
      */
     private $resourceRepositoryWrite;
+
 
     public function __construct(ResourceRepositoryRead $resourceRepositoryRead, ResourceRepositoryWrite $resourceRepositoryWrite)
     {
@@ -37,10 +40,12 @@ class DeleteResourceHandler
 
     }
 
+
     private function find($uuid)
     {
         $this->resource = $this->resourceRepositoryRead->findByUuid($uuid);
     }
+
 
     private function deleteVersions()
     {

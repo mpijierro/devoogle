@@ -9,6 +9,7 @@ class UpdateVersionRequest extends FormRequest
 
     use VersionRules;
 
+
     /**
      * Determine if the user is authorized to make this request.
      *

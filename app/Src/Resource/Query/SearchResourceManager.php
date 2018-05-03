@@ -7,7 +7,9 @@ use Devoogle\Src\Resource\Repository\ResourceRepositoryRead;
 
 class SearchResourceManager
 {
+
     use Paginable;
+
     /**
      * @var ResourceRepositoryRead
      */
@@ -17,16 +19,19 @@ class SearchResourceManager
 
     private $query;
 
+
     public function __construct(ResourceRepositoryRead $resourceRepository)
     {
         $this->resourceRepository = $resourceRepository;
 
     }
 
+
     public function getResources()
     {
         return $this->resources;
     }
+
 
     public function __invoke(SearchResourceQuery $query)
     {
@@ -42,15 +47,18 @@ class SearchResourceManager
         return $this->configView();
     }
 
+
     private function initializeQuery(SearchResourceQuery $query)
     {
         $this->query = $query;
     }
 
+
     private function search()
     {
         $this->resources = $this->resourceRepository->searchByString($this->query->getSearchedText());
     }
+
 
     private function configView()
     {

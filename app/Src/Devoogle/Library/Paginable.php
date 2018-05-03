@@ -9,6 +9,7 @@ trait Paginable
 
     protected $page = '';
 
+
     protected function initializePaginable()
     {
 
@@ -16,6 +17,7 @@ trait Paginable
 
         $this->checkPageTypeIsValid();
     }
+
 
     protected function checkPageTypeIsValid()
     {
@@ -30,6 +32,7 @@ trait Paginable
 
     }
 
+
     protected function pageExists()
     {
         return ! is_null($this->page);
@@ -43,12 +46,14 @@ trait Paginable
         }
     }
 
+
     protected function checkPageNoIsNegative()
     {
         if ($this->page < 0) {
             throw new InvalidPageNumberException();
         }
     }
+
 
     protected function checkPageInRange()
     {
@@ -67,6 +72,5 @@ trait Paginable
         }
 
     }
-
 
 }

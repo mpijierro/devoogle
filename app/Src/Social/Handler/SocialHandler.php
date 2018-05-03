@@ -2,12 +2,12 @@
 
 namespace Devoogle\Src\Social\Handler;
 
-use Devoogle\Src\Social\Library\InstanceSocialUserFactory;
-use Devoogle\Src\Social\Repository\SocialRepository;
 use Devoogle\Src\Social\Command\SocialHandlerCommand;
+use Devoogle\Src\Social\Library\InstanceSocialUserFactory;
+use Devoogle\Src\Social\Model\Social;
+use Devoogle\Src\Social\Repository\SocialRepository;
 use Devoogle\Src\User\Model\User;
 use Devoogle\Src\User\Repository\UserRepository;
-use Devoogle\Src\Social\Model\Social;
 
 class SocialHandler
 {
@@ -26,6 +26,7 @@ class SocialHandler
 
     private $loginWithRegister = false;
 
+
     public function __construct(UserRepository $userRepository, SocialRepository $socialRepository)
     {
 
@@ -41,6 +42,7 @@ class SocialHandler
     {
         return $this->loginWithRegister;
     }
+
 
     public function __invoke(SocialHandlerCommand $command)
     {
@@ -59,25 +61,30 @@ class SocialHandler
 
     }
 
+
     private function setCommand(SocialHandlerCommand $command)
     {
         $this->command = $command;
     }
+
 
     private function obtainSocialUser()
     {
         $this->socialUser = $this->instanceSocialUserFactory->instanceUserFromSocialite($this->command->getProvider());
     }
 
+
     private function findUserByMail()
     {
         $this->user = $this->userRepository->findByEmail($this->socialUser->email());
     }
 
+
     private function userNotFound()
     {
         return is_null($this->user);
     }
+
 
     private function obtainUser()
     {
@@ -94,6 +101,7 @@ class SocialHandler
 
     }
 
+
     private function obtainUserFromSocialUser()
     {
         $socialUserRegistered = $this->socialRepository->findBySocialIdAndProvider($this->socialUser->id(), $this->command->getProvider());
@@ -103,6 +111,7 @@ class SocialHandler
         }
     }
 
+
     private function create()
     {
 
@@ -111,16 +120,18 @@ class SocialHandler
         $this->associateSocialDataToUser();
     }
 
+
     private function createUser()
     {
 
         $this->user = User::create([
-            'name' => $this->socialUser->name(),
-            'email' => $this->retrieveEmailOrFake(),
+            'name'     => $this->socialUser->name(),
+            'email'    => $this->retrieveEmailOrFake(),
             'password' => bcrypt(str_random(40)),
         ]);
 
     }
+
 
     private function retrieveEmailOrFake()
     {
@@ -128,11 +139,12 @@ class SocialHandler
         $email = $this->socialUser->email();
 
         if ( ! $email) {
-            $email = 'missing' . str_random(10);
+            $email = 'missing'.str_random(10);
         }
 
         return $email;
     }
+
 
     private function associateSocialDataToUser()
     {
@@ -142,10 +154,12 @@ class SocialHandler
         $this->user->social()->save($socialData);
     }
 
+
     private function toDoLogin()
     {
         auth()->login($this->user, true);
     }
+
 
     private function userExists()
     {

@@ -2,7 +2,6 @@
 
 namespace Devoogle\Src\Version\Command;
 
-
 class StoreVersionCommand
 {
 
@@ -18,6 +17,7 @@ class StoreVersionCommand
 
     private $comment;
 
+
     public function __construct(string $uuid, string $parentUuid, string $userId, string $categoryId, string $url, string $comment)
     {
         $this->uuid = $uuid;
@@ -28,35 +28,40 @@ class StoreVersionCommand
         $this->comment = $comment;
     }
 
+
     public function getUuid(): string
     {
         return $this->uuid;
     }
+
 
     public function getParentUuid(): string
     {
         return $this->parentUuid;
     }
 
+
     public function getUserId(): string
     {
         return $this->userId;
     }
+
 
     public function getUrl()
     {
         return $this->url;
     }
 
+
     public function getCategoryId()
     {
         return $this->categoryId;
     }
 
+
     public function getComment(): string
     {
         return $this->comment;
     }
-
 
 }

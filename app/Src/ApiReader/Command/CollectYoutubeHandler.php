@@ -17,14 +17,17 @@ class CollectYoutubeHandler
      * @var VideoChannelRepositoryRead
      */
     private $videoChannelRepositoryRead;
+
     /**
      * @var PlatformRepositoryRead
      */
     private $platformRepositoryRead;
+
     /**
      * @var YoutubeChannelProcessor
      */
     private $youtubeChannelProcessor;
+
 
     public function __construct(
         VideoChannelRepositoryRead $videoChannelRepositoryRead,
@@ -46,15 +49,18 @@ class CollectYoutubeHandler
         $this->obtainVideos();
     }
 
+
     private function findPlatform()
     {
         $this->platform = $this->platformRepositoryRead->obtainYoutube();
     }
 
+
     private function findVideoChannels()
     {
         $this->videoChannels = $this->platform->videoChannel;
     }
+
 
     private function obtainVideos()
     {

@@ -2,7 +2,6 @@
 
 namespace Devoogle\Src\ApiReader\Library;
 
-
 use Alaouy\Youtube\Facades\Youtube;
 use Carbon\Carbon;
 use Devoogle\Src\ApiReader\Exceptions\ResourceExistsException;
@@ -30,10 +29,12 @@ class YoutubeChannelProcessor
 
     private $num;
 
+
     public function __construct(YoutubeVideoProcessor $youtubeVideoProcessor)
     {
         $this->youtubeVideoProcessor = $youtubeVideoProcessor;
     }
+
 
     public function __invoke(VideoChannel $videoChannel)
     {
@@ -45,15 +46,18 @@ class YoutubeChannelProcessor
         $this->pagesProcess();
     }
 
+
     private function initializeChannel(VideoChannel $videoChannel)
     {
         $this->videoChannel = $videoChannel;
     }
 
+
     private function initializePageInfo()
     {
         $this->pageInfo = [];
     }
+
 
     private function pagesProcess()
     {
@@ -70,46 +74,50 @@ class YoutubeChannelProcessor
 
             $this->processFourthTrimester($year);
 
-            echo "\r\n num: " . $year . ' - ' . $this->num;
+            echo "\r\n num: ".$year.' - '.$this->num;
 
         }
     }
 
+
     private function processFirstTrimester($year)
     {
 
-        $this->publishedAfter = Carbon::parse('01-01-' . $year . ' 00:00:00')->toRfc3339String();
-        $this->publishedBefore = Carbon::parse('31-03-' . $year . ' 23:59:59')->toRfc3339String();
+        $this->publishedAfter = Carbon::parse('01-01-'.$year.' 00:00:00')->toRfc3339String();
+        $this->publishedBefore = Carbon::parse('31-03-'.$year.' 23:59:59')->toRfc3339String();
 
         $this->process();
 
     }
+
 
     private function processSecondTrimester($year)
     {
 
-        $this->publishedAfter = Carbon::parse('01-04-' . $year . ' 00:00:00')->toRfc3339String();
-        $this->publishedBefore = Carbon::parse('30-06-' . $year . ' 23:59:59')->toRfc3339String();
+        $this->publishedAfter = Carbon::parse('01-04-'.$year.' 00:00:00')->toRfc3339String();
+        $this->publishedBefore = Carbon::parse('30-06-'.$year.' 23:59:59')->toRfc3339String();
 
         $this->process();
 
     }
+
 
     private function processThirdTrimester($year)
     {
 
-        $this->publishedAfter = Carbon::parse('01-07-' . $year . ' 00:00:00')->toRfc3339String();
-        $this->publishedBefore = Carbon::parse('30-09-' . $year . ' 23:59:59')->toRfc3339String();
+        $this->publishedAfter = Carbon::parse('01-07-'.$year.' 00:00:00')->toRfc3339String();
+        $this->publishedBefore = Carbon::parse('30-09-'.$year.' 23:59:59')->toRfc3339String();
 
         $this->process();
 
     }
 
+
     private function processFourthTrimester($year)
     {
 
-        $this->publishedAfter = Carbon::parse('01-10-' . $year . ' 00:00:00')->toRfc3339String();
-        $this->publishedBefore = Carbon::parse('31-12-' . $year . ' 23:59:59')->toRfc3339String();
+        $this->publishedAfter = Carbon::parse('01-10-'.$year.' 00:00:00')->toRfc3339String();
+        $this->publishedBefore = Carbon::parse('31-12-'.$year.' 23:59:59')->toRfc3339String();
 
         $this->process();
 
@@ -144,28 +152,31 @@ class YoutubeChannelProcessor
         return true;
     }
 
+
     private function obtainParametersForPaginate()
     {
-        $paramsPage = array(
-            'type' => $this->obtainParameter('type'),
-            'channelId' => $this->obtainParameter('channelId'),
-            'part' => implode(', ', $this->obtainParameter('part')),
+        $paramsPage = [
+            'type'       => $this->obtainParameter('type'),
+            'channelId'  => $this->obtainParameter('channelId'),
+            'part'       => implode(', ', $this->obtainParameter('part')),
             'maxResults' => $this->obtainParameter('maxResults'),
-            'order' => $this->obtainParameter('order')
-        );
+            'order'      => $this->obtainParameter('order')
+        ];
 
         $paramsDate = $this->obtainLimitInTime();
 
         return array_merge($paramsPage, $paramsDate);
     }
 
+
     private function obtainLimitInTime()
     {
         return [
-            'publishedAfter' => $this->publishedAfter,
+            'publishedAfter'  => $this->publishedAfter,
             'publishedBefore' => $this->publishedBefore
         ];
     }
+
 
     private function processVideos(array $videos)
     {
@@ -191,6 +202,7 @@ class YoutubeChannelProcessor
         }
     }
 
+
     private function results()
     {
         if (isset($this->pageInfo['results'])) {
@@ -199,6 +211,7 @@ class YoutubeChannelProcessor
 
         return [];
     }
+
 
     private function thereIsNextPage()
     {
@@ -211,6 +224,7 @@ class YoutubeChannelProcessor
         return $this->pageInfo['info']['nextPageToken'] ?? null;
     }
 
+
     private function obtainParameter($parameter)
     {
 
@@ -220,16 +234,17 @@ class YoutubeChannelProcessor
 
     }
 
+
     private function obtainParameters()
     {
         return [
-            'type' => 'video',
-            'channelId' => $this->videoChannel->slugId(),
+            'type'           => 'video',
+            'channelId'      => $this->videoChannel->slugId(),
             'resultsPerPage' => self::RESULTS_PER_PAGE,
-            'maxResults' => self::RESULTS_PER_PAGE,
-            'order' => 'date',
-            'part' => ['id', 'snippet'],
-            'pageInfo' => true
+            'maxResults'     => self::RESULTS_PER_PAGE,
+            'order'          => 'date',
+            'part'           => ['id', 'snippet'],
+            'pageInfo'       => true
         ];
     }
 

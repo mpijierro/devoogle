@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Devoogle\Src\Resource\Query;
-
 
 class ListByTagQuery
 {
@@ -12,10 +10,12 @@ class ListByTagQuery
      */
     private $slug;
 
+
     public function __construct(string $slug)
     {
         $this->slug = $slug;
     }
+
 
     /**
      * @return string
@@ -24,6 +24,5 @@ class ListByTagQuery
     {
         return $this->slug;
     }
-
 
 }

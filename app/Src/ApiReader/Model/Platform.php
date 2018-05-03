@@ -17,6 +17,7 @@ class Platform extends Model
         'name'
     ];
 
+
     public function videoChannel()
     {
         return $this->hasMany(VideoChannel::class);

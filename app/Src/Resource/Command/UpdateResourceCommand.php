@@ -2,7 +2,6 @@
 
 namespace Devoogle\Src\Resource\Command;
 
-
 class UpdateResourceCommand
 {
 
@@ -26,6 +25,7 @@ class UpdateResourceCommand
 
     private $technology;
 
+
     public function __construct(string $uuid, string $title, string $description, string $url, string $categoryId, string $langId, string $tag, string $author, string $event, string $technology)
     {
 
@@ -41,6 +41,7 @@ class UpdateResourceCommand
         $this->technology = $technology;
     }
 
+
     public function getUuid(): string
     {
         return $this->uuid;
@@ -52,40 +53,48 @@ class UpdateResourceCommand
         return $this->title;
     }
 
+
     public function getDescription(): string
     {
         return $this->description;
     }
+
 
     public function getUrl(): string
     {
         return $this->url;
     }
 
+
     public function getCategoryId(): string
     {
         return $this->categoryId;
     }
+
 
     public function getLangId(): string
     {
         return $this->langId;
     }
 
+
     public function getTag(): string
     {
         return $this->tag;
     }
+
 
     public function getAuthor(): string
     {
         return $this->author;
     }
 
+
     public function getEvent(): string
     {
         return $this->event;
     }
+
 
     public function getTechnology(): string
     {

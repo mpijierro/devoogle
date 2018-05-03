@@ -21,6 +21,9 @@ class ListByCategoryManager
 
     private $categoryRepository;
 
+    private $foundResources;
+
+
     public function __construct(ResourceRepositoryRead $repository, CategoryRepositoryRead $categoryRepository)
     {
         $this->repository = $repository;
@@ -47,15 +50,18 @@ class ListByCategoryManager
 
     }
 
+
     private function initializeQuery(ListByCategoryQuery $query)
     {
         $this->query = $query;
     }
 
+
     private function findCategory()
     {
         $this->category = $this->categoryRepository->findBySlugOrFail($this->query->getSlug());
     }
+
 
     private function search()
     {

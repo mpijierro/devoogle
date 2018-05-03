@@ -3,8 +3,8 @@
 namespace Devoogle\Src\Version\Library;
 
 use Devoogle\Src\Category\Repository\CategoryRepositoryRead;
-use Devoogle\Src\Lang\Repository\LangRepositoryRead;
 use Devoogle\Src\Devoogle\Library\Form;
+use Devoogle\Src\Lang\Repository\LangRepositoryRead;
 use Devoogle\Src\Version\Repository\VersionRepositoryRead;
 
 class FormEdit extends Form
@@ -17,6 +17,7 @@ class FormEdit extends Form
     private $categoryOptions;
 
     private $categoryRepository;
+
     /**
      * @var VersionRepositoryRead
      */
@@ -25,7 +26,7 @@ class FormEdit extends Form
 
     /**
      * @param CategoryRepositoryRead $categoryRepository
-     * @param LangRepositoryRead $langRepositor
+     * @param LangRepositoryRead     $langRepositor
      */
     public function __construct(CategoryRepositoryRead $categoryRepository, VersionRepositoryRead $repositoryRead)
     {
@@ -33,6 +34,7 @@ class FormEdit extends Form
         $this->repositoryRead = $repositoryRead;
         $this->categoryOptions = [];
     }
+
 
     public function categoryOptions()
     {
@@ -55,15 +57,18 @@ class FormEdit extends Form
 
     }
 
+
     private function initializeUuid(string $uuid)
     {
         $this->uuid = $uuid;
     }
 
+
     private function findVersion()
     {
         $this->version = $this->repositoryRead->findByUuid($this->uuid);
     }
+
 
     protected function configModel()
     {
@@ -75,10 +80,12 @@ class FormEdit extends Form
 
     }
 
+
     protected function configAction()
     {
         $this->action = route('update-version', $this->uuid);
     }
+
 
     private function configCategoryOptions()
     {

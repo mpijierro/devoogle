@@ -2,15 +2,13 @@
 
 namespace Devoogle\Src\Resource\Model;
 
-use Devoogle\Src\Favourite\Model\Favourite;
-use Devoogle\Src\resourceLater\Model\Later;
-use Devoogle\Src\Tag\Model\Tag;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use Devoogle\Src\Category\Model\Category;
 use Devoogle\Src\Lang\Model\Lang;
+use Devoogle\Src\Tag\Model\Tag;
 use Devoogle\Src\User\Model\User;
 use Devoogle\Src\Version\Model\Version;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\Tags\HasTags;
 
 class Resource extends Model
@@ -38,50 +36,60 @@ class Resource extends Model
 
     protected $dates = ['created_at', 'updated_at', 'deleted_at'];
 
+
     public function user()
     {
         return $this->belongsTo(User::class);
     }
+
 
     public function category()
     {
         return $this->belongsTo(Category::class);
     }
 
+
     public function lang()
     {
         return $this->belongsTo(Lang::class);
     }
+
 
     public function version()
     {
         return $this->hasMany(Version::class);
     }
 
+
     public function favourite()
     {
         return $this->belongsToMany(User::class, 'favourite')->withTimestamps();
     }
+
 
     public function later()
     {
         return $this->belongsToMany(User::class, 'later')->withTimestamps();
     }
 
+
     public function author()
     {
         return $this->tagsWithType(Tag::TYPE_AUTHOR);
     }
+
 
     public function event()
     {
         return $this->tagsWithType(Tag::TYPE_EVENT);
     }
 
+
     public function technology()
     {
         return $this->tagsWithType(Tag::TYPE_TECHNOLOGY);
     }
+
 
     public function tagsWithoutType()
     {
@@ -95,35 +103,42 @@ class Resource extends Model
         });
     }
 
+
     public function userId()
     {
         return $this->attributes['user_id'];
     }
+
 
     public function categoryId()
     {
         return $this->attributes['category_id'];
     }
 
+
     public function langId()
     {
         return $this->attributes['lang_id'];
     }
+
 
     public function id()
     {
         return $this->attributes['id'];
     }
 
+
     public function uuid()
     {
         return $this->attributes['uuid'];
     }
 
+
     public function title()
     {
         return $this->attributes['title'];
     }
+
 
     public function description()
     {
@@ -136,10 +151,12 @@ class Resource extends Model
         return ! empty($this->description());
     }
 
+
     public function url()
     {
         return $this->attributes['url'];
     }
+
 
     /**
      * TODO: update with real validation
@@ -150,20 +167,24 @@ class Resource extends Model
         return ( ! empty($this->title()) AND ! empty($this->url()));
     }
 
+
     public function isReviewed(): bool
     {
         return $this->attributes['reviewed'] ? true : false;
     }
+
 
     public function isOwner(User $user): bool
     {
         return $this->user_id == $user->id();
     }
 
+
     public function canWrite(User $user)
     {
         return (( ! $this->isReviewed() and $this->isOwner($user)) OR isAdmin());
     }
+
 
     public function canCheck()
     {
@@ -181,6 +202,7 @@ class Resource extends Model
     {
         return (bool)$this->later()->wherePivot('user_id', $user->id())->count();
     }
+
 
     public function favouriteCount()
     {

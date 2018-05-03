@@ -1,15 +1,16 @@
 <?php
 
-
 namespace Devoogle\Src\Later\Query;
-
 
 class LaterUserListManager
 {
 
     private $query;
+
     private $user;
+
     private $laters;
+
 
     public function __invoke(LaterUserListQuery $laterUserListQuery)
     {
@@ -32,6 +33,7 @@ class LaterUserListManager
     {
         $this->user = user();
     }
+
 
     private function findresourceLaters()
     {

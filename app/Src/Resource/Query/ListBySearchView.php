@@ -2,7 +2,6 @@
 
 namespace Devoogle\Src\Resource\Query;
 
-
 class ListBySearchView
 {
 
@@ -11,6 +10,7 @@ class ListBySearchView
     private $paginator;
 
     private $searchedText;
+
 
     public function __construct($resources, $paginator, string $searchedText)
     {
@@ -27,10 +27,12 @@ class ListBySearchView
         return $this->resources;
     }
 
+
     public function searchedText(): string
     {
         return $this->searchedText;
     }
+
 
     public function paginator()
     {

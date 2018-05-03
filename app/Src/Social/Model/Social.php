@@ -2,8 +2,8 @@
 
 namespace Devoogle\Src\Social\Model;
 
-use Illuminate\Database\Eloquent\Model;
 use Devoogle\Src\User\Model\User;
+use Illuminate\Database\Eloquent\Model;
 
 class Social extends Model
 {
@@ -20,6 +20,7 @@ class Social extends Model
      * @var string
      */
     protected $table = 'social_logins';
+
 
     public function user()
     {

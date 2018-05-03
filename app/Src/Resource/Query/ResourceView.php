@@ -13,6 +13,7 @@ class ResourceView
 
     private $lang;
 
+
     public function __construct(string $title, string $url, string $category, string $lang)
     {
         $this->title = $title;
@@ -27,15 +28,18 @@ class ResourceView
         return $this->title;
     }
 
+
     public function getUrl()
     {
         return $this->url;
     }
 
+
     public function getCategory()
     {
         return $this->category;
     }
+
 
     public function getLang()
     {

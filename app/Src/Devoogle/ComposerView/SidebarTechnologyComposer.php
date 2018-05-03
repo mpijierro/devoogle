@@ -9,6 +9,7 @@ use Illuminate\View\View;
 
 class SidebarTechnologyComposer
 {
+
     /**
      * @var TagRepositoryRead
      */
@@ -17,6 +18,7 @@ class SidebarTechnologyComposer
     private $view;
 
     private $technologiesTags;
+
 
     public function __construct(TagRepositoryRead $tagRepositoryRead)
     {
@@ -38,15 +40,18 @@ class SidebarTechnologyComposer
 
     }
 
+
     private function initializeView(View $view)
     {
         $this->view = $view;
     }
 
+
     private function obtainTags()
     {
         $this->technologiesTags = $this->tagRepositoryRead->allWithType(Tag::TYPE_TECHNOLOGY)->sortBy('name');
     }
+
 
     private function sendTagsToView()
     {
@@ -65,16 +70,19 @@ class SidebarTechnologyComposer
 
     }
 
+
     private function setTagSelected($value)
     {
 
         $this->view->with('tagSelectedSlug', $value);
     }
 
+
     private function isTagList()
     {
         return Route::currentRouteName() == \Devoogle\Src\Devoogle\Library\Route::ROUTE_NAME_TAG_LIST;
     }
+
 
     private function sendSelectedCategorySlugToView()
     {
@@ -84,6 +92,5 @@ class SidebarTechnologyComposer
         $this->setTagSelected($route->parameter('slug'));
 
     }
-
 
 }

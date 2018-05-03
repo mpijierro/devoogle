@@ -1,16 +1,16 @@
 <?php
 
-
 namespace Devoogle\Src\Devoogle\ComposerView;
-
 
 class MetaHome implements MetaInteface
 {
+
     use Pageable;
 
     protected $title = '';
 
     protected $description = '';
+
 
     public function __construct()
     {
@@ -23,10 +23,12 @@ class MetaHome implements MetaInteface
 
     }
 
+
     private function configTitle()
     {
         $this->title = 'Devoogle - Recursos de programación';
     }
+
 
     private function configDescription()
     {
@@ -39,10 +41,10 @@ class MetaHome implements MetaInteface
         return $this->title;
     }
 
+
     public function description()
     {
         return $this->description;
     }
-
 
 }

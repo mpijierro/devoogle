@@ -2,9 +2,9 @@
 
 namespace Devoogle\Src\Devoogle\ComposerView;
 
+use Devoogle\Src\Category\Repository\CategoryRepositoryRead;
 use Illuminate\Support\Facades\Route;
 use Illuminate\View\View;
-use Devoogle\Src\Category\Repository\CategoryRepositoryRead;
 
 class SidebarCategoryComposer
 {
@@ -13,6 +13,7 @@ class SidebarCategoryComposer
      * @var CategoryRepositoryRead
      */
     private $categoryRepositoryRead;
+
 
     public function __construct(CategoryRepositoryRead $categoryRepositoryRead)
     {
@@ -28,6 +29,7 @@ class SidebarCategoryComposer
         $this->configureCategorySelected($view);
 
     }
+
 
     private function sendCategoriesToView(View $view)
     {
@@ -54,6 +56,7 @@ class SidebarCategoryComposer
         return Route::currentRouteName() == \Devoogle\Src\Devoogle\Library\Route::ROUTE_NAME_CATEGORY_LIST;
     }
 
+
     private function sendSelectedCategorySlugToView(View $view)
     {
 
@@ -63,6 +66,5 @@ class SidebarCategoryComposer
 
 
     }
-
 
 }

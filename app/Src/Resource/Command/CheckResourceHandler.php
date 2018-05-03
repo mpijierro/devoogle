@@ -9,20 +9,24 @@ class CheckResourceHandler
 {
 
     private $resource;
+
     /**
      * @var ResourceRepositoryRead
      */
     private $resourceRepositoryRead;
+
     /**
      * @var ResourceRepositoryWrite
      */
     private $resourceRepositoryWrite;
+
 
     public function __construct(ResourceRepositoryRead $resourceRepositoryRead, ResourceRepositoryWrite $resourceRepositoryWrite)
     {
         $this->resourceRepositoryRead = $resourceRepositoryRead;
         $this->resourceRepositoryWrite = $resourceRepositoryWrite;
     }
+
 
     public function __invoke(CheckResourceCommand $command)
     {
@@ -35,15 +39,18 @@ class CheckResourceHandler
 
     }
 
+
     private function find(string $aUuid)
     {
         $this->resource = $this->resourceRepositoryRead->findByUuid($aUuid);
     }
 
+
     private function check()
     {
         $this->resource->reviewed = true;
     }
+
 
     private function save()
     {

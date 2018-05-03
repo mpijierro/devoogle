@@ -16,15 +16,18 @@ class MostFavouriteListManager
      */
     private $resourceRepositoryRead;
 
+
     public function __construct(ResourceRepositoryRead $resourceRepositoryRead)
     {
         $this->resourceRepositoryRead = $resourceRepositoryRead;
     }
 
+
     public function __invoke()
     {
         $this->findMoreValued();
     }
+
 
     private function findMoreValued()
     {

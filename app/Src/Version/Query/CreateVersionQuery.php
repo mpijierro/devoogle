@@ -7,10 +7,12 @@ class CreateVersionQuery
 
     private $uuid;
 
+
     public function __construct(string $parentUuid)
     {
         $this->uuid = $parentUuid;
     }
+
 
     public function getUuid(): string
     {

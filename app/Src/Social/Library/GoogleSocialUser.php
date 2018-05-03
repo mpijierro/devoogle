@@ -11,10 +11,12 @@ class GoogleSocialUser extends SocialUser
 
     }
 
+
     public function id()
     {
         return $this->getField('id');
     }
+
 
     public function username()
     {
@@ -27,12 +29,14 @@ class GoogleSocialUser extends SocialUser
         return $username;
     }
 
+
     public function name()
     {
         $user = $this->getField('user');
 
         return $user['displayName'];
     }
+
 
     public function firstName()
     {
@@ -42,12 +46,14 @@ class GoogleSocialUser extends SocialUser
         return $name['givenName'];
     }
 
+
     private function obtainNameInfo()
     {
         $user = $this->getField('user');
 
         return $user['name'];
     }
+
 
     public function lastName()
     {
@@ -56,6 +62,7 @@ class GoogleSocialUser extends SocialUser
 
         return $name['familyName'];
     }
+
 
     public function email()
     {

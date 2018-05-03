@@ -2,7 +2,6 @@
 
 namespace Devoogle\Src\Resource\Command;
 
-
 class StoreResourceCommand
 {
 
@@ -61,50 +60,60 @@ class StoreResourceCommand
         return $this->uuid;
     }
 
+
     public function getUserId(): string
     {
         return $this->userId;
     }
+
 
     public function getTitle()
     {
         return $this->title;
     }
 
+
     public function getDescription(): string
     {
         return $this->description;
     }
+
 
     public function getUrl()
     {
         return $this->url;
     }
 
+
     public function getCategoryId()
     {
         return $this->categoryId;
     }
+
 
     public function getLangId()
     {
         return $this->langId;
     }
 
+
     public function getTag(): string
     {
         return $this->tag;
     }
+
 
     public function getAuthor(): string
     {
         return $this->author;
     }
 
+
     public function getEvent(): string
     {
         return $this->event;
     }
+
 
     public function getTechnology(): string
     {

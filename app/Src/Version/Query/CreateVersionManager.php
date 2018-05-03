@@ -2,10 +2,8 @@
 
 namespace Devoogle\Src\Version\Query;
 
-
 use Devoogle\Src\Resource\Repository\ResourceRepositoryRead;
 use Devoogle\Src\Version\Library\FormCreate;
-use Devoogle\Src\Version\Library\FormEdit;
 use Devoogle\Src\Version\Repository\VersionRepositoryRead;
 
 class CreateVersionManager
@@ -15,10 +13,12 @@ class CreateVersionManager
      * @var VersionRepositoryRead
      */
     private $versionRepositoryRead;
+
     /**
      * @var FormCreate
      */
     private $formCreate;
+
     /**
      * @var ResourceRepositoryRead
      */
@@ -30,6 +30,7 @@ class CreateVersionManager
 
     private $resource;
 
+
     public function __construct(FormCreate $formCreate, ResourceRepositoryRead $resourceRepositoryRead, VersionRepositoryRead $versionRepositoryRead)
     {
 
@@ -40,20 +41,24 @@ class CreateVersionManager
         $this->versionRepositoryRead = $versionRepositoryRead;
     }
 
+
     public function formCreate()
     {
         return $this->formCreate;
     }
+
 
     public function versions()
     {
         return $this->versions;
     }
 
+
     public function resource()
     {
         return $this->resource;
     }
+
 
     public function __invoke(CreateVersionQuery $query)
     {
@@ -68,20 +73,24 @@ class CreateVersionManager
 
     }
 
+
     private function initializeQuery(CreateVersionQuery $query)
     {
         $this->query = $query;
     }
+
 
     private function initializeForm()
     {
         ($this->formCreate)($this->query->getUuid());
     }
 
+
     private function findResource()
     {
         $this->resource = $this->resourceRepositoryRead->findByUuid($this->query->getUuid());
     }
+
 
     private function findVersions()
     {

@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Devoogle\Src\Resource\Query;
-
 
 class ListByCategoryQuery
 {
@@ -12,10 +10,12 @@ class ListByCategoryQuery
      */
     private $slug;
 
+
     public function __construct(string $slug)
     {
         $this->slug = $slug;
     }
+
 
     /**
      * @return string
@@ -24,6 +24,5 @@ class ListByCategoryQuery
     {
         return $this->slug;
     }
-
 
 }

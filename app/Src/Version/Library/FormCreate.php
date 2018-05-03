@@ -3,8 +3,8 @@
 namespace Devoogle\Src\Version\Library;
 
 use Devoogle\Src\Category\Repository\CategoryRepositoryRead;
-use Devoogle\Src\Lang\Repository\LangRepositoryRead;
 use Devoogle\Src\Devoogle\Library\Form;
+use Devoogle\Src\Lang\Repository\LangRepositoryRead;
 
 class FormCreate extends Form
 {
@@ -18,13 +18,14 @@ class FormCreate extends Form
 
     /**
      * @param CategoryRepositoryRead $categoryRepository
-     * @param LangRepositoryRead $langRepositor
+     * @param LangRepositoryRead     $langRepositor
      */
     public function __construct(CategoryRepositoryRead $categoryRepository)
     {
         $this->categoryRepository = $categoryRepository;
         $this->categoryOptions = [];
     }
+
 
     public function categoryOptions()
     {
@@ -46,20 +47,24 @@ class FormCreate extends Form
 
     }
 
+
     private function initializeParentUuid(string $parentUuid)
     {
         $this->parentUuid = $parentUuid;
     }
+
 
     protected function configModel()
     {
         $this->model = [];
     }
 
+
     protected function configAction()
     {
         $this->action = route('create-version', $this->parentUuid);
     }
+
 
     private function configCategoryOptions()
     {

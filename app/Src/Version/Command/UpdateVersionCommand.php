@@ -2,7 +2,6 @@
 
 namespace Devoogle\Src\Version\Command;
 
-
 class UpdateVersionCommand
 {
 
@@ -14,6 +13,7 @@ class UpdateVersionCommand
 
     private $comment;
 
+
     public function __construct(string $uuid, string $categoryId, string $url, string $comment)
     {
         $this->uuid = $uuid;
@@ -22,20 +22,24 @@ class UpdateVersionCommand
         $this->comment = $comment;
     }
 
+
     public function getUuid(): string
     {
         return $this->uuid;
     }
+
 
     public function getUrl()
     {
         return $this->url;
     }
 
+
     public function getCategoryId()
     {
         return $this->categoryId;
     }
+
 
     public function getComment(): string
     {

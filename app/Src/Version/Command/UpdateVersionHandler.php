@@ -11,10 +11,12 @@ class UpdateVersionHandler
     private $command;
 
     private $version;
+
     /**
      * @var VersionRepositoryRead
      */
     private $versionRepositoryRead;
+
     /**
      * @var VersionRepositoryWrite
      */
@@ -41,15 +43,18 @@ class UpdateVersionHandler
 
     }
 
+
     private function initializeCommand(UpdateVersionCommand $command)
     {
         $this->command = $command;
     }
 
+
     private function find(string $aUuid)
     {
         $this->version = $this->versionRepositoryRead->findByUuid($aUuid);
     }
+
 
     private function fill()
     {
@@ -60,10 +65,10 @@ class UpdateVersionHandler
 
     }
 
+
     private function update()
     {
         $this->versionRepositoryWrite->save($this->version);
     }
-
 
 }

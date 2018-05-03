@@ -2,7 +2,6 @@
 
 namespace Devoogle\Src\Resource\Library;
 
-
 use Devoogle\Src\Tag\Model\Tag;
 
 trait FormTaggable
@@ -17,6 +16,7 @@ trait FormTaggable
 
         return ((isset($this->model[$field])) and ( ! empty($this->model[$field])));
     }
+
 
     public function populateTagField($field)
     {

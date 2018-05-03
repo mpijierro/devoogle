@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Devoogle\Src\Devoogle\ComposerView;
-
 
 trait Pageable
 {
@@ -14,9 +12,9 @@ trait Pageable
 
             $page = request()->get('page');
 
-            $this->title .= ' - ' . $page;
+            $this->title .= ' - '.$page;
 
-            $this->description .= ' - ' . $page;
+            $this->description .= ' - '.$page;
 
         }
 

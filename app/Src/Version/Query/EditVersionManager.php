@@ -2,7 +2,6 @@
 
 namespace Devoogle\Src\Version\Query;
 
-
 use Devoogle\Src\Resource\Repository\ResourceRepositoryRead;
 use Devoogle\Src\Version\Library\FormEdit;
 use Devoogle\Src\Version\Repository\VersionRepositoryRead;
@@ -22,6 +21,7 @@ class EditVersionManager
      * @var VersionRepositoryRead
      */
     private $versionRepositoryRead;
+
     /**
      * @var ResourceRepositoryRead
      */
@@ -36,20 +36,24 @@ class EditVersionManager
         $this->versionRepositoryRead = $versionRepositoryRead;
     }
 
+
     public function formEdit()
     {
         return $this->formEdit;
     }
+
 
     public function resource()
     {
         return $this->resource;
     }
 
+
     public function version()
     {
         return $this->version;
     }
+
 
     public function versions()
     {
@@ -72,25 +76,30 @@ class EditVersionManager
 
     }
 
+
     private function initializeQuery(EditVersionQuery $query)
     {
         $this->query = $query;
     }
+
 
     private function initializeForm()
     {
         ($this->formEdit)($this->query->getUuid());
     }
 
+
     private function findVersion(string $uuid)
     {
         $this->version = $this->versionRepositoryRead->findByUuid($uuid);
     }
 
+
     private function findResource()
     {
         $this->resource = $this->version->resource;
     }
+
 
     private function findVersions()
     {

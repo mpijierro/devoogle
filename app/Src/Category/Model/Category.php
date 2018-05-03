@@ -2,8 +2,8 @@
 
 namespace Devoogle\Src\Category\Model;
 
-use Illuminate\Database\Eloquent\Model;
 use Devoogle\Src\Resource\Model\Resource;
+use Illuminate\Database\Eloquent\Model;
 
 class Category extends Model
 {
@@ -14,30 +14,36 @@ class Category extends Model
 
     protected $fillable = ['name', 'slug', 'description'];
 
+
     public function resource()
     {
         return $this->hasMany(Resource::class);
     }
+
 
     public function id()
     {
         return $this->attributes['id'];
     }
 
+
     public function name()
     {
         return $this->attributes['name'];
     }
+
 
     public function slug()
     {
         return $this->attributes['slug'];
     }
 
+
     public function description()
     {
         return $this->attributes['description'];
     }
+
 
     public function hasSlug(string $otherSlug)
     {

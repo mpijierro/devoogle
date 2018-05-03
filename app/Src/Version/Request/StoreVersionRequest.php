@@ -9,6 +9,7 @@ class StoreVersionRequest extends FormRequest
 
     use VersionRules;
 
+
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -24,6 +25,7 @@ class StoreVersionRequest extends FormRequest
     {
         return $this->commonMessages();
     }
+
 
     /**
      * Get the validation rules that apply to the request.

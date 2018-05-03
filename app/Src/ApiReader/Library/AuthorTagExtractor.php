@@ -2,7 +2,6 @@
 
 namespace Devoogle\Src\ApiReader\Library;
 
-
 class AuthorTagExtractor extends TagExtractor
 {
 
@@ -12,13 +11,13 @@ class AuthorTagExtractor extends TagExtractor
         'Carlos Blé',
         'Carlos Buenosvinos',
         'Dani Latorre',
-        'David Bonilla' => [
+        'David Bonilla'    => [
             '@david_bonilla'
         ],
-        'Eduardo Ferro' => [
+        'Eduardo Ferro'    => [
             '@eferro'
         ],
-        'Fina Pérez' => [
+        'Fina Pérez'       => [
             '@finuka'
         ],
         'Israel Alcázar',
@@ -26,19 +25,19 @@ class AuthorTagExtractor extends TagExtractor
         'Javi Santana',
         'Javier Garzas',
         'Jerónimo Palacios',
-        'JORGE BARROSO' => [
+        'JORGE BARROSO'    => [
             '@flipper83'
         ],
         'Jose Manuel Beas',
-        'Kini' => [
+        'Kini'             => [
             'Engelmo',
             '@kinisoftware'
 
         ],
-        'Laura Morillo' => [
+        'Laura Morillo'    => [
             '@Laura_Morillo'
         ],
-        'Luis Artola' => [
+        'Luis Artola'      => [
             '@artolamol'
         ],
         'Luis Ruiz Pavón',
@@ -46,12 +45,12 @@ class AuthorTagExtractor extends TagExtractor
             '@msanjuan'
         ],
         'Nestor Salceda',
-        'Rafa Gómez' => [
+        'Rafa Gómez'       => [
             '@rafaoe'
         ],
         'Roberto Canales Mora',
         'Xavi Gost',
-        'Vicenç García' => [
+        'Vicenç García'    => [
             '@vgaltes'
         ]
     ];

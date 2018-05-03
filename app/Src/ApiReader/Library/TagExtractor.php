@@ -18,6 +18,7 @@ abstract class TagExtractor
 
     protected $tagsFounded = [];
 
+
     public function __invoke(Collection $texts)
     {
 
@@ -27,6 +28,7 @@ abstract class TagExtractor
             $this->processText($text);
         });
     }
+
 
     private function processText($text)
     {
@@ -61,16 +63,18 @@ abstract class TagExtractor
         }
     }
 
+
     private function hasSynonym($tag)
     {
         return is_array($tag);
     }
 
+
     /**
      * Search synonyms in text. If one exists, assign as found the original tag.
      *
      * @param string $originTag
-     * @param array $synonyms
+     * @param array  $synonyms
      * @param string $text
      */
     private function processSynonyms(string $originTag, array $synonyms, string $text)
@@ -90,34 +94,38 @@ abstract class TagExtractor
 
     }
 
+
     private function isTagFounded(string $tag)
     {
         return array_search($tag, $this->tagsFounded);
     }
 
+
     private function tagExistInText($tag, $text)
     {
 
-        $pattern = '/' . mb_strtolower(trim($tag)) . '/';
+        $pattern = '/'.mb_strtolower(trim($tag)).'/';
 
         return preg_match($pattern, mb_strtolower($text), $matches);
 
     }
+
 
     private function addFoundTag(string $tag)
     {
         $this->tagsFounded[] = $tag;
     }
 
+
     public function tagFound()
     {
         return implode(',', $this->tagsFounded);
     }
 
+
     public function isTagFound()
     {
         return count($this->tagsFounded);
     }
-
 
 }

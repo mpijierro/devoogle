@@ -1,15 +1,16 @@
 <?php
 
-
 namespace Devoogle\Src\Profile\Query;
-
 
 class AddedUserListManager
 {
 
     private $query;
+
     private $user;
+
     private $resources;
+
 
     public function __invoke(AddedUserListQuery $addedUserListQuery)
     {
@@ -32,6 +33,7 @@ class AddedUserListManager
     {
         $this->user = user();
     }
+
 
     private function findAddedResources()
     {

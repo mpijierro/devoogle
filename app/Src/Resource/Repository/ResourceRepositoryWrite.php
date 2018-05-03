@@ -5,7 +5,6 @@ namespace Devoogle\Src\Resource\Repository;
 use Devoogle\Src\Resource\Model\Resource;
 use Symfony\Component\Routing\Exception\InvalidParameterException;
 
-
 class ResourceRepositoryWrite
 {
 
@@ -20,6 +19,7 @@ class ResourceRepositoryWrite
 
     }
 
+
     public function delete(Resource $resource)
     {
         $resource->delete();
@@ -30,6 +30,5 @@ class ResourceRepositoryWrite
     {
         $resource->forceDelete();
     }
-
 
 }

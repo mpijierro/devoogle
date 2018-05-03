@@ -2,9 +2,9 @@
 
 namespace Devoogle\Src\Devoogle\Library;
 
-
 class Route
 {
+
     const ROUTE_NAME_HOME = 'home';
 
     const ROUTE_NAME_SEARCH = 'search-resource-get';

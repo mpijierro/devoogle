@@ -4,6 +4,7 @@ namespace Devoogle\Src\Tag\Model;
 
 class Tag
 {
+
     const TYPE_AUTHOR = 'author';
 
     const TYPE_EVENT = 'event';
@@ -11,6 +12,7 @@ class Tag
     const TYPE_TECHNOLOGY = 'technology';
 
     const TYPE_COMMON = 'tag';
+
 
     public static function sanitizeFromInput(string $input)
     {
@@ -20,7 +22,5 @@ class Tag
         return preg_replace('/( ){2,}/u', ' ', $sanitizeInput);
 
     }
-
-
 
 }

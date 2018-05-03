@@ -3,9 +3,8 @@
 namespace Devoogle\Src\Version\Command;
 
 use Devoogle\Src\Resource\Repository\ResourceRepositoryRead;
-use Devoogle\Src\Version\Repository\VersionRepositoryWrite;
 use Devoogle\Src\Version\Model\Version;
-
+use Devoogle\Src\Version\Repository\VersionRepositoryWrite;
 
 class StoreVersionHandler
 {
@@ -15,14 +14,17 @@ class StoreVersionHandler
     private $parentResource;
 
     private $version;
+
     /**
      * @var VersionRepositoryWrite
      */
     private $versionRepositoryWrite;
+
     /**
      * @var ResourceRepositoryRead
      */
     private $resourceRepository;
+
 
     public function __construct(VersionRepositoryWrite $versionRepositoryWrite, ResourceRepositoryRead $resourceRepository)
     {
@@ -45,15 +47,18 @@ class StoreVersionHandler
 
     }
 
+
     private function initializeCommand(StoreVersionCommand $command)
     {
         $this->command = $command;
     }
 
+
     private function findParentResource()
     {
         $this->parentResource = $this->resourceRepository->findByUuid($this->command->getParentUuid());
     }
+
 
     private function fill()
     {
@@ -66,10 +71,10 @@ class StoreVersionHandler
         $this->version->comment = $this->command->getComment();
     }
 
+
     private function create()
     {
         $this->versionRepositoryWrite->save($this->version);
     }
-
 
 }

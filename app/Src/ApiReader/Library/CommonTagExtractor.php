@@ -2,7 +2,6 @@
 
 namespace Devoogle\Src\ApiReader\Library;
 
-
 class CommonTagExtractor extends TagExtractor
 {
 
@@ -13,7 +12,7 @@ class CommonTagExtractor extends TagExtractor
             'Hablamos con '
         ],
         'Kanban',
-        'Lean' => [
+        'Lean'       => [
             'Lean Manufacturing',
             'Lean Startup'
         ],

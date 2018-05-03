@@ -9,10 +9,12 @@ class UserRepository
 
     private $user;
 
+
     public function __construct(User $user)
     {
         $this->user = $user;
     }
+
 
     public function findByEmail(string $email)
     {
@@ -25,10 +27,10 @@ class UserRepository
         return $this->user->findOrFail($id);
     }
 
+
     public function findAdmin()
     {
         return $this->user->where('is_admin', true)->first();
     }
-
 
 }

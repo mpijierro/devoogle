@@ -11,22 +11,30 @@ abstract class SocialUser
 
     protected $data = [];
 
+
     public function __construct($data)
     {
         $this->data = $data;
     }
 
+
     abstract public function id();
+
 
     abstract public function username();
 
+
     abstract public function name();
+
 
     abstract public function firstName();
 
+
     abstract public function lastName();
 
+
     abstract public function email();
+
 
     protected function getField($field)
     {

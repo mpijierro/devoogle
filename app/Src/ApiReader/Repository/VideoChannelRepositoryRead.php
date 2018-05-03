@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Devoogle\Src\ApiReader\VideoChannel\Repository;
 
 use Devoogle\Src\ApiReader\VideoChannel\Model\VideoChannel;

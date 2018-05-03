@@ -2,8 +2,8 @@
 
 namespace Devoogle\Src\Lang\Model;
 
-use Illuminate\Database\Eloquent\Model;
 use Devoogle\Src\Resource\Model\Resource;
+use Illuminate\Database\Eloquent\Model;
 
 class Lang extends Model
 {
@@ -17,20 +17,24 @@ class Lang extends Model
         'code'
     ];
 
+
     public function resource()
     {
         return $this->hasMany(Resource::class);
     }
+
 
     public function id()
     {
         return $this->attributes['id'];
     }
 
+
     public function name()
     {
         return $this->attributes['name'];
     }
+
 
     public function code()
     {

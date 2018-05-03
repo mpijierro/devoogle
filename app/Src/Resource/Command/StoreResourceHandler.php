@@ -6,7 +6,6 @@ use Devoogle\Src\Resource\Model\Resource;
 use Devoogle\Src\Resource\Model\Taggable;
 use Devoogle\Src\Resource\Repository\ResourceRepositoryWrite;
 
-
 class StoreResourceHandler
 {
 
@@ -15,6 +14,7 @@ class StoreResourceHandler
     private $command;
 
     private $resource;
+
     /**
      * @var ResourceRepositoryWrite
      */
@@ -47,6 +47,7 @@ class StoreResourceHandler
 
     }
 
+
     private function initializeCommand(StoreResourceCommand $command)
     {
         $this->command = $command;
@@ -62,40 +63,46 @@ class StoreResourceHandler
         $this->resource->title = $this->command->getTitle();
         $this->resource->description = trim($this->command->getDescription());
         $this->resource->url = trim($this->command->getUrl());
-        $this->resource->slug = $this->obtainSlug($this->command);
+        $this->resource->slug = $this->obtainSlug();
         $this->resource->category_id = $this->command->getCategoryId();
         $this->resource->lang_id = $this->command->getLangId();
 
     }
+
 
     private function create()
     {
         $this->resourceRepositoryWrite->save($this->resource);
     }
 
+
     private function attachAuthorTags()
     {
         $this->attachTagsWithAuthor($this->resource, $this->command->getAuthor());
     }
+
 
     private function attachEventTags()
     {
         $this->attachTagsWithEvent($this->resource, $this->command->getEvent());
     }
 
+
     private function attachTechnologyTags()
     {
         $this->attachTagsWithTechnology($this->resource, $this->command->getTechnology());
     }
+
 
     private function attachResourceTags()
     {
         $this->attachTags($this->resource, $this->command->getTag());
     }
 
+
     private function obtainSlug()
     {
-        return str_slug($this->command->getTitle()) . '-' . strtolower(str_random(Resource::LONG_RANDOM_STRING_IN_SLUG));
+        return str_slug($this->command->getTitle()).'-'.strtolower(str_random(Resource::LONG_RANDOM_STRING_IN_SLUG));
     }
 
 }

@@ -3,7 +3,6 @@
 namespace Devoogle\Src\Devoogle\ComposerView;
 
 use Illuminate\View\View;
-use Illuminate\Support\Facades\Route;
 
 class MetasComposer
 {
@@ -13,10 +12,12 @@ class MetasComposer
      */
     private $metaFactory;
 
+
     public function __construct(MetaFactory $metaFactory)
     {
         $this->metaFactory = $metaFactory;
     }
+
 
     public function compose(View $view)
     {

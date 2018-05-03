@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Devoogle\Src\Devoogle\ComposerView;
-
 
 use Devoogle\Src\Category\Repository\CategoryRepositoryRead;
 
@@ -12,12 +10,16 @@ class MetaCategoryList implements MetaInteface
     use Pageable;
 
     protected $title = '';
+
     protected $description = '';
+
     private $category;
+
     /**
      * @var CategoryRepositoryRead
      */
     private $categoryRepositoryRead;
+
 
     public function __construct(CategoryRepositoryRead $categoryRepositoryRead)
     {
@@ -34,6 +36,7 @@ class MetaCategoryList implements MetaInteface
 
     }
 
+
     private function findCategory()
     {
 
@@ -45,18 +48,21 @@ class MetaCategoryList implements MetaInteface
 
     private function configTitle()
     {
-        $this->title = $this->category->name() . ' de programación';
+        $this->title = $this->category->name().' de programación';
     }
+
 
     private function configDescription()
     {
-        $this->description = $this->category->name() . ' de programación y desarrollo de software, vídeos de programación y desarrollo de software en formato ' . $this->category->name();
+        $this->description = $this->category->name().' de programación y desarrollo de software, vídeos de programación y desarrollo de software en formato '.$this->category->name();
     }
+
 
     public function title()
     {
         return $this->title;
     }
+
 
     public function description()
     {

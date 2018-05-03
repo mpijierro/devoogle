@@ -17,20 +17,24 @@ class VideoChannel extends Model
         'name'
     ];
 
+
     public function platform()
     {
         return $this->belongsTo(Platform::class);
     }
+
 
     public function slugId()
     {
         return $this->attributes['slug_id'];
     }
 
+
     public function slugName()
     {
         return $this->attributes['slug_name'];
     }
+
 
     public function name()
     {

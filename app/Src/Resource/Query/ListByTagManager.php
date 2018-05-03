@@ -48,15 +48,18 @@ class ListByTagManager
 
     }
 
+
     private function initializeQuery(ListByTagQuery $query)
     {
         $this->query = $query;
     }
 
+
     private function findTag()
     {
         $this->tag = $this->tagRepository->findBySlugOrFail($this->query->getSlug());
     }
+
 
     private function search()
     {

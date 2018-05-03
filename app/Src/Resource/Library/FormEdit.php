@@ -3,11 +3,10 @@
 namespace Devoogle\Src\Resource\Library;
 
 use Devoogle\Src\Category\Repository\CategoryRepositoryRead;
-use Devoogle\Src\Lang\Repository\LangRepositoryRead;
 use Devoogle\Src\Devoogle\Library\Form;
+use Devoogle\Src\Lang\Repository\LangRepositoryRead;
 use Devoogle\Src\Resource\Repository\ResourceRepositoryRead;
 use Devoogle\Src\Tag\Model\Tag;
-use Webpatser\Uuid\Uuid;
 
 class FormEdit extends Form
 {
@@ -15,28 +14,34 @@ class FormEdit extends Form
     use FormTaggable;
 
     private $resource;
+
     private $categoryOptions;
+
     private $langOptions;
 
     private $categoryIdSelected;
+
     private $langIdSelected;
 
     /**
      * @var CategoryRepositoryRead
      */
     private $categoryRepository;
+
     /**
      * @var LangRepositoryRead
      */
     private $langRepository;
+
     /**
      * @var ResourceRepositoryRead
      */
     private $resourceRepository;
 
+
     /**
      * @param CategoryRepositoryRead $categoryRepository
-     * @param LangRepositoryRead $langRepository
+     * @param LangRepositoryRead     $langRepository
      */
     public function __construct(ResourceRepositoryRead $resourceRepository, CategoryRepositoryRead $categoryRepository, LangRepositoryRead $langRepository)
     {
@@ -47,6 +52,7 @@ class FormEdit extends Form
         $this->categoryIdSelected = 0;
         $this->langIdSelected = 0;
     }
+
 
     public function __invoke(string $uuid)
     {
@@ -63,25 +69,30 @@ class FormEdit extends Form
 
     }
 
+
     public function model()
     {
         return $this->model;
     }
+
 
     public function categoryOptions()
     {
         return $this->categoryOptions;
     }
 
+
     public function langOptions()
     {
         return $this->langOptions;
     }
 
+
     public function giveCategoryIdSelected()
     {
         return $this->categoryIdSelected;
     }
+
 
     public function giveLangIdSelected()
     {
@@ -109,31 +120,37 @@ class FormEdit extends Form
 
     }
 
+
     private function configCommonTagModel()
     {
         $this->model[Tag::TYPE_COMMON] = $this->resource->tagsWithType(null)->implode('name', ', ');
     }
+
 
     private function configAuthorTagModel()
     {
         $this->model[Tag::TYPE_AUTHOR] = $this->resource->tagsWithType(Tag::TYPE_AUTHOR)->implode('name', ', ');
     }
 
+
     private function configEventTagModel()
     {
         $this->model[Tag::TYPE_EVENT] = $this->resource->tagsWithType(Tag::TYPE_EVENT)->implode('name', ', ');
     }
+
 
     private function configTechnologyTagModel()
     {
         $this->model[Tag::TYPE_TECHNOLOGY] = $this->resource->tagsWithType(Tag::TYPE_TECHNOLOGY)->implode('name', ', ');
     }
 
+
     private function configOptionsSelected()
     {
         $this->categoryIdSelected = $this->resource->categoryId();
         $this->langIdSelected = $this->resource->langId();
     }
+
 
     private function configDropdownOptions()
     {
@@ -144,15 +161,18 @@ class FormEdit extends Form
 
     }
 
+
     private function configCategoryOptions()
     {
         $this->categoryOptions = $this->categoryRepository->allOrderByName()->pluck('name', 'id');
     }
 
+
     private function configLangOptions()
     {
         $this->langOptions = $this->langRepository->allOrderByName()->pluck('name', 'id');
     }
+
 
     protected function configAction()
     {

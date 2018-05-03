@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Devoogle\Src\Tag\Query;
-
 
 class SearchTagQuery
 {
@@ -10,6 +8,7 @@ class SearchTagQuery
     private $search;
 
     private $type;
+
 
     public function __construct(string $search, string $type = null)
     {

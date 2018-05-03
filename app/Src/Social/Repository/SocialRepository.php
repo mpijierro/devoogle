@@ -6,15 +6,18 @@ use Devoogle\Src\Social\Model\Social;
 
 class SocialRepository
 {
+
     /**
      * @var \Devoogle\Src\Social\Model\Social
      */
     private $social;
 
+
     public function __construct(Social $social)
     {
         $this->social = $social;
     }
+
 
     public function findBySocialIdAndProvider($socialId, $provider)
     {

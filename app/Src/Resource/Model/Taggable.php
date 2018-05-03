@@ -9,6 +9,7 @@ trait Taggable
 
     private $tagsInArray = [];
 
+
     protected function attachTags(Resource $resource, string $tags)
     {
 
@@ -18,6 +19,7 @@ trait Taggable
             $resource->attachTag($tag);
         }
     }
+
 
     protected function attachTagsWithAuthor(Resource $resource, string $tags)
     {
@@ -33,6 +35,7 @@ trait Taggable
 
     }
 
+
     protected function attachTagsWithEvent(Resource $resource, string $tags)
     {
 
@@ -46,6 +49,7 @@ trait Taggable
         }
     }
 
+
     protected function attachTagsWithTechnology(Resource $resource, string $tags)
     {
 
@@ -58,6 +62,7 @@ trait Taggable
             $resource->attachTag($tagWithType);
         }
     }
+
 
     //sync
 
@@ -80,6 +85,7 @@ trait Taggable
 
     }
 
+
     protected function syncTagsEvent(Resource $resource, string $tags)
     {
 
@@ -88,6 +94,7 @@ trait Taggable
         $resource->syncTagsWithType($this->tagsInArray, Tag::TYPE_EVENT);
 
     }
+
 
     protected function syncTagsTechnology(Resource $resource, string $tags)
     {
@@ -98,20 +105,24 @@ trait Taggable
 
     }
 
+
     private function createTagWithTypeAuthor(string $tag)
     {
         return \Spatie\Tags\Tag::findOrCreate($tag, Tag::TYPE_AUTHOR);
     }
+
 
     private function createTagWithTypeEvent(string $tag)
     {
         return \Spatie\Tags\Tag::findOrCreate($tag, Tag::TYPE_EVENT);
     }
 
+
     private function createTagWithTypeTechnology(string $tag)
     {
         return \Spatie\Tags\Tag::findOrCreate($tag, Tag::TYPE_TECHNOLOGY);
     }
+
 
     private function fillTagsArray(string $tags)
     {

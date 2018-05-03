@@ -15,14 +15,16 @@ abstract class Form
         return $this->model;
     }
 
+
     public function action()
     {
         return $this->action;
     }
 
+
     abstract protected function configModel();
 
-    abstract protected function configAction();
 
+    abstract protected function configAction();
 
 }

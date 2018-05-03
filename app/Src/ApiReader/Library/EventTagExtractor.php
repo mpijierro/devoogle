@@ -2,7 +2,6 @@
 
 namespace Devoogle\Src\ApiReader\Library;
 
-
 class EventTagExtractor extends TagExtractor
 {
 

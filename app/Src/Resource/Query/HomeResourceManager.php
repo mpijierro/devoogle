@@ -14,6 +14,7 @@ class HomeResourceManager
 
     private $resources;
 
+
     public function __construct(ResourceRepositoryRead $resourceRepository)
     {
         $this->resourceRepository = $resourceRepository;
@@ -25,6 +26,7 @@ class HomeResourceManager
         return $this->resources;
     }
 
+
     public function __invoke()
     {
 
@@ -35,6 +37,7 @@ class HomeResourceManager
         $this->checkPageInRange();
 
     }
+
 
     private function search()
     {

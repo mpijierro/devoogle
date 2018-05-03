@@ -2,7 +2,6 @@
 
 namespace Devoogle\Src\Favourite\Command;
 
-
 class ToggleFavouriteCommand
 {
 
@@ -10,12 +9,14 @@ class ToggleFavouriteCommand
 
     private $userId;
 
+
     public function __construct(string $uuid, int $userId)
     {
         $this->uuid = $uuid;
 
         $this->userId = $userId;
     }
+
 
     public function getUuid(): string
     {

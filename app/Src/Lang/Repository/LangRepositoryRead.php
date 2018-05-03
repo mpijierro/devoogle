@@ -12,6 +12,7 @@ class LangRepositoryRead
         return Lang::find($aLangId);
     }
 
+
     public function allOrderByName()
     {
         return Lang::orderBy('name', 'asc')->get();

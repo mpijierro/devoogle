@@ -2,8 +2,6 @@
 
 namespace Devoogle\Src\Resource\Library;
 
-use Devoogle\Src\Category\Repository\CategoryRepositoryRead;
-use Devoogle\Src\Lang\Repository\LangRepositoryRead;
 use Devoogle\Src\Devoogle\Library\Form;
 
 class FormSearch extends Form
@@ -18,10 +16,12 @@ class FormSearch extends Form
 
     }
 
+
     protected function configModel()
     {
         $this->model = [];
     }
+
 
     protected function configAction()
     {

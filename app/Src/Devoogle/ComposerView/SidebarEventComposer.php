@@ -9,6 +9,7 @@ use Illuminate\View\View;
 
 class SidebarEventComposer
 {
+
     /**
      * @var TagRepositoryRead
      */
@@ -17,6 +18,7 @@ class SidebarEventComposer
     private $view;
 
     private $eventsTags;
+
 
     public function __construct(TagRepositoryRead $tagRepositoryRead)
     {
@@ -38,15 +40,18 @@ class SidebarEventComposer
 
     }
 
+
     private function initializeView(View $view)
     {
         $this->view = $view;
     }
 
+
     private function obtainEventTags()
     {
         $this->eventsTags = $this->tagRepositoryRead->allWithType(Tag::TYPE_EVENT)->sortBy('name');;
     }
+
 
     private function sendTagsToView()
     {
@@ -65,16 +70,19 @@ class SidebarEventComposer
 
     }
 
+
     private function setTagSelected($value)
     {
 
         $this->view->with('tagSelectedSlug', $value);
     }
 
+
     private function isTagList()
     {
         return Route::currentRouteName() == \Devoogle\Src\Devoogle\Library\Route::ROUTE_NAME_TAG_LIST;
     }
+
 
     private function sendSelectedCategorySlugToView()
     {
@@ -84,6 +92,5 @@ class SidebarEventComposer
         $this->setTagSelected($route->parameter('slug'));
 
     }
-
 
 }
