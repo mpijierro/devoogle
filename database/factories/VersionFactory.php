@@ -13,15 +13,17 @@ use Faker\Generator as Faker;
 |
 */
 
-$factory->define(\Devoogle\Src\Category\Model\Category::class, function (Faker $faker) {
-
-    $name = $faker->sentence(4);
+$factory->define(\Devoogle\Src\Version\Model\Version::class, function (Faker $faker) {
 
     return [
-        'name' => $name,
-        'slug' => str_slug($name),
-        'description' => $faker->paragraph(10),
+        'uuid' => $faker->uuid,
+        'user_id' => factory(\Devoogle\Src\User\Model\User::class),
+        'resource_id' => factory(\Devoogle\Src\Resource\Model\Resource::class),
+        'category_id' => factory(\Devoogle\Src\Category\Model\Category::class),
+        'url' => $faker->url,
+        'comment' => $faker->sentence(10),
         'created_at' => new DateTime(),
         'updated_at' => new DateTime()
     ];
 });
+

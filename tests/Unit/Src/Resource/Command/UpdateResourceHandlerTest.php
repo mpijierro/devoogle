@@ -10,20 +10,17 @@ use Devoogle\Src\Resource\Command\UpdateResourceCommand;
 use Devoogle\Src\Resource\Command\UpdateResourceHandler;
 use Devoogle\Src\Resource\Model\Resource;
 use Devoogle\Src\User\Model\User;
-use Illuminate\Support\Facades\DB;
-use Spatie\Tags\Tag;
 use Tests\TestCase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Webpatser\Uuid\Uuid;
 
 class UpdateResourceHandlerTest extends TestCase
 {
 
+    use RefreshDatabase;
+
     public function testResourceUpdatedSuccessfully()
     {
-
-        DB::beginTransaction();
 
         $uuid = Uuid::generate();
         $category = factory(Category::class)->create();
@@ -74,9 +71,6 @@ class UpdateResourceHandlerTest extends TestCase
 
         $otherUser = factory(User::class)->create();
         $this->assertFalse($resource->isOwner($otherUser));
-
-
-        DB::rollback();
 
     }
 }

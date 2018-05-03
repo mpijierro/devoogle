@@ -9,17 +9,17 @@ use Devoogle\Src\Resource\Command\CheckResourceHandler;
 use Devoogle\Src\Resource\Command\StoreResourceCommand;
 use Devoogle\Src\Resource\Command\StoreResourceHandler;
 use Devoogle\Src\Resource\Model\Resource;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\DB;
 use Tests\TestCase;
 use Webpatser\Uuid\Uuid;
 
 class CheckResourceHandlerTest extends TestCase
 {
+    use RefreshDatabase;
 
     public function testCheckResourceSuccessfully()
     {
-
-        DB::beginTransaction();
 
         $uuid = Uuid::generate();
         $category = factory(Category::class)->create();
@@ -43,7 +43,6 @@ class CheckResourceHandlerTest extends TestCase
         $resource = Resource::where('uuid', $uuid)->first();
         $this->assertTrue($resource->isReviewed());
 
-        DB::rollback();
 
     }
 }

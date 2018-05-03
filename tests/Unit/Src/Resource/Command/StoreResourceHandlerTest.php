@@ -8,25 +8,17 @@ use Devoogle\Src\Resource\Command\StoreResourceCommand;
 use Devoogle\Src\Resource\Command\StoreResourceHandler;
 use Devoogle\Src\Resource\Model\Resource;
 use Devoogle\Src\User\Model\User;
-use Illuminate\Support\Facades\DB;
-use Spatie\Tags\Tag;
-use Tests\TestCase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 use Webpatser\Uuid\Uuid;
 
 class StoreResourceHandlerTest extends TestCase
 {
 
-    /**
-     * A basic test example.
-     *
-     * @return void
-     */
+    use RefreshDatabase;
+
     public function testResourceCreatedSuccessfully()
     {
-
-        DB::beginTransaction();
 
         $uuid = Uuid::generate();
         $category = factory(Category::class)->create();
@@ -70,8 +62,6 @@ class StoreResourceHandlerTest extends TestCase
         $otherUser = factory(User::class)->create();
         $this->assertFalse($resource->isOwner($otherUser));
 
-
-        DB::rollback();
 
     }
 }
