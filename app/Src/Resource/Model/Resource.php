@@ -170,14 +170,10 @@ class Resource extends Model
         return (isAdmin() and ! $this->isReviewed());
     }
 
-    public function isFavourite()
+
+    public function isFavourite(User $user)
     {
-
-        if ( ! isLogged()) {
-            return false;
-        }
-
-        return $this->favourite()->wherePivot('user_id', user()->id)->count();
+        return (bool)$this->favourite()->wherePivot('user_id', $user->id())->count();
     }
 
     public function isLater()

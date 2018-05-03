@@ -7,7 +7,7 @@
 
             @if (isLogged())
                 <a href="{!! route('toggle-favourite', $resource->uuid()) !!}">
-                    @if($resource->isFavourite())
+                    @if($resource->isFavourite(user()))
                         <i class="fa fa-heart fa-sm red" aria-hidden="true" title="Desmarcar como favorito"></i>
                     @else
                         <i class="fa fa-heart fa-sm gray" aria-hidden="true" title="Marcar como favorito"></i>
