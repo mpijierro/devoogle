@@ -171,14 +171,15 @@ class Resource extends Model
     }
 
 
-    public function isFavourite(User $user)
+    public function isFavourite(User $user): bool
     {
         return (bool)$this->favourite()->wherePivot('user_id', $user->id())->count();
     }
 
-    public function isLater()
+
+    public function isLater(User $user): bool
     {
-        return $this->later()->count();
+        return (bool)$this->later()->wherePivot('user_id', $user->id())->count();
     }
 
     public function favouriteCount()

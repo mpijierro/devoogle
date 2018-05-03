@@ -15,7 +15,7 @@
                 </a>&nbsp;
                 &nbsp;
                 <a href="{!! route('toggle-later', $resource->uuid()) !!}">
-                    @if ($resource->isLater())
+                    @if ($resource->isLater(user()))
                         <i class="fa fa-clock-o fa-sm orange" aria-hidden="true" title="Desmarcar para ver después"></i>
                     @else
                         <i class="fa fa-clock-o fa-sm gray" aria-hidden="true" title="Marcar para ver después"></i>

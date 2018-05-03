@@ -6,18 +6,20 @@ use Devoogle\Src\Category\Model\Category;
 use Devoogle\Src\Favourite\Command\ToggleFavouriteCommand;
 use Devoogle\Src\Favourite\Command\ToggleFavouriteHandler;
 use Devoogle\Src\Lang\Model\Lang;
+use Devoogle\Src\Later\Command\ToggleLaterCommand;
+use Devoogle\Src\Later\Command\ToggleLaterHandler;
 use Devoogle\Src\Resource\Model\Resource;
 use Devoogle\Src\User\Model\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
-class ToogleFavouriteHanderTest extends TestCase
+class ToggleLaterHanderTest extends TestCase
 {
 
     use RefreshDatabase;
 
 
-    public function testSetupResourceAsFavourite()
+    public function testSetupResourceAsLater()
     {
 
         $user = factory(User::class)->create();
@@ -32,18 +34,18 @@ class ToogleFavouriteHanderTest extends TestCase
 
         $otherUser = factory(User::class)->create();
 
-        $this->assertFalse($resource->isFavourite($otherUser));
+        $this->assertFalse($resource->isLater($otherUser));
 
-        $command = new ToggleFavouriteCommand($resource->uuid(), $otherUser->id());
-        $handler = app(ToggleFavouriteHandler::class);
+        $command = new ToggleLaterCommand($resource->uuid(), $otherUser->id());
+        $handler = app(ToggleLaterHandler::class);
         $handler($command);
 
-        $this->assertTrue($resource->isFavourite($otherUser));
+        $this->assertTrue($resource->isLater($otherUser));
 
     }
 
 
-    public function testSetupResourceAsNotFavourite()
+    public function testSetupResourceAsNotLater()
     {
 
         $user = factory(User::class)->create();
@@ -58,16 +60,14 @@ class ToogleFavouriteHanderTest extends TestCase
 
         $otherUser = factory(User::class)->create();
 
-        $this->assertFalse($resource->isFavourite($otherUser));
+        $this->assertFalse($resource->isLater($otherUser));
 
-        $command = new ToggleFavouriteCommand($resource->uuid(), $user->id());
-        $handler = app(ToggleFavouriteHandler::class);
+        $command = new ToggleLaterCommand($resource->uuid(), $user->id());
+        $handler = app(ToggleLaterHandler::class);
         $handler($command);
 
-        $this->assertFalse($resource->isFavourite($otherUser));
+        $this->assertFalse($resource->isLater($otherUser));
 
     }
-
-
 
 }

@@ -20,8 +20,6 @@ class UserListLaterController
         view()->share('view', $manager);
         view()->share('resources', $manager->laters());
 
-        //view()->share('paginator', $view->laters()->links());
-
         return view('resource.list_user_later');
 
     }
