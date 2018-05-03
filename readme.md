@@ -1,10 +1,20 @@
 
 ## Devoogle
 
-Devoogle es una librería multimedia para gestionar y organizar recursos de programación
-
+Devoogle es una librería multimedia para gestionar y organizar recursos de programación.
 
 Actualmente está en construcción...
+
+## Motivación
+
+
+## Detalles de implementación
+
+
+## Funcionamiento
+
+
+## Testing
 
 
 ## Contributing
