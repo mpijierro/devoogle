@@ -9,10 +9,14 @@ use Devoogle\Src\Resource\Command\DeleteResourceHandler;
 use Devoogle\Src\Resource\Command\DestroyResourceCommand;
 use Devoogle\Src\Resource\Command\DestroyResourceHandler;
 use Devoogle\Src\Resource\Model\Resource;
+use Devoogle\Src\Resource\Model\Taggable;
+use Devoogle\Src\Tag\Model\Tag;
 use Devoogle\Src\User\Model\User;
 use Devoogle\Src\Version\Model\Version;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\DB;
 use Tests\TestCase;
+use Faker\Generator as Faker;
 
 class DestroyResourceHandlerTest extends TestCase
 {
@@ -21,7 +25,6 @@ class DestroyResourceHandlerTest extends TestCase
 
     public function testDestroyResourceSuccessfully()
     {
-
         $user = factory(User::class)->create();
         $category = factory(Category::class)->create();
         $lang = factory(Lang::class)->create();
@@ -39,7 +42,14 @@ class DestroyResourceHandlerTest extends TestCase
         ]);
 
 
+        $faker = app(Faker::class);
+
+        $resource->attachTag($faker->word);
+        $resource->attachTag($faker->word);
+        $resource->attachTag($faker->word);
+
         $this->assertEquals(3, $resource->version->count());
+        $this->assertEquals(3, $resource->tagsWithoutType()->count());
 
         $command = new DestroyResourceCommand($resource->uuid());
 
@@ -48,6 +58,9 @@ class DestroyResourceHandlerTest extends TestCase
 
         $resourceTrashed = Resource::withTrashed()->where('uuid', $resource->uuid())->first();
         $this->assertNull($resourceTrashed);
+
+        $this->assertEquals(0, DB::table('taggables')->where('taggable_id', $resource->id())->count());
+
 
     }
 }
