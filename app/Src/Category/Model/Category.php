@@ -45,7 +45,7 @@ class Category extends Model
     }
 
 
-    public function hasSlug(string $otherSlug)
+    public function isSlug(string $otherSlug)
     {
         return $this->slug() == $otherSlug;
     }

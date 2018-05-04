@@ -6,7 +6,7 @@
                 @include ('layouts.icons_category', ['slug' => $category->slug])
                 <a href="{!! route('list-category', $category->slug) !!}"
                    title="Recursos de programación de {!! $category->name() !!}"
-                   class="{!! $category->hasSlug($categorySelectedSlug)?'bold':'' !!} icon-category-sidebar">
+                   class="{!! $category->isSlug($categorySelectedSlug)?'bold':'' !!} icon-category-sidebar">
                     {!! $category->name() !!}s
                 </a>
             </li>
