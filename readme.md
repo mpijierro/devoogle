@@ -13,6 +13,8 @@ Actualmente está en construcción...
 
 ## Funcionamiento
 
+Comando para obtener vídeos: php artisan collect:video youtube
+
 
 ## Testing
 
