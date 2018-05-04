@@ -16,7 +16,7 @@ class UserListAddedController
         $manager($query);
 
         view()->share('view', $manager);
-        view()->share('resources', $manager->addedResources());
+        view()->share('resources', $manager->resources());
 
         //view()->share('paginator', $view->favourites()->links());
 

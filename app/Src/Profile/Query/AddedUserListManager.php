@@ -2,6 +2,14 @@
 
 namespace Devoogle\Src\Profile\Query;
 
+use Devoogle\Src\User\Repository\UserRepository;
+
+/**
+ * Obtain resources add by user
+ *
+ * Class AddedUserListManager
+ * @package Devoogle\Src\Profile\Query
+ */
 class AddedUserListManager
 {
 
@@ -10,6 +18,23 @@ class AddedUserListManager
     private $user;
 
     private $resources;
+
+    /**
+     * @var UserRepository
+     */
+    private $userRepository;
+
+
+    public function __construct(UserRepository $userRepository)
+    {
+        $this->userRepository = $userRepository;
+    }
+
+
+    public function resources()
+    {
+        return $this->resources;
+    }
 
 
     public function __invoke(AddedUserListQuery $addedUserListQuery)
@@ -31,19 +56,13 @@ class AddedUserListManager
 
     private function findUser()
     {
-        $this->user = user();
+        $this->user = $this->userRepository->findByIdOrFail($this->query->getUserId());
     }
 
 
     private function findAddedResources()
     {
         $this->resources = $this->user->resource;
-    }
-
-
-    public function addedResources()
-    {
-        return $this->resources;
     }
 
 }

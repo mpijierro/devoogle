@@ -12,37 +12,36 @@ use Devoogle\Src\Later\Command\ToggleLaterCommand;
 use Devoogle\Src\Later\Command\ToggleLaterHandler;
 use Devoogle\Src\Later\Query\LaterUserListManager;
 use Devoogle\Src\Later\Query\LaterUserListQuery;
+use Devoogle\Src\Profile\Query\AddedUserListManager;
+use Devoogle\Src\Profile\Query\AddedUserListQuery;
 use Devoogle\Src\Resource\Model\Resource;
 use Devoogle\Src\User\Model\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
-class LaterUserListManagerTest extends TestCase
+class AddedUserListManagerTest extends TestCase
 {
 
     use RefreshDatabase;
 
 
-    public function testObtainUserLaterList()
+    public function testObtainResourceUserList()
     {
 
-        $resources = factory(Resource::class, 3)->create();
         $user = factory(User::class)->create();
+        $resources = factory(Resource::class, 3)->create([
+            'user_id' => $user->id()
+        ]);
 
-        $command = new ToggleLaterCommand($resources->first()->uuid(), $user->id());
-        $handler = app(ToggleLaterHandler::class);
-        $handler($command);
-
-        $query = new LaterUserListQuery($user->id());
-        $manager = app(LaterUserListManager::class);
+        $query = new AddedUserListQuery($user->id());
+        $manager = app(AddedUserListManager::class);
         $manager($query);
 
-        $this->assertEquals(1, $manager->laters()->count());
-        $resource = $resources->first();
-        $favourite = $manager->laters()->first();
+        $this->assertEquals(3, $manager->resources()->count());
 
-        $this->assertEquals($resource->uuid(), $favourite->uuid());
-
+        foreach ($resources as $resource) {
+            $this->assertEquals($resource->user->id(), $user->id());
+        }
     }
 
 }
