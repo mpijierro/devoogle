@@ -2,6 +2,8 @@
 
 namespace Devoogle\Src\Favourite\Query;
 
+use Devoogle\Src\User\Repository\UserRepository;
+
 class FavouriteUserListManager
 {
 
@@ -10,6 +12,17 @@ class FavouriteUserListManager
     private $user;
 
     private $favourites;
+
+    /**
+     * @var UserRepository
+     */
+    private $userRepository;
+
+
+    public function __construct(UserRepository $userRepository)
+    {
+        $this->userRepository = $userRepository;
+    }
 
 
     public function __invoke(FavouriteUserListQuery $favouriteUserListQuery)
@@ -23,7 +36,13 @@ class FavouriteUserListManager
     }
 
 
-    public function initializeQuery(FavouriteUserListQuery $favouriteUserListQuery)
+    public function favourites()
+    {
+        return $this->favourites;
+    }
+
+
+    private function initializeQuery(FavouriteUserListQuery $favouriteUserListQuery)
     {
         $this->query = $favouriteUserListQuery;
     }
@@ -31,7 +50,7 @@ class FavouriteUserListManager
 
     private function findUser()
     {
-        $this->user = user();
+        $this->user = $this->userRepository->findByIdOrFail($this->query->getUserId());
     }
 
 
@@ -39,11 +58,4 @@ class FavouriteUserListManager
     {
         $this->favourites = $this->user->favourite;
     }
-
-
-    public function favourites()
-    {
-        return $this->favourites;
-    }
-
 }
