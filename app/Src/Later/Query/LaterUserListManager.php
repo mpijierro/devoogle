@@ -2,6 +2,8 @@
 
 namespace Devoogle\Src\Later\Query;
 
+use Devoogle\Src\User\Repository\UserRepository;
+
 class LaterUserListManager
 {
 
@@ -10,6 +12,23 @@ class LaterUserListManager
     private $user;
 
     private $laters;
+
+    /**
+     * @var UserRepository
+     */
+    private $userRepository;
+
+
+    public function __construct(UserRepository $userRepository)
+    {
+        $this->userRepository = $userRepository;
+    }
+
+
+    public function laters()
+    {
+        return $this->laters;
+    }
 
 
     public function __invoke(LaterUserListQuery $laterUserListQuery)
@@ -23,7 +42,7 @@ class LaterUserListManager
     }
 
 
-    public function initializeQuery(LaterUserListQuery $laterUserListQuery)
+    private function initializeQuery(LaterUserListQuery $laterUserListQuery)
     {
         $this->query = $laterUserListQuery;
     }
@@ -31,19 +50,13 @@ class LaterUserListManager
 
     private function findUser()
     {
-        $this->user = user();
+        $this->user = $this->userRepository->findByIdOrFail($this->query->getUserId());
     }
 
 
     private function findresourceLaters()
     {
         $this->laters = $this->user->later;
-    }
-
-
-    public function laters()
-    {
-        return $this->laters;
     }
 
 }
