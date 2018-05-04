@@ -14,7 +14,7 @@ class DeleteVersionHandlerTest extends TestCase
     use RefreshDatabase;
 
 
-    public function testCheckVersionSuccessfully()
+    public function testDeleteVersionSuccessfully()
     {
 
         $version = factory(Version::class)->create();

@@ -19,7 +19,7 @@ class StoreVersionHandlerTest extends TestCase
     use RefreshDatabase;
 
 
-    public function testCheckVersionSuccessfully()
+    public function testStoreVersionSuccessfully()
     {
 
         $uuid = Uuid::generate();
