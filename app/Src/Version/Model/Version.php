@@ -84,6 +84,6 @@ class Version extends Model
 
     public function isReviewed()
     {
-        return $this->attributes['reviewed'];
+        return (bool)$this->attributes['reviewed'];
     }
 }

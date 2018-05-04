@@ -5,6 +5,12 @@ namespace Devoogle\Src\Resource\Command;
 use Devoogle\Src\Resource\Repository\ResourceRepositoryRead;
 use Devoogle\Src\Resource\Repository\ResourceRepositoryWrite;
 
+/**
+ * Mark resource as review by admin
+ *
+ * Class CheckResourceHandler
+ * @package Devoogle\Src\Resource\Command
+ */
 class CheckResourceHandler
 {
 

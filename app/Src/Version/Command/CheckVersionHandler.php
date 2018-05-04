@@ -5,6 +5,12 @@ namespace Devoogle\Src\Version\Command;
 use Devoogle\Src\Version\Repository\VersionRepositoryRead;
 use Devoogle\Src\Version\Repository\VersionRepositoryWrite;
 
+/**
+ * Mark a version as verified by admin
+ *
+ * Class CheckVersionHandler
+ * @package Devoogle\Src\Version\Command
+ */
 class CheckVersionHandler
 {
 

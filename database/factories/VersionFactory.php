@@ -17,11 +17,12 @@ $factory->define(\Devoogle\Src\Version\Model\Version::class, function (Faker $fa
 
     return [
         'uuid' => $faker->uuid,
-        'user_id' => factory(\Devoogle\Src\User\Model\User::class),
-        'resource_id' => factory(\Devoogle\Src\Resource\Model\Resource::class),
-        'category_id' => factory(\Devoogle\Src\Category\Model\Category::class),
+        'user_id' => factory(\Devoogle\Src\User\Model\User::class)->create()->id(),
+        'resource_id' => factory(\Devoogle\Src\Resource\Model\Resource::class)->create()->id(),
+        'category_id' => factory(\Devoogle\Src\Category\Model\Category::class)->create()->id(),
         'url' => $faker->url,
         'comment' => $faker->sentence(10),
+        'reviewed' => false,
         'created_at' => new DateTime(),
         'updated_at' => new DateTime()
     ];

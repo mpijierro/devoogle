@@ -17,6 +17,8 @@ $factory->define(\Devoogle\Src\Resource\Model\Resource::class, function (Faker $
 
     return [
         'user_id' => factory(\Devoogle\Src\User\Model\User::class)->create()->id,
+        'category_id' => factory(\Devoogle\Src\Category\Model\Category::class)->create()->id,
+        'lang_id' => factory(\Devoogle\Src\Lang\Model\Lang::class)->create()->id,
         'uuid' => $faker->uuid,
         'title' => $name = $faker->sentence(3),
         'description' => $faker->text(),
