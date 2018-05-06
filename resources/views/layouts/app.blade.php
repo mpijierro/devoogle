@@ -155,20 +155,17 @@ use Krucas\Notification\Facades\Notification;
     <div class="container-fluid">
         <div class="row">
 
-            <div class="col-sm-2 col-sm-offset-1 sidebar">
-                @include('sidebar.sidebar_category')
-                @include('sidebar.sidebar_author')
-                @include('sidebar.sidebar_event')
-            </div>
-
-            <div class="col-sm-7">
+            <div class="col-sm-offset-1 col-sm-8">
 
                 {!! Notification::showAll() !!}
 
 
                 @yield('content')
             </div>
-            <div class="col-sm-2 sidebar">
+            <div class="col-sm-2  sidebar">
+                @include('sidebar.sidebar_category')
+                @include('sidebar.sidebar_author')
+                @include('sidebar.sidebar_event')
                 @include('sidebar.sidebar_technology')
                 @include('sidebar.sidebar_tag')
             </div>
