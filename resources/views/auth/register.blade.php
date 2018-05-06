@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.app_without_sidebar')
 
 @section('content')
 
