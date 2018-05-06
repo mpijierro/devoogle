@@ -31,8 +31,11 @@ use Krucas\Notification\Facades\Notification;
         <script src="/js/textext.plugin.ajax.js" type="text/javascript" charset="utf-8"></script>
     @endif
 
+
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/bootstrap-social.css') }}" rel="stylesheet">
     <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
+
 
 </head>
 <body>

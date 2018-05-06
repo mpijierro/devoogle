@@ -58,12 +58,21 @@
                         <a class="btn btn-link" href="{{ route('password.request') }}">
                             Forgot Your Password?
                         </a>
-                        <br>
-                        &nbsp;
-                        <a href="{{route('social-redirect', 'google')}}">Login in with Google</a><br>
-                        <a href="{{route('social-redirect', 'github')}}">Login in with Github</a><br>
-                        <a href="{{route('social-redirect', 'twitter')}}">Login in with TWitter</a><br>
+                    </div>
+                    <div class="row" style="margin-top:100px">
+                        <div class="col-md-6 col-md-offset-4">
+                            <a href="{{route('social-redirect', 'google')}}" class="btn btn-block btn-social btn-google">
+                                <span class="fa fa-google"></span> Entra con tu cuenta de Google
+                            </a>
 
+                            <a href="{{route('social-redirect', 'twitter')}}" class="btn btn-block btn-social btn-twitter">
+                                <span class="fa fa-twitter"></span> Entra con tu cuenta de Twitter
+                            </a>
+
+                            <a href="{{route('social-redirect', 'github')}}" class="btn btn-block btn-social btn-github">
+                                <span class="fa fa-github"></span> Entra con tu cuenta de Github
+                            </a>
+                        </div>
                     </div>
                 </div>
             </form>
