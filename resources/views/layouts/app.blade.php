@@ -3,7 +3,7 @@
 use Krucas\Notification\Facades\Notification;
 
 ?>
-<!DOCTYPE html>
+        <!DOCTYPE html>
 <html lang="{{ app()->getLocale() }}">
 <head>
 
@@ -146,6 +146,8 @@ use Krucas\Notification\Facades\Notification;
             </div>
         </div>
     </div>
+
+    @include('layouts.footer')
 
 </div>
 

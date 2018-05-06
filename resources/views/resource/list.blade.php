@@ -16,7 +16,7 @@
 
 
 @if (isset($paginator))
-    <div class="col-xs-12">
+    <div class="col-xs-12" align="center">
         {{ $paginator }}
     </div>
 @endif

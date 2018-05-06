@@ -138,6 +138,8 @@ use Krucas\Notification\Facades\Notification;
         </div>
     </div>
 
+    @include('layouts.footer')
+
 </div>
 
 </body>

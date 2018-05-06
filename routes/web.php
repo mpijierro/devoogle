@@ -29,6 +29,9 @@ Route::group(['prefix' => 'input'], function () {
 Route::get('/youtube', "ApiReader\ChannelListController")->name('channel-youtube-list');
 
 Route::get('/politica-privacidad', "Legal\PrivacyPolicyController")->name('privacy-policy');
+Route::get('/aviso-legal', "Legal\PrivacyPolicyController")->name('legal');
+Route::get('/gracias-a', "Legal\ThanksController")->name('thanks');
+Route::get('/contacto', "Legal\ContactController")->name('contact');
 
 Route::group(['prefix' => 'recursos', 'middleware' => 'auth'], function () {
 
