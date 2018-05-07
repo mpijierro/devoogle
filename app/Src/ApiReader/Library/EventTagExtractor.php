@@ -27,7 +27,9 @@ class EventTagExtractor extends TagExtractor
         'Open Expo Day (2015)',
         'Pamplona Software Craftsmanship',
         'T3chFest 2017',
+        'T3chFest 2018',
         'XSpain 2015',
+        'WeCodeFest 2018'
     ];
 
 }

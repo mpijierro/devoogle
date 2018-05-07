@@ -6,51 +6,69 @@ class AuthorTagExtractor extends TagExtractor
 {
 
     protected $tags = [
+        'Adoración González' => [
+            'srtaDeveloper'
+        ],
+        'Alfredo Casado',
         'Angel Medinilla',
+        'Angélica Lozano',
         'Carlos Bastos',
         'Carlos Blé',
-        'Carlos Buenosvinos',
+        'Carlos Buenosvinos' => [
+            'Rigor Talks'
+        ],
         'Dani Latorre',
-        'David Bonilla'    => [
+        'David Bonilla'      => [
             '@david_bonilla'
         ],
-        'Eduardo Ferro'    => [
+        'Eduardo Ferro'      => [
             '@eferro'
         ],
-        'Fina Pérez'       => [
+        'Enrique Amodeo'     => [
+            '@eamodeorubio'
+        ],
+        'Fina Pérez'         => [
             '@finuka'
         ],
+        'Guillermo Gutiérrez',
         'Israel Alcázar',
         'IÑAKI ARROLA',
         'Javi Santana',
         'Javier Garzas',
         'Jerónimo Palacios',
-        'JORGE BARROSO'    => [
+        'JORGE BARROSO'      => [
+            'Jorge Barroso',
             '@flipper83'
         ],
-        'Jose Manuel Beas',
-        'Kini'             => [
+        'Jose Manuel Beas'   => [
+            '@jmbeas'
+        ],
+        'Kini'               => [
             'Engelmo',
             '@kinisoftware'
 
         ],
-        'Laura Morillo'    => [
+        'Laura Morillo'      => [
             '@Laura_Morillo'
         ],
-        'Luis Artola'      => [
+        'Luis Artola'        => [
             '@artolamol'
         ],
         'Luis Ruiz Pavón',
-        'Modesto San Juan' => [
+        'Modesto San Juan'   => [
             '@msanjuan'
         ],
         'Nestor Salceda',
-        'Rafa Gómez'       => [
+        'Pablo Garaizar',
+        'Rafa Gómez'         => [
             '@rafaoe'
         ],
+        'Raúl Ávila',
+        'Raúl Raja',
+        'Sebastian Hermida',
         'Roberto Canales Mora',
         'Xavi Gost',
-        'Vicenç García'    => [
+        'Vicenç García'      => [
             '@vgaltes'
         ]
     ];
