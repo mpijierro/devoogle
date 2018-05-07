@@ -75,13 +75,6 @@ class VideoChannelSeeder extends Seeder
 
         DB::table('video_channel')->insert([
             'platform_id' => 1,
-            'slug_id'     => 'UCvdmEDFj2FtEdyaOW8zSjIA',
-            'slug_name'   => 'desymfony',
-            'name'        => 'Desymfony'
-        ]);
-
-        DB::table('video_channel')->insert([
-            'platform_id' => 1,
             'slug_id'     => 'UCQTmuJvtkHlXRQSrydoP_OA',
             'slug_name'   => 'hecho-en-laravel',
             'name'        => 'Hecho en Laravel'
