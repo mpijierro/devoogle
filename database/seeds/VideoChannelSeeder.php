@@ -59,7 +59,6 @@ class VideoChannelSeeder extends Seeder
             'slug_name'   => 'carlos-buenosvinos',
             'name'        => 'Carlos Buenosvinos'
         ]);
-
         DB::table('video_channel')->insert([
             'platform_id' => 1,
             'slug_id'     => 'UCfFeLBv3iYU8ZnVswlO022A',
@@ -108,21 +107,6 @@ class VideoChannelSeeder extends Seeder
             'slug_name'   => 'php-madrid',
             'name'        => 'PHP Madrid'
         ]);
-
-        DB::table('video_channel')->insert([
-            'platform_id' => 1,
-            'slug_id'     => 'UChbOHJuQ8Ex7DPkkv1r5Dug',
-            'slug_name'   => 'php-madrid',
-            'name'        => 'PHP Madrid'
-        ]);
-
-
-
-
-
-
-
-
 
     }
 }
