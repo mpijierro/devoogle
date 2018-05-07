@@ -1,8 +1,13 @@
 <?php
 
-namespace Devoogle\Src\ApiReader\Library;
+namespace Devoogle\Src\ApiReader\Library\VideoProcessor\Youtube;
 
 use Devoogle\Src\ApiReader\Exceptions\ResourceExistsException;
+use Devoogle\Src\ApiReader\Library\TagExtractor\AuthorTagExtractor;
+use Devoogle\Src\ApiReader\Library\TagExtractor\CommonTagExtractor;
+use Devoogle\Src\ApiReader\Library\TagExtractor\EventTagExtractor;
+use Devoogle\Src\ApiReader\Library\TagExtractor\TagExtractor;
+use Devoogle\Src\ApiReader\Library\TagExtractor\TechnologyTagExtractor;
 use Devoogle\Src\Category\Model\Category;
 use Devoogle\Src\Lang\Model\Lang;
 use Devoogle\Src\Resource\Command\StoreResourceCommand;
@@ -12,7 +17,7 @@ use Devoogle\Src\Resource\Repository\ResourceRepositoryWrite;
 use Devoogle\Src\User\Repository\UserRepository;
 use Webpatser\Uuid\Uuid;
 
-class YoutubeVideoProcessor
+class VideoProcessor
 {
 
     private $youtubeGateway;
@@ -76,7 +81,7 @@ class YoutubeVideoProcessor
     }
 
 
-    public function __invoke(YoutubeGateway $youtubeGateway)
+    public function processVideo(VideoWrapper $youtubeGateway)
     {
 
         $this->initializeVideo($youtubeGateway);
@@ -90,7 +95,7 @@ class YoutubeVideoProcessor
     }
 
 
-    private function initializeVideo(YoutubeGateway $youtubeGateway)
+    private function initializeVideo(VideoWrapper $youtubeGateway)
     {
         $this->youtubeGateway = $youtubeGateway;
     }
@@ -158,7 +163,7 @@ class YoutubeVideoProcessor
             return '';
         }
 
-        ($tagExtractor)($this->textsForTagSearch);
+        $tagExtractor->extractTag($this->textsForTagSearch);
 
         if ($tagExtractor->isTagFound()) {
             return $tagExtractor->tagFound();

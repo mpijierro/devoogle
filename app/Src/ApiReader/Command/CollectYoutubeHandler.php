@@ -2,7 +2,7 @@
 
 namespace Devoogle\Src\ApiReader\Command;
 
-use Devoogle\Src\ApiReader\Library\YoutubeChannelProcessor;
+use Devoogle\Src\ApiReader\Library\VideoProcessor\Youtube\ChannelProcessor;
 use Devoogle\Src\ApiReader\Repository\PlatformRepositoryRead;
 use Devoogle\Src\ApiReader\VideoChannel\Repository\VideoChannelRepositoryRead;
 
@@ -24,19 +24,19 @@ class CollectYoutubeHandler
     private $platformRepositoryRead;
 
     /**
-     * @var YoutubeChannelProcessor
+     * @var ChannelProcessor
      */
-    private $youtubeChannelProcessor;
+    private $channelProcessor;
 
 
     public function __construct(
-        VideoChannelRepositoryRead $videoChannelRepositoryRead,
         PlatformRepositoryRead $platformRepositoryRead,
-        YoutubeChannelProcessor $youtubeChannelProcessor
+        VideoChannelRepositoryRead $videoChannelRepositoryRead,
+        ChannelProcessor $youtubeChannelProcessor
     ) {
-        $this->videoChannelRepositoryRead = $videoChannelRepositoryRead;
         $this->platformRepositoryRead = $platformRepositoryRead;
-        $this->youtubeChannelProcessor = $youtubeChannelProcessor;
+        $this->videoChannelRepositoryRead = $videoChannelRepositoryRead;
+        $this->channelProcessor = $youtubeChannelProcessor;
     }
 
 
@@ -49,7 +49,6 @@ class CollectYoutubeHandler
         $this->obtainVideos();
     }
 
-
     private function findPlatform()
     {
         $this->platform = $this->platformRepositoryRead->obtainYoutube();
@@ -61,13 +60,12 @@ class CollectYoutubeHandler
         $this->videoChannels = $this->platform->videoChannel;
     }
 
-
     private function obtainVideos()
     {
 
-        foreach ($this->videoChannels as $videoChannel) {
+        foreach ($this->videoChannels as $channel) {
 
-            ($this->youtubeChannelProcessor)($videoChannel);
+            $this->channelProcessor->processChannel($channel);
         }
 
     }

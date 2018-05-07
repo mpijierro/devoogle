@@ -1,6 +1,6 @@
 <?php
 
-namespace Devoogle\Src\ApiReader\Library;
+namespace Devoogle\Src\ApiReader\Library\TagExtractor;
 
 class EventTagExtractor extends TagExtractor
 {

@@ -1,13 +1,14 @@
 <?php
 
-namespace Devoogle\Src\ApiReader\Library;
+namespace Devoogle\Src\ApiReader\Library\VideoProcessor\Youtube;
 
 use Alaouy\Youtube\Facades\Youtube;
 use Carbon\Carbon;
 use Devoogle\Src\ApiReader\Exceptions\ResourceExistsException;
+use Devoogle\Src\ApiReader\Library\VideoProcessor\ChannelProcessorInterface;
 use Devoogle\Src\ApiReader\VideoChannel\Model\VideoChannel;
 
-class YoutubeChannelProcessor
+class ChannelProcessor implements ChannelProcessorInterface
 {
 
     const RESULTS_PER_PAGE = 50;
@@ -16,12 +17,13 @@ class YoutubeChannelProcessor
 
     private $pageInfo = [];
 
-    private $years = [2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018];
+    //private $years = [2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018];
+    private $years = [2017, 2018];
 
     /**
-     * @var YoutubeVideoProcessor
+     * @var VideoProcessor
      */
-    private $youtubeVideoProcessor;
+    private $videoProcessor;
 
     private $publishedAfter;
 
@@ -30,20 +32,20 @@ class YoutubeChannelProcessor
     private $num;
 
 
-    public function __construct(YoutubeVideoProcessor $youtubeVideoProcessor)
+    public function __construct(VideoProcessor $videoProcessor)
     {
-        $this->youtubeVideoProcessor = $youtubeVideoProcessor;
+        $this->videoProcessor = $videoProcessor;
     }
 
 
-    public function __invoke(VideoChannel $videoChannel)
+    public function processChannel(VideoChannel $videoChannel)
     {
 
         $this->initializeChannel($videoChannel);
 
         $this->initializePageInfo();
 
-        $this->pagesProcess();
+        $this->processVideosByYear();
     }
 
 
@@ -59,7 +61,7 @@ class YoutubeChannelProcessor
     }
 
 
-    private function pagesProcess()
+    private function processVideosByYear()
     {
 
         foreach ($this->years as $year) {
@@ -74,7 +76,7 @@ class YoutubeChannelProcessor
 
             $this->processFourthTrimester($year);
 
-            echo "\r\n num: ".$year.' - '.$this->num;
+            echo "\r\n Video channel: ".$this->videoChannel->name()." ## num: ".$year.' - '.$this->num;
 
         }
     }
@@ -86,7 +88,7 @@ class YoutubeChannelProcessor
         $this->publishedAfter = Carbon::parse('01-01-'.$year.' 00:00:00')->toRfc3339String();
         $this->publishedBefore = Carbon::parse('31-03-'.$year.' 23:59:59')->toRfc3339String();
 
-        $this->process();
+        $this->processTrimester();
 
     }
 
@@ -97,7 +99,7 @@ class YoutubeChannelProcessor
         $this->publishedAfter = Carbon::parse('01-04-'.$year.' 00:00:00')->toRfc3339String();
         $this->publishedBefore = Carbon::parse('30-06-'.$year.' 23:59:59')->toRfc3339String();
 
-        $this->process();
+        $this->processTrimester();
 
     }
 
@@ -108,7 +110,7 @@ class YoutubeChannelProcessor
         $this->publishedAfter = Carbon::parse('01-07-'.$year.' 00:00:00')->toRfc3339String();
         $this->publishedBefore = Carbon::parse('30-09-'.$year.' 23:59:59')->toRfc3339String();
 
-        $this->process();
+        $this->processTrimester();
 
     }
 
@@ -119,39 +121,43 @@ class YoutubeChannelProcessor
         $this->publishedAfter = Carbon::parse('01-10-'.$year.' 00:00:00')->toRfc3339String();
         $this->publishedBefore = Carbon::parse('31-12-'.$year.' 23:59:59')->toRfc3339String();
 
-        $this->process();
+        $this->processTrimester();
 
     }
 
 
-    private function process()
+    private function processTrimester()
     {
 
         do {
 
-            $end = $this->pageProcess();
+            $continue = true;
 
-        } while ($this->thereIsNextPage() and $end == true);
+            $params = $this->obtainParametersForPaginate();
+
+            $this->pageInfo = Youtube::paginateResults($params, $this->obtainNextPageToken());
+
+            if ($this->thereVideos()) {
+                $this->processVideos($this->results());
+            } else {
+                $continue = $this->isContinue();
+            }
+
+        } while ($this->thereIsNextPage() and $continue == true);
 
     }
 
 
-    private function pageProcess()
+    private function thereVideos()
     {
-
-        $params = $this->obtainParametersForPaginate();
-
-        $this->pageInfo = Youtube::paginateResults($params, $this->obtainNextPageToken());
-
-        if (is_bool($this->results())) {
-            return $this->results();
-        }
-
-        $this->processVideos($this->results());
-
-        return true;
+        return ! is_bool($this->results());
     }
 
+
+    private function isContinue()
+    {
+        return is_bool($this->results());
+    }
 
     private function obtainParametersForPaginate()
     {
@@ -187,15 +193,11 @@ class YoutubeChannelProcessor
 
             try {
 
-                $youtubeGateway = app(YoutubeGateway::class, ['video' => $video]);
+                $videoWrapper = app(VideoWrapper::class, ['video' => $video]);
 
-                ($this->youtubeVideoProcessor)($youtubeGateway);
+                $this->videoProcessor->processVideo($videoWrapper);
             } catch (ResourceExistsException $e) {
-                continue;
 
-            } catch (\Exception $e) {
-
-                throw $e;
                 continue;
 
             }

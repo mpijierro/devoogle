@@ -1,6 +1,6 @@
 <?php
 
-namespace Devoogle\Src\ApiReader\Library;
+namespace Devoogle\Src\ApiReader\Library\TagExtractor;
 
 use Illuminate\Support\Collection;
 
@@ -19,7 +19,7 @@ abstract class TagExtractor
     protected $tagsFounded = [];
 
 
-    public function __invoke(Collection $texts)
+    public function extractTag(Collection $texts)
     {
 
         $this->tagsFounded = [];

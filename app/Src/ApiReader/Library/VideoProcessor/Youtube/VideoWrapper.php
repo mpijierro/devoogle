@@ -1,8 +1,8 @@
 <?php
 
-namespace Devoogle\Src\ApiReader\Library;
+namespace Devoogle\Src\ApiReader\Library\VideoProcessor\Youtube;
 
-class YoutubeGateway
+class VideoWrapper
 {
 
     const VIDEO_URL = 'https://www.youtube.com/watch?v=';

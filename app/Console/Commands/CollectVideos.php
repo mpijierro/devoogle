@@ -39,14 +39,10 @@ class CollectVideos extends Command
      */
     public function handle()
     {
-        //DB::beginTransaction();
-
         if ($this->collectFromYoutube()) {
             $handler = app(CollectYoutubeHandler::class);
             $handler();
         }
-
-        //DB::rollback();
 
     }
 
