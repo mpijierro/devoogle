@@ -101,6 +101,18 @@ abstract class TagExtractor
     }
 
 
+    /**
+     *
+     * search string tag in string text
+     * modifiers in patter:
+     *      \b : search strictly
+     *      /i : If this modifier is set, letters in the pattern match both upper and lower case letters.
+     *
+     * @param $tag
+     * @param $text
+     *
+     * @return int
+     */
     private function tagExistInText($tag, $text)
     {
 
