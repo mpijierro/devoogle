@@ -104,12 +104,25 @@ abstract class TagExtractor
     private function tagExistInText($tag, $text)
     {
 
-        $pattern = '/'.mb_strtolower(trim($tag)).'/';
+        $tag = $this->sanitizeTag($tag);
+
+        $pattern = '/\b'.mb_strtolower(trim($tag)).'\b/i';
 
         return preg_match($pattern, mb_strtolower($text), $matches);
 
     }
 
+
+    private function sanitizeTag(string $tag)
+    {
+        $tag = str_replace('+', '\+', $tag);
+        $tag = str_replace('(', '\(', $tag);
+        $tag = str_replace(')', '\)', $tag);
+        $tag = str_replace('[', '\[', $tag);
+        $tag = str_replace(']', '\]', $tag);
+
+        return $tag;
+    }
 
     private function addFoundTag(string $tag)
     {
