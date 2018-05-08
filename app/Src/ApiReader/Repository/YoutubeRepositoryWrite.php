@@ -3,7 +3,7 @@
 namespace Devoogle\Src\ApiReader\Repository;
 
 
-class YoutubeRepository
+class YoutubeRepositoryWrite
 {
 
 }

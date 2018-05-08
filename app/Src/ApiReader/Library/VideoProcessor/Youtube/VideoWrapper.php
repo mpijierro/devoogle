@@ -11,12 +11,12 @@ class VideoWrapper
 
     private $video;
 
+    private $fullVideo = '';
+
 
     public function __construct($video)
     {
         $this->video = $video;
-
-        dd($this->video);
     }
 
 
@@ -40,7 +40,26 @@ class VideoWrapper
 
     public function description()
     {
+        if ($this->hasFullVideo()) {
+            return $this->fullVideo->snippet->description;
+        }
+
         return $this->video->snippet->description;
+    }
+
+    public function setDescription(string $description)
+    {
+        $this->video->snippet->description = $description;
+    }
+
+    public function setFullVideo(\stdClass $fullVideo)
+    {
+        $this->fullVideo = $fullVideo;
+    }
+
+    public function hasFullVideo()
+    {
+        return ! empty($this->fullVideo);
     }
 
     public function obtainTextsForSearch(): Collection
@@ -55,6 +74,8 @@ class VideoWrapper
         if ( ! empty($this->description())) {
             $textsForTagSearch->push($this->description());
         }
+
+        return $textsForTagSearch;
 
     }
 

@@ -4,7 +4,9 @@ namespace Devoogle\Src\ApiReader\Library\VideoProcessor\Youtube;
 
 use Alaouy\Youtube\Facades\Youtube;
 use Carbon\Carbon;
+use Devoogle\Src\ApiReader\Repository\YoutubeRepositoryWrite;
 use Devoogle\Src\ApiReader\VideoChannel\Model\VideoChannel;
+use Illuminate\Support\Collection;
 
 class VideoFinder
 {
@@ -27,18 +29,19 @@ class VideoFinder
 
     private $videoChannel;
 
-
     public function __construct()
     {
         $this->videos = collect();
     }
 
 
-    public function find(VideoChannel $videoChannel)
+    public function find(VideoChannel $videoChannel): Collection
     {
         $this->initialize($videoChannel);
 
         $this->findByYears();
+
+        return $this->videos;
     }
 
 
@@ -204,9 +207,9 @@ class VideoFinder
 
         foreach ($videos as $video) {
 
-            $video->snippet->description = $this->obtainDescriptionComplete($video->id->videoId);
-
             $videoWrapper = app(VideoWrapper::class, ['video' => $video]);
+
+            $this->obtainFullVideo($videoWrapper);
 
             $this->videos->push($videoWrapper);
 
@@ -259,14 +262,14 @@ class VideoFinder
         ];
     }
 
-    private function obtainDescriptionComplete(string $videoId)
+    private function obtainFullVideo(VideoWrapper $videoWrapper)
     {
 
-        $video = Youtube::getVideoInfo($videoId);
+        $video = Youtube::getVideoInfo($videoWrapper->videoId());
 
-        dd(json_encode($video));
-
-        return $video->snippet->description;
+        if ($video) {
+            $videoWrapper->setFullVideo($video);
+        }
 
     }
 

@@ -56,9 +56,7 @@ class ChannelProcessor implements ChannelProcessorInterface
     private function processVideosByYear()
     {
 
-        $this->videoFinder->find($this->videoChannel);
-
-        $videos = $this->videoFinder->videos();
+        $videos = $this->videoFinder->find($this->videoChannel);
 
         $this->saveVideos($videos);
 
@@ -73,6 +71,7 @@ class ChannelProcessor implements ChannelProcessorInterface
         foreach ($videos as $video) {
             try {
                 $this->videoProcessor->processVideo($video);
+
             } catch (ResourceExistsException $e) {
                 continue;
             }
