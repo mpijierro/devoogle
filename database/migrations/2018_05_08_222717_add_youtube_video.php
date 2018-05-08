@@ -11,7 +11,7 @@ class AddYoutubeVideo extends Migration
         Schema::create('youtube_video', function (Blueprint $table) {
 
             $table->increments('id');
-            $table->text('info');
+            $table->json('info');
             $table->timestamps();
 
 

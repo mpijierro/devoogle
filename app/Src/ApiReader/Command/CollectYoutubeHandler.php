@@ -5,9 +5,12 @@ namespace Devoogle\Src\ApiReader\Command;
 use Devoogle\Src\ApiReader\Library\VideoProcessor\Youtube\ChannelProcessor;
 use Devoogle\Src\ApiReader\Repository\PlatformRepositoryRead;
 use Devoogle\Src\ApiReader\VideoChannel\Repository\VideoChannelRepositoryRead;
+use Devoogle\Src\User\Model\User;
 
 class CollectYoutubeHandler
 {
+
+    private $user;
 
     private $platform;
 
@@ -40,13 +43,20 @@ class CollectYoutubeHandler
     }
 
 
-    public function __invoke()
+    public function __invoke(User $user)
     {
+        $this->initializeUser($user);
+
         $this->findPlatform();
 
         $this->findVideoChannels();
 
         $this->obtainVideos();
+    }
+
+    private function initializeUser(User $user)
+    {
+        $this->user = $user;
     }
 
     private function findPlatform()
@@ -65,7 +75,7 @@ class CollectYoutubeHandler
 
         foreach ($this->videoChannels as $channel) {
 
-            $this->channelProcessor->processChannel($channel);
+            $this->channelProcessor->processChannel($channel, $this->user);
         }
 
     }

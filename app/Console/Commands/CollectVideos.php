@@ -3,6 +3,7 @@
 namespace Devoogle\Console\Commands;
 
 use Devoogle\Src\ApiReader\Command\CollectYoutubeHandler;
+use Devoogle\Src\User\Repository\UserRepository;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
 
@@ -21,15 +22,20 @@ class CollectVideos extends Command
      * @var string
      */
     protected $description = 'Command search and save new Youtube vídeos';
+    /**
+     * @var UserRepository
+     */
+    private $userRepository;
 
     /**
      * Create a new command instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(UserRepository $userRepository)
     {
         parent::__construct();
+        $this->userRepository = $userRepository;
     }
 
     /**
@@ -39,9 +45,11 @@ class CollectVideos extends Command
      */
     public function handle()
     {
+        $user = $this->obtainUserAdmin();
+
         if ($this->collectFromYoutube()) {
             $handler = app(CollectYoutubeHandler::class);
-            $handler();
+            $handler($user);
         }
 
     }
@@ -49,5 +57,10 @@ class CollectVideos extends Command
     private function collectFromYoutube()
     {
         return ($this->argument('platform') == 'youtube');
+    }
+
+    private function obtainUserAdmin()
+    {
+        return $this->userRepository->findAdmin();
     }
 }

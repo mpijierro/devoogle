@@ -4,12 +4,15 @@ namespace Devoogle\Src\ApiReader\Library\VideoProcessor\Youtube;
 
 use Devoogle\Src\ApiReader\Exceptions\ResourceExistsException;
 use Devoogle\Src\ApiReader\Library\TagExtractor\TagFinder;
+use Devoogle\Src\ApiReader\Model\YoutubeVideo;
+use Devoogle\Src\ApiReader\Repository\YoutubeRepositoryWrite;
 use Devoogle\Src\Category\Model\Category;
 use Devoogle\Src\Lang\Model\Lang;
 use Devoogle\Src\Resource\Command\StoreResourceCommand;
 use Devoogle\Src\Resource\Command\StoreResourceHandler;
 use Devoogle\Src\Resource\Repository\ResourceRepositoryRead;
 use Devoogle\Src\Resource\Repository\ResourceRepositoryWrite;
+use Devoogle\Src\User\Model\User;
 use Devoogle\Src\User\Repository\UserRepository;
 use Webpatser\Uuid\Uuid;
 
@@ -18,12 +21,9 @@ class VideoProcessor
 
     private $videoWrapper;
 
-    private $textsForTagSearch;
+    private $user;
 
-    /**
-     * @var ResourceRepositoryWrite
-     */
-    private $resourceRepositoryWrite;
+    private $textsForTagSearch;
 
     /**
      * @var ResourceRepositoryRead
@@ -38,15 +38,20 @@ class VideoProcessor
      * @var TagFinder
      */
     private $tagFinder;
+    /**
+     * @var YoutubeRepositoryWrite
+     */
+    private $youtubeRepositoryWrite;
 
 
     public function __construct(
-        ResourceRepositoryWrite $resourceRepositoryWrite,
+        YoutubeRepositoryWrite $youtubeRepositoryWrite,
         ResourceRepositoryRead $resourceRepositoryRead,
         UserRepository $userRepository,
         TagFinder $tagFinder
     ) {
-        $this->resourceRepositoryWrite = $resourceRepositoryWrite;
+
+        $this->youtubeRepositoryWrite = $youtubeRepositoryWrite;
         $this->resourceRepositoryRead = $resourceRepositoryRead;
         $this->userRepository = $userRepository;
         $this->tagFinder = $tagFinder;
@@ -55,10 +60,12 @@ class VideoProcessor
     }
 
 
-    public function processVideo(VideoWrapper $videoWrapper)
+    public function processVideo(VideoWrapper $videoWrapper, User $user)
     {
 
         $this->initializeVideo($videoWrapper);
+
+        $this->initializeUser($user);
 
         $this->checkExists();
 
@@ -66,12 +73,19 @@ class VideoProcessor
 
         $this->createResource();
 
+        $this->saveFullVideo();
+
     }
 
 
     private function initializeVideo(VideoWrapper $videoWrapper)
     {
         $this->videoWrapper = $videoWrapper;
+    }
+
+    private function initializeUser(User $user)
+    {
+        $this->user = $user;
     }
 
 
@@ -95,7 +109,7 @@ class VideoProcessor
     {
 
         $uuid = $uuid = Uuid::generate();
-        $userId = $this->obtainUserAdminId();
+        $userId = $this->user->id();
         $title = $this->videoWrapper->title();
         $url = $this->videoWrapper->url();
         $categoryId = Category::VIDEO_CATEGORY_ID;
@@ -112,13 +126,17 @@ class VideoProcessor
 
     }
 
-
-    private function obtainUserAdminId()
+    private function saveFullVideo()
     {
-        $user = $this->userRepository->findAdmin();
 
-        return $user->id();
+        if ($this->videoWrapper->hasFullVideo()) {
+
+            $video = new YoutubeVideo();
+            $video->info = json_encode($this->videoWrapper->fullVideo());
+
+            $this->youtubeRepositoryWrite->saveVideo($video);
+        }
+
     }
-
 
 }

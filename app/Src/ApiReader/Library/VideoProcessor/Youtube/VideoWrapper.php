@@ -57,6 +57,15 @@ class VideoWrapper
         $this->fullVideo = $fullVideo;
     }
 
+    public function fullVideo()
+    {
+        if ($this->hasFullVideo()) {
+            return $this->fullVideo;
+        }
+
+        return new \stdClass();
+    }
+
     public function hasFullVideo()
     {
         return ! empty($this->fullVideo);

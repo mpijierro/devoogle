@@ -5,12 +5,15 @@ namespace Devoogle\Src\ApiReader\Library\VideoProcessor\Youtube;
 use Devoogle\Src\ApiReader\Exceptions\ResourceExistsException;
 use Devoogle\Src\ApiReader\Library\VideoProcessor\ChannelProcessorInterface;
 use Devoogle\Src\ApiReader\VideoChannel\Model\VideoChannel;
+use Devoogle\Src\User\Model\User;
 use Illuminate\Support\Collection;
 
 class ChannelProcessor implements ChannelProcessorInterface
 {
 
     private $videoChannel = null;
+
+    private $user = null;
 
     /**
      * @var VideoProcessor
@@ -30,10 +33,12 @@ class ChannelProcessor implements ChannelProcessorInterface
     }
 
 
-    public function processChannel(VideoChannel $videoChannel)
+    public function processChannel(VideoChannel $videoChannel, User $user)
     {
 
         $this->initializeChannel($videoChannel);
+
+        $this->initializeUser($user);
 
         $this->initializePageInfo();
 
@@ -44,6 +49,11 @@ class ChannelProcessor implements ChannelProcessorInterface
     private function initializeChannel(VideoChannel $videoChannel)
     {
         $this->videoChannel = $videoChannel;
+    }
+
+    private function initializeUser(User $user)
+    {
+        $this->user = $user;
     }
 
 
@@ -62,15 +72,13 @@ class ChannelProcessor implements ChannelProcessorInterface
 
         echo "\r\n Video channel: ".$this->videoChannel->name()." ## num: ".$this->videoFinder->num();
 
-
     }
-
 
     private function saveVideos(Collection $videos)
     {
         foreach ($videos as $video) {
             try {
-                $this->videoProcessor->processVideo($video);
+                $this->videoProcessor->processVideo($video, $this->user);
 
             } catch (ResourceExistsException $e) {
                 continue;
