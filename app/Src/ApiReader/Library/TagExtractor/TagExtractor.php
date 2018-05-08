@@ -74,7 +74,7 @@ abstract class TagExtractor
      * Search synonyms in text. If one exists, assign as found the original tag.
      *
      * @param string $originTag
-     * @param array  $synonyms
+     * @param array $synonyms
      * @param string $text
      */
     private function processSynonyms(string $originTag, array $synonyms, string $text)
@@ -118,7 +118,7 @@ abstract class TagExtractor
 
         $tag = $this->sanitizeTag($tag);
 
-        $pattern = '/\b'.mb_strtolower(trim($tag)).'\b/i';
+        $pattern = '/\b' . mb_strtolower(trim($tag)) . '\b/i';
 
         return preg_match($pattern, mb_strtolower($text), $matches);
 

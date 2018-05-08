@@ -12,7 +12,7 @@ class CommonTagExtractor extends TagExtractor
             'Hablamos con '
         ],
         'Kanban',
-        'Lean'       => [
+        'Lean' => [
             'Lean Manufacturing',
             'Lean Startup'
         ],

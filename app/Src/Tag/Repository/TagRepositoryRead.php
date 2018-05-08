@@ -20,7 +20,7 @@ class TagRepositoryRead
 
         $locale = 'es';
 
-        return Tag::query()->where("slug->{$locale}", 'like', '%'.$text.'%')->where("type", $type)->get();
+        return Tag::query()->where("slug->{$locale}", 'like', '%' . $text . '%')->where("type", $type)->get();
     }
 
 

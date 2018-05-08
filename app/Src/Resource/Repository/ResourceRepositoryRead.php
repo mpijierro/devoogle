@@ -38,13 +38,13 @@ class ResourceRepositoryRead
 
     public function searchByString(string $string)
     {
-        return Resource::where('title', 'like', '%'.$string.'%')->orWhere('description', 'like', '%'.$string.'%')->paginate($this->sizeList());
+        return Resource::where('title', 'like', '%' . $string . '%')->orWhere('description', 'like', '%' . $string . '%')->paginate($this->sizeList());
     }
 
 
     public function existsUrlPattern(string $pattern)
     {
-        return Resource::where('url', 'like', '%'.$pattern.'%')->count();
+        return Resource::where('url', 'like', '%' . $pattern . '%')->count();
     }
 
 

@@ -4,7 +4,6 @@ namespace Devoogle\Src\ApiReader\Library\VideoProcessor\Youtube;
 
 use Alaouy\Youtube\Facades\Youtube;
 use Carbon\Carbon;
-use Devoogle\Src\ApiReader\Repository\YoutubeRepositoryWrite;
 use Devoogle\Src\ApiReader\VideoChannel\Model\VideoChannel;
 use Illuminate\Support\Collection;
 
@@ -86,8 +85,8 @@ class VideoFinder
     private function processFirstTrimester($year)
     {
 
-        $this->publishedAfter = Carbon::parse('01-01-'.$year.' 00:00:00')->toRfc3339String();
-        $this->publishedBefore = Carbon::parse('31-03-'.$year.' 23:59:59')->toRfc3339String();
+        $this->publishedAfter = Carbon::parse('01-01-' . $year . ' 00:00:00')->toRfc3339String();
+        $this->publishedBefore = Carbon::parse('31-03-' . $year . ' 23:59:59')->toRfc3339String();
 
         $this->processTrimester();
 
@@ -97,8 +96,8 @@ class VideoFinder
     private function processSecondTrimester($year)
     {
 
-        $this->publishedAfter = Carbon::parse('01-04-'.$year.' 00:00:00')->toRfc3339String();
-        $this->publishedBefore = Carbon::parse('30-06-'.$year.' 23:59:59')->toRfc3339String();
+        $this->publishedAfter = Carbon::parse('01-04-' . $year . ' 00:00:00')->toRfc3339String();
+        $this->publishedBefore = Carbon::parse('30-06-' . $year . ' 23:59:59')->toRfc3339String();
 
         $this->processTrimester();
 
@@ -108,8 +107,8 @@ class VideoFinder
     private function processThirdTrimester($year)
     {
 
-        $this->publishedAfter = Carbon::parse('01-07-'.$year.' 00:00:00')->toRfc3339String();
-        $this->publishedBefore = Carbon::parse('30-09-'.$year.' 23:59:59')->toRfc3339String();
+        $this->publishedAfter = Carbon::parse('01-07-' . $year . ' 00:00:00')->toRfc3339String();
+        $this->publishedBefore = Carbon::parse('30-09-' . $year . ' 23:59:59')->toRfc3339String();
 
         $this->processTrimester();
 
@@ -119,8 +118,8 @@ class VideoFinder
     private function processFourthTrimester($year)
     {
 
-        $this->publishedAfter = Carbon::parse('01-10-'.$year.' 00:00:00')->toRfc3339String();
-        $this->publishedBefore = Carbon::parse('31-12-'.$year.' 23:59:59')->toRfc3339String();
+        $this->publishedAfter = Carbon::parse('01-10-' . $year . ' 00:00:00')->toRfc3339String();
+        $this->publishedBefore = Carbon::parse('31-12-' . $year . ' 23:59:59')->toRfc3339String();
 
         $this->processTrimester();
 
@@ -182,11 +181,11 @@ class VideoFinder
     private function obtainPageParameter()
     {
         return [
-            'type'       => $this->obtainParameter('type'),
-            'channelId'  => $this->obtainParameter('channelId'),
-            'part'       => implode(', ', $this->obtainParameter('part')),
+            'type' => $this->obtainParameter('type'),
+            'channelId' => $this->obtainParameter('channelId'),
+            'part' => implode(', ', $this->obtainParameter('part')),
             'maxResults' => $this->obtainParameter('maxResults'),
-            'order'      => $this->obtainParameter('order')
+            'order' => $this->obtainParameter('order')
         ];
     }
 
@@ -194,7 +193,7 @@ class VideoFinder
     private function obtainLimitInTime()
     {
         return [
-            'publishedAfter'  => $this->publishedAfter,
+            'publishedAfter' => $this->publishedAfter,
             'publishedBefore' => $this->publishedBefore
         ];
     }
@@ -252,13 +251,13 @@ class VideoFinder
     private function obtainParameters()
     {
         return [
-            'type'           => 'video',
-            'channelId'      => $this->videoChannel->slugId(),
+            'type' => 'video',
+            'channelId' => $this->videoChannel->slugId(),
             'resultsPerPage' => self::RESULTS_PER_PAGE,
-            'maxResults'     => self::RESULTS_PER_PAGE,
-            'order'          => 'date',
-            'part'           => ['id', 'snippet'],
-            'pageInfo'       => true
+            'maxResults' => self::RESULTS_PER_PAGE,
+            'order' => 'date',
+            'part' => ['id', 'snippet'],
+            'pageInfo' => true
         ];
     }
 

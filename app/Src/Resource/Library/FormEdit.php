@@ -41,7 +41,7 @@ class FormEdit extends Form
 
     /**
      * @param CategoryRepositoryRead $categoryRepository
-     * @param LangRepositoryRead     $langRepository
+     * @param LangRepositoryRead $langRepository
      */
     public function __construct(ResourceRepositoryRead $resourceRepository, CategoryRepositoryRead $categoryRepository, LangRepositoryRead $langRepository)
     {

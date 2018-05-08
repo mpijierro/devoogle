@@ -48,13 +48,13 @@ class MetaCategoryList implements MetaInteface
 
     private function configTitle()
     {
-        $this->title = $this->category->name().' de programación';
+        $this->title = $this->category->name() . ' de programación';
     }
 
 
     private function configDescription()
     {
-        $this->description = $this->category->name().' de programación y desarrollo de software, vídeos de programación y desarrollo de software en formato '.$this->category->name();
+        $this->description = $this->category->name() . ' de programación y desarrollo de software, vídeos de programación y desarrollo de software en formato ' . $this->category->name();
     }
 
 

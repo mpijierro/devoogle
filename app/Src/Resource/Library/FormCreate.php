@@ -28,7 +28,7 @@ class FormCreate extends Form
 
     /**
      * @param CategoryRepositoryRead $categoryRepository
-     * @param LangRepositoryRead     $langRepository
+     * @param LangRepositoryRead $langRepository
      */
     public function __construct(CategoryRepositoryRead $categoryRepository, LangRepositoryRead $langRepository)
     {

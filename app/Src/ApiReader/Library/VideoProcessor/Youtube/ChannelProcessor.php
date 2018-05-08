@@ -70,7 +70,7 @@ class ChannelProcessor implements ChannelProcessorInterface
 
         $this->saveVideos($videos);
 
-        echo "\r\n Video channel: ".$this->videoChannel->name()." ## num: ".$this->videoFinder->num();
+        echo "\r\n Video channel: " . $this->videoChannel->name() . " ## num: " . $this->videoFinder->num();
 
     }
 

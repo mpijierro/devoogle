@@ -125,8 +125,8 @@ class SocialHandler
     {
 
         $this->user = User::create([
-            'name'     => $this->socialUser->name(),
-            'email'    => $this->retrieveEmailOrFake(),
+            'name' => $this->socialUser->name(),
+            'email' => $this->retrieveEmailOrFake(),
             'password' => bcrypt(str_random(40)),
         ]);
 
@@ -139,7 +139,7 @@ class SocialHandler
         $email = $this->socialUser->email();
 
         if ( ! $email) {
-            $email = 'missing'.str_random(10);
+            $email = 'missing' . str_random(10);
         }
 
         return $email;

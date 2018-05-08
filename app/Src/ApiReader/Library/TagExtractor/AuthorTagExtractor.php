@@ -18,16 +18,16 @@ class AuthorTagExtractor extends TagExtractor
             'Rigor Talks'
         ],
         'Dani Latorre',
-        'David Bonilla'      => [
+        'David Bonilla' => [
             '@david_bonilla'
         ],
-        'Eduardo Ferro'      => [
+        'Eduardo Ferro' => [
             '@eferro'
         ],
-        'Enrique Amodeo'     => [
+        'Enrique Amodeo' => [
             '@eamodeorubio'
         ],
-        'Fina Pérez'         => [
+        'Fina Pérez' => [
             '@finuka'
         ],
         'Guillermo Gutiérrez',
@@ -36,31 +36,31 @@ class AuthorTagExtractor extends TagExtractor
         'Javi Santana',
         'Javier Garzas',
         'Jerónimo Palacios',
-        'JORGE BARROSO'      => [
+        'JORGE BARROSO' => [
             'Jorge Barroso',
             '@flipper83'
         ],
-        'Jose Manuel Beas'   => [
+        'Jose Manuel Beas' => [
             '@jmbeas'
         ],
-        'Kini'               => [
+        'Kini' => [
             'Engelmo',
             '@kinisoftware'
 
         ],
-        'Laura Morillo'      => [
+        'Laura Morillo' => [
             '@Laura_Morillo'
         ],
-        'Luis Artola'        => [
+        'Luis Artola' => [
             '@artolamol'
         ],
         'Luis Ruiz Pavón',
-        'Modesto San Juan'   => [
+        'Modesto San Juan' => [
             '@msanjuan'
         ],
         'Nestor Salceda',
         'Pablo Garaizar',
-        'Rafa Gómez'         => [
+        'Rafa Gómez' => [
             '@rafaoe'
         ],
         'Raúl Ávila',
@@ -68,7 +68,7 @@ class AuthorTagExtractor extends TagExtractor
         'Sebastian Hermida',
         'Roberto Canales Mora',
         'Xavi Gost',
-        'Vicenç García'      => [
+        'Vicenç García' => [
             '@vgaltes'
         ]
     ];

@@ -48,13 +48,13 @@ class MetaTagListMostFavourite implements MetaInteface
 
     private function configTitle()
     {
-        $this->title = 'Recursos de programación de '.$this->tag->name;
+        $this->title = 'Recursos de programación de ' . $this->tag->name;
     }
 
 
     private function configDescription()
     {
-        $this->description = 'Recursos de programación y desarrollo de software, vídeos de programación y desarrollo de software '.$this->tag->name;
+        $this->description = 'Recursos de programación y desarrollo de software, vídeos de programación y desarrollo de software ' . $this->tag->name;
     }
 
 
