@@ -3,11 +3,7 @@
 namespace Devoogle\Src\ApiReader\Library\VideoProcessor\Youtube;
 
 use Devoogle\Src\ApiReader\Exceptions\ResourceExistsException;
-use Devoogle\Src\ApiReader\Library\TagExtractor\AuthorTagExtractor;
-use Devoogle\Src\ApiReader\Library\TagExtractor\CommonTagExtractor;
-use Devoogle\Src\ApiReader\Library\TagExtractor\EventTagExtractor;
-use Devoogle\Src\ApiReader\Library\TagExtractor\TagExtractor;
-use Devoogle\Src\ApiReader\Library\TagExtractor\TechnologyTagExtractor;
+use Devoogle\Src\ApiReader\Library\TagExtractor\TagFinder;
 use Devoogle\Src\Category\Model\Category;
 use Devoogle\Src\Lang\Model\Lang;
 use Devoogle\Src\Resource\Command\StoreResourceCommand;
@@ -20,7 +16,7 @@ use Webpatser\Uuid\Uuid;
 class VideoProcessor
 {
 
-    private $youtubeGateway;
+    private $videoWrapper;
 
     private $textsForTagSearch;
 
@@ -35,75 +31,53 @@ class VideoProcessor
     private $resourceRepositoryRead;
 
     /**
-     * @var EventTagExtractor
-     */
-    private $eventTagExtractor;
-
-    /**
-     * @var AuthorTagExtractor
-     */
-    private $authorTagExtractor;
-
-    /**
-     * @var CommonTagExtractor
-     */
-    private $commonTagExtractor;
-
-    /**
-     * @var TechnologyTagExtractor
-     */
-    private $technologyTagExtractor;
-
-    /**
      * @var UserRepository
      */
     private $userRepository;
+    /**
+     * @var TagFinder
+     */
+    private $tagFinder;
 
 
     public function __construct(
         ResourceRepositoryWrite $resourceRepositoryWrite,
         ResourceRepositoryRead $resourceRepositoryRead,
         UserRepository $userRepository,
-        EventTagExtractor $tagExtractor,
-        AuthorTagExtractor $authorTagExtractor,
-        CommonTagExtractor $commonTagExtractor,
-        TechnologyTagExtractor $technologyTagExtractor
+        TagFinder $tagFinder
     ) {
         $this->resourceRepositoryWrite = $resourceRepositoryWrite;
         $this->resourceRepositoryRead = $resourceRepositoryRead;
-        $this->eventTagExtractor = $tagExtractor;
-        $this->authorTagExtractor = $authorTagExtractor;
-        $this->commonTagExtractor = $commonTagExtractor;
+        $this->userRepository = $userRepository;
+        $this->tagFinder = $tagFinder;
 
         $this->textsForTagSearch = collect();
-        $this->technologyTagExtractor = $technologyTagExtractor;
-        $this->userRepository = $userRepository;
     }
 
 
-    public function processVideo(VideoWrapper $youtubeGateway)
+    public function processVideo(VideoWrapper $videoWrapper)
     {
 
-        $this->initializeVideo($youtubeGateway);
+        $this->initializeVideo($videoWrapper);
 
         $this->checkExists();
 
-        $this->initializeTagSearch();
+        $this->initializeTextsForTagSearch();
 
         $this->createResource();
 
     }
 
 
-    private function initializeVideo(VideoWrapper $youtubeGateway)
+    private function initializeVideo(VideoWrapper $videoWrapper)
     {
-        $this->youtubeGateway = $youtubeGateway;
+        $this->videoWrapper = $videoWrapper;
     }
 
 
     private function checkExists()
     {
-        $exists = $this->resourceRepositoryRead->existsUrlPattern($this->youtubeGateway->videoId());
+        $exists = $this->resourceRepositoryRead->existsUrlPattern($this->videoWrapper->videoId());
 
         if ($exists) {
             throw new ResourceExistsException();
@@ -111,18 +85,9 @@ class VideoProcessor
     }
 
 
-    private function initializeTagSearch()
+    private function initializeTextsForTagSearch()
     {
-
-        $this->textsForTagSearch = collect();
-
-        if ( ! empty($this->youtubeGateway->title())) {
-            $this->textsForTagSearch->push($this->youtubeGateway->title());
-        }
-
-        if ( ! empty($this->youtubeGateway->description())) {
-            $this->textsForTagSearch->push($this->youtubeGateway->description());
-        }
+        $this->textsForTagSearch = $this->videoWrapper->obtainTextsForSearch();
     }
 
 
@@ -131,15 +96,15 @@ class VideoProcessor
 
         $uuid = $uuid = Uuid::generate();
         $userId = $this->obtainUserAdminId();
-        $title = $this->youtubeGateway->title();
-        $url = $this->youtubeGateway->url();
+        $title = $this->videoWrapper->title();
+        $url = $this->videoWrapper->url();
         $categoryId = Category::VIDEO_CATEGORY_ID;
         $langId = Lang::LANG_UNSPECIFIED;
-        $description = $this->youtubeGateway->description();
-        $tag = $this->searchTags($this->commonTagExtractor);
-        $author = $this->searchTags($this->authorTagExtractor);
-        $event = $this->searchTags($this->eventTagExtractor);;
-        $technology = $this->searchTags($this->technologyTagExtractor);;
+        $description = $this->videoWrapper->description();
+        $tag = $this->tagFinder->findByCommonTags($this->textsForTagSearch);
+        $author = $this->tagFinder->findByAuthor($this->textsForTagSearch);
+        $event = $this->tagFinder->findByEvent($this->textsForTagSearch);
+        $technology = $this->tagFinder->findByTechnology($this->textsForTagSearch);
 
         $command = new StoreResourceCommand($uuid, $userId, $title, $description, $url, $categoryId, $langId, $tag, $author, $event, $technology);
         $handler = app(StoreResourceHandler::class);
@@ -155,22 +120,5 @@ class VideoProcessor
         return $user->id();
     }
 
-
-    private function searchTags(TagExtractor $tagExtractor)
-    {
-
-        if ( ! $this->textsForTagSearch->count()) {
-            return '';
-        }
-
-        $tagExtractor->extractTag($this->textsForTagSearch);
-
-        if ($tagExtractor->isTagFound()) {
-            return $tagExtractor->tagFound();
-        }
-
-        return '';
-
-    }
 
 }

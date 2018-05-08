@@ -2,6 +2,8 @@
 
 namespace Devoogle\Src\ApiReader\Library\VideoProcessor\Youtube;
 
+use Illuminate\Support\Collection;
+
 class VideoWrapper
 {
 
@@ -13,6 +15,8 @@ class VideoWrapper
     public function __construct($video)
     {
         $this->video = $video;
+
+        dd($this->video);
     }
 
 
@@ -24,7 +28,7 @@ class VideoWrapper
 
     public function url()
     {
-        return self::VIDEO_URL.$this->videoId();
+        return self::VIDEO_URL . $this->videoId();
     }
 
 
@@ -37,6 +41,21 @@ class VideoWrapper
     public function description()
     {
         return $this->video->snippet->description;
+    }
+
+    public function obtainTextsForSearch(): Collection
+    {
+
+        $textsForTagSearch = collect();
+
+        if ( ! empty($this->title())) {
+            $textsForTagSearch->push($this->title());
+        }
+
+        if ( ! empty($this->description())) {
+            $textsForTagSearch->push($this->description());
+        }
+
     }
 
 }

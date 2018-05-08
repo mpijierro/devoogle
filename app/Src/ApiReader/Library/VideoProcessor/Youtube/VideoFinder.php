@@ -11,7 +11,9 @@ class VideoFinder
 
     const RESULTS_PER_PAGE = 50;
 
-    private $years = [2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018];
+    //private $years = [2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018];
+    private $years = [2017];
+
 
     private $num = 0;
 
@@ -202,6 +204,8 @@ class VideoFinder
 
         foreach ($videos as $video) {
 
+            $video->snippet->description = $this->obtainDescriptionComplete($video->id->videoId);
+
             $videoWrapper = app(VideoWrapper::class, ['video' => $video]);
 
             $this->videos->push($videoWrapper);
@@ -253,6 +257,17 @@ class VideoFinder
             'part'           => ['id', 'snippet'],
             'pageInfo'       => true
         ];
+    }
+
+    private function obtainDescriptionComplete(string $videoId)
+    {
+
+        $video = Youtube::getVideoInfo($videoId);
+
+        dd(json_encode($video));
+
+        return $video->snippet->description;
+
     }
 
 }
