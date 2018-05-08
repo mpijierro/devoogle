@@ -11,7 +11,7 @@ class VideoChannelSeeder extends Seeder
      */
     public function run()
     {
-        /*
+
         DB::table('video_channel')->insert([
             'platform_id' => 1,
             'slug_id'     => 'UCvZ6HKYcDtqtK1SfbIpB97g',
@@ -94,7 +94,7 @@ class VideoChannelSeeder extends Seeder
             'slug_name'   => 'symfony-valencia',
             'name'        => 'Symfony Valencia'
         ]);
-*/
+
         DB::table('video_channel')->insert([
             'platform_id' => 1,
             'slug_id'     => 'UChbOHJuQ8Ex7DPkkv1r5Dug',
