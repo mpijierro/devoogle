@@ -88,7 +88,7 @@ class ChannelProcessor implements ChannelProcessorInterface
     private function obtainAllVideos()
     {
 
-        $finder = app(FinderAll::class);
+        $finder = app(FinderByYears::class);
 
         $this->videos = $finder->find($this->videoChannel);
 
@@ -104,7 +104,7 @@ class ChannelProcessor implements ChannelProcessorInterface
 
         $range = new DateRange($lastTime, Carbon::now());
 
-        $finder = app(FinderNew::class);
+        $finder = app(FinderByDateRange::class);
 
         $this->videos = $finder->find($this->videoChannel, $range);
 

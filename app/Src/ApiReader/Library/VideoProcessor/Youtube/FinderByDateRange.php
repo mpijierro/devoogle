@@ -8,7 +8,7 @@ use Devoogle\Src\ApiReader\VideoChannel\Model\VideoChannel;
 use Devoogle\Src\Devoogle\Library\DateRange;
 use Illuminate\Support\Collection;
 
-class FinderNew extends VideoFinder
+class FinderByDateRange extends VideoFinder
 {
 
     public function find(VideoChannel $videoChannel, DateRange $dateRange): Collection
