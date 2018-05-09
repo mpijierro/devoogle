@@ -23,6 +23,9 @@ class CreateVideoChannelApiReader extends Migration
             $table->string('slug_id');
             $table->string('slug_name');
             $table->string('name');
+            $table->datetime('last_time_processed')->nullable();
+
+            $table->timestamps();
 
         });
     }
