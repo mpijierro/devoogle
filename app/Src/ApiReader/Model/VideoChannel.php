@@ -2,6 +2,8 @@
 
 namespace Devoogle\Src\ApiReader\VideoChannel\Model;
 
+use Carbon\Carbon;
+use Devoogle\Src\ApiReader\Exceptions\VideoChannelNotHasBeenProcessedException;
 use Devoogle\Src\ApiReader\Model\Platform;
 use Illuminate\Database\Eloquent\Model;
 
@@ -14,8 +16,11 @@ class VideoChannel extends Model
         'platform_id',
         'slug_id',
         'slug_name',
-        'name'
+        'name',
+        'last_time_processed'
     ];
+
+    protected $dates = ['last_time_processed', 'created_at'];
 
 
     public function platform()
@@ -40,4 +45,21 @@ class VideoChannel extends Model
     {
         return $this->attributes['name'];
     }
+
+
+    public function lastTimeProcessed(): Carbon
+    {
+        if ( ! $this->hasBeenProcessed()) {
+            throw new VideoChannelNotHasBeenProcessedException();
+        }
+
+        return $this->last_time_processed;
+    }
+
+
+    public function hasBeenProcessed(): bool
+    {
+        return ! is_null($this->attributes['last_time_processed']);
+    }
+
 }

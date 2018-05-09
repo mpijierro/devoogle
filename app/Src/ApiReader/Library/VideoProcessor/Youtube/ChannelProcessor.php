@@ -2,11 +2,13 @@
 
 namespace Devoogle\Src\ApiReader\Library\VideoProcessor\Youtube;
 
+use Carbon\Carbon;
 use Devoogle\Src\ApiReader\Exceptions\ResourceExistsException;
 use Devoogle\Src\ApiReader\Library\VideoProcessor\ChannelProcessorInterface;
 use Devoogle\Src\ApiReader\VideoChannel\Model\VideoChannel;
+use Devoogle\Src\ApiReader\Repository\VideoChannelRepositoryWrite;
+use Devoogle\Src\Devoogle\Library\DateRange;
 use Devoogle\Src\User\Model\User;
-use Illuminate\Support\Collection;
 
 class ChannelProcessor implements ChannelProcessorInterface
 {
@@ -20,16 +22,19 @@ class ChannelProcessor implements ChannelProcessorInterface
      */
     private $videoProcessor;
 
+    private $videos;
+
     /**
-     * @var VideoFinder
+     * @var VideoChannelRepositoryWrite
      */
-    private $videoFinder;
+    private $videoChannelRepositoryWrite;
 
 
-    public function __construct(VideoFinder $videoFinder, VideoProcessor $videoProcessor)
+    public function __construct(VideoProcessor $videoProcessor, VideoChannelRepositoryWrite $videoChannelRepositoryWrite)
     {
         $this->videoProcessor = $videoProcessor;
-        $this->videoFinder = $videoFinder;
+        $this->videos = collect();
+        $this->videoChannelRepositoryWrite = $videoChannelRepositoryWrite;
     }
 
 
@@ -42,7 +47,11 @@ class ChannelProcessor implements ChannelProcessorInterface
 
         $this->initializePageInfo();
 
-        $this->processVideosByYear();
+        $this->obtainVideos();
+
+        $this->saveVideos();
+
+        $this->updateLasTimeProcessed();
     }
 
 
@@ -50,6 +59,7 @@ class ChannelProcessor implements ChannelProcessorInterface
     {
         $this->videoChannel = $videoChannel;
     }
+
 
     private function initializeUser(User $user)
     {
@@ -63,20 +73,49 @@ class ChannelProcessor implements ChannelProcessorInterface
     }
 
 
-    private function processVideosByYear()
+    private function obtainVideos()
     {
 
-        $videos = $this->videoFinder->find($this->videoChannel);
-
-        $this->saveVideos($videos);
-
-        echo "\r\n Video channel: " . $this->videoChannel->name() . " ## num: " . $this->videoFinder->num();
+        if ($this->videoChannel->hasBeenProcessed()) {
+            $this->obtainNewVideos();
+        } else {
+            $this->obtainAllVideos();
+        }
 
     }
 
-    private function saveVideos(Collection $videos)
+
+    private function obtainAllVideos()
     {
-        foreach ($videos as $video) {
+
+        $finder = app(FinderAll::class);
+
+        $this->videos = $finder->find($this->videoChannel);
+
+        echo "\r\n Video channel: ".$this->videoChannel->name()." ## num: ".$finder->num();
+
+    }
+
+
+    private function obtainNewVideos()
+    {
+
+        $lastTime = $this->videoChannel->lastTimeProcessed();
+
+        $range = new DateRange($lastTime, Carbon::now());
+
+        $finder = app(FinderNew::class);
+
+        $this->videos = $finder->find($this->videoChannel, $range);
+
+        echo "\r\n Video channel: ".$this->videoChannel->name()." ## num: ".$finder->num();
+
+    }
+
+
+    private function saveVideos()
+    {
+        foreach ($this->videos as $video) {
             try {
                 $this->videoProcessor->processVideo($video, $this->user);
 
@@ -85,6 +124,13 @@ class ChannelProcessor implements ChannelProcessorInterface
             }
 
         }
+    }
+
+
+    private function updateLasTimeProcessed()
+    {
+        $this->videoChannel->last_time_processed = Carbon::now();
+        $this->videoChannelRepositoryWrite->save($this->videoChannel);
     }
 
 }

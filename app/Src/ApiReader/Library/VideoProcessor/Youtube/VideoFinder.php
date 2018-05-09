@@ -7,40 +7,27 @@ use Carbon\Carbon;
 use Devoogle\Src\ApiReader\VideoChannel\Model\VideoChannel;
 use Illuminate\Support\Collection;
 
-class VideoFinder
+abstract class VideoFinder
 {
 
     const RESULTS_PER_PAGE = 50;
 
-    private $years = [2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018];
+    protected $num = 0;
 
-    private $num = 0;
+    protected $videos = [];
 
-    private $videos = [];
+    protected $pageInfo = [];
 
-    private $pageInfo = [];
+    protected $publishedAfter;
 
-    private $publishedAfter;
+    protected $publishedBefore;
 
-    private $publishedBefore;
-
-    private $videoChannel;
+    protected $videoChannel;
 
     public function __construct()
     {
         $this->videos = collect();
     }
-
-
-    public function find(VideoChannel $videoChannel): Collection
-    {
-        $this->initialize($videoChannel);
-
-        $this->findByYears();
-
-        return $this->videos;
-    }
-
 
     public function videos()
     {
@@ -54,7 +41,7 @@ class VideoFinder
     }
 
 
-    private function initialize(VideoChannel $videoChannel)
+    protected function initialize(VideoChannel $videoChannel)
     {
         $this->num = 0;
 
@@ -62,69 +49,23 @@ class VideoFinder
     }
 
 
-    private function findByYears()
+    protected function thereVideos()
     {
+        return ! is_bool($this->results());
+    }
 
 
-        foreach ($this->years as $year) {
-
-            $this->processFirstTrimester($year);
-
-            $this->processSecondTrimester($year);
-
-            $this->processThirdTrimester($year);
-
-            $this->processFourthTrimester($year);
+    protected function isContinue()
+    {
+        if (is_bool($this->results())) {
+            return $this->results();
         }
 
+        return true;
     }
 
 
-    private function processFirstTrimester($year)
-    {
-
-        $this->publishedAfter = Carbon::parse('01-01-' . $year . ' 00:00:00')->toRfc3339String();
-        $this->publishedBefore = Carbon::parse('31-03-' . $year . ' 23:59:59')->toRfc3339String();
-
-        $this->processTrimester();
-
-    }
-
-
-    private function processSecondTrimester($year)
-    {
-
-        $this->publishedAfter = Carbon::parse('01-04-' . $year . ' 00:00:00')->toRfc3339String();
-        $this->publishedBefore = Carbon::parse('30-06-' . $year . ' 23:59:59')->toRfc3339String();
-
-        $this->processTrimester();
-
-    }
-
-
-    private function processThirdTrimester($year)
-    {
-
-        $this->publishedAfter = Carbon::parse('01-07-' . $year . ' 00:00:00')->toRfc3339String();
-        $this->publishedBefore = Carbon::parse('30-09-' . $year . ' 23:59:59')->toRfc3339String();
-
-        $this->processTrimester();
-
-    }
-
-
-    private function processFourthTrimester($year)
-    {
-
-        $this->publishedAfter = Carbon::parse('01-10-' . $year . ' 00:00:00')->toRfc3339String();
-        $this->publishedBefore = Carbon::parse('31-12-' . $year . ' 23:59:59')->toRfc3339String();
-
-        $this->processTrimester();
-
-    }
-
-
-    private function processTrimester()
+    protected function obtainVideos()
     {
 
         do {
@@ -150,23 +91,7 @@ class VideoFinder
     }
 
 
-    private function thereVideos()
-    {
-        return ! is_bool($this->results());
-    }
-
-
-    private function isContinue()
-    {
-        if (is_bool($this->results())) {
-            return $this->results();
-        }
-
-        return true;
-    }
-
-
-    private function obtainParametersForPaginate()
+    protected function obtainParametersForPaginate()
     {
         $pageParameter = $this->obtainPageParameter();
 
@@ -176,7 +101,7 @@ class VideoFinder
     }
 
 
-    private function obtainPageParameter()
+    protected function obtainPageParameter()
     {
         return [
             'type' => $this->obtainParameter('type'),
@@ -188,7 +113,7 @@ class VideoFinder
     }
 
 
-    private function obtainLimitInTime()
+    protected function obtainLimitInTime()
     {
         return [
             'publishedAfter' => $this->publishedAfter,
@@ -197,7 +122,7 @@ class VideoFinder
     }
 
 
-    private function wrapVideos(array $videos)
+    protected function wrapVideos(array $videos)
     {
 
         $this->num += count($videos);
@@ -214,7 +139,7 @@ class VideoFinder
     }
 
 
-    private function results()
+    protected function results()
     {
         if (isset($this->pageInfo['results'])) {
             return $this->pageInfo['results'];
@@ -224,19 +149,19 @@ class VideoFinder
     }
 
 
-    private function thereIsNextPage()
+    protected function thereIsNextPage()
     {
         return ( ! is_null($this->pageInfo['info']['nextPageToken']));
     }
 
 
-    private function obtainNextPageToken()
+    protected function obtainNextPageToken()
     {
         return $this->pageInfo['info']['nextPageToken'] ?? null;
     }
 
 
-    private function obtainParameter($parameter)
+    protected function obtainParameter($parameter)
     {
 
         $parameters = $this->obtainParameters();
@@ -246,7 +171,7 @@ class VideoFinder
     }
 
 
-    private function obtainParameters()
+    protected function obtainParameters()
     {
         return [
             'type' => 'video',
@@ -259,7 +184,8 @@ class VideoFinder
         ];
     }
 
-    private function obtainFullVideo(VideoWrapper $videoWrapper)
+
+    protected function obtainFullVideo(VideoWrapper $videoWrapper)
     {
 
         $video = Youtube::getVideoInfo($videoWrapper->videoId());
