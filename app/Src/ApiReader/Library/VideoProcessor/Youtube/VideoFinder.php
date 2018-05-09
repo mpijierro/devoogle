@@ -12,9 +12,7 @@ class VideoFinder
 
     const RESULTS_PER_PAGE = 50;
 
-    //private $years = [2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018];
-    private $years = [2017];
-
+    private $years = [2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018];
 
     private $num = 0;
 
