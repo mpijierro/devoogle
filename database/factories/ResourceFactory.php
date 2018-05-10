@@ -22,6 +22,7 @@ $factory->define(\Devoogle\Src\Resource\Model\Resource::class, function (Faker $
         'uuid' => $faker->uuid,
         'title' => $name = $faker->sentence(3),
         'description' => $faker->text(),
+        'published_at' => \Carbon\Carbon::now(),
         'url' => $faker->url,
         'slug' => $faker->word . '-' . $faker->word,
         'created_at' => new DateTime(),
