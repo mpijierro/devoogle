@@ -15,6 +15,7 @@ class TechnologyTagExtractor extends TagExtractor
         'CodeIgniter' => [
             'code igniter'
         ],
+        'Docker',
         'Drupal',
         ' Go ',
         'GraphQl',
@@ -22,6 +23,7 @@ class TechnologyTagExtractor extends TagExtractor
         'IOS',
         'Javascript',
         'Java',
+        'Kubernetes',
         'Laravel',
         'MySQL',
         'MongoDB'     => [
@@ -37,12 +39,14 @@ class TechnologyTagExtractor extends TagExtractor
         ],
         'React',
         ' Rest ',
+        ' Sap ',
         'Scala',
         'Symfony'     => [
             'symfony2',
             'symfony3',
             'symfony4'
-        ]
+        ],
+        'Swift',
     ];
 
 }

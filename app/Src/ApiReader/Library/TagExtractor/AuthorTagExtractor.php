@@ -21,6 +21,7 @@ class AuthorTagExtractor extends TagExtractor
         'David Bonilla' => [
             '@david_bonilla'
         ],
+        'Diego Freniche',
         'Eduardo Ferro' => [
             '@eferro'
         ],
