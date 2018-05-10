@@ -2,30 +2,32 @@
 
 namespace Devoogle\Console\Commands;
 
-use Devoogle\Src\ApiReader\Command\CollectYoutubeHandler;
+use Devoogle\Src\ApiReader\Command\CollectWeDevelopersHandler;
 use Devoogle\Src\User\Repository\UserRepository;
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\DB;
 
-class CollectVideos extends Command
+class CollectAudios extends Command
 {
+
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'collect:video {platform}';
+    protected $signature = 'collect:audio {platform}';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Command search and save new links to vídeos';
+    protected $description = 'Command search and save audios';
+
     /**
      * @var UserRepository
      */
     private $userRepository;
+
 
     /**
      * Create a new command instance.
@@ -38,6 +40,7 @@ class CollectVideos extends Command
         $this->userRepository = $userRepository;
     }
 
+
     /**
      * Execute the console command.
      *
@@ -47,20 +50,22 @@ class CollectVideos extends Command
     {
         $user = $this->obtainUserAdmin();
 
-        if ($this->collectFromYoutube()) {
-            $handler = app(CollectYoutubeHandler::class);
+        if ($this->collectFromDevelopers()) {
+            $handler = app(CollectWeDevelopersHandler::class);
             $handler($user);
         }
 
     }
 
-    private function collectFromYoutube()
-    {
-        return ($this->argument('platform') == 'youtube');
-    }
 
     private function obtainUserAdmin()
     {
         return $this->userRepository->findAdmin();
+    }
+
+
+    private function collectFromDevelopers()
+    {
+        return ($this->argument('platform') == 'wedevelopers');
     }
 }
