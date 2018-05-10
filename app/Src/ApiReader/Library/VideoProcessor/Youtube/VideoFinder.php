@@ -5,12 +5,11 @@ namespace Devoogle\Src\ApiReader\Library\VideoProcessor\Youtube;
 use Alaouy\Youtube\Facades\Youtube;
 use Carbon\Carbon;
 use Devoogle\Src\ApiReader\VideoChannel\Model\VideoChannel;
+use Devoogle\Src\Devoogle\Library\DateRange;
 use Illuminate\Support\Collection;
 
 abstract class VideoFinder
 {
-
-    const RESULTS_PER_PAGE = 50;
 
     protected $num = 0;
 
@@ -24,9 +23,16 @@ abstract class VideoFinder
 
     protected $videoChannel;
 
-    public function __construct()
+    /**
+     * @var SetupSearch
+     */
+    private $setupSearch;
+
+
+    public function __construct(SetupSearch $setupSearch)
     {
         $this->videos = collect();
+        $this->setupSearch = $setupSearch;
     }
 
     public function videos()
@@ -49,22 +55,6 @@ abstract class VideoFinder
     }
 
 
-    protected function thereVideos()
-    {
-        return ! is_bool($this->results());
-    }
-
-
-    protected function isContinue()
-    {
-        if (is_bool($this->results())) {
-            return $this->results();
-        }
-
-        return true;
-    }
-
-
     protected function obtainVideos()
     {
 
@@ -72,9 +62,9 @@ abstract class VideoFinder
 
             $continue = true;
 
-            $params = $this->obtainParametersForPaginate();
+            $setupSearch = $this->obtainSetupSearch();
 
-            $this->pageInfo = Youtube::paginateResults($params, $this->obtainNextPageToken());
+            $this->pageInfo = Youtube::paginateResults($setupSearch, $this->obtainNextPageToken());
 
             if ($this->thereVideos()) {
 
@@ -91,34 +81,29 @@ abstract class VideoFinder
     }
 
 
-    protected function obtainParametersForPaginate()
+    private function obtainSetupSearch()
     {
-        $pageParameter = $this->obtainPageParameter();
 
-        $paramsDate = $this->obtainLimitInTime();
+        $dateRange = new DateRange(Carbon::parse($this->publishedAfter), Carbon::parse($this->publishedBefore));
 
-        return array_merge($pageParameter, $paramsDate);
+        return $this->setupSearch->obtainSetup($this->videoChannel, $dateRange);
+
     }
 
 
-    protected function obtainPageParameter()
+    protected function thereVideos()
     {
-        return [
-            'type' => $this->obtainParameter('type'),
-            'channelId' => $this->obtainParameter('channelId'),
-            'part' => implode(', ', $this->obtainParameter('part')),
-            'maxResults' => $this->obtainParameter('maxResults'),
-            'order' => $this->obtainParameter('order')
-        ];
+        return ! is_bool($this->results());
     }
 
 
-    protected function obtainLimitInTime()
+    protected function isContinue()
     {
-        return [
-            'publishedAfter' => $this->publishedAfter,
-            'publishedBefore' => $this->publishedBefore
-        ];
+        if (is_bool($this->results())) {
+            return $this->results();
+        }
+
+        return true;
     }
 
 
@@ -138,6 +123,17 @@ abstract class VideoFinder
         }
     }
 
+
+    protected function obtainFullVideo(VideoWrapper $videoWrapper)
+    {
+
+        $video = Youtube::getVideoInfo($videoWrapper->videoId());
+
+        if ($video) {
+            $videoWrapper->setFullVideo($video);
+        }
+
+    }
 
     protected function results()
     {
@@ -160,40 +156,5 @@ abstract class VideoFinder
         return $this->pageInfo['info']['nextPageToken'] ?? null;
     }
 
-
-    protected function obtainParameter($parameter)
-    {
-
-        $parameters = $this->obtainParameters();
-
-        return $parameters[$parameter];
-
-    }
-
-
-    protected function obtainParameters()
-    {
-        return [
-            'type' => 'video',
-            'channelId' => $this->videoChannel->slugId(),
-            'resultsPerPage' => self::RESULTS_PER_PAGE,
-            'maxResults' => self::RESULTS_PER_PAGE,
-            'order' => 'date',
-            'part' => ['id', 'snippet'],
-            'pageInfo' => true
-        ];
-    }
-
-
-    protected function obtainFullVideo(VideoWrapper $videoWrapper)
-    {
-
-        $video = Youtube::getVideoInfo($videoWrapper->videoId());
-
-        if ($video) {
-            $videoWrapper->setFullVideo($video);
-        }
-
-    }
 
 }
