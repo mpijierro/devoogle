@@ -1,7 +1,8 @@
 <div class="col-xs-12">
     <div class="row">
         <div class="col-sm-10">
-            <a href="{!! $resource->url() !!}" target="_blank" style="font-size: 18px;">{!! $resource->title() !!}</a>
+            <a href="{!! $resource->url() !!}" target="_blank"
+               style="font-size: 18px;"><b>{!! $resource->title() !!}</b></a>
         </div>
         <div class="col-sm-2" align="right">
 
@@ -34,10 +35,16 @@
     @if ($resource->hasDescription())
         <div class="row">
             <div class="col-xs-12">
-                {!! $resource->description()  !!}
+                {!! $resource->descriptionWithLink()  !!}
             </div>
         </div>
 
+    @else
+        <div class="row">
+            <div class="col-xs-12">
+                Sin descripción.
+            </div>
+        </div>
     @endif
 </div>
 

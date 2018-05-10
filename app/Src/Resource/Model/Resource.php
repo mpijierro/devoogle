@@ -3,6 +3,7 @@
 namespace Devoogle\Src\Resource\Model;
 
 use Devoogle\Src\Category\Model\Category;
+use Devoogle\Src\Devoogle\Library\FinderLink;
 use Devoogle\Src\Lang\Model\Lang;
 use Devoogle\Src\Tag\Model\Tag;
 use Devoogle\Src\User\Model\User;
@@ -146,9 +147,18 @@ class Resource extends Model
     }
 
 
+    public function descriptionWithLink()
+    {
+
+        $finder = app(FinderLink::class);
+
+        return $finder->find($this->description());
+
+    }
+
     public function hasDescription()
     {
-        return ! empty($this->description());
+        return ! empty(trim($this->description()));
     }
 
 
