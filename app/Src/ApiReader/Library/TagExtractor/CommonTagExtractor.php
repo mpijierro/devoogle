@@ -7,6 +7,7 @@ class CommonTagExtractor extends TagExtractor
 
     protected $tags = [
         'Agile',
+        'BDD',
         'DDD',
         'Entrevista' => [
             'Hablamos con '
@@ -16,8 +17,10 @@ class CommonTagExtractor extends TagExtractor
             'Lean Manufacturing',
             'Lean Startup'
         ],
+        'Métrica',
         'Microservices',
         'Scrum',
+        'TDD'
     ];
 
 }

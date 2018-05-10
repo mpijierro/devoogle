@@ -7,7 +7,15 @@ class TechnologyTagExtractor extends TagExtractor
 
     protected $tags = [
         'Android',
+        'Ansible',
+        'Ansistrano',
+        'Azure',
+        'Behat',
         ' C++ ',
+        'CodeIgniter' => [
+            'code igniter'
+        ],
+        'Drupal',
         ' Go ',
         'GraphQl',
         'Groovy',
@@ -16,11 +24,25 @@ class TechnologyTagExtractor extends TagExtractor
         'Java',
         'Laravel',
         'MySQL',
+        'MongoDB'     => [
+            'mongo'
+        ],
+        'Node',
         'PHP',
+        'PHPUnit',
         'PostgreSQL',
+        'Python',
+        'RabbitMQ'    => [
+            'rabbit'
+        ],
+        'React',
         ' Rest ',
         'Scala',
-        'Symfony'
+        'Symfony'     => [
+            'symfony2',
+            'symfony3',
+            'symfony4'
+        ]
     ];
 
 }
