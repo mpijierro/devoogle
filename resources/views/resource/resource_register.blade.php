@@ -27,7 +27,8 @@
 
             @if (isset($showCountFavourite))
                 <a href="#" rel="nofollow">
-                    <i class="fa fa-star yellow icon-resource-register" aria-hidden="true"></i> <b>{{$resource->favouriteCount()}}</b>
+                    <i class="fa fa-star yellow icon-resource-register" aria-hidden="true"></i>
+                    <b>{{$resource->favouriteCount()}}</b>
                 </a>
             @endif
         </div>
@@ -55,10 +56,13 @@
     <span class="nice"><a
                 href="{{route('list-category', $resource->category->slug()) }}">{!! $resource->category->name()  !!}</a></span>
 
+    <!-- Published at -->
+    <i class="fa fa-calendar icon-resource-register" aria-hidden="true"></i>
+    <span class="nice">{!! $resource->publishedAt()->format('d-m-Y') !!}</span>
 
     <!-- Lang -->
-    <i class="fa fa-language icon-resource-register" aria-hidden="true"></i> <span
-            class="nice">{!! $resource->lang->name() !!}</span>
+    <i class="fa fa-language icon-resource-register" aria-hidden="true"></i>
+    <span class="nice">{!! $resource->lang->name() !!}</span>
 
     <!-- Version -->
     <i class="icon-resource-register" aria-hidden="true" title="Otros formatos disponibles"></i>
@@ -73,7 +77,8 @@
         Sin otros formatos.
     @endforelse
 
-    <a href="{!! route('create-version', $resource->uuid()) !!}" title="Añadir nuevo formato" class="icon-resource-register">
+    <a href="{!! route('create-version', $resource->uuid()) !!}" title="Añadir nuevo formato"
+       class="icon-resource-register">
         <i class="fa fa-plus-square" aria-hidden="true"></i>
     </a>
 
@@ -125,7 +130,8 @@
                     <a href="{!! route('edit-resource', $resource->uuid()) !!}">
                         <i class="fa fa-edit fa-lg" aria-hidden="true" title="Editar recurso"></i>
                     </a>&nbsp;&nbsp;&nbsp;
-                    <a href="{!! route('delete-resource', $resource->uuid()) !!}" onclick="return confirm('¿Estás seguro/a de ELIMINAR este recurso?')">
+                    <a href="{!! route('delete-resource', $resource->uuid()) !!}"
+                       onclick="return confirm('¿Estás seguro/a de ELIMINAR este recurso?')">
                         <i class="fa fa-trash fa-lg" aria-hidden="true" title="Eliminar recurso"></i>
                     </a>&nbsp;
                 @endif
@@ -138,7 +144,8 @@
                 @endif
 
                 @if ( isAdmin() )
-                    <a href="{!! route('destroy-resource', $resource->uuid()) !!}" class="icon-resource-register" onclick="return confirm('¿Estás seguro/a de ELIMINAR para siempre este recurso?')">
+                    <a href="{!! route('destroy-resource', $resource->uuid()) !!}" class="icon-resource-register"
+                       onclick="return confirm('¿Estás seguro/a de ELIMINAR para siempre este recurso?')">
                         <i class="fa fa-trash fa-lg red" aria-hidden="true" title="Eliminar recurso"></i>
                     </a>&nbsp;
                 @endif

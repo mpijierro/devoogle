@@ -14,7 +14,7 @@ class ResourceRepositoryRead
 
     public function resourceForHome()
     {
-        return Resource::orderBy('created_at', 'desc')->paginate($this->sizeList());
+        return Resource::orderBy('published_at', 'desc')->paginate($this->sizeList());
     }
 
 
@@ -26,19 +26,24 @@ class ResourceRepositoryRead
 
     public function searchByTag(Tag $tag)
     {
-        return Resource::withAnyTags([$tag])->paginate($this->sizeList());
+        return Resource::withAnyTags([$tag])->orderBy('published_at', 'desc')->paginate($this->sizeList());
     }
 
 
     public function searchByCategory(Category $category)
     {
-        return Resource::where('category_id', $category->id)->orderBy('created_at', 'desc')->paginate($this->sizeList());
+        return Resource::where('category_id', $category->id)
+            ->orderBy('published_at', 'desc')
+            ->paginate($this->sizeList());
     }
 
 
     public function searchByString(string $string)
     {
-        return Resource::where('title', 'like', '%' . $string . '%')->orWhere('description', 'like', '%' . $string . '%')->paginate($this->sizeList());
+        return Resource::where('title', 'like', '%'.$string.'%')
+            ->orWhere('description', 'like', '%'.$string.'%')
+            ->orderBy('published_at', 'desc')
+            ->paginate($this->sizeList());
     }
 
 
