@@ -114,12 +114,14 @@ class VideoProcessor
         $categoryId = Category::VIDEO_CATEGORY_ID;
         $langId = Lang::LANG_UNSPECIFIED;
         $description = $this->videoWrapper->description();
+        $publishedAt = $this->videoWrapper->publishedAt();
         $tag = $this->tagFinder->findByCommonTags($this->textsForTagSearch);
         $author = $this->tagFinder->findByAuthor($this->textsForTagSearch);
         $event = $this->tagFinder->findByEvent($this->textsForTagSearch);
         $technology = $this->tagFinder->findByTechnology($this->textsForTagSearch);
 
-        $command = new StoreResourceCommand($uuid, $userId, $title, $description, $url, $categoryId, $langId, $tag, $author, $event, $technology);
+        $command = new StoreResourceCommand($uuid, $userId, $title, $description, $publishedAt, $url, $categoryId,
+            $langId, $tag, $author, $event, $technology);
         $handler = app(StoreResourceHandler::class);
         $handler($command);
 

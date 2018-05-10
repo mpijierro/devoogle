@@ -2,9 +2,10 @@
 
 namespace Devoogle\Src\Resource\Command;
 
+use Carbon\Carbon;
+
 class StoreResourceCommand
 {
-
     private $uuid;
 
     private $userId;
@@ -19,6 +20,11 @@ class StoreResourceCommand
 
     private $description;
 
+    /**
+     * @var \Carbon\Carbon
+     */
+    private $publishedAt;
+
     private $tag;
 
     private $author;
@@ -27,12 +33,12 @@ class StoreResourceCommand
 
     private $technology;
 
-
     public function __construct(
         string $uuid,
         string $userId,
         string $title,
         string $description,
+        Carbon $publishedAt,
         string $url,
         string $categoryId,
         string $langId,
@@ -48,76 +54,70 @@ class StoreResourceCommand
         $this->categoryId = $categoryId;
         $this->langId = $langId;
         $this->description = $description;
+        $this->publishedAt = $publishedAt;
         $this->tag = $tag;
         $this->author = $author;
         $this->event = $event;
         $this->technology = $technology;
     }
 
-
     public function getUuid(): string
     {
         return $this->uuid;
     }
-
 
     public function getUserId(): string
     {
         return $this->userId;
     }
 
-
     public function getTitle()
     {
         return $this->title;
     }
-
 
     public function getDescription(): string
     {
         return $this->description;
     }
 
+    public function getPublishedAt(): Carbon
+    {
+        return $this->publishedAt;
+    }
 
     public function getUrl()
     {
         return $this->url;
     }
 
-
     public function getCategoryId()
     {
         return $this->categoryId;
     }
-
 
     public function getLangId()
     {
         return $this->langId;
     }
 
-
     public function getTag(): string
     {
         return $this->tag;
     }
-
 
     public function getAuthor(): string
     {
         return $this->author;
     }
 
-
     public function getEvent(): string
     {
         return $this->event;
     }
 
-
     public function getTechnology(): string
     {
         return $this->technology;
     }
-
 }

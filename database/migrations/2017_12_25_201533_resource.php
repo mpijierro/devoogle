@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class Resource extends Migration
 {
@@ -32,6 +32,7 @@ class Resource extends Migration
             $table->text('description');
             $table->string('url');
             $table->string('slug');
+            $table->datetime('published_at');
             $table->boolean('reviewed')->default(false);
 
             $table->timestamps();

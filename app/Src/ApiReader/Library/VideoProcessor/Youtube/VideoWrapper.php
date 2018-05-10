@@ -2,41 +2,36 @@
 
 namespace Devoogle\Src\ApiReader\Library\VideoProcessor\Youtube;
 
+use Carbon\Carbon;
 use Illuminate\Support\Collection;
 
 class VideoWrapper
 {
-
     const VIDEO_URL = 'https://www.youtube.com/watch?v=';
 
     private $video;
 
     private $fullVideo = '';
 
-
     public function __construct($video)
     {
         $this->video = $video;
     }
-
 
     public function title()
     {
         return $this->video->snippet->title;
     }
 
-
     public function url()
     {
         return self::VIDEO_URL . $this->videoId();
     }
 
-
     public function videoId()
     {
         return $this->video->id->videoId;
     }
-
 
     public function description()
     {
@@ -71,6 +66,22 @@ class VideoWrapper
         return ! empty($this->fullVideo);
     }
 
+    public function hasPublishedDate()
+    {
+        return isset($this->video->snippet->publishedAt) AND ! empty($this->video->snippet->publishedAt);
+    }
+
+    public function publishedAt()
+    {
+
+        if ($this->hasPublishedDate()) {
+            return Carbon::parse($this->video->snippet->publishedAt);
+        }
+
+        return Carbon::now();
+
+    }
+
     public function obtainTextsForSearch(): Collection
     {
 
@@ -87,5 +98,4 @@ class VideoWrapper
         return $textsForTagSearch;
 
     }
-
 }

@@ -62,6 +62,7 @@ class StoreResourceHandler
         $this->resource->uuid = $this->command->getUuid();
         $this->resource->title = $this->command->getTitle();
         $this->resource->description = trim($this->command->getDescription());
+        $this->resource->published_at = $this->command->getPublishedAt();
         $this->resource->url = trim($this->command->getUrl());
         $this->resource->slug = $this->obtainSlug();
         $this->resource->category_id = $this->command->getCategoryId();

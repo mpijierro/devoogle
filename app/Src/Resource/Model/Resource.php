@@ -30,12 +30,13 @@ class Resource extends Model
         'description',
         'url',
         'slug',
+        'published_at',
         'reviewed'
     ];
 
     protected $with = ['user', 'category', 'lang', 'tags'];
 
-    protected $dates = ['created_at', 'updated_at', 'deleted_at'];
+    protected $dates = ['published_at', 'created_at', 'updated_at', 'deleted_at'];
 
 
     public function user()
@@ -165,6 +166,11 @@ class Resource extends Model
     public function url()
     {
         return $this->attributes['url'];
+    }
+
+    public function publishedAt()
+    {
+        return $this->published_at;
     }
 
 
