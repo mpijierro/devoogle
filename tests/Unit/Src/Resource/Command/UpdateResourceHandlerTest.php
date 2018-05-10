@@ -2,6 +2,7 @@
 
 namespace Tests\Unit;
 
+use Carbon\Carbon;
 use Devoogle\Src\Category\Model\Category;
 use Devoogle\Src\Lang\Model\Lang;
 use Devoogle\Src\Resource\Command\StoreResourceCommand;
@@ -10,13 +11,12 @@ use Devoogle\Src\Resource\Command\UpdateResourceCommand;
 use Devoogle\Src\Resource\Command\UpdateResourceHandler;
 use Devoogle\Src\Resource\Model\Resource;
 use Devoogle\Src\User\Model\User;
-use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 use Webpatser\Uuid\Uuid;
 
 class UpdateResourceHandlerTest extends TestCase
 {
-
     use RefreshDatabase;
 
     public function testResourceUpdatedSuccessfully()
@@ -27,19 +27,16 @@ class UpdateResourceHandlerTest extends TestCase
         $lang = factory(Lang::class)->create();
         $user = $this->defaultUser();
 
-        $command = new StoreResourceCommand($uuid, $user->id(), 'title', 'description', 'http://www.devoogle.com',
-            $category->id(), $lang->id(), 'tag 1', 'author name', 'event name', 'technology name');
+        $command = new StoreResourceCommand($uuid, $user->id(), 'title', 'description', Carbon::now(),
+            'http://www.devoogle.com', $category->id(), $lang->id(), 'tag 1', 'author name', 'event name', 'technology name');
 
         $handler = app(StoreResourceHandler::class);
         $handler($command);
 
-
-        $command = new UpdateResourceCommand($uuid, 'title 2', 'description 2', 'http://www.devoogle2.com',
-            $category->id(), $lang->id(), 'tag 2', 'author name 2', 'event name 2', 'technology name 2');
+        $command = new UpdateResourceCommand($uuid, 'title 2', 'description 2', 'http://www.devoogle2.com', $category->id(), $lang->id(), 'tag 2', 'author name 2', 'event name 2', 'technology name 2');
 
         $handler = app(UpdateResourceHandler::class);
         $handler($command);
-
 
         $resource = Resource::orderBy('id', 'desc')->first();
 

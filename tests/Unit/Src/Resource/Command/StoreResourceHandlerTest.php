@@ -2,6 +2,7 @@
 
 namespace Tests\Unit;
 
+use Carbon\Carbon;
 use Devoogle\Src\Category\Model\Category;
 use Devoogle\Src\Lang\Model\Lang;
 use Devoogle\Src\Resource\Command\StoreResourceCommand;
@@ -14,7 +15,6 @@ use Webpatser\Uuid\Uuid;
 
 class StoreResourceHandlerTest extends TestCase
 {
-
     use RefreshDatabase;
 
     public function testResourceCreatedSuccessfully()
@@ -24,9 +24,10 @@ class StoreResourceHandlerTest extends TestCase
         $category = factory(Category::class)->create();
         $lang = factory(Lang::class)->create();
         $user = $this->defaultUser();
+        $publishedAt = Carbon::now();
 
-        $command = new StoreResourceCommand($uuid, $user->id(), 'title', 'description', 'http://www.devoogle.com',
-            $category->id(), $lang->id(), 'tag 1', 'author name', 'event name', 'technology name');
+        $command = new StoreResourceCommand($uuid, $user->id(), 'title', 'description', $publishedAt,
+            'http://www.devoogle.com', $category->id(), $lang->id(), 'tag 1', 'author name', 'event name', 'technology name');
 
         $handler = app(StoreResourceHandler::class);
         $handler($command);
@@ -40,6 +41,7 @@ class StoreResourceHandlerTest extends TestCase
         $this->assertEquals($category->id(), $resource->categoryId());
         $this->assertEquals($lang->id(), $resource->langId());
         $this->assertEquals($category->id(), $resource->categoryId());
+        $this->assertTrue($resource->publishedAt()->toDateTimeString() == $publishedAt->toDateTimeString());
 
         $authors = $resource->author();
         foreach ($authors as $author) {
@@ -61,7 +63,6 @@ class StoreResourceHandlerTest extends TestCase
 
         $otherUser = factory(User::class)->create();
         $this->assertFalse($resource->isOwner($otherUser));
-
 
     }
 }

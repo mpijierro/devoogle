@@ -2,6 +2,7 @@
 
 namespace Tests\Unit;
 
+use Carbon\Carbon;
 use Devoogle\Src\Category\Model\Category;
 use Devoogle\Src\Lang\Model\Lang;
 use Devoogle\Src\Resource\Command\CheckResourceCommand;
@@ -10,7 +11,6 @@ use Devoogle\Src\Resource\Command\StoreResourceCommand;
 use Devoogle\Src\Resource\Command\StoreResourceHandler;
 use Devoogle\Src\Resource\Model\Resource;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Support\Facades\DB;
 use Tests\TestCase;
 use Webpatser\Uuid\Uuid;
 
@@ -26,8 +26,8 @@ class CheckResourceHandlerTest extends TestCase
         $lang = factory(Lang::class)->create();
         $user = $this->defaultUser();
 
-        $command = new StoreResourceCommand($uuid, $user->id(), 'title', 'description', 'http://www.devoogle.com',
-            $category->id(), $lang->id(), 'tag 1', 'author name', 'event name', 'technology name');
+        $command = new StoreResourceCommand($uuid, $user->id(), 'title', 'description', Carbon::now(),
+            'http://www.devoogle.com', $category->id(), $lang->id(), 'tag 1', 'author name', 'event name', 'technology name');
 
         $handler = app(StoreResourceHandler::class);
         $handler($command);
@@ -42,7 +42,6 @@ class CheckResourceHandlerTest extends TestCase
 
         $resource = Resource::where('uuid', $uuid)->first();
         $this->assertTrue($resource->isReviewed());
-
 
     }
 }
