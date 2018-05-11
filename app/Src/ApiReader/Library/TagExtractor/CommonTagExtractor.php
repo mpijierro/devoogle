@@ -20,7 +20,8 @@ class CommonTagExtractor extends TagExtractor
         'Métrica',
         'Microservices',
         'Scrum',
-        'TDD'
+        'TDD',
+        ' XP ',
     ];
 
 }

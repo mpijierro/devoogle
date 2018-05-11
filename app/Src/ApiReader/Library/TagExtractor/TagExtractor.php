@@ -132,6 +132,7 @@ abstract class TagExtractor
         $tag = str_replace(')', '\)', $tag);
         $tag = str_replace('[', '\[', $tag);
         $tag = str_replace(']', '\]', $tag);
+        $tag = str_replace('.', '\.', $tag);
 
         return $tag;
     }
