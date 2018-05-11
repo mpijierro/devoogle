@@ -38,8 +38,13 @@ class Resource extends Migration
             $table->timestamps();
             $table->softDeletes();
 
+            $table->index('url');
+            $table->index('slug');
+            $table->index('published_at');
 
         });
+
+
     }
 
     /**
