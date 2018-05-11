@@ -115,11 +115,16 @@ class ChannelProcessor implements ChannelProcessorInterface
 
     private function saveVideos()
     {
+
         foreach ($this->videos as $video) {
             try {
+
+                echo "\r\n # ".$video->videoId();
+
                 $this->videoProcessor->processVideo($video, $this->user);
 
             } catch (ResourceExistsException $e) {
+                echo "\r\n ### ".$video->videoId();
                 continue;
             }
 

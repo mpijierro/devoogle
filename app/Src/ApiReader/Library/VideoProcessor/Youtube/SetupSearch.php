@@ -34,11 +34,13 @@ class SetupSearch
     protected function setupPagination()
     {
         return [
-            'type'       => 'video',
-            'channelId'  => $this->videoChannel->slugId(),
-            'part'       => implode(', ', ['id', 'snippet']),
-            'maxResults' => self::RESULTS_PER_PAGE,
-            'order'      => 'date'
+            'type'           => 'video',
+            'channelId'      => $this->videoChannel->slugId(),
+            'part'           => implode(', ', ['id', 'snippet']),
+            'resultsPerPage' => self::RESULTS_PER_PAGE,
+            'maxResults'     => self::RESULTS_PER_PAGE,
+            'order'          => 'date',
+            'pageInfo'       => true
         ];
     }
 

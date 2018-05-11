@@ -11,7 +11,7 @@ class VideoChannelSeeder extends Seeder
      */
     public function run()
     {
-
+        /*
 
         DB::table('video_channel')->insert([
             'platform_id'         => 1,
@@ -131,7 +131,7 @@ class VideoChannelSeeder extends Seeder
             'created_at'          => \Carbon\Carbon::now(),
             'updated_at'          => \Carbon\Carbon::now(),
         ]);
-
+*/
         DB::table('video_channel')->insert([
             'platform_id'         => 1,
             'slug_id'             => 'UChbOHJuQ8Ex7DPkkv1r5Dug',

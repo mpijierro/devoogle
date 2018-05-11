@@ -10,6 +10,8 @@ class Lang extends Model
 
     const LANG_UNSPECIFIED = 1;
 
+    const SPANISH_CODE = 'es';
+
     protected $table = 'lang';
 
     protected $fillable = [

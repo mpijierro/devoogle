@@ -18,4 +18,9 @@ class LangRepositoryRead
         return Lang::orderBy('name', 'asc')->get();
     }
 
+
+    public function findByCode(string $code)
+    {
+        return Lang::where('code', $code)->firstOrFail();
+    }
 }

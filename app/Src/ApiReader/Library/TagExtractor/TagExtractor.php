@@ -24,9 +24,23 @@ abstract class TagExtractor
 
         $this->tagsFounded = [];
 
-        $texts->each(function ($text) {
-            $this->processText($text);
-        });
+        $text = $this->obtainTextsInOneString($texts);
+
+        $this->processText($text);
+    }
+
+
+    private function obtainTextsInOneString(Collection $texts)
+    {
+
+        $finalText = '';
+
+        foreach ($texts as $text) {
+            $finalText .= $text;
+        }
+
+        return $finalText;
+
     }
 
 
@@ -74,7 +88,7 @@ abstract class TagExtractor
      * Search synonyms in text. If one exists, assign as found the original tag.
      *
      * @param string $originTag
-     * @param array $synonyms
+     * @param array  $synonyms
      * @param string $text
      */
     private function processSynonyms(string $originTag, array $synonyms, string $text)
@@ -118,7 +132,7 @@ abstract class TagExtractor
 
         $tag = $this->sanitizeTag($tag);
 
-        $pattern = '/\b' . mb_strtolower(trim($tag)) . '\b/i';
+        $pattern = '/\b'.mb_strtolower(trim($tag)).'\b/i';
 
         return preg_match($pattern, mb_strtolower($text), $matches);
 
@@ -136,6 +150,7 @@ abstract class TagExtractor
 
         return $tag;
     }
+
 
     private function addFoundTag(string $tag)
     {

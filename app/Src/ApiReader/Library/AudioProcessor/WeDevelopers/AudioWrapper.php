@@ -13,10 +13,14 @@ class AudioWrapper
      */
     private $element;
 
+    private $textsForTagSearch = '';
+
 
     public function __construct(\SimpleXMLElement $element)
     {
         $this->element = $element;
+
+        $this->generateTextsForSearch();
     }
 
 
@@ -59,6 +63,24 @@ class AudioWrapper
     public function description(): string
     {
         return (string)$this->element->description;
+    }
+
+
+    private function generateTextsForSearch()
+    {
+
+        $this->textsForTagSearch = collect();
+
+        if ( ! empty($this->title())) {
+            $this->textsForTagSearch->push($this->title());
+        }
+
+        if ( ! empty($this->description())) {
+            $this->textsForTagSearch->push($this->description());
+        }
+
+        return $this->textsForTagSearch;
+
     }
 
 }
