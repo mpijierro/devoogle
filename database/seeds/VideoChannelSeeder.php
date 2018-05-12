@@ -11,7 +11,6 @@ class VideoChannelSeeder extends Seeder
      */
     public function run()
     {
-        /*
 
         DB::table('video_channel')->insert([
             'platform_id'         => 1,
@@ -131,12 +130,22 @@ class VideoChannelSeeder extends Seeder
             'created_at'          => \Carbon\Carbon::now(),
             'updated_at'          => \Carbon\Carbon::now(),
         ]);
-*/
+
         DB::table('video_channel')->insert([
             'platform_id'         => 1,
             'slug_id'             => 'UChbOHJuQ8Ex7DPkkv1r5Dug',
             'slug_name'           => 'php-madrid',
             'name'                => 'PHP Madrid',
+            'last_time_processed' => null,
+            'created_at'          => \Carbon\Carbon::now(),
+            'updated_at'          => \Carbon\Carbon::now(),
+        ]);
+
+        DB::table('video_channel')->insert([
+            'platform_id'         => 1,
+            'slug_id'             => 'UCksw6qsw6vk7cp8sVwIpNrQ',
+            'slug_name'           => 'software-craftsmanship-barcelona',
+            'name'                => 'Software Craftsmanship Barcelona',
             'last_time_processed' => null,
             'created_at'          => \Carbon\Carbon::now(),
             'updated_at'          => \Carbon\Carbon::now(),

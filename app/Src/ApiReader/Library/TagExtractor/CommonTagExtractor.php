@@ -27,6 +27,7 @@ class CommonTagExtractor extends TagExtractor
             'Microservice'
         ],
         'Scrum',
+        'Solid',
         'TDD',
         ' XP ',
     ];
