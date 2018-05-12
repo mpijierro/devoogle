@@ -7,18 +7,25 @@ class CommonTagExtractor extends TagExtractor
 
     protected $tags = [
         'Agile',
+        'Arquitectura Hexagonal',
+        'CQRS',
         'BDD',
-        'DDD',
-        'Entrevista' => [
+        'DDD'            => [
+            'domain driven design',
+            'domain-driven design',
+        ],
+        'Entrevista'     => [
             'Hablamos con '
         ],
         'Kanban',
-        'Lean' => [
+        'Lean'           => [
             'Lean Manufacturing',
             'Lean Startup'
         ],
         'Métrica',
-        'Microservices',
+        'Microservicios' => [
+            'Microservice'
+        ],
         'Scrum',
         'TDD',
         ' XP ',

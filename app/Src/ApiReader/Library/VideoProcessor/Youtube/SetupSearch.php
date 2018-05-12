@@ -48,8 +48,8 @@ class SetupSearch
     private function filterByDateRange()
     {
         return [
-            'publishedAfter'  => $this->dateRange->start(),
-            'publishedBefore' => $this->dateRange->end()
+            'publishedAfter'  => $this->dateRange->start()->toRfc3339String(),
+            'publishedBefore' => $this->dateRange->end()->toRfc3339String()
         ];
     }
 }

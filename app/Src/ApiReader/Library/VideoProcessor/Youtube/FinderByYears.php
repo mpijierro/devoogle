@@ -9,8 +9,7 @@ use Illuminate\Support\Collection;
 class FinderByYears extends VideoFinder
 {
 
-    //private $years = [2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018];
-    private $years = [2017];
+    private $years = [2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018];
 
     public function find(VideoChannel $videoChannel): Collection
     {
@@ -28,11 +27,11 @@ class FinderByYears extends VideoFinder
 
             $this->processFirstTrimester($year);
 
-            //$this->processSecondTrimester($year);
+            $this->processSecondTrimester($year);
 
-            //$this->processThirdTrimester($year);
+            $this->processThirdTrimester($year);
 
-            //$this->processFourthTrimester($year);
+            $this->processFourthTrimester($year);
         }
 
     }
@@ -50,8 +49,8 @@ class FinderByYears extends VideoFinder
 
     private function setDateRangePublished(Carbon $after, Carbon $before)
     {
-        $this->publishedAfter = $after->toRfc3339String();
-        $this->publishedBefore = $before->toRfc3339String();
+        $this->publishedAfter = $after;
+        $this->publishedBefore = $before;
     }
 
 

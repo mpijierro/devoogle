@@ -15,6 +15,7 @@ class TechnologyTagExtractor extends TagExtractor
         'Azure',
         'Behat',
         ' C++ ',
+        'Cassandra',
         'Cobol',
         'CodeIgniter'  => [
             'code igniter'

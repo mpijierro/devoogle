@@ -112,13 +112,7 @@ abstract class VideoFinder
 
         $this->num += count($videos);
 
-        echo "\r\n : ".$this->publishedAfter;
-        echo "\r\n : ".$this->publishedBefore;
-
-
         foreach ($videos as $video) {
-
-            echo "\r\n : ".$video->id->videoId." - ".$video->snippet->publishedAt;
 
             $videoWrapper = app(VideoWrapper::class, ['video' => $video]);
 

@@ -92,7 +92,7 @@ class AudioProcessor
         $userId = $this->user->id();
         $title = $audioWrapper->title();
         $url = $audioWrapper->url();
-        $categoryId = Category::VIDEO_CATEGORY_ID;
+        $categoryId = Category::AUDIO_CATEGORY_ID;
         $langId = $this->lang->id();
         $description = $audioWrapper->description();
         $publishedAt = $audioWrapper->publishedAt();
