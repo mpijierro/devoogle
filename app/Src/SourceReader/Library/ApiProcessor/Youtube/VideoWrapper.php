@@ -22,13 +22,13 @@ class VideoWrapper extends ResourceWrapper
     }
 
 
-    public function title()
+    public function title(): string
     {
         return $this->video->snippet->title;
     }
 
 
-    public function url()
+    public function url(): string
     {
         return self::VIDEO_URL.$this->videoId();
     }
@@ -40,7 +40,7 @@ class VideoWrapper extends ResourceWrapper
     }
 
 
-    public function description()
+    public function description(): string
     {
         if ($this->hasFullVideo()) {
             return $this->fullVideo->snippet->description;
