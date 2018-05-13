@@ -1,6 +1,6 @@
 <?php
 
-namespace Devoogle\Http\Controllers\ApiReader;
+namespace Devoogle\Http\Controllers\SourceReader;
 
 
 use Alaouy\Youtube\Facades\Youtube;

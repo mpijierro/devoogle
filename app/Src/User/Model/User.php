@@ -10,6 +10,8 @@ use Illuminate\Notifications\Notifiable;
 class User extends Authenticatable
 {
 
+    CONST ADMIN_USER_ID = 1;
+
     use Notifiable;
 
     protected $fillable = [

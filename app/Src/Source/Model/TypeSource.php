@@ -9,4 +9,10 @@ class TypeSource extends Model
 
     protected $table = 'type_source';
 
+
+    public function slug()
+    {
+        return $this->attributes['slug'];
+    }
+
 }
