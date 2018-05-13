@@ -134,15 +134,34 @@ class Processor implements SourceProcessorInterface
 
         foreach ($this->rssContent->channel->item as $item) {
 
-            $wrapper = new AudioWrapper($item);
-
-            $this->saveAudio($wrapper);
-
-            $this->saveRaw($wrapper);
+            $this->processItem($item);
 
         }
     }
 
+
+    private function processItem(SimpleXMLElement $item)
+    {
+
+        $wrapper = new AudioWrapper($item);
+
+        if ($this->audioExists($wrapper)) {
+            return;
+        }
+
+        $this->saveAudio($wrapper);
+
+        $this->saveRaw($wrapper);
+
+    }
+
+
+    private function audioExists(AudioWrapper $audioWrapper)
+    {
+
+        return $this->resourceRepositoryRead->existsUrlPattern($audioWrapper->url());
+
+    }
 
     private function saveAudio(AudioWrapper $audioWrapper)
     {
