@@ -10,6 +10,7 @@ use Devoogle\Src\Resource\Command\CheckResourceHandler;
 use Devoogle\Src\Resource\Command\StoreResourceCommand;
 use Devoogle\Src\Resource\Command\StoreResourceHandler;
 use Devoogle\Src\Resource\Model\Resource;
+use Devoogle\Src\Source\Model\Source;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 use Webpatser\Uuid\Uuid;
@@ -25,8 +26,9 @@ class CheckResourceHandlerTest extends TestCase
         $category = factory(Category::class)->create();
         $lang = factory(Lang::class)->create();
         $user = $this->defaultUser();
+        $source = factory(Source::class)->create();
 
-        $command = new StoreResourceCommand($uuid, $user->id(), 'title', 'description', Carbon::now(),
+        $command = new StoreResourceCommand($uuid, $user->id(), true, $source->id(), 'title', 'description', Carbon::now(),
             'http://www.devoogle.com', $category->id(), $lang->id(), 'tag 1', 'author name', 'event name', 'technology name');
 
         $handler = app(StoreResourceHandler::class);

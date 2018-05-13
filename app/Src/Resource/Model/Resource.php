@@ -5,6 +5,7 @@ namespace Devoogle\Src\Resource\Model;
 use Devoogle\Src\Category\Model\Category;
 use Devoogle\Src\Devoogle\Library\FinderLink;
 use Devoogle\Src\Lang\Model\Lang;
+use Devoogle\Src\Source\Model\Source;
 use Devoogle\Src\Tag\Model\Tag;
 use Devoogle\Src\User\Model\User;
 use Devoogle\Src\Version\Model\Version;
@@ -24,6 +25,7 @@ class Resource extends Model
     protected $fillable = [
         'uuid',
         'user_id',
+        'source_id',
         'category_id',
         'lang_id',
         'title',
@@ -42,6 +44,12 @@ class Resource extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+
+    public function source()
+    {
+        return $this->belongsTo(Source::class);
     }
 
 
@@ -112,6 +120,11 @@ class Resource extends Model
     }
 
 
+    public function sourceId()
+    {
+        return $this->attributes['source_id'];
+    }
+
     public function categoryId()
     {
         return $this->attributes['category_id'];
@@ -157,6 +170,12 @@ class Resource extends Model
 
     }
 
+
+    public function hasSource()
+    {
+        return ! is_null($this->sourceId());
+    }
+
     public function hasDescription()
     {
         return ! empty(trim($this->description()));
@@ -167,6 +186,7 @@ class Resource extends Model
     {
         return $this->attributes['url'];
     }
+
 
     public function publishedAt()
     {

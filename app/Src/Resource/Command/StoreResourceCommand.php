@@ -10,6 +10,10 @@ class StoreResourceCommand
 
     private $userId;
 
+    private $hasSource;
+
+    private $sourceId;
+
     private $title;
 
     private $url;
@@ -33,9 +37,12 @@ class StoreResourceCommand
 
     private $technology;
 
+
     public function __construct(
         string $uuid,
         string $userId,
+        bool $hasSource,
+        int $sourceId,
         string $title,
         string $description,
         Carbon $publishedAt,
@@ -49,6 +56,8 @@ class StoreResourceCommand
     ) {
         $this->uuid = $uuid;
         $this->userId = $userId;
+        $this->hasSource = $hasSource;
+        $this->sourceId = $sourceId;
         $this->title = $title;
         $this->url = $url;
         $this->categoryId = $categoryId;
@@ -69,6 +78,18 @@ class StoreResourceCommand
     public function getUserId(): string
     {
         return $this->userId;
+    }
+
+
+    public function hasSource(): bool
+    {
+        return $this->hasSource;
+    }
+
+
+    public function getSourceId(): int
+    {
+        return $this->sourceId;
     }
 
     public function getTitle()

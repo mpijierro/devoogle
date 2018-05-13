@@ -22,7 +22,7 @@ class Resource extends Migration
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users');
 
-            $table->integer('source_id')->unsigned();
+            $table->integer('source_id')->unsigned()->nullable();
             $table->foreign('source_id')->references('id')->on('source');
 
             $table->integer('category_id')->unsigned();

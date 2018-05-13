@@ -34,6 +34,8 @@ class StoreResourceHandler
 
         $this->fill();
 
+        $this->fillSource();
+
         $this->create();
 
         $this->attachAuthorTags();
@@ -43,7 +45,6 @@ class StoreResourceHandler
         $this->attachTechnologyTags();
 
         $this->attachResourceTags();
-
 
     }
 
@@ -67,6 +68,18 @@ class StoreResourceHandler
         $this->resource->slug = $this->obtainSlug();
         $this->resource->category_id = $this->command->getCategoryId();
         $this->resource->lang_id = $this->command->getLangId();
+
+    }
+
+
+    private function fillSource()
+    {
+
+        $this->resource->source_id = null;
+
+        if ($this->command->hasSource()) {
+            $this->resource->source_id = $this->command->getSourceId();
+        }
 
     }
 

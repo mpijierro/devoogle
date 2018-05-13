@@ -10,6 +10,7 @@ use Devoogle\Src\Resource\Command\StoreResourceHandler;
 use Devoogle\Src\Resource\Command\UpdateResourceCommand;
 use Devoogle\Src\Resource\Command\UpdateResourceHandler;
 use Devoogle\Src\Resource\Model\Resource;
+use Devoogle\Src\Source\Model\Source;
 use Devoogle\Src\User\Model\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
@@ -26,8 +27,9 @@ class UpdateResourceHandlerTest extends TestCase
         $category = factory(Category::class)->create();
         $lang = factory(Lang::class)->create();
         $user = $this->defaultUser();
+        $source = factory(Source::class)->create();
 
-        $command = new StoreResourceCommand($uuid, $user->id(), 'title', 'description', Carbon::now(),
+        $command = new StoreResourceCommand($uuid, $user->id(), true, $source->id(), 'title', 'description', Carbon::now(),
             'http://www.devoogle.com', $category->id(), $lang->id(), 'tag 1', 'author name', 'event name', 'technology name');
 
         $handler = app(StoreResourceHandler::class);
@@ -41,6 +43,8 @@ class UpdateResourceHandlerTest extends TestCase
         $resource = Resource::orderBy('id', 'desc')->first();
 
         $this->assertEquals($uuid, $resource->uuid());
+        $this->assertEquals($source->id(), $resource->sourceId());
+        $this->assertTrue($resource->hasSource());
         $this->assertEquals('title 2', $resource->title());
         $this->assertEquals('description 2', $resource->description());
         $this->assertEquals('http://www.devoogle2.com', $resource->url());

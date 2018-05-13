@@ -26,7 +26,7 @@ Route::group(['prefix' => 'input'], function () {
     Route::get('/tag/{type}', "Tag\SearchTagController")->name('input-tag');
 });
 
-Route::get('/youtube', "ApiReader\ChannelListController")->name('channel-youtube-list');
+Route::get('/youtube', "SourceReader\ChannelListController")->name('channel-youtube-list');
 
 Route::get('/politica-privacidad', "Legal\PrivacyPolicyController")->name('privacy-policy');
 Route::get('/aviso-legal', "Legal\PrivacyPolicyController")->name('legal');
