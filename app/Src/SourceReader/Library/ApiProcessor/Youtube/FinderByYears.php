@@ -9,9 +9,15 @@ use Illuminate\Support\Collection;
 class FinderByYears extends VideoFinder
 {
 
-    //private $years = [2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018];
-    private $years = [2017];
+    private $years = [];
 
+
+    public function __construct(SetupSearch $setupSearch)
+    {
+        parent::__construct($setupSearch);
+
+        $this->loadYears();
+    }
 
     public function find(YoutubeChannel $videoChannel): Collection
     {
@@ -84,4 +90,9 @@ class FinderByYears extends VideoFinder
 
     }
 
+
+    private function loadYears()
+    {
+        $this->years = range(2007, date('Y'));
+    }
 }
