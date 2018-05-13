@@ -10,8 +10,6 @@ use Devoogle\Src\Resource\Repository\ResourceRepositoryRead;
 use Devoogle\Src\ResourceRaw\Model\ResourceRaw;
 use Devoogle\Src\ResourceRaw\Repository\ResourceRawRepositoryWrite;
 use Devoogle\Src\Source\Repository\SourceRepositoryRead;
-use Devoogle\Src\SourceReader\Exceptions\ResourceExistsException;
-use Devoogle\Src\SourceReader\Library\VideoWrapper;
 use Devoogle\Src\Tag\Library\TagExtractor\TagFinder;
 use Devoogle\Src\User\Model\User;
 use Devoogle\Src\User\Repository\UserRepository;

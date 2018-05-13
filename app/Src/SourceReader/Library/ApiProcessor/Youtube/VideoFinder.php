@@ -5,7 +5,6 @@ namespace Devoogle\Src\SourceReader\Library\ApiProcessor\Youtube;
 use Alaouy\Youtube\Facades\Youtube;
 use Carbon\Carbon;
 use Devoogle\Src\Devoogle\Library\DateRange;
-use Devoogle\Src\SourceReader\Library\VideoWrapper;
 use Devoogle\Src\SourceReader\Model\YoutubeChannel;
 
 abstract class VideoFinder

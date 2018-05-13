@@ -5,7 +5,7 @@ namespace Devoogle\Src\SourceReader\Library;
 use Carbon\Carbon;
 use Illuminate\Support\Collection;
 
-class AudioWrapper
+class AudioWrapper extends ResourceWrapper
 {
 
     /**

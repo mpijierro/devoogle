@@ -1,11 +1,12 @@
 <?php
 
-namespace Devoogle\Src\SourceReader\Library;
+namespace Devoogle\Src\SourceReader\Library\ApiProcessor\Youtube;
 
 use Carbon\Carbon;
+use Devoogle\Src\SourceReader\Library\ResourceWrapper;
 use Illuminate\Support\Collection;
 
-class VideoWrapper
+class VideoWrapper extends ResourceWrapper
 {
     const VIDEO_URL = 'https://www.youtube.com/watch?v=';
 
@@ -71,7 +72,8 @@ class VideoWrapper
         return isset($this->video->snippet->publishedAt) AND ! empty($this->video->snippet->publishedAt);
     }
 
-    public function publishedAt()
+
+    public function publishedAt(): Carbon
     {
 
         if ($this->hasPublishedDate()) {

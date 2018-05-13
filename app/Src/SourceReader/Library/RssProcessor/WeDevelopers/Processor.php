@@ -159,7 +159,7 @@ class Processor implements SourceProcessorInterface
     private function audioExists(AudioWrapper $audioWrapper)
     {
 
-        return $this->resourceRepositoryRead->existsUrlPattern($audioWrapper->url());
+        return (bool)$this->resourceRepositoryRead->existsUrlPattern($audioWrapper->url());
 
     }
 
