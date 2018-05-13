@@ -33,6 +33,7 @@ class VideoProcessor
      * @var UserRepository
      */
     private $userRepository;
+
     /**
      * @var TagFinder
      */
@@ -100,6 +101,7 @@ class VideoProcessor
         $this->source = $this->sourceRepositoryRead->obtainYoutube();
     }
 
+
     private function checkExists()
     {
         $exists = $this->resourceRepositoryRead->existsUrlPattern($this->videoWrapper->videoId());
@@ -132,8 +134,7 @@ class VideoProcessor
         $event = $this->tagFinder->findByEvent($this->textsForTagSearch);
         $technology = $this->tagFinder->findByTechnology($this->textsForTagSearch);
 
-        $command = new StoreResourceCommand($this->uuid, $userId, true, $sourceId, $title, $description, $publishedAt, $url, $categoryId,
-            $langId, $tag, $author, $event, $technology);
+        $command = new StoreResourceCommand($this->uuid, $userId, true, $sourceId, $title, $description, $publishedAt, $url, $categoryId, $langId, $tag, $author, $event, $technology);
         $handler = app(StoreResourceHandler::class);
         $handler($command);
     }

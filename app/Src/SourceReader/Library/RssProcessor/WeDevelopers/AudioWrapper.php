@@ -29,6 +29,7 @@ class AudioWrapper extends ResourceWrapper
         return $this->element;
     }
 
+
     public function url(): string
     {
         return $this->element->link;

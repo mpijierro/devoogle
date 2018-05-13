@@ -8,31 +8,37 @@ use Illuminate\Support\Collection;
 
 class VideoWrapper extends ResourceWrapper
 {
+
     const VIDEO_URL = 'https://www.youtube.com/watch?v=';
 
     private $video;
 
     private $fullVideo = '';
 
+
     public function __construct($video)
     {
         $this->video = $video;
     }
+
 
     public function title()
     {
         return $this->video->snippet->title;
     }
 
+
     public function url()
     {
-        return self::VIDEO_URL . $this->videoId();
+        return self::VIDEO_URL.$this->videoId();
     }
+
 
     public function videoId()
     {
         return $this->video->id->videoId;
     }
+
 
     public function description()
     {
@@ -43,15 +49,18 @@ class VideoWrapper extends ResourceWrapper
         return $this->video->snippet->description;
     }
 
+
     public function setDescription(string $description)
     {
         $this->video->snippet->description = $description;
     }
 
+
     public function setFullVideo(\stdClass $fullVideo)
     {
         $this->fullVideo = $fullVideo;
     }
+
 
     public function fullVideo()
     {
@@ -62,10 +71,12 @@ class VideoWrapper extends ResourceWrapper
         return new \stdClass();
     }
 
+
     public function hasFullVideo()
     {
         return ! empty($this->fullVideo);
     }
+
 
     public function hasPublishedDate()
     {
@@ -83,6 +94,7 @@ class VideoWrapper extends ResourceWrapper
         return Carbon::now();
 
     }
+
 
     public function obtainTextsForSearch(): Collection
     {

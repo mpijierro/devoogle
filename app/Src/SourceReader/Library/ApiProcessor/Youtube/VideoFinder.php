@@ -34,6 +34,7 @@ abstract class VideoFinder
         $this->setupSearch = $setupSearch;
     }
 
+
     public function videos()
     {
         return $this->videos;
@@ -134,6 +135,7 @@ abstract class VideoFinder
 
     }
 
+
     protected function results()
     {
         if (isset($this->pageInfo['results'])) {
@@ -154,6 +156,5 @@ abstract class VideoFinder
     {
         return $this->pageInfo['info']['nextPageToken'] ?? null;
     }
-
 
 }

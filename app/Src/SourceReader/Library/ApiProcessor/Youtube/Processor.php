@@ -62,6 +62,7 @@ class Processor implements SourceProcessorInterface
         return self::SLUG;
     }
 
+
     private function initialize(Source $source)
     {
         $this->source = $source;
