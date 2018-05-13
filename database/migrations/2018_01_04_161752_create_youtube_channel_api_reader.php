@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePlatformApiReader extends Migration
+class CreateYoutubeChannelApiReader extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,18 @@ class CreatePlatformApiReader extends Migration
      */
     public function up()
     {
-        Schema::create('platform', function (Blueprint $table) {
+        Schema::create('youtube_channel', function (Blueprint $table) {
 
             $table->increments('id');
 
-            $table->string('key');
+            $table->integer('source_id')->unsigned();
+            $table->foreign('source_id')->references('id')->on('source');
+
+            $table->string('slug_id');
+            $table->string('slug_name');
             $table->string('name');
+
+            $table->timestamps();
 
         });
     }
@@ -30,6 +36,6 @@ class CreatePlatformApiReader extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('platform');
+        Schema::dropIfExists('youtube_channel');
     }
 }

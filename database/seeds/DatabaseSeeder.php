@@ -14,7 +14,8 @@ class DatabaseSeeder extends Seeder
         $this->call(UserSeeder::class);
         $this->call(CategorySeeder::class);
         $this->call(LangSeeder::class);
-        $this->call(PlatformSeeder::class);
-        $this->call(VideoChannelSeeder::class);
+        $this->call(TypeSourceSeeder::class);
+        $this->call(SourceSeeder::class);
+        $this->call(YoutubeChannelSeeder::class);
     }
 }

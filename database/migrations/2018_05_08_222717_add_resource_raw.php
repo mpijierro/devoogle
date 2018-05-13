@@ -4,13 +4,17 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddYoutubeVideo extends Migration
+class AddResourceRaw extends Migration
 {
     public function up()
     {
-        Schema::create('youtube_video', function (Blueprint $table) {
+        Schema::create('resource_raw', function (Blueprint $table) {
 
             $table->increments('id');
+
+            $table->integer('resource_id')->unsigned();
+            $table->foreign('resource_id')->references('id')->on('resource');
+            
             $table->json('info');
             $table->timestamps();
 
@@ -25,6 +29,6 @@ class AddYoutubeVideo extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('youtube_video');
+        Schema::dropIfExists('resource_raw');
     }
 }
