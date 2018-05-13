@@ -2,7 +2,7 @@
 
 namespace Devoogle\Src\SourceReader\VideoChannel\Repository;
 
-use Devoogle\Src\SourceReader\VideoChannel\Model\YoutubeChannel;
+use Devoogle\Src\SourceReader\Model\YoutubeChannel;
 
 class YoutubeChannelRepositoryRead
 {

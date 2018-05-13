@@ -1,6 +1,6 @@
 <?php
 
-namespace Devoogle\Src\SourceReader\Library\TagExtractor;
+namespace Devoogle\Src\Tag\Library\TagExtractor;
 
 class AuthorTagExtractor extends TagExtractor
 {

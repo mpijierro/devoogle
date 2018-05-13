@@ -1,15 +1,18 @@
 <?php
 
-namespace Devoogle\Src\SourceReader\Library\VideoProcessor\Youtube;
+namespace Devoogle\Src\SourceReader\Library\ApiProcessor\Youtube;
 
 use Carbon\Carbon;
 use Devoogle\Src\Source\Model\Source;
 use Devoogle\Src\Source\Repository\SourceRepositoryWrite;
 use Devoogle\Src\SourceReader\Library\SourceProcessorInterface;
+use Devoogle\Src\SourceReader\Model\YoutubeChannel;
 use Devoogle\Src\SourceReader\VideoChannel\Repository\YoutubeChannelRepositoryRead;
 
-class YoutubeProcessor implements SourceProcessorInterface
+class Processor implements SourceProcessorInterface
 {
+
+    const SLUG = 'youtube';
 
     private $source;
 
@@ -48,11 +51,16 @@ class YoutubeProcessor implements SourceProcessorInterface
 
         $this->obtainChannels();
 
-        $this->obtainVideos();
+        $this->processChannels();
 
         $this->updateTimeProcessed();
     }
 
+
+    public function slug(): string
+    {
+        return self::SLUG;
+    }
 
     private function initialize(Source $source)
     {
@@ -66,16 +74,25 @@ class YoutubeProcessor implements SourceProcessorInterface
     }
 
 
-    private function obtainVideos()
+    private function processChannels()
     {
 
         foreach ($this->channels as $channel) {
 
-            if ($this->source->hasBeenProcessed()) {
-                $this->channelProcessor->processNewVideos($channel);
-            } else {
-                $this->channelProcessor->processAllVideos($channel);
-            }
+            $this->processChannel($channel);
+
+        }
+
+    }
+
+
+    private function processChannel(YoutubeChannel $channel)
+    {
+
+        if ($this->source->hasBeenProcessed()) {
+            $this->channelProcessor->processNewVideos($channel, $this->source->lastTimeProcessed());
+        } else {
+            $this->channelProcessor->processAllVideos($channel);
         }
 
     }
@@ -85,8 +102,7 @@ class YoutubeProcessor implements SourceProcessorInterface
     {
         $this->source->last_time_processed = Carbon::now();
 
-        dd($this->source);
-
         $this->sourceRepositoryWrite->save($this->source);
     }
+
 }

@@ -8,4 +8,7 @@ interface SourceProcessorInterface
 {
 
     public function process(Source $source);
+
+
+    public function slug(): string;
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace Devoogle\Src\SourceReader\Library\VideoProcessor\Youtube;
+namespace Devoogle\Src\SourceReader\Library;
 
 use Carbon\Carbon;
 use Illuminate\Support\Collection;

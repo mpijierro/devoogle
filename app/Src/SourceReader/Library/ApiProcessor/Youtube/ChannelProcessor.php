@@ -1,12 +1,12 @@
 <?php
 
-namespace Devoogle\Src\SourceReader\Library\VideoProcessor\Youtube;
+namespace Devoogle\Src\SourceReader\Library\ApiProcessor\Youtube;
 
 use Carbon\Carbon;
 use Devoogle\Src\Devoogle\Library\DateRange;
 use Devoogle\Src\SourceReader\Exceptions\ResourceExistsException;
+use Devoogle\Src\SourceReader\Model\YoutubeChannel;
 use Devoogle\Src\SourceReader\Repository\VideoChannelRepositoryWrite;
-use Devoogle\Src\SourceReader\VideoChannel\Model\YoutubeChannel;
 
 class ChannelProcessor
 {
@@ -47,6 +47,20 @@ class ChannelProcessor
     }
 
 
+    public function processNewVideos(YoutubeChannel $channel, Carbon $lastTimeProcessed)
+    {
+
+        $this->initializeChannel($channel);
+
+        $this->initializePageInfo();
+
+        $this->obtainNewVideos($lastTimeProcessed);
+
+        $this->saveVideos();
+
+    }
+
+
     private function initializeChannel(YoutubeChannel $videoChannel)
     {
         $this->channel = $videoChannel;
@@ -71,6 +85,19 @@ class ChannelProcessor
     }
 
 
+    private function obtainNewVideos(Carbon $lastTimeProcessed)
+    {
+
+        $range = new DateRange($lastTimeProcessed, Carbon::now());
+
+        $finder = app(FinderByDateRange::class);
+
+        $this->videos = $finder->find($this->channel, $range);
+
+        echo "\r\n Video channel: ".$this->channel->name()." ## num: ".$finder->num();
+
+    }
+
     private function saveVideos()
     {
 
@@ -81,40 +108,10 @@ class ChannelProcessor
 
             } catch (ResourceExistsException $e) {
 
+                //TODO: to log exception, send email
                 continue;
             }
-
         }
-    }
-
-
-    public function processNewVideos(YoutubeChannel $channel)
-    {
-        //TODO: refactor
-        $this->initializeChannel($channel);
-
-        $this->initializePageInfo();
-
-        $this->obtainNewVideos();
-
-        $this->saveVideos();
-
-    }
-
-
-    private function obtainNewVideos()
-    {
-
-        $lastTime = $this->channel->lastTimeProcessed();
-
-        $range = new DateRange($lastTime, Carbon::now());
-
-        $finder = app(FinderByDateRange::class);
-
-        $this->videos = $finder->find($this->channel, $range);
-
-        echo "\r\n Video channel: ".$this->channel->name()." ## num: ".$finder->num();
-
     }
 
 }

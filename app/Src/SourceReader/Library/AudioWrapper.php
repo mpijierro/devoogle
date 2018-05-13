@@ -1,6 +1,6 @@
 <?php
 
-namespace Devoogle\Src\SourceReader\Library\AudioProcessor\WeDevelopers;
+namespace Devoogle\Src\SourceReader\Library;
 
 use Carbon\Carbon;
 use Illuminate\Support\Collection;
@@ -23,6 +23,11 @@ class AudioWrapper
         $this->generateTextsForSearch();
     }
 
+
+    public function element()
+    {
+        return $this->element;
+    }
 
     public function url(): string
     {

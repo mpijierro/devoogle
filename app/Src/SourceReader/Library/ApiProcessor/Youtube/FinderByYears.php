@@ -1,9 +1,9 @@
 <?php
 
-namespace Devoogle\Src\SourceReader\Library\VideoProcessor\Youtube;
+namespace Devoogle\Src\SourceReader\Library\ApiProcessor\Youtube;
 
 use Carbon\Carbon;
-use Devoogle\Src\SourceReader\VideoChannel\Model\YoutubeChannel;
+use Devoogle\Src\SourceReader\Model\YoutubeChannel;
 use Illuminate\Support\Collection;
 
 class FinderByYears extends VideoFinder

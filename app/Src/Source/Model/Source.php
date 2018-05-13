@@ -10,12 +10,6 @@ use Illuminate\Database\Eloquent\Model;
 class Source extends Model
 {
 
-    const YOUTUBE_ID = 1;
-
-    const YOUTUBE_SLUG = 'youtube';
-
-    const WEDEVELOPERS_SLUG = 'wedevelopers';
-
     protected $table = 'source';
 
     protected $fillable = [
@@ -72,15 +66,4 @@ class Source extends Model
         return ! is_null($this->attributes['last_time_processed']);
     }
 
-
-    public function isYoutube()
-    {
-        return $this->slug() == self::YOUTUBE_SLUG;
-    }
-
-
-    public function isWedevelopers()
-    {
-        return $this->slug() == self::WEDEVELOPERS_SLUG;
-    }
 }

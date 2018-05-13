@@ -1,23 +1,27 @@
 <?php
 
-namespace Devoogle\Src\SourceReader\Library\VideoProcessor\Youtube;
+namespace Devoogle\Src\SourceReader\Library\ApiProcessor\Youtube;
 
 use Devoogle\Src\Category\Model\Category;
 use Devoogle\Src\Lang\Model\Lang;
 use Devoogle\Src\Resource\Command\StoreResourceCommand;
 use Devoogle\Src\Resource\Command\StoreResourceHandler;
 use Devoogle\Src\Resource\Repository\ResourceRepositoryRead;
-use Devoogle\Src\Source\Model\Source;
+use Devoogle\Src\ResourceRaw\Model\ResourceRaw;
+use Devoogle\Src\ResourceRaw\Repository\ResourceRawRepositoryWrite;
 use Devoogle\Src\Source\Repository\SourceRepositoryRead;
 use Devoogle\Src\SourceReader\Exceptions\ResourceExistsException;
-use Devoogle\Src\SourceReader\Library\TagExtractor\TagFinder;
-use Devoogle\Src\SourceReader\Repository\YoutubeRepositoryWrite;
+use Devoogle\Src\SourceReader\Library\VideoWrapper;
+use Devoogle\Src\Tag\Library\TagExtractor\TagFinder;
 use Devoogle\Src\User\Model\User;
 use Devoogle\Src\User\Repository\UserRepository;
 use Webpatser\Uuid\Uuid;
 
 class VideoProcessor
 {
+
+    private $uuid = '';
+
     private $videoWrapper;
 
     private $textsForTagSearch;
@@ -35,32 +39,37 @@ class VideoProcessor
      * @var TagFinder
      */
     private $tagFinder;
-    /**
-     * @var YoutubeRepositoryWrite
-     */
-    private $youtubeRepositoryWrite;
 
     /**
      * @var SourceRepositoryRead
      */
     private $sourceRepositoryRead;
 
+    private $source;
+
+    /**
+     * @var ResourceRawRepositoryWrite
+     */
+    private $resourceRawRepositoryWrite;
+
 
     public function __construct(
-        YoutubeRepositoryWrite $youtubeRepositoryWrite,
+        ResourceRawRepositoryWrite $resourceRawRepositoryWrite,
         ResourceRepositoryRead $resourceRepositoryRead,
         UserRepository $userRepository,
         SourceRepositoryRead $sourceRepositoryRead,
         TagFinder $tagFinder
     ) {
 
-        $this->youtubeRepositoryWrite = $youtubeRepositoryWrite;
         $this->resourceRepositoryRead = $resourceRepositoryRead;
         $this->userRepository = $userRepository;
         $this->tagFinder = $tagFinder;
 
         $this->textsForTagSearch = collect();
         $this->sourceRepositoryRead = $sourceRepositoryRead;
+
+        $this->uuid = Uuid::generate();
+        $this->resourceRawRepositoryWrite = $resourceRawRepositoryWrite;
     }
 
 
@@ -71,11 +80,13 @@ class VideoProcessor
 
         $this->checkExists();
 
+        $this->obtainSource();
+
         $this->initializeTextsForTagSearch();
 
         $this->createResource();
 
-        $this->saveFullVideo();
+        $this->saveRaw();
 
     }
 
@@ -83,6 +94,12 @@ class VideoProcessor
     private function initializeVideo(VideoWrapper $videoWrapper)
     {
         $this->videoWrapper = $videoWrapper;
+    }
+
+
+    private function obtainSource()
+    {
+        $this->source = $this->sourceRepositoryRead->obtainYoutube();
     }
 
     private function checkExists()
@@ -104,9 +121,8 @@ class VideoProcessor
     private function createResource()
     {
 
-        $uuid = $uuid = Uuid::generate();
         $userId = User::ADMIN_USER_ID;
-        $sourceId = Source::YOUTUBE_ID;
+        $sourceId = $this->source->id();
         $title = $this->videoWrapper->title();
         $url = $this->videoWrapper->url();
         $categoryId = Category::VIDEO_CATEGORY_ID;
@@ -118,26 +134,33 @@ class VideoProcessor
         $event = $this->tagFinder->findByEvent($this->textsForTagSearch);
         $technology = $this->tagFinder->findByTechnology($this->textsForTagSearch);
 
-        $command = new StoreResourceCommand($uuid, $userId, true, $sourceId, $title, $description, $publishedAt, $url, $categoryId,
+        $command = new StoreResourceCommand($this->uuid, $userId, true, $sourceId, $title, $description, $publishedAt, $url, $categoryId,
             $langId, $tag, $author, $event, $technology);
         $handler = app(StoreResourceHandler::class);
         $handler($command);
     }
 
-    private function saveFullVideo()
-    {
 
-        //TODO: save here in resource_raw table.
+    private function saveRaw()
+    {
 
         if ($this->videoWrapper->hasFullVideo()) {
 
+            $resource = $this->resourceCreated();
 
-            //$video = new YoutubeVideo();
-            //$video->info = json_encode($this->videoWrapper->fullVideo());
+            $videoRaw = new ResourceRaw();
+            $videoRaw->resource_id = $resource->id();
+            $videoRaw->info = json_encode($this->videoWrapper->fullVideo());
 
-            //$this->youtubeRepositoryWrite->saveVideo($video);
+            $this->resourceRawRepositoryWrite->save($videoRaw);
         }
 
+    }
+
+
+    private function resourceCreated()
+    {
+        return $this->resourceRepositoryRead->findByUuid($this->uuid);
     }
 
 }

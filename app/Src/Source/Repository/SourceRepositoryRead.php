@@ -11,4 +11,10 @@ class SourceRepositoryRead
     {
         return Source::all();
     }
+
+
+    public function obtainYoutube()
+    {
+        return Source::where('slug', 'youtube')->first();
+    }
 }
