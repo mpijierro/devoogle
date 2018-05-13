@@ -16,7 +16,7 @@ class SourceSeeder extends Seeder
         DB::table('source')->insert([
             'type_source_id'      => 1,
             'name'                => 'Youtube',
-            'slug'                => 'youtube',
+            'slug'                => \Devoogle\Src\SourceReader\Library\ApiProcessor\Youtube\Processor::SLUG,
             'last_time_processed' => null,
             'created_at'          => \Carbon\Carbon::now(),
             'updated_at'          => \Carbon\Carbon::now()
@@ -25,7 +25,7 @@ class SourceSeeder extends Seeder
         DB::table('source')->insert([
             'type_source_id' => 2,
             'name'           => 'WeDevelopers',
-            'slug'           => 'wedevelopers',
+            'slug'           => \Devoogle\Src\SourceReader\Library\RssProcessor\WeDevelopers\Processor::SLUG,
             'created_at'     => \Carbon\Carbon::now(),
             'updated_at'     => \Carbon\Carbon::now()
         ]);
