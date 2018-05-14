@@ -10,9 +10,22 @@ class FinderLink
 
         $pattern = "/(http|https|ftp|ftps)\:\/\/[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,3}(\/\S*)?/";
 
-        if (preg_match($pattern, $text, $url)) {
+        if (preg_match_all($pattern, $text, $urls)) {
 
-            return preg_replace($pattern, "<a href='".$url[0]."' target='_blank'>".$url[0]."</a> ", $text);
+            return $this->replaceMatch($text, $urls[0]);
+
+        }
+
+        return $text;
+
+    }
+
+
+    private function replaceMatch(string $text, array $urls)
+    {
+
+        foreach ($urls as $match) {
+            $text = str_replace($match, "<a href='".$match."' target='_blank'>".$match."</a> ", $text);
         }
 
         return $text;
