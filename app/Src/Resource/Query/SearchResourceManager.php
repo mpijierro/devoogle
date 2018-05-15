@@ -4,7 +4,8 @@ namespace Devoogle\Src\Resource\Query;
 
 use Devoogle\Src\Devoogle\Library\Paginable;
 use Devoogle\Src\Resource\Repository\ResourceRepositoryRead;
-use Devoogle\Src\Search\Library\SearchRecord;
+use Devoogle\Src\Search\Command\StoreSearchCommand;
+use Devoogle\Src\Search\Command\StoreSearchHandler;
 
 class SearchResourceManager
 {
@@ -20,17 +21,10 @@ class SearchResourceManager
 
     private $query;
 
-    /**
-     * @var SearchRecord
-     */
-    private $searchRecord;
 
-
-    public function __construct(ResourceRepositoryRead $resourceRepository, SearchRecord $searchRecord)
+    public function __construct(ResourceRepositoryRead $resourceRepository)
     {
         $this->resourceRepository = $resourceRepository;
-
-        $this->searchRecord = $searchRecord;
     }
 
 
@@ -65,7 +59,11 @@ class SearchResourceManager
 
     private function save()
     {
-        $this->searchRecord->save($this->query->getSearchedText());
+
+        $command = new StoreSearchCommand($this->query->getSearchedText());
+
+        $handler = app(StoreSearchHandler::class);
+        $handler($command);
     }
 
     private function search()
