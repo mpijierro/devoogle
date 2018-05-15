@@ -166,7 +166,7 @@ class Resource extends Model
 
         $finder = app(FinderLink::class);
 
-        return $finder->find($this->description());
+        return $finder->replaceUrlsByLinks($this->description());
 
     }
 

@@ -14,6 +14,7 @@ use Devoogle\Src\SourceReader\Exceptions\ResourceExistsException;
 use Devoogle\Src\Tag\Library\TagExtractor\TagFinder;
 use Devoogle\Src\User\Model\User;
 use Devoogle\Src\User\Repository\UserRepository;
+use Devoogle\Src\Version\Library\IvooxGenerator;
 use Webpatser\Uuid\Uuid;
 
 class VideoProcessor
@@ -52,6 +53,9 @@ class VideoProcessor
      */
     private $resourceRawRepositoryWrite;
 
+    private $resource;
+
+    private $user;
 
     public function __construct(
         ResourceRawRepositoryWrite $resourceRawRepositoryWrite,
@@ -68,7 +72,6 @@ class VideoProcessor
         $this->textsForTagSearch = collect();
         $this->sourceRepositoryRead = $sourceRepositoryRead;
 
-        $this->uuid = Uuid::generate();
         $this->resourceRawRepositoryWrite = $resourceRawRepositoryWrite;
     }
 
@@ -78,6 +81,8 @@ class VideoProcessor
 
         $this->initializeVideo($videoWrapper);
 
+        $this->initializeUser();
+
         $this->checkExists();
 
         $this->obtainSource();
@@ -86,22 +91,30 @@ class VideoProcessor
 
         $this->createResource();
 
+        $this->resourceCreated();
+
         $this->saveRaw();
 
+        $this->generateIvooxVersion();
     }
 
 
     private function initializeVideo(VideoWrapper $videoWrapper)
     {
         $this->videoWrapper = $videoWrapper;
+        $this->uuid = Uuid::generate();
     }
 
+
+    private function initializeUser()
+    {
+        $this->user = $this->userRepository->findAdmin();
+    }
 
     private function obtainSource()
     {
         $this->source = $this->sourceRepositoryRead->obtainYoutube();
     }
-
 
     private function checkExists()
     {
@@ -141,15 +154,18 @@ class VideoProcessor
     }
 
 
+    private function resourceCreated()
+    {
+        $this->resource = $this->resourceRepositoryRead->findByUuid($this->uuid);
+    }
+
     private function saveRaw()
     {
 
         if ($this->videoWrapper->hasFullVideo()) {
 
-            $resource = $this->resourceCreated();
-
             $videoRaw = new ResourceRaw();
-            $videoRaw->resource_id = $resource->id();
+            $videoRaw->resource_id = $this->resource->id();
             $videoRaw->info = json_encode($this->videoWrapper->fullVideo());
 
             $this->resourceRawRepositoryWrite->save($videoRaw);
@@ -158,9 +174,14 @@ class VideoProcessor
     }
 
 
-    private function resourceCreated()
+    private function generateIvooxVersion()
     {
-        return $this->resourceRepositoryRead->findByUuid($this->uuid);
+
+        $ivoox = app(IvooxGenerator::class);
+
+        $ivoox->generate($this->resource, $this->user);
+
+
     }
 
 }
