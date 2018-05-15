@@ -161,6 +161,7 @@ class Resource extends Model
     }
 
 
+    // TODO: convert to DescriptionModificator class
     public function descriptionWithLink()
     {
 
@@ -170,6 +171,17 @@ class Resource extends Model
 
     }
 
+
+    // TODO: convert to DescriptionModificator class
+    public function addBoldToDescription(string $tag)
+    {
+
+        preg_match('/'.$tag.'/i', $this->description, $matches);
+
+        if ($matches) {
+            $this->description = str_replace($matches[0], '<b>'.$matches[0].'</b>', $this->description);
+        }
+    }
 
     public function hasSource()
     {

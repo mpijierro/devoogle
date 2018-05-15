@@ -64,6 +64,14 @@ class ListByTagManager
     private function search()
     {
         $this->resources = $this->repository->searchByTag($this->tag);
+
+        $this->resources->getCollection()->transform(function ($resource, $key) {
+
+            $resource->addBoldToDescription($this->tag->name);
+
+            return $resource;
+        });
+
     }
 
 
