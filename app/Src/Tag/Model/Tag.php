@@ -19,7 +19,9 @@ class Tag
 
         $sanitizeInput = trim(str_replace(['[', ']', '"'], '', $input));
 
-        return preg_replace('/( ){2,}/u', ' ', $sanitizeInput);
+        $modifierUtf8 = 'u';
+
+        return preg_replace('/( ){2,}/'.$modifierUtf8, ' ', $sanitizeInput);
 
     }
 
