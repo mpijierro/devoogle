@@ -162,7 +162,7 @@ class Resource extends Model
 
 
     // TODO: convert to DescriptionModificator class
-    public function descriptionWithLink()
+    public function sanititizeDescription()
     {
 
         $finder = app(SanitizeDescription::class);

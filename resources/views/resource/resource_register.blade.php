@@ -36,7 +36,7 @@
     @if ($resource->hasDescription())
         <div class="row">
             <div class="col-xs-12">
-                {!! $resource->descriptionWithLink()  !!}
+                {!! $resource->sanititizeDescription()  !!}
             </div>
         </div>
 
