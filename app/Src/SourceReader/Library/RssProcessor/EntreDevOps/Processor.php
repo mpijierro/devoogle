@@ -1,6 +1,6 @@
 <?php
 
-namespace Devoogle\Src\SourceReader\Library\RssProcessor\WeDevelopers;
+namespace Devoogle\Src\SourceReader\Library\RssProcessor\EntreDevOps;
 
 use Carbon\Carbon;
 use Devoogle\Src\Category\Model\Category;
@@ -24,9 +24,9 @@ use Webpatser\Uuid\Uuid;
 class Processor implements SourceProcessorInterface
 {
 
-    const RSS_URL = 'http://wedevelopers.com/feed/podcast/';
+    const RSS_URL = 'http://www.entredevyops.es/rss.xml';
 
-    const SLUG = 'wedevelopers';
+    const SLUG = 'entredevyops';
 
     private $rssContent;
 
@@ -94,6 +94,7 @@ class Processor implements SourceProcessorInterface
 
     public function process(Source $source)
     {
+
         $this->initialize($source);
 
         $this->obtainLang();
@@ -145,7 +146,7 @@ class Processor implements SourceProcessorInterface
 
         $wrapper = new AudioWrapper($item);
 
-        if ($this->audioExists($wrapper)) {
+        if ( ! $this->isCorrect($wrapper)) {
             return;
         }
 
@@ -156,10 +157,33 @@ class Processor implements SourceProcessorInterface
     }
 
 
+    private function isCorrect(AudioWrapper $audioWrapper)
+    {
+
+        if ($this->audioExists($audioWrapper)) {
+            return false;
+        }
+
+        if ( ! $this->isPodcast($audioWrapper)) {
+            return false;
+        }
+
+        return true;
+    }
+
+
     private function audioExists(AudioWrapper $audioWrapper)
     {
 
         return (bool)$this->resourceRepositoryRead->existsUrlPattern($audioWrapper->url());
+
+    }
+
+
+    private function isPodcast(AudioWrapper $audioWrapper)
+    {
+
+        return (bool)preg_match('/\/podcasts\//', $audioWrapper->url());
 
     }
 
@@ -175,7 +199,7 @@ class Processor implements SourceProcessorInterface
         $url = $audioWrapper->url();
         $categoryId = Category::AUDIO_CATEGORY_ID;
         $langId = $this->lang->id();
-        $description = $audioWrapper->description();
+        $description = $this->sanitizeDescription($audioWrapper);
         $publishedAt = $audioWrapper->publishedAt();
         $tag = $this->tagFinder->findByCommonTags($audioWrapper->obtainTextsForSearch());
         $author = $this->tagFinder->findByAuthor($audioWrapper->obtainTextsForSearch());
@@ -188,6 +212,12 @@ class Processor implements SourceProcessorInterface
         $handler($command);
 
 
+    }
+
+
+    private function sanitizeDescription(AudioWrapper $audioWrapper)
+    {
+        return str_replace('.es/"', '.es/', $audioWrapper->description());
     }
 
 

@@ -4,6 +4,7 @@ namespace Devoogle\Src\SourceReader\Library;
 
 use Devoogle\Src\Source\Model\Source;
 use Devoogle\Src\SourceReader\Library\ApiProcessor\Youtube\Processor as YoutubeProcessor;
+use Devoogle\Src\SourceReader\Library\RssProcessor\EntreDevOps\Processor as EntreDevOps;
 use Devoogle\Src\SourceReader\Library\RssProcessor\WeDevelopers\Processor as WedevelopersProcessor;
 
 class SourceProcessorFactory
@@ -25,9 +26,9 @@ class SourceProcessorFactory
 
         $this->map = [
             YoutubeProcessor::SLUG      => YoutubeProcessor::class,
-            WedevelopersProcessor::SLUG => WedevelopersProcessor::class
+            WedevelopersProcessor::SLUG => WedevelopersProcessor::class,
+            EntreDevOps::SLUG           => EntreDevOps::class
         ];
-
 
     }
 

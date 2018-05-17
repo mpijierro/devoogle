@@ -1,8 +1,9 @@
 <?php
 
-namespace Devoogle\Src\SourceReader\Library;
+namespace Devoogle\Src\SourceReader\Library\RssProcessor;
 
 use Carbon\Carbon;
+use Devoogle\Src\SourceReader\Library\ResourceWrapper;
 use Illuminate\Support\Collection;
 
 class AudioWrapper extends ResourceWrapper

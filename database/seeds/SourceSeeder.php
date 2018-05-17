@@ -30,5 +30,13 @@ class SourceSeeder extends Seeder
             'updated_at'     => \Carbon\Carbon::now()
         ]);
 
+        DB::table('source')->insert([
+            'type_source_id' => 2,
+            'name'           => 'Entre Dev y Ops',
+            'slug'           => Devoogle\Src\SourceReader\Library\RssProcessor\EntreDevOps\Processor::SLUG,
+            'created_at'     => \Carbon\Carbon::now(),
+            'updated_at'     => \Carbon\Carbon::now()
+        ]);
+
     }
 }
