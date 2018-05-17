@@ -3,7 +3,7 @@
 namespace Devoogle\Src\Resource\Model;
 
 use Devoogle\Src\Category\Model\Category;
-use Devoogle\Src\Devoogle\Library\FinderLink;
+use Devoogle\Src\Devoogle\Library\SanitizeDescription;
 use Devoogle\Src\Lang\Model\Lang;
 use Devoogle\Src\Source\Model\Source;
 use Devoogle\Src\Tag\Model\Tag;
@@ -165,9 +165,9 @@ class Resource extends Model
     public function descriptionWithLink()
     {
 
-        $finder = app(FinderLink::class);
+        $finder = app(SanitizeDescription::class);
 
-        return $finder->replaceUrlsByLinks($this->description());
+        return $finder->sanitize($this->description());
 
     }
 
