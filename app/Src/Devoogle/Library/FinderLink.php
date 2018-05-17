@@ -42,24 +42,13 @@ class FinderLink
     public function replaceUrlsByLinks(string $text): string
     {
 
-        if (preg_match_all($this->pattern, $text, $urls)) {
+        $text = preg_replace('!(\s|^)((https?://)+[a-z0-9_./?=&-]+)!i', ' <a href="$2" target="_blank">$2</a> ', $text);
+        $text = preg_replace('!(\s|^)((www\.)+[a-z0-9_./?=&-]+)!i', '<a target="_blank" href="http://$2"  target="_blank">$2</a> ', $text." ");
 
-            return $this->replaceMatch($text, $urls[0]);
-
-        }
-
-        return $text;
-
-    }
-
-    private function replaceMatch(string $text, array $urls)
-    {
-
-        foreach ($urls as $match) {
-            $text = str_replace($match, "<a href='".$match."' target='_blank'>".$match."</a> ", $text);
-        }
+        $text = str_replace('<a', '<a target="_blank"', $text);
 
         return $text;
+
 
     }
 
