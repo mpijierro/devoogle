@@ -26,6 +26,7 @@ class TechnologyTagExtractor extends TagExtractor
         'Drupal',
         'Eclipsse',
         'Erlang',
+        ' Git ',
         ' Go ',
         'GraphQl',
         'Groovy',
@@ -36,6 +37,7 @@ class TechnologyTagExtractor extends TagExtractor
         'Java',
         'jQuery',
         'jSon',
+        'Kotlin',
         'Kubernetes',
         'Laravel',
         'MySQL',
@@ -57,6 +59,7 @@ class TechnologyTagExtractor extends TagExtractor
         ' Rest ',
         ' Sap ',
         'Scala',
+        'Selenium',
         'Spectrum',
         'Symfony'      => [
             'symfony2',
