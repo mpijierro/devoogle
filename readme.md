@@ -16,7 +16,20 @@ Actualmente está en construcción...
 Comando para obtener vídeos: php artisan collect:video youtube
 
 
-## Testing
+## Tests
+
+
+
+## Próximamente
+
+(no necesariamente por este orden)
+
+- Añadir una funcionalidad para crear cursos/carpetas personalizados con recursos sobre una temática
+
+- Añadir un filtro general por fechas (última semana, mes, trimestre, semestre, año, años...). Todos los resultados 
+de búsquedas o listados serán en función a este filtro. 
+
+- Obtener recursos de otras webs: ivoox o el canal de Aprendices de Google+  
 
 
 ## Contributing
@@ -25,4 +38,4 @@ Thank you for considering contributing to the Laravel framework! The contributio
 
 ## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT).
+Este software está licenciado con licencia [MIT](http://opensource.org/licenses/MIT).
