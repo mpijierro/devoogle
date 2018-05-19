@@ -6,10 +6,17 @@ use Carbon\Carbon;
 use Devoogle\Src\SourceReader\Library\ResourceWrapper;
 use Illuminate\Support\Collection;
 
+/**
+ * + Info: https://developers.google.com/youtube/v3/docs/videos?hl=es-419
+ *
+ * Class VideoWrapper
+ * @package Devoogle\Src\SourceReader\Library\ApiProcessor\Youtube
+ */
 class VideoWrapper extends ResourceWrapper
 {
 
     const VIDEO_URL = 'https://www.youtube.com/watch?v=';
+    const PROCESSED_STATUS = 'processed';
 
     private $video;
 
@@ -93,6 +100,19 @@ class VideoWrapper extends ResourceWrapper
 
         return Carbon::now();
 
+    }
+
+
+    public function status()
+    {
+        return $this->fullVideo->status;
+    }
+
+
+    public function isUploadStatusProcessed()
+    {
+
+        return $this->fullVideo->status->uploadStatus == self::PROCESSED_STATUS;
     }
 
 

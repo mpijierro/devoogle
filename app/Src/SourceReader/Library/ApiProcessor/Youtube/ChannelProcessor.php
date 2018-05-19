@@ -5,6 +5,7 @@ namespace Devoogle\Src\SourceReader\Library\ApiProcessor\Youtube;
 use Carbon\Carbon;
 use Devoogle\Src\Devoogle\Library\DateRange;
 use Devoogle\Src\SourceReader\Exceptions\ResourceExistsException;
+use Devoogle\Src\SourceReader\Exceptions\VideoIsNotProcessedException;
 use Devoogle\Src\SourceReader\Model\YoutubeChannel;
 use Devoogle\Src\SourceReader\Repository\VideoChannelRepositoryWrite;
 
@@ -64,6 +65,25 @@ class ChannelProcessor
     private function initializeChannel(YoutubeChannel $videoChannel)
     {
         $this->channel = $videoChannel;
+
+        if ($videoChannel->isUserChannel()) {
+            $this->setupUserChannelId();
+        }
+
+    }
+
+
+    private function setupUserChannelId()
+    {
+
+        $channelFinder = app(ChannelFinder::class);
+        $channelFinder->findChannelByName($this->channel->slugId());
+
+        if ($channelFinder->hasFound()) {
+            $channel = $channelFinder->channel();
+            $this->channel->slug_id = $channel->slugId();
+        }
+
     }
 
 
@@ -111,7 +131,11 @@ class ChannelProcessor
 
                 //TODO: to log exception, send email
                 continue;
+            } catch (VideoIsNotProcessedException $e) {
+                //TODO: to log exception, send email
+                continue;
             }
+
         }
     }
 

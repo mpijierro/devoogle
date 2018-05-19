@@ -15,6 +15,7 @@ class YoutubeChannel extends Model
         'slug_id',
         'slug_name',
         'name',
+        'is_user_channel'
     ];
 
     protected $dates = ['created_at', 'updated_at'];
@@ -41,6 +42,12 @@ class YoutubeChannel extends Model
     public function name()
     {
         return $this->attributes['name'];
+    }
+
+
+    public function isUserChannel()
+    {
+        return (bool)$this->attributes['is_user_channel'];
     }
 
 }

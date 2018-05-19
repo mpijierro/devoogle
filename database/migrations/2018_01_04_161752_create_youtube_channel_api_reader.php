@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class CreateYoutubeChannelApiReader extends Migration
 {
@@ -23,6 +23,7 @@ class CreateYoutubeChannelApiReader extends Migration
             $table->string('slug_id');
             $table->string('slug_name');
             $table->string('name');
+            $table->string('is_user_channel');
 
             $table->timestamps();
 

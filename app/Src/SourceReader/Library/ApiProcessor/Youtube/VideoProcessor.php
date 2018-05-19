@@ -11,6 +11,7 @@ use Devoogle\Src\ResourceRaw\Model\ResourceRaw;
 use Devoogle\Src\ResourceRaw\Repository\ResourceRawRepositoryWrite;
 use Devoogle\Src\Source\Repository\SourceRepositoryRead;
 use Devoogle\Src\SourceReader\Exceptions\ResourceExistsException;
+use Devoogle\Src\SourceReader\Exceptions\VideoIsNotProcessedException;
 use Devoogle\Src\Tag\Library\TagExtractor\TagFinder;
 use Devoogle\Src\User\Model\User;
 use Devoogle\Src\User\Repository\UserRepository;
@@ -57,6 +58,7 @@ class VideoProcessor
 
     private $user;
 
+
     public function __construct(
         ResourceRawRepositoryWrite $resourceRawRepositoryWrite,
         ResourceRepositoryRead $resourceRepositoryRead,
@@ -82,6 +84,8 @@ class VideoProcessor
         $this->initializeVideo($videoWrapper);
 
         $this->initializeUser();
+
+        $this->checkHasStatusUploaded();
 
         $this->checkExists();
 
@@ -111,10 +115,12 @@ class VideoProcessor
         $this->user = $this->userRepository->findAdmin();
     }
 
+
     private function obtainSource()
     {
         $this->source = $this->sourceRepositoryRead->obtainYoutube();
     }
+
 
     private function checkExists()
     {
@@ -122,6 +128,14 @@ class VideoProcessor
 
         if ($exists) {
             throw new ResourceExistsException();
+        }
+    }
+
+
+    private function checkHasStatusUploaded()
+    {
+        if ( ! $this->videoWrapper->isUploadStatusProcessed()) {
+            throw new VideoIsNotProcessedException();
         }
     }
 
@@ -158,6 +172,7 @@ class VideoProcessor
     {
         $this->resource = $this->resourceRepositoryRead->findByUuid($this->uuid);
     }
+
 
     private function saveRaw()
     {
