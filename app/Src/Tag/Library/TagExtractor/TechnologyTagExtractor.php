@@ -35,6 +35,7 @@ class TechnologyTagExtractor extends TagExtractor
         'IOS',
         'Javascript',
         'Java',
+        'Jenkins',
         'jQuery',
         'jSon',
         'Kotlin',

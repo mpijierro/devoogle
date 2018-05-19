@@ -31,6 +31,7 @@ class CommonTagExtractor extends TagExtractor
         'Microservicios'         => [
             'Microservice'
         ],
+        'OWASP',
         'Scrum',
         'Solid',
         'TDD',
