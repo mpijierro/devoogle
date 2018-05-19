@@ -12,6 +12,10 @@ class YoutubeChannelSeeder extends Seeder
     public function run()
     {
 
+        $this->addChannel('aprendiendotdd', 'aprendiendo-tdd', 'Aprendiendo TDD', true);
+
+        $this->addChannel('agilespain', 'agile-spain', 'Agile Spain', true);
+
         $this->addChannel('UCvZ6HKYcDtqtK1SfbIpB97g', 'autentia-media', 'AutentiaMedia');
 
         $this->addChannel('UCDUS9HwdxHp9DjI0nRDrR0A', 'beta-beers', 'Beta beers');
@@ -38,7 +42,13 @@ class YoutubeChannelSeeder extends Seeder
 
         $this->addChannel('UCk_i1NppEfFSya1KRWy2_7Q', 'tarugoconf', 'Tarugo Conf');
 
+        $this->addChannel('UCTRJkDjGNX3kId6RhxgIOmw', 'php-barcelona', 'PHP Barcelona');
+
+        $this->addChannel('UC9fCYdf5eZLCkJcTAqSd0eA', 'php-conference-argentina', 'PHP Conference Argentina');
+
         $this->addChannel('UChbOHJuQ8Ex7DPkkv1r5Dug', 'php-madrid', 'PHP Madrid');
+
+        $this->addChannel('phpvalencia', 'php-valencia', 'PHP valencia', true);
 
         $this->addChannel('UCksw6qsw6vk7cp8sVwIpNrQ', 'software-craftsmanship-barcelona', 'Software Craftsmanship Barcelona');
 
@@ -46,17 +56,26 @@ class YoutubeChannelSeeder extends Seeder
 
         $this->addChannel('UClaNUpRMzr73MrrKDX_WTcA', 't3chfest', 'T3chfest');
 
+        $this->addChannel('UCeYUif57MgyHExfax5cNWMA', 'xavi-gost', 'Xavi Gost');
+
+        $this->addChannel('UCeYUif57MgyHExfax5cNWMA', 'xavi-gost', 'Xavi Gost');
+
+        $this->addChannel('phpvalencia', 'php-valencia', 'PHP valencia', true);
+
+        $this->addChannel('agilespain', 'agile-spain', 'Agile Spain', true);
+
 
     }
 
 
-    private function addChannel(string $id, string $slugName, string $name)
+    private function addChannel(string $id, string $slugName, string $name, bool $isUserChannel = false)
     {
         DB::table('youtube_channel')->insert([
-            'source_id' => 1,
-            'slug_id'   => $id,
-            'slug_name' => $slugName,
-            'name'      => $name,
+            'source_id'       => 1,
+            'slug_id'         => $id,
+            'slug_name'       => $slugName,
+            'name'            => $name,
+            'is_user_channel' => $isUserChannel,
 
             'created_at' => \Carbon\Carbon::now(),
             'updated_at' => \Carbon\Carbon::now(),
