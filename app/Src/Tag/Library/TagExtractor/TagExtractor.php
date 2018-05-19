@@ -36,7 +36,7 @@ abstract class TagExtractor
         $finalText = '';
 
         foreach ($texts as $text) {
-            $finalText .= $text;
+            $finalText .= ' '.$text;
         }
 
         return $finalText;
@@ -132,25 +132,44 @@ abstract class TagExtractor
 
         $tag = $this->sanitizeTag($tag);
 
-        $pattern = '/\b'.mb_strtolower(trim($tag)).'\b/i';
+        $tag = $this->addLimitToSearch($tag);
+
+        $pattern = '/'.$tag.'/';
+
+        $pattern = $this->addModifierLowerAndUpperCase($pattern);
 
         return preg_match($pattern, mb_strtolower($text), $matches);
 
     }
 
-
     private function sanitizeTag(string $tag)
     {
+        $tag = trim($tag);
+
+        $tag = mb_strtolower($tag);
+
         $tag = str_replace('+', '\+', $tag);
         $tag = str_replace('(', '\(', $tag);
         $tag = str_replace(')', '\)', $tag);
         $tag = str_replace('[', '\[', $tag);
         $tag = str_replace(']', '\]', $tag);
         $tag = str_replace('.', '\.', $tag);
+        $tag = str_replace('/', '\/', $tag);
 
         return $tag;
     }
 
+
+    private function addLimitToSearch(string $search)
+    {
+        return '\b'.$search.'\b';
+    }
+
+
+    private function addModifierLowerAndUpperCase(string $pattern)
+    {
+        return $pattern.'i';
+    }
 
     private function addFoundTag(string $tag)
     {
