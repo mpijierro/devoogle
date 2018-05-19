@@ -58,12 +58,6 @@ class YoutubeChannelSeeder extends Seeder
 
         $this->addChannel('UCeYUif57MgyHExfax5cNWMA', 'xavi-gost', 'Xavi Gost');
 
-        $this->addChannel('UCeYUif57MgyHExfax5cNWMA', 'xavi-gost', 'Xavi Gost');
-
-        $this->addChannel('phpvalencia', 'php-valencia', 'PHP valencia', true);
-
-        $this->addChannel('agilespain', 'agile-spain', 'Agile Spain', true);
-
 
     }
 
