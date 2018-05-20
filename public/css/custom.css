@@ -1,5 +1,6 @@
 html, body {
     font-family: "Open Sans", Helvetica, Arial, sans-serif;
+    line-height: 1.5;
 }
 
 .icon-resource-register {
@@ -10,12 +11,24 @@ html, body {
     margin-left: 5px;
 }
 
+.dropdown-menu > li > a.link-format-menu {
+    display: inline;
+}
+
 .category-sidebar {
     margin-bottom: 8px;
 }
 
 ul.navbar-nav li a {
     text-align: left;
+}
+
+.format-option-menu {
+    padding-left: 40px;
+}
+
+.navbar-nav .open .dropdown-menu .dropdown-header, .navbar-nav .open .dropdown-menu > li > a {
+    padding-left: 5px;
 }
 
 /* LIST */

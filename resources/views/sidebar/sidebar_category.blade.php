@@ -1,4 +1,4 @@
-<div class="single category">
+<div class="single category hidden-xs ">
     <h3 class="side-title">Formatos</h3>
     <ul class="list-unstyled">
         @foreach ($categories as $category)

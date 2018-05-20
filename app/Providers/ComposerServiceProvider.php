@@ -23,6 +23,8 @@ class ComposerServiceProvider extends ServiceProvider
 
         View::composer('layouts/metas', MetasComposer::class);
 
+        View::composer('layouts/app', SidebarCategoryComposer::class);
+
         View::composer('sidebar/sidebar_category', SidebarCategoryComposer::class);
 
         View::composer('sidebar/sidebar_tag', SidebarTagComposer::class);

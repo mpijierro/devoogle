@@ -1,4 +1,6 @@
-<?php use Krucas\Notification\Facades\Notification;
+<?php
+
+use Krucas\Notification\Facades\Notification;
 ?>
         <!DOCTYPE html>
 <html lang="{{ app()->getLocale() }}">
@@ -35,10 +37,7 @@
 
 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="nav navbar-nav">
-                        &nbsp;
-                    </ul>
+
 
                     <div class="col-sm-3 col-md-3">
                         <form action="{!! route('search-resource') !!}" method="POST" class="navbar-form" role="search">
@@ -55,10 +54,30 @@
 
                     <ul class="nav navbar-nav navbar-right">
 
+                        <li class="dropdown hidden-sm hidden-md hidden-lg">
+                            <a class="dropdown-toggle" href="#" data-toggle="dropdown">
+                                <i class="fa fa-play-circle" aria-hidden="true"></i>
+                                Formatos<b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                @foreach ($categories as $category)
+                                    <li class="format-option-menu">
+                                        @include ('layouts.icons_category', ['slug' => $category->slug])
+                                        <a href="{!! route('list-category', $category->slug) !!}"
+                                           title="Recursos de programación de {!! $category->name() !!}"
+                                           class="{!! $category->isSlug($categorySelectedSlug)?'bold':'' !!} icon-category-sidebar link-format-menu">
+                                            {!! $category->name() !!}s
+                                        </a>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </li>
+
+
                         <li>
                             <a href="{!! route('more-valued') !!}" class="btn">
-                                <i class="fa fa-star yellow" aria-hidden="true"></i>
-                                Más valorados
+                                <i class="fa fa-star" aria-hidden="true"></i>
+                                Recursos más valorados
                             </a>
                         </li>
 
@@ -66,7 +85,7 @@
                             <li><a href="{{ route('login') }}"><i class="fa fa-sign-in" aria-hidden="true"></i>
                                     Entrar</a></li>
                             <li><a href="{{ route('register') }}"><i class="fa fa-user-plus" aria-hidden="true"></i>
-                                    Crear cuenta</a></li>
+                                    Registrarse</a></li>
 
                             @else
 
@@ -143,6 +162,7 @@
                 @include('sidebar.sidebar_author')
                 @include('sidebar.sidebar_event')
                 @include('sidebar.sidebar_technology')
+                @include('sidebar.sidebar_tag')
                 @include('sidebar.sidebar_tag')
             </div>
         </div>
