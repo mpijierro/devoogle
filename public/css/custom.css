@@ -45,7 +45,7 @@ html, body {
 }
 
 .morelink {
-    display: block;
+    display: inline;
 }
 
 /* END LIST */
