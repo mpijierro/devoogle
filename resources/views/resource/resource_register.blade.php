@@ -130,7 +130,7 @@
     </div>
 
     <div class="row list-description">
-        <div class="col-xs-12 more">
+        <div class="col-xs-12 morelink">
             @if ($resource->hasDescription())
                 {!! $resource->sanititizeDescription()  !!}
             @else
