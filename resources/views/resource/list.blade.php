@@ -1,8 +1,6 @@
 @forelse ($resources as $resource)
-    
-    <div class="col-xs-12 list-register">
-        @include('resource.resource_register',   ['resource' => $resource])
-    </div>
+
+    @include('resource.resource_register',   ['resource' => $resource])
 
 @empty
     <div class="row">
