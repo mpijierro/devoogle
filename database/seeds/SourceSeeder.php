@@ -47,7 +47,13 @@ class SourceSeeder extends Seeder
             'updated_at'     => \Carbon\Carbon::now()
         ]);
 
-
+        DB::table('source')->insert([
+            'type_source_id' => 2,
+            'name'           => 'Programar es una mierda',
+            'slug'           => Devoogle\Src\SourceReader\Library\RssProcessor\ProgramarEsUnaMierda\Processor::SLUG,
+            'created_at'     => \Carbon\Carbon::now(),
+            'updated_at'     => \Carbon\Carbon::now()
+        ]);
 
     }
 }

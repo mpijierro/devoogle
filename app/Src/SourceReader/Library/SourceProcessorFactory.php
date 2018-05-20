@@ -7,6 +7,7 @@ use Devoogle\Src\SourceReader\Library\ApiProcessor\Youtube\Processor as YoutubeP
 use Devoogle\Src\SourceReader\Library\RssProcessor\EntreDevOps\Processor as EntreDevOps;
 use Devoogle\Src\SourceReader\Library\RssProcessor\WeDevelopers\Processor as WedevelopersProcessor;
 use Devoogle\Src\SourceReader\Library\RssProcessor\BastaYaDePicar\Processor as BastaYaDePicarProcessor;
+use Devoogle\Src\SourceReader\Library\RssProcessor\ProgramarEsUnaMierda\Processor as ProgramarEsUnaMierdaProcessor;
 
 class SourceProcessorFactory
 {
@@ -26,10 +27,11 @@ class SourceProcessorFactory
     {
 
         $this->map = [
-            YoutubeProcessor::SLUG        => YoutubeProcessor::class,
-            WedevelopersProcessor::SLUG   => WedevelopersProcessor::class,
-            EntreDevOps::SLUG             => EntreDevOps::class,
-            BastaYaDePicarProcessor::SLUG => BastaYaDePicarProcessor::class
+            YoutubeProcessor::SLUG              => YoutubeProcessor::class,
+            WedevelopersProcessor::SLUG         => WedevelopersProcessor::class,
+            EntreDevOps::SLUG                   => EntreDevOps::class,
+            BastaYaDePicarProcessor::SLUG       => BastaYaDePicarProcessor::class,
+            ProgramarEsUnaMierdaProcessor::SLUG => ProgramarEsUnaMierdaProcessor::class,
 
         ];
 

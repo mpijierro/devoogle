@@ -17,7 +17,7 @@ class SanitizeDescription
 
     private function clearHtmlTags(string $text): string
     {
-        return strip_tags($text, '<a><b><img>');
+        return strip_tags($text, '');
     }
 
 
