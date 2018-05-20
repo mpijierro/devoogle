@@ -130,9 +130,9 @@
     </div>
 
     <div class="row list-description">
-        <div class="col-xs-12">
+        <div class="col-xs-12 more">
             @if ($resource->hasDescription())
-                {!! str_limit($resource->sanititizeDescription(),200)  !!}
+                {!! $resource->sanititizeDescription()  !!}
             @else
                 Sin descripción.
             @endif

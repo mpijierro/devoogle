@@ -40,6 +40,14 @@ html, body {
     margin-top: 10px;
 }
 
+.morecontent span {
+    display: none;
+}
+
+.morelink {
+    display: block;
+}
+
 /* END LIST */
 
 /* FOOTER */
