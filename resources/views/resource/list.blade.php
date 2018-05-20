@@ -6,7 +6,7 @@
 @empty
     <div class="row">
         <div class="col-xs-12 clearfix">
-            Aún no tenemos recursos aquí, anímate y añade uno.
+            Aún no tenemos recursos aquí, anímate y añade uno creándote una cuenta primero.
         </div>
     </div>
 

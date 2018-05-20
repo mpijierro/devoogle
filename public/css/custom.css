@@ -14,6 +14,10 @@ html, body {
     margin-bottom: 8px;
 }
 
+ul.navbar-nav li a {
+    text-align: left;
+}
+
 /* LIST */
 
 .list-register {
@@ -22,6 +26,11 @@ html, body {
 
 .div-title-category {
     margin-bottom: 10px;
+}
+
+.div-title-category h1 {
+    margin-bottom: 2px;
+!important;
 }
 
 li.category-sidebar i, li.category-sidebar a {
@@ -55,11 +64,15 @@ li.category-sidebar i, li.category-sidebar a {
 }
 
 .one-register {
-    margin-bottom: 20px;
+    margin-bottom: 25px;
 }
 
 .register-actions {
     margin-top: 10px;
+}
+
+.description-category {
+    color: #bbb;
 }
 
 /* END LIST */

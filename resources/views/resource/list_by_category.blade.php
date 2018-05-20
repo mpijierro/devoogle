@@ -7,9 +7,9 @@
             <h1 class="title-category title-tag">
                 <i class="fa fa-folder-open " aria-hidden="true"></i> {!! $view->categoryName() !!}
             </h1>
-        </div>
-        <div class="col-xs-12">
-            {!! $view->descriptionCategory() !!}
+            <span class="text-left description-category">
+                {!! $view->descriptionCategory() !!}
+            </span>
         </div>
     </div>
 
