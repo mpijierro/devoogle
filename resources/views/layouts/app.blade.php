@@ -74,13 +74,6 @@ use Krucas\Notification\Facades\Notification;
                         </li>
 
 
-                        <li>
-                            <a href="{!! route('more-valued') !!}" class="btn">
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                Recursos más valorados
-                            </a>
-                        </li>
-
                         @guest
                             <li><a href="{{ route('login') }}"><i class="fa fa-sign-in" aria-hidden="true"></i>
                                     Entrar</a></li>
@@ -163,7 +156,7 @@ use Krucas\Notification\Facades\Notification;
                 @include('sidebar.sidebar_event')
                 @include('sidebar.sidebar_technology')
                 @include('sidebar.sidebar_tag')
-                @include('sidebar.sidebar_tag')
+                @include('sidebar.sidebar_top')
             </div>
         </div>
     </div>

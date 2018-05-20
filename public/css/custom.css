@@ -88,6 +88,11 @@ li.category-sidebar i, li.category-sidebar a {
     color: #bbb;
 }
 
+.row-empty-list {
+    margin-top: 30px;
+    margin-bottom: 100px;
+}
+
 /* END LIST */
 
 /* FOOTER */
