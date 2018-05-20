@@ -183,6 +183,32 @@ class Resource extends Model
         }
     }
 
+
+    public function allTags()
+    {
+
+        $tags = collect();
+
+        foreach ($this->author() as $tag) {
+            $tags->push($tag);
+        }
+
+        foreach ($this->event() as $tag) {
+            $tags->push($tag);
+        }
+
+        foreach ($this->technology() as $tag) {
+            $tags->push($tag);
+        }
+
+        foreach ($this->tagsWithoutType() as $tag) {
+            $tags->push($tag);
+        }
+
+        return $tags;
+
+    }
+
     public function hasSource()
     {
         return ! is_null($this->sourceId());

@@ -33,79 +33,61 @@
         </div>
     </div>
     <div class="row list-labeled">
-        <div class="col-sm-6 list-category">
-            <!-- Category -->
-            <i class="fa fa-folder-open-o" aria-hidden="true"></i>
-            <span class="nice"><a
-                        href="{{route('list-category', $resource->category->slug()) }}">{!! $resource->category->name()  !!}</a></span>
+        <div class="col-sm-12">
+            <div class="row">
+                <!-- Category -->
+                <div class="col-xs-6 col-md-2">
+                    <i class="fa fa-folder-open-o" aria-hidden="true" title="Formato"></i>
+                    <span class="nice"><a
+                                href="{{route('list-category', $resource->category->slug()) }}">{!! $resource->category->name()  !!}</a></span>
 
-            <!-- Published at -->
-            <i class="fa fa-calendar icon-resource-register" aria-hidden="true"></i>
-            <span class="nice">{!! $resource->publishedAt()->format('d-m-Y') !!}</span>
+                </div>
+                <!-- Published at -->
+                <div class="col-xs-6 col-md-2">
+                    <i class="fa fa-calendar " aria-hidden="true"
+                       title="Fecha de publicación"></i>
+                    <span class="nice">{!! $resource->publishedAt()->format('d-m-Y') !!}</span>
+                </div>
 
-            <!-- Lang -->
-            <i class="fa fa-language icon-resource-register" aria-hidden="true"></i>
-            <span class="nice">{!! $resource->lang->name() !!}</span>
+                <!-- Lang -->
+                <div class="col-xs-6 col-md-2 ">
+                    <i class="fa fa-language " aria-hidden="true" title="Idioma"></i>
+                    <span class="nice">{!! $resource->lang->name() !!}</span>
+                </div>
 
-            <!-- Version -->
-            <i class="icon-resource-register" aria-hidden="true" title="Otros formatos disponibles"></i>
-            @forelse ($resource->version as $version)
-                {{ $loop->first ? '' : ' ' }}
+                <!-- Tags -->
+                <div class="col-xs-6 col-md-6 col-lg-6">
+                    <i class="fa fa-tags " aria-hidden="true" title="Etiquetas"></i>
+                    @forelse ($resource->allTags() as $tag)
+                        {{ $loop->first ? '' : ', ' }}
+                        <span class="nice"><a href="{{route('list-tag', $tag->slug)}}">{{ $tag->name }}</a></span>
+                    @empty
+                        -
+                    @endforelse
+                </div>
 
-                @include ('layouts.icons_category', ['slug' => $version->category->slug])
-                <span class="nice"><a href="{{ $version->url() }}" target="_blank"
-                                      title="{!! $version->comment() !!}">{{ $version->category->name() }}</a></span>
-                <i class="icon-resource-register"></i>
-            @empty
-                Sin otros formatos.
-            @endforelse
+                <!-- Version -->
+                <div class="col-xs-6 col-md-4">
+                    <i class="" aria-hidden="true" title="Otros formatos disponibles"></i>
+                    @forelse ($resource->version as $version)
+                        {{ $loop->first ? '' : ' ' }}
 
-            <a href="{!! route('create-version', $resource->uuid()) !!}" title="Añadir nuevo formato"
-               class="icon-resource-register">
-                <i class="fa fa-plus-square" aria-hidden="true"></i>
-            </a>
+                        @include ('layouts.icons_category', ['slug' => $version->category->slug])
+                        <span class="nice"><a href="{{ $version->url() }}" target="_blank"
+                                              title="{!! $version->comment() !!}">En formato {{ $version->category->name() }}</a></span>
+                        <i class=""></i>
+                    @empty
+                        Sin otros formatos.
+                    @endforelse
 
-        </div>
-        <div class="col-sm-6 list-tags">
+                </div>
 
-            <!-- Author -->
-            <i class="fa fa-users" aria-hidden="true" title="Autor/es"></i>
-            @forelse ($resource->author() as $tag)
-                {{ $loop->first ? '' : ', ' }}
-                <span class="nice"><a href="{{route('list-tag', $tag->slug)}}">{{ $tag->name }}</a></span>
-            @empty
-                -
-            @endforelse
-
-        <!-- Event -->
-            <i class="fa fa-map-signs icon-resource-register" aria-hidden="true" title="Evento"></i>
-            @forelse ($resource->event() as $tag)
-                {{ $loop->first ? '' : ', ' }}
-                <span class="nice"><a href="{{route('list-tag', $tag->slug)}}">{{ $tag->name }}</a></span>
-            @empty
-                -
-            @endforelse
-
-
-        <!-- Technology / Language -->
-            <i class="fa fa-microchip icon-resource-register" aria-hidden="true"
-               title="Tecnología / Lenguaje"></i>
-            @forelse ($resource->technology() as $tag)
-                {{ $loop->first ? '' : ', ' }}
-                <span class="nice"><a href="{{route('list-tag', $tag->slug)}}">{{ $tag->name }}</a></span>
-            @empty
-                -
-            @endforelse
-
-
-        <!-- Tag -->
-            <i class="fa fa-tags icon-resource-register" aria-hidden="true"></i>
-            @forelse ($resource->tagsWithoutType() as $tag)
-                {{ $loop->first ? '' : ', ' }}
-                <span class="nice"><a href="{{route('list-tag', $tag->slug)}}">{{ $tag->name }}</a></span>
-            @empty
-                -
-            @endforelse
+                <div class="col-xs-6 col-md-8">
+                    <a href="{!! route('create-version', $resource->uuid()) !!}" title="Añadir nuevo formato" class="">
+                        <i class="fa fa-plus-square" aria-hidden="true"></i> Añadir formato
+                    </a>
+                </div>
+            </div>
 
         </div>
 
