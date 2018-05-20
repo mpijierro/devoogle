@@ -2,14 +2,17 @@
 
 @section('content')
 
+    <div class="row div-title-category">
+        <div class="col-xs-12">
+            <h1 class="title-category title-tag">
+                <i class="fa fa-folder-open " aria-hidden="true"></i> {!! $view->categoryName() !!}
+            </h1>
+        </div>
+        <div class="col-xs-12">
+            {!! $view->descriptionCategory() !!}
+        </div>
+    </div>
 
-    <h1 style="float:left;">
-        <i class="fa fa-folder-open " aria-hidden="true"></i> {!! $view->categoryName() !!}s
-        <span class="description-category">{!! $view->descriptionCategory() !!}</span>
-    </h1>
-
-
-    <div class="row"></div>
 
     @include('resource.list')
 

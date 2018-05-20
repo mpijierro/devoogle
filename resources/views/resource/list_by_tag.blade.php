@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <h1><i class="fa fa-list" aria-hidden="true"></i> {!! $view->tagName() !!}</h1>
+    <h1 class="title-tag"><i class="fa fa-list" aria-hidden="true"></i> {!! $view->tagName() !!}</h1>
 
     @include('resource.list')
 

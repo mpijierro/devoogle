@@ -2,7 +2,6 @@ html, body {
     font-family: "Open Sans", Helvetica, Arial, sans-serif;
 }
 
-
 .icon-resource-register {
     margin-left: 15px;
 }
@@ -21,10 +20,17 @@ html, body {
     margin-bottom: 10px;
 }
 
+.div-title-category {
+    margin-bottom: 10px;
+}
+
+li.category-sidebar i, li.category-sidebar a {
+    font-size: 20px;
+}
+
 .description-category {
     color: #636b6f;
     font-size: 15px;
-    margin-left: 20px;
 }
 
 .resource-title {
@@ -46,6 +52,14 @@ html, body {
 
 .morelink {
     display: inline;
+}
+
+.one-register {
+    margin-bottom: 20px;
+}
+
+.register-actions {
+    margin-top: 10px;
 }
 
 /* END LIST */
@@ -97,4 +111,10 @@ html, body {
 
 .light-gray {
     color: #636b6f;
+}
+
+@media (max-width: 768px) {
+    .title-tag {
+        font-size: 30px;
+    }
 }
