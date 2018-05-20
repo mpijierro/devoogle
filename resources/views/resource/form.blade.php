@@ -14,7 +14,7 @@
                 <label for="url" class="col-md-4 control-label">Dirección web</label>
 
                 <div class="col-md-6">
-                    {{ Form::url('url', null, ['class' => 'form-control', 'id' =>'url', 'required'] ) }}
+                    {{ Form::url('url', null, ['class' => 'form-control', 'id' =>'url', 'required', 'autofocus'] ) }}
 
                     @if ($errors->has('url'))
                         <span class="help-block">
@@ -29,7 +29,7 @@
                 <label for="title" class="col-md-4 control-label">Título</label>
 
                 <div class="col-md-6">
-                    {{ Form::text('title', null, ['class' => 'form-control', 'id' =>'title', 'required', 'autofocus'] ) }}
+                    {{ Form::text('title', null, ['class' => 'form-control', 'id' =>'title', 'required'] ) }}
 
                     @if ($errors->has('title'))
                         <span class="help-block">

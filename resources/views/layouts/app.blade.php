@@ -75,19 +75,11 @@ use Krucas\Notification\Facades\Notification;
 
 
                         @guest
-                            <li><a href="{{ route('login') }}"><i class="fa fa-sign-in" aria-hidden="true"></i>
-                                    Entrar</a></li>
-                            <li><a href="{{ route('register') }}"><i class="fa fa-user-plus" aria-hidden="true"></i>
-                                    Registrarse</a></li>
+                            <li><a href="{{ route('login') }}"><i class="fa fa-sign-in" aria-hidden="true"></i> Acceder</a>
+                            </li>
+
 
                             @else
-
-                                <li>
-                                    <a href="{!! route('create-resource') !!}" class="btn">
-                                        <i class="fa fa-plus green" aria-hidden="true"></i>
-                                        Añadir recurso
-                                    </a>
-                                </li>
 
                                 <li class="dropdown">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
@@ -134,6 +126,13 @@ use Krucas\Notification\Facades\Notification;
                                         </li>
 
                                     </ul>
+                                </li>
+
+                                <li>
+                                    <a href="{!! route('create-resource') !!}" class="btn">
+                                        <i class="fa fa-plus green" aria-hidden="true"></i>
+                                        Añadir recurso
+                                    </a>
                                 </li>
                                 @endguest
                     </ul>

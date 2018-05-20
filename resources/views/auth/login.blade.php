@@ -51,15 +51,17 @@
 
                 <div class="form-group">
                     <div class="col-md-8 col-md-offset-4">
-                        <button type="submit" class="btn btn-primary">
-                            Acceder
-                        </button>
-
+                        <button type="submit" class="btn btn-primary">Acceder</button>
                         <a class="btn btn-link" href="{{ route('password.request') }}">
                             ¿Olvidaste tu contraseña?
                         </a>
                     </div>
-                    <div class="row" style="margin-top:100px">
+                    <div class="col-md-8 col-md-offset-4 text-left" style="margin-top:20px;">
+                        <a href="{{ route('register') }}">
+                            ¿No tienes cuenta? regístrate ahora.
+                        </a>
+                    </div>
+                    <div class="row" style="margin-top:50px">
                         <div class="col-md-6 col-md-offset-4">
                             <a href="{{route('social-redirect', 'google')}}" class="btn btn-block btn-social btn-google">
                                 <span class="fa fa-google"></span> Entra con tu cuenta de Google
