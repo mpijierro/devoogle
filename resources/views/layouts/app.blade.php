@@ -1,4 +1,4 @@
-<?php
+<?php use Krucas\Notification\Facades\Notification;
 ?>
         <!DOCTYPE html>
 <html lang="{{ app()->getLocale() }}">
