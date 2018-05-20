@@ -32,27 +32,8 @@
             @endif
         </div>
     </div>
-    @if ($resource->hasDescription())
-        <div class="row">
-            <div class="col-xs-12">
-                {!! $resource->sanititizeDescription()  !!}
-            </div>
-        </div>
-
-    @else
-        <div class="row">
-            <div class="col-xs-12">
-                Sin descripción.
-            </div>
-        </div>
-    @endif
-</div>
-
-<div class="col-xs-12 labeled">
-
-    <div class="row">
-
-        <div class="col-sm-6">
+    <div class="row list-labeled">
+        <div class="col-sm-6 list-category">
             <!-- Category -->
             <i class="fa fa-folder-open-o" aria-hidden="true"></i>
             <span class="nice"><a
@@ -85,8 +66,7 @@
             </a>
 
         </div>
-
-        <div class="col-sm-6">
+        <div class="col-sm-6 list-tags">
 
             <!-- Author -->
             <i class="fa fa-users" aria-hidden="true" title="Autor/es"></i>
@@ -108,7 +88,8 @@
 
 
         <!-- Technology / Language -->
-            <i class="fa fa-microchip icon-resource-register" aria-hidden="true" title="Tecnología / Lenguaje"></i>
+            <i class="fa fa-microchip icon-resource-register" aria-hidden="true"
+               title="Tecnología / Lenguaje"></i>
             @forelse ($resource->technology() as $tag)
                 {{ $loop->first ? '' : ', ' }}
                 <span class="nice"><a href="{{route('list-tag', $tag->slug)}}">{{ $tag->name }}</a></span>
@@ -152,7 +133,8 @@
                     @endif
 
                     @if ( isAdmin() )
-                        <a href="{!! route('destroy-resource', $resource->uuid()) !!}" class="icon-resource-register"
+                        <a href="{!! route('destroy-resource', $resource->uuid()) !!}"
+                           class="icon-resource-register"
                            onclick="return confirm('¿Estás seguro/a de ELIMINAR para siempre este recurso?')">
                             <i class="fa fa-trash fa-lg red" aria-hidden="true" title="Eliminar recurso"></i>
                         </a>&nbsp;
@@ -165,5 +147,14 @@
         @endif
     </div>
 
+    <div class="row list-description">
+        <div class="col-xs-12">
+            @if ($resource->hasDescription())
+                {!! str_limit($resource->sanititizeDescription(),200)  !!}
+            @else
+                Sin descripción.
+            @endif
+        </div>
+    </div>
 
 </div>

@@ -80,7 +80,9 @@ class AuthorTagExtractor extends TagExtractor
         'Raúl Ávila',
         'Raúl Raja',
         'Sebastian Hermida',
-        'Roberto Canales Mora',
+        'Roberto Canales Mora' => [
+            'Roberto Canales'
+        ],
         'Rodrigo Corral',
         'Xavi Gost',
         'Vicenç García'        => [

@@ -1,3 +1,7 @@
+html, body {
+    font-family: "Open Sans", Helvetica, Arial, sans-serif;
+}
+
 
 .icon-resource-register {
     margin-left: 15px;
@@ -11,9 +15,10 @@
     margin-bottom: 8px;
 }
 
+/* LIST */
+
 .list-register {
-    border-bottom: 1px solid lightgray;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 
 .description-category {
@@ -22,6 +27,22 @@
     margin-left: 20px;
 }
 
+.resource-title {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.list-labeled {
+    font-size: 12px;
+}
+
+.list-description {
+    margin-top: 10px;
+}
+
+/* END LIST */
+
+/* FOOTER */
 .footer {
     height: 50px;
     margin-top: 100px;
@@ -35,6 +56,8 @@
 .footer a {
     margin-right: 20px;
 }
+
+/* END FOOTER */
 
 .bold {
     font-weight: bold;
