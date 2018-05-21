@@ -56,26 +56,13 @@
                             ¿Olvidaste tu contraseña?
                         </a>
                     </div>
-                    <div class="col-md-8 col-md-offset-4 text-left" style="margin-top:20px;">
+                    <div class="col-md-8 col-md-offset-4 text-left register-now">
                         <a href="{{ route('register') }}">
                             ¿No tienes cuenta? regístrate ahora.
                         </a>
                     </div>
-                    <div class="row" style="margin-top:50px">
-                        <div class="col-md-6 col-md-offset-4">
-                            <a href="{{route('social-redirect', 'google')}}" class="btn btn-block btn-social btn-google">
-                                <span class="fa fa-google"></span> Entra con tu cuenta de Google
-                            </a>
 
-                            <a href="{{route('social-redirect', 'twitter')}}" class="btn btn-block btn-social btn-twitter">
-                                <span class="fa fa-twitter"></span> Entra con tu cuenta de Twitter
-                            </a>
-
-                            <a href="{{route('social-redirect', 'github')}}" class="btn btn-block btn-social btn-github">
-                                <span class="fa fa-github"></span> Entra con tu cuenta de Github
-                            </a>
-                        </div>
-                    </div>
+                    @include('auth.social_buttons')
                 </div>
             </form>
         </div>

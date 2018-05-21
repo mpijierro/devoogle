@@ -68,21 +68,7 @@
                 </div>
             </form>
 
-            <div class="row" style="margin-top:100px">
-                <div class="col-md-6 col-md-offset-4">
-                    <a href="{{route('social-redirect', 'google')}}" class="btn btn-block btn-social btn-google">
-                        <span class="fa fa-google"></span> Regístrate con tu cuenta de Google
-                    </a>
-
-                    <a href="{{route('social-redirect', 'twitter')}}" class="btn btn-block btn-social btn-twitter">
-                        <span class="fa fa-twitter"></span> Regístrate con tu cuenta de Twitter
-                    </a>
-
-                    <a href="{{route('social-redirect', 'github')}}" class="btn btn-block btn-social btn-github">
-                        <span class="fa fa-github"></span> Regístrate con tu cuenta de Github
-                    </a>
-                </div>
-            </div>
+            @include('auth.social_buttons')
 
         </div>
     </div>
