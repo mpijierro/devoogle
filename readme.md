@@ -13,28 +13,18 @@ Actualmente está en construcción...
 
 ## Funcionamiento
 
-Comando para obtener vídeos: php artisan collect:video youtube
+Comando para obtener inicialmente todos los recursos de todas las fuentes: php artisan source:read
 
 
 ## Tests
 
 
 
-## Próximamente
-
-(no necesariamente por este orden)
-
-- Añadir una funcionalidad para crear cursos/carpetas personalizados con recursos sobre una temática
-
-- Añadir un filtro general por fechas (última semana, mes, trimestre, semestre, año, años...). Todos los resultados 
-de búsquedas o listados serán en función a este filtro. 
-
-- Obtener recursos de otras webs: ivoox o el canal de Aprendices de Google+  
+## Próximamente  
 
 
 ## Contributing
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](http://laravel.com/docs/contributions).
 
 ## License
 

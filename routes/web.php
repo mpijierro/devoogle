@@ -53,7 +53,7 @@ Route::group(['prefix' => 'recursos', 'middleware' => 'auth'], function () {
     Route::get('/para-despues/{uuid}', "Later\ToggleLaterController")->name('toggle-later');
     Route::get('/para-despues', "Later\UserListLaterController")->name('user-list-later');
 
-    Route::get('/visto/{uuid}', "Viewed\ToggleViewedController")->name('toggle-viewed');
+    Route::get('/marcar-como-visto/{uuid}', "Viewed\ToggleViewedController")->name('toggle-viewed');
     Route::get('/recursos-vistos', "Viewed\UserListViewedController")->name('user-list-viewed');
 
     Route::get('/mis-recursos', "Profile\UserListAddedController")->name('my-resources');

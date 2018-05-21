@@ -5,6 +5,7 @@
     <div class="col-xs-3 col-sm-4 text-right">
 
         @if (isLogged())
+
             <a href="{!! route('toggle-favourite', $resource->uuid()) !!}" class="icon-action-user">
                 @if($resource->isFavourite(user()))
                     <i class="fa fa-heart fa-sm red" aria-hidden="true" title="Desmarcar como favorito"></i>
