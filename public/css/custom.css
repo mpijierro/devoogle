@@ -40,6 +40,14 @@ ul.navbar-nav li a {
     margin-top: 20px;
 }
 
+.icon-action-user {
+    margin-right: 5px;
+}
+
+.icon-action-xs {
+    margin-left: 20px;
+}
+
 /* LIST */
 
 .list-register {
@@ -71,6 +79,7 @@ li.category-sidebar i, li.category-sidebar a {
 
 .list-labeled {
     font-size: 12px;
+    margin-top: 5px;
 }
 
 .list-description {
@@ -154,6 +163,9 @@ li.category-sidebar i, li.category-sidebar a {
 }
 
 @media (max-width: 768px) {
+    .resource-title {
+        font-size: 17px;
+    }
     .title-tag {
         font-size: 30px;
     }

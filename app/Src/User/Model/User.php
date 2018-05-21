@@ -50,6 +50,11 @@ class User extends Authenticatable
     }
 
 
+    public function viewed()
+    {
+        return $this->belongsToMany(Resource::class, 'viewed')->withTimestamps();
+    }
+
     public function isAdmin()
     {
         return $this->attributes['is_admin'];

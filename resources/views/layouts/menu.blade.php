@@ -97,6 +97,13 @@
                                 </li>
 
                                 <li>
+                                    <a href="{{route('user-list-viewed')}}">
+                                        <i class="fa fa-eye green" aria-hidden="true"></i>
+                                        Vistos
+                                    </a>
+                                </li>
+
+                                <li>
                                     <a href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

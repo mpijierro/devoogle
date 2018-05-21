@@ -1,26 +1,33 @@
 <div class="row">
-    <div class="col-sm-10">
+    <div class="col-xs-9 col-sm-8">
         <a href="{!! $resource->url() !!}" target="_blank" class="resource-title">{!! $resource->title() !!}</a>
     </div>
-    <div class="col-sm-2" align="right">
+    <div class="col-xs-3 col-sm-4 text-right">
 
         @if (isLogged())
-            <a href="{!! route('toggle-favourite', $resource->uuid()) !!}">
+            <a href="{!! route('toggle-favourite', $resource->uuid()) !!}" class="icon-action-user">
                 @if($resource->isFavourite(user()))
                     <i class="fa fa-heart fa-sm red" aria-hidden="true" title="Desmarcar como favorito"></i>
                 @else
                     <i class="fa fa-heart fa-sm gray" aria-hidden="true" title="Marcar como favorito"></i>
                 @endif
-            </a>&nbsp;
-            &nbsp;
-            <a href="{!! route('toggle-later', $resource->uuid()) !!}">
+            </a>
+
+            <a href="{!! route('toggle-later', $resource->uuid()) !!}" class="icon-action-user">
                 @if ($resource->isLater(user()))
                     <i class="fa fa-clock-o fa-sm orange" aria-hidden="true" title="Desmarcar para ver después"></i>
                 @else
                     <i class="fa fa-clock-o fa-sm gray" aria-hidden="true" title="Marcar para ver después"></i>
                 @endif
-            </a>&nbsp;&nbsp;
-            &nbsp;
+            </a>
+
+            <a href="{!! route('toggle-viewed', $resource->uuid()) !!}">
+                @if ($resource->isViewed(user()))
+                    <i class="fa fa-eye fa-sm green" aria-hidden="true" title="Desmarcar como visto"></i>
+                @else
+                    <i class="fa fa-eye-slash fa-sm gray" aria-hidden="true" title="Marcar como visto"></i>
+                @endif
+            </a>
         @endif
 
         @if (isset($showCountFavourite))

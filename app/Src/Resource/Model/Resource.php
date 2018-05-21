@@ -83,6 +83,11 @@ class Resource extends Model
     }
 
 
+    public function viewed()
+    {
+        return $this->belongsToMany(User::class, 'viewed')->withTimestamps();
+    }
+
     public function author()
     {
         return $this->tagsWithType(Tag::TYPE_AUTHOR);
@@ -277,6 +282,11 @@ class Resource extends Model
         return (bool)$this->later()->wherePivot('user_id', $user->id())->count();
     }
 
+
+    public function isViewed(User $user): bool
+    {
+        return (bool)$this->viewed()->wherePivot('user_id', $user->id())->count();
+    }
 
     public function favouriteCount()
     {
