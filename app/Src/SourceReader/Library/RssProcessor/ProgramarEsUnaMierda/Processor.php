@@ -78,7 +78,6 @@ class Processor implements SourceProcessorInterface
         $this->tagFinder = $tagFinder;
         $this->langRepositoryRead = $langRepositoryRead;
         $this->sourceRepositoryWrite = $sourceRepositoryWrite;
-        $this->uuid = Uuid::generate();
         $this->resourceRawRepositoryWrite = $resourceRawRepositoryWrite;
         $this->sourceRepositoryRead = $sourceRepositoryRead;
         $this->resourceRepositoryRead = $resourceRepositoryRead;
@@ -134,10 +133,19 @@ class Processor implements SourceProcessorInterface
 
         foreach ($this->rssContent->entry as $item) {
 
+            $this->generateUuid();
+
             $this->processItem($item);
 
         }
     }
+
+
+    private function generateUuid()
+    {
+        $this->uuid = Uuid::generate();
+    }
+
 
 
     private function processItem(SimpleXMLElement $item)
