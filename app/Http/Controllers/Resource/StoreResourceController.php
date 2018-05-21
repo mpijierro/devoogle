@@ -28,6 +28,8 @@ class StoreResourceController
             $command = new StoreResourceCommand(
                 $uuid,
                 $user->id,
+                false,
+                0,
                 $request->get('title'),
                 request('description', $default = ''),
                 $request->get('url'),
