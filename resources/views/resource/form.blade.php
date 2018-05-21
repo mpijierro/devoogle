@@ -11,7 +11,7 @@
             {{ Form::model($form->model(), ['url' => $form->action(), 'method'=>'POST', 'class' => 'form-horizontal']) }}
 
             <div class="form-group{{ $errors->has('url') ? ' has-error' : '' }}">
-                <label for="url" class="col-md-4 control-label">Dirección web</label>
+                <label for="url" class="col-md-4 control-label">Dirección web *</label>
 
                 <div class="col-md-6">
                     {{ Form::url('url', null, ['class' => 'form-control', 'id' =>'url', 'required', 'autofocus'] ) }}
@@ -26,7 +26,7 @@
 
 
             <div class="form-group{{ $errors->has('title') ? ' has-error' : '' }}">
-                <label for="title" class="col-md-4 control-label">Título</label>
+                <label for="title" class="col-md-4 control-label">Título *</label>
 
                 <div class="col-md-6">
                     {{ Form::text('title', null, ['class' => 'form-control', 'id' =>'title', 'required'] ) }}
@@ -40,7 +40,7 @@
             </div>
 
             <div class="form-group{{ $errors->has('category_id') ? ' has-error' : '' }}">
-                <label for="category" class="col-md-4 control-label">Formato</label>
+                <label for="category" class="col-md-4 control-label">Formato *</label>
 
                 <div class="col-md-6">
 
@@ -57,7 +57,7 @@
             </div>
 
             <div class="form-group{{ $errors->has('lang_id') ? ' has-error' : '' }}">
-                <label for="lang" class="col-md-4 control-label">Idioma</label>
+                <label for="lang" class="col-md-4 control-label">Idioma *</label>
 
                 <div class="col-md-6">
 
