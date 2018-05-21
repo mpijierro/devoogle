@@ -10,6 +10,7 @@ use Devoogle\Src\Resource\Command\StoreResourceHandler;
 use Devoogle\Src\Resource\Request\StoreResourceRequest;
 use Krucas\Notification\Facades\Notification;
 use Webpatser\Uuid\Uuid;
+use Carbon\Carbon;
 
 class StoreResourceController
 {
@@ -32,6 +33,7 @@ class StoreResourceController
                 0,
                 $request->get('title'),
                 request('description', $default = ''),
+                Carbon::now(),
                 $request->get('url'),
                 $request->get('category_id'),
                 $request->get('lang_id'),
