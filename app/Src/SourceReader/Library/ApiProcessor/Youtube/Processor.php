@@ -106,4 +106,9 @@ class Processor implements SourceProcessorInterface
         $this->sourceRepositoryWrite->save($this->source);
     }
 
+
+    public function rssSlug(): string
+    {
+        // TODO: Implement rssSlug() method.
+    }
 }
