@@ -26,6 +26,7 @@ class SourceSeeder extends Seeder
         DB::table('source')->insert([
             'type_source_id' => 2,
             'name'           => 'WeDevelopers',
+            'url'            => 'http://wedevelopers.com/',
             'slug'           => \Devoogle\Src\SourceReader\Library\RssProcessor\WeDevelopers\Processor::SLUG,
             'created_at'     => \Carbon\Carbon::now(),
             'updated_at'     => \Carbon\Carbon::now()
@@ -34,6 +35,7 @@ class SourceSeeder extends Seeder
         DB::table('source')->insert([
             'type_source_id' => 2,
             'name'           => 'Entre Dev y Ops',
+            'url'            => 'http://www.entredevyops.es/',
             'slug'           => Devoogle\Src\SourceReader\Library\RssProcessor\EntreDevOps\Processor::SLUG,
             'created_at'     => \Carbon\Carbon::now(),
             'updated_at'     => \Carbon\Carbon::now()
@@ -42,6 +44,7 @@ class SourceSeeder extends Seeder
         DB::table('source')->insert([
             'type_source_id' => 2,
             'name'           => 'Basta ya de picar',
+            'url'            => 'http://www.bastayadepicar.com/',
             'slug'           => Devoogle\Src\SourceReader\Library\RssProcessor\BastaYaDePicar\Processor::SLUG,
             'created_at'     => \Carbon\Carbon::now(),
             'updated_at'     => \Carbon\Carbon::now()
@@ -50,7 +53,16 @@ class SourceSeeder extends Seeder
         DB::table('source')->insert([
             'type_source_id' => 2,
             'name'           => 'Programar es una mierda',
+            'url'            => 'http://www.programaresunamierda.com/',
             'slug'           => Devoogle\Src\SourceReader\Library\RssProcessor\ProgramarEsUnaMierda\Processor::SLUG,
+            'created_at'     => \Carbon\Carbon::now(),
+            'updated_at'     => \Carbon\Carbon::now()
+        ]);
+
+        DB::table('source')->insert([
+            'type_source_id' => 2,
+            'name'           => 'RantPod',
+            'slug'           => Devoogle\Src\SourceReader\Library\RssProcessor\RantPod\Processor::SLUG,
             'created_at'     => \Carbon\Carbon::now(),
             'updated_at'     => \Carbon\Carbon::now()
         ]);

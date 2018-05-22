@@ -32,6 +32,8 @@ class CommonTagExtractor extends TagExtractor
             'Microservice'
         ],
         'OWASP',
+        'Pair programming',
+        'Refactoring',
         'Scrum',
         'Solid',
         'TDD',

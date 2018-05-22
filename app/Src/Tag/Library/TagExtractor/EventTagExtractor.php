@@ -6,18 +6,24 @@ class EventTagExtractor extends TagExtractor
 {
 
     protected $tags = [
+        'Agile Open Spain' => [
+            'AOS 2015',
+            'AOS 2016',
+            'AOS 2017',
+            'AOS 2018',
+        ],
         'Atlassian Day',
-        'BilboStack'  => [
+        'BilboStack'       => [
             'BilboStack2013',
             'BilboStack2014',
         ],
         'BCN Software Craftmanship 2017',
-        'CAS 2016'    => [
+        'CAS 2016'         => [
             'CAS Vitoria 2016',
             'Vitoria 2016',
             'CAS Vitoria'
         ],
-        'Commit conf' => [
+        'Commit conf'      => [
             'Codemotion',
             'Codemotion 2014',
             'Codemotion 2015',

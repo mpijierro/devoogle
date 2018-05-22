@@ -4,10 +4,11 @@ namespace Devoogle\Src\SourceReader\Library;
 
 use Devoogle\Src\Source\Model\Source;
 use Devoogle\Src\SourceReader\Library\ApiProcessor\Youtube\Processor as YoutubeProcessor;
-use Devoogle\Src\SourceReader\Library\RssProcessor\EntreDevOps\Processor as EntreDevOps;
-use Devoogle\Src\SourceReader\Library\RssProcessor\WeDevelopers\Processor as WedevelopersProcessor;
 use Devoogle\Src\SourceReader\Library\RssProcessor\BastaYaDePicar\Processor as BastaYaDePicarProcessor;
+use Devoogle\Src\SourceReader\Library\RssProcessor\EntreDevOps\Processor as EntreDevOps;
 use Devoogle\Src\SourceReader\Library\RssProcessor\ProgramarEsUnaMierda\Processor as ProgramarEsUnaMierdaProcessor;
+use Devoogle\Src\SourceReader\Library\RssProcessor\RantPod\Processor as RantPodProcessor;
+use Devoogle\Src\SourceReader\Library\RssProcessor\WeDevelopers\Processor as WedevelopersProcessor;
 
 class SourceProcessorFactory
 {
@@ -32,6 +33,7 @@ class SourceProcessorFactory
             EntreDevOps::SLUG                   => EntreDevOps::class,
             BastaYaDePicarProcessor::SLUG       => BastaYaDePicarProcessor::class,
             ProgramarEsUnaMierdaProcessor::SLUG => ProgramarEsUnaMierdaProcessor::class,
+            RantPodProcessor::SLUG              => RantPodProcessor::class,
 
         ];
 
