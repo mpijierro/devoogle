@@ -9,6 +9,7 @@ use Devoogle\Src\SourceReader\Library\RssProcessor\EntreDevOps\Processor as Entr
 use Devoogle\Src\SourceReader\Library\RssProcessor\ProgramarEsUnaMierda\Processor as ProgramarEsUnaMierdaProcessor;
 use Devoogle\Src\SourceReader\Library\RssProcessor\ProgramarFacil\Processor as ProgramarFacilProcessor;
 use Devoogle\Src\SourceReader\Library\RssProcessor\RantPod\Processor as RantPodProcessor;
+use Devoogle\Src\SourceReader\Library\RssProcessor\Tecnologeria\Processor as TecnologeriaProcessor;
 use Devoogle\Src\SourceReader\Library\RssProcessor\WeDevelopers\Processor as WedevelopersProcessor;
 
 class SourceProcessorFactory
@@ -36,6 +37,7 @@ class SourceProcessorFactory
             ProgramarEsUnaMierdaProcessor::SLUG => ProgramarEsUnaMierdaProcessor::class,
             RantPodProcessor::SLUG              => RantPodProcessor::class,
             ProgramarFacilProcessor::SLUG       => ProgramarFacilProcessor::class,
+            TecnologeriaProcessor::SLUG         => TecnologeriaProcessor::class,
 
         ];
 

@@ -78,5 +78,14 @@ class SourceSeeder extends Seeder
             'updated_at'     => \Carbon\Carbon::now()
         ]);
 
+        DB::table('source')->insert([
+            'type_source_id' => 2,
+            'name'           => 'La Tecnologeria',
+            'url'            => 'http://tecnologeria.com',
+            'slug'           => Devoogle\Src\SourceReader\Library\RssProcessor\Tecnologeria\Processor::SLUG,
+            'created_at'     => \Carbon\Carbon::now(),
+            'updated_at'     => \Carbon\Carbon::now()
+        ]);
+
     }
 }
