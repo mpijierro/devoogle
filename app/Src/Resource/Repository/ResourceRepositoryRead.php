@@ -59,8 +59,6 @@ class ResourceRepositoryRead
 
     private function sizeList()
     {
-        dd(config('devoogle.size_list'));
-
         return config('devoogle.size_list');
     }
 
