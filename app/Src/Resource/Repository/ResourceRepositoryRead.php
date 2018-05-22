@@ -9,8 +9,6 @@ use Spatie\Tags\Tag;
 class ResourceRepositoryRead
 {
 
-    const SIZE_PAGE = 5;
-
 
     public function resourceForHome()
     {
@@ -61,7 +59,9 @@ class ResourceRepositoryRead
 
     private function sizeList()
     {
-        return env('SIZE_LIST', self::SIZE_PAGE);
+        dd(config('devoogle.size_list'));
+
+        return config('devoogle.size_list');
     }
 
 }
