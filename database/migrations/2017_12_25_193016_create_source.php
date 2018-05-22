@@ -22,6 +22,7 @@ class CreateSource extends Migration
 
             $table->string('name');
             $table->string('slug');
+            $table->string('url');
             $table->datetime('last_time_processed')->nullable();
             $table->timestamps();
         });

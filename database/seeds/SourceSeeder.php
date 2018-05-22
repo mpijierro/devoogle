@@ -18,6 +18,7 @@ class SourceSeeder extends Seeder
             'type_source_id'      => 1,
             'name'                => 'Youtube',
             'slug'                => \Devoogle\Src\SourceReader\Library\ApiProcessor\Youtube\Processor::SLUG,
+            'url'                 => 'https://www.youtube.com',
             'last_time_processed' => null,
             'created_at'          => \Carbon\Carbon::now(),
             'updated_at'          => \Carbon\Carbon::now()
@@ -62,7 +63,17 @@ class SourceSeeder extends Seeder
         DB::table('source')->insert([
             'type_source_id' => 2,
             'name'           => 'RantPod',
+            'url'            => 'http://rantpod.com/',
             'slug'           => Devoogle\Src\SourceReader\Library\RssProcessor\RantPod\Processor::SLUG,
+            'created_at'     => \Carbon\Carbon::now(),
+            'updated_at'     => \Carbon\Carbon::now()
+        ]);
+
+        DB::table('source')->insert([
+            'type_source_id' => 2,
+            'name'           => 'ProgramarFácil.com',
+            'url'            => 'https://programarfacil.com/',
+            'slug'           => Devoogle\Src\SourceReader\Library\RssProcessor\ProgramarFacil\Processor::SLUG,
             'created_at'     => \Carbon\Carbon::now(),
             'updated_at'     => \Carbon\Carbon::now()
         ]);

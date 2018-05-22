@@ -16,6 +16,7 @@ class Source extends Model
         'type_source_id',
         'name',
         'slug',
+        'url',
         'last_time_processed',
     ];
 
@@ -48,6 +49,12 @@ class Source extends Model
     public function slug()
     {
         return $this->attributes['slug'];
+    }
+
+
+    public function url()
+    {
+        return $this->attributes['url'];
     }
 
 
