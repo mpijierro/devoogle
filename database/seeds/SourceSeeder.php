@@ -87,5 +87,14 @@ class SourceSeeder extends Seeder
             'updated_at'     => \Carbon\Carbon::now()
         ]);
 
+        DB::table('source')->insert([
+            'type_source_id' => 2,
+            'name'           => '32 minutos',
+            'url'            => 'http://www.32minutos.net',
+            'slug'           => Devoogle\Src\SourceReader\Library\RssProcessor\Minutos\Processor::SLUG,
+            'created_at'     => \Carbon\Carbon::now(),
+            'updated_at'     => \Carbon\Carbon::now()
+        ]);
+
     }
 }

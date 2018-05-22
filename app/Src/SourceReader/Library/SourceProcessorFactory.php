@@ -6,6 +6,7 @@ use Devoogle\Src\Source\Model\Source;
 use Devoogle\Src\SourceReader\Library\ApiProcessor\Youtube\Processor as YoutubeProcessor;
 use Devoogle\Src\SourceReader\Library\RssProcessor\BastaYaDePicar\Processor as BastaYaDePicarProcessor;
 use Devoogle\Src\SourceReader\Library\RssProcessor\EntreDevOps\Processor as EntreDevOps;
+use Devoogle\Src\SourceReader\Library\RssProcessor\Minutos\Processor as MinutosProcessor;
 use Devoogle\Src\SourceReader\Library\RssProcessor\ProgramarEsUnaMierda\Processor as ProgramarEsUnaMierdaProcessor;
 use Devoogle\Src\SourceReader\Library\RssProcessor\ProgramarFacil\Processor as ProgramarFacilProcessor;
 use Devoogle\Src\SourceReader\Library\RssProcessor\RantPod\Processor as RantPodProcessor;
@@ -38,6 +39,7 @@ class SourceProcessorFactory
             RantPodProcessor::SLUG              => RantPodProcessor::class,
             ProgramarFacilProcessor::SLUG       => ProgramarFacilProcessor::class,
             TecnologeriaProcessor::SLUG         => TecnologeriaProcessor::class,
+            MinutosProcessor::SLUG              => MinutosProcessor::class,
 
         ];
 
