@@ -4,6 +4,7 @@ namespace Devoogle\Src\Resource\Library;
 
 use Devoogle\Src\Category\Repository\CategoryRepositoryRead;
 use Devoogle\Src\Devoogle\Library\Form;
+use Devoogle\Src\Lang\Model\Lang;
 use Devoogle\Src\Lang\Repository\LangRepositoryRead;
 
 class FormCreate extends Form
@@ -79,6 +80,7 @@ class FormCreate extends Form
     protected function configModel()
     {
         $this->model = [];
+        $this->model['lang_id'] = Lang::LANG_UNSPECIFIED;
     }
 
 

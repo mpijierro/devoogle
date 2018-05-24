@@ -125,6 +125,11 @@ li.category-sidebar i, li.category-sidebar a {
 
 /* END LIST */
 
+.info-form {
+    color: #8c8c8c;
+    font-size: 11px;
+}
+
 /* FOOTER */
 .footer {
     height: 50px;

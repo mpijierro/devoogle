@@ -10,6 +10,14 @@
 
             {{ Form::model($form->model(), ['url' => $form->action(), 'method'=>'POST', 'class' => 'form-horizontal']) }}
 
+            <div class="form-group info-form">
+                <label for="" class="col-md-4 control-label"></label>
+                <div class="col-md-6">
+                    Estos primeros campos son obligatorios, sin ellos será imposible acceder al recurso que vayas a
+                    crear.
+                </div>
+            </div>
+
             <div class="form-group{{ $errors->has('url') ? ' has-error' : '' }}">
                 <label for="url" class="col-md-4 control-label">Dirección web *</label>
 
@@ -18,8 +26,8 @@
 
                     @if ($errors->has('url'))
                         <span class="help-block">
-                                        <strong>{{ $errors->first('url') }}</strong>
-                                    </span>
+                            <strong>{{ $errors->first('url') }}</strong>
+                        </span>
                     @endif
                 </div>
             </div>
@@ -56,12 +64,20 @@
                 </div>
             </div>
 
+            <div class="form-group info-form">
+                <label for="" class="col-md-4 control-label"></label>
+                <div class="col-md-6">
+                    De aquí para abajo nada es obligatorio pero si rellenas los campos ayudas a mantener los recursos
+                    mejor clasificados.
+                </div>
+            </div>
+
             <div class="form-group{{ $errors->has('lang_id') ? ' has-error' : '' }}">
-                <label for="lang" class="col-md-4 control-label">Idioma *</label>
+                <label for="lang" class="col-md-4 control-label">Idioma</label>
 
                 <div class="col-md-6">
 
-                    {{ \Form::select('lang_id', $form->langOptions(), null, ['placeholder' => 'Selecciona formato', 'class' => 'form-control', 'required']) }}
+                    {{ \Form::select('lang_id', $form->langOptions(), null, ['class' => 'form-control', 'required']) }}
 
                     @if ($errors->has('lang_id'))
                         <span class="help-block">
@@ -92,7 +108,7 @@
 
             @include('resource.tag_field', ['title' => 'Lenguaje/Tecnología', 'key' => \Devoogle\Src\Tag\Model\Tag::TYPE_TECHNOLOGY])
 
-            @include('resource.tag_field', ['title' => 'Etiquetas', 'key' => \Devoogle\Src\Tag\Model\Tag::TYPE_COMMON])
+            @include('resource.tag_field', ['title' => 'Recursos', 'key' => \Devoogle\Src\Tag\Model\Tag::TYPE_COMMON])
 
             <div class="form-group{{ $errors->has('description') ? ' has-error' : '' }}">
                 <label for="description" class="col-md-4 control-label">Descripción</label>

@@ -14,8 +14,6 @@ trait ResourceRules
             'title.required' => trans('devoogle_validation.title_required'),
             'category_id.required' => trans('devoogle_validation.category_id_required'),
             'category_id.exists' => trans('devoogle_validation.category_id_required'),
-            'lang_id.required' => trans('devoogle_validation.lang_id_required'),
-            'lang_id.exists' => trans('devoogle_validation.lang_id_required')
         ];
 
     }
@@ -28,7 +26,6 @@ trait ResourceRules
             'title' => 'required',
             'url' => 'required|url',
             'category_id' => 'required|exists:category,id',
-            'lang_id' => 'required|exists:lang,id'
         ];
     }
 
