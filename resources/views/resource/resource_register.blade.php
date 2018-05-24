@@ -1,8 +1,8 @@
 <div class="row">
-    <div class="col-xs-9 col-sm-8">
+    <div class="col-xs-9 col-sm-8 col-md-12">
         <a href="{!! $resource->url() !!}" target="_blank" class="resource-title">{!! $resource->title() !!}</a>
     </div>
-    <div class="col-xs-3 col-sm-4 text-right">
+    <div class="col-xs-3 col-sm-4 col-md-12 text-right">
 
         @if (isLogged())
 
