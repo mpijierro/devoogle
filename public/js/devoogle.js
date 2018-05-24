@@ -33,4 +33,9 @@ $(document).ready(function () {
         $(this).prev().toggle();
         return false;
     });
+
+    $('.datepicker').datepicker({
+        language: 'es',
+        format: 'dd/mm/yyyy'
+    });
 });

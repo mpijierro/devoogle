@@ -42,5 +42,13 @@ use Krucas\Notification\Facades\Notification;
 
 </div>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/js/bootstrap.min.js"></script>
+
+
+<script src="{{ asset('js/bootstrap-datepicker.min.js') }}"></script>
+<script src="{{ asset('js/bootstrap-datepicker.es.min.js') }}"></script>
+<script src="{{ asset('js/devoogle.js') }}"></script>
+
+
 </body>
 </html>

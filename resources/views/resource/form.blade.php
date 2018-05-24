@@ -71,6 +71,21 @@
                 </div>
             </div>
 
+            <div class="form-group{{ $errors->has('published_at') ? ' has-error' : '' }}">
+                <label for="lang" class="col-md-4 control-label">Fecha publicación</label>
+
+                <div class="col-md-6">
+
+                    {{ Form::text('published_at', null, ['class' => 'form-control datepicker', 'id' =>'published_at'] ) }}
+
+                    @if ($errors->has('published_at'))
+                        <span class="help-block">
+                                        <strong>{{ $errors->first('published_at') }}</strong>
+                                    </span>
+                    @endif
+                </div>
+            </div>
+
             @include('resource.tag_field', ['title' => 'Autor/es', 'key' => \Devoogle\Src\Tag\Model\Tag::TYPE_AUTHOR])
 
             @include('resource.tag_field', ['title' => 'Evento', 'key' => \Devoogle\Src\Tag\Model\Tag::TYPE_EVENT])
