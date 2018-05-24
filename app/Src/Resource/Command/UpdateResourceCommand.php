@@ -2,6 +2,8 @@
 
 namespace Devoogle\Src\Resource\Command;
 
+use Carbon\Carbon;
+
 class UpdateResourceCommand
 {
 
@@ -10,6 +12,8 @@ class UpdateResourceCommand
     private $title;
 
     private $description;
+
+    private $publishedAt;
 
     private $url;
 
@@ -26,12 +30,24 @@ class UpdateResourceCommand
     private $technology;
 
 
-    public function __construct(string $uuid, string $title, string $description, string $url, string $categoryId, string $langId, string $tag, string $author, string $event, string $technology)
-    {
+    public function __construct(
+        string $uuid,
+        string $title,
+        string $description,
+        Carbon $publishedAt,
+        string $url,
+        string $categoryId,
+        string $langId,
+        string $tag,
+        string $author,
+        string $event,
+        string $technology
+    ) {
 
         $this->uuid = $uuid;
         $this->title = $title;
         $this->description = $description;
+        $this->publishedAt = $publishedAt;
         $this->url = $url;
         $this->categoryId = $categoryId;
         $this->langId = $langId;
@@ -57,6 +73,12 @@ class UpdateResourceCommand
     public function getDescription(): string
     {
         return $this->description;
+    }
+
+
+    public function getPublishedAt(): Carbon
+    {
+        return $this->publishedAt;
     }
 
 

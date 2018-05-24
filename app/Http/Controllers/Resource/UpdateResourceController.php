@@ -2,6 +2,7 @@
 
 namespace Devoogle\Http\Controllers\Resource;
 
+use Carbon\Carbon;
 use Devoogle\Src\Tag\Model\Tag;
 use Illuminate\Support\Facades\DB;
 use Devoogle\Src\Resource\Command\UpdateResourceCommand;
@@ -12,25 +13,21 @@ use Krucas\Notification\Facades\Notification;
 class UpdateResourceController
 {
 
-
     public function __invoke(StoreResourceRequest $request, string $aUuid)
     {
-
+        dd($request->all());
         try {
 
             DB::beginTransaction();
 
-            $command = new UpdateResourceCommand(
-                $aUuid,
-                $request->get('title'),
-                request('description', $default = ''),
-                $request->get('url'),
-                $request->get('category_id'),
-                $request->get('lang_id'),
-                Tag::sanitizeFromInput(request(Tag::TYPE_COMMON, $default = '')),
-                Tag::sanitizeFromInput(request(Tag::TYPE_AUTHOR, $default = '')),
-                Tag::sanitizeFromInput(request(Tag::TYPE_EVENT, $default = '')),
-                Tag::sanitizeFromInput(request(Tag::TYPE_TECHNOLOGY, $default = '')));
+            $publishedAt = Carbon::now();
+            if ($request->filled('published_at')) {
+                $publishedAt = Carbon::parse($request->get('published_at'));
+            }
+
+            $command = new UpdateResourceCommand($aUuid, $request->get('title'), request('description', $default = ''), $publishedAt, $request->get('url'), $request->get('category_id'), $request->get('lang_id'),
+                Tag::sanitizeFromInput(request(Tag::TYPE_COMMON, $default = '')), Tag::sanitizeFromInput(request(Tag::TYPE_AUTHOR, $default = '')),
+                Tag::sanitizeFromInput(request(Tag::TYPE_EVENT, $default = '')), Tag::sanitizeFromInput(request(Tag::TYPE_TECHNOLOGY, $default = '')));
 
             $handler = app(UpdateResourceHandler::class);
             $handler($command);

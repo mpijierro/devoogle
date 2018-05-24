@@ -26,14 +26,18 @@ class StoreResourceController
             $user = Auth::user();
             $uuid = Uuid::generate();
 
+            $publishedAt = Carbon::now();
+            if ($request->filled('published_at')) {
+                $publishedAt = Carbon::parse($request->get('published_at'));
+            }
+
             $command = new StoreResourceCommand(
                 $uuid,
                 $user->id,
                 false,
                 0,
                 $request->get('title'),
-                request('description', $default = ''),
-                Carbon::now(),
+                request('description', $default = ''), $publishedAt,
                 $request->get('url'),
                 $request->get('category_id'),
                 $request->get('lang_id'),

@@ -9,11 +9,12 @@ trait ResourceRules
     {
 
         return [
-            'url.required' => trans('devoogle_validation.url_required'),
-            'url.url' => trans('devoogle_validation.url_url'),
-            'title.required' => trans('devoogle_validation.title_required'),
+            'url.required'         => trans('devoogle_validation.url_required'),
+            'url.url'              => trans('devoogle_validation.url_url'),
+            'title.required'       => trans('devoogle_validation.title_required'),
             'category_id.required' => trans('devoogle_validation.category_id_required'),
-            'category_id.exists' => trans('devoogle_validation.category_id_required'),
+            'category_id.exists'   => trans('devoogle_validation.category_id_required'),
+            'published_at.date'    => trans('devoogle_validation.published_at_date'),
         ];
 
     }
@@ -23,9 +24,10 @@ trait ResourceRules
     {
 
         return [
-            'title' => 'required',
-            'url' => 'required|url',
-            'category_id' => 'required|exists:category,id',
+            'title'        => 'required',
+            'url'          => 'required|url',
+            'category_id'  => 'required|exists:category,id',
+            'published_at' => 'sometimes|date'
         ];
     }
 

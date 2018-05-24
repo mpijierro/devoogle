@@ -72,6 +72,7 @@ class UpdateResourceHandler
 
         $this->resource->title = $this->command->getTitle();
         $this->resource->description = $this->command->getDescription();
+        $this->resource->published_at = $this->command->getPublishedAt();
         $this->resource->url = $this->command->getUrl();
         $this->resource->category_id = $this->command->getCategoryId();
         $this->resource->lang_id = $this->command->getLangId();

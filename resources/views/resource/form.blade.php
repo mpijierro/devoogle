@@ -108,7 +108,7 @@
 
                     <small id="publishedAtHelpBlock" class="form-text info-form">
                         <i class="fa fa-info-circle" aria-hidden="true"></i> Si es conocida, indica la fecha en la que
-                        este recurso se publicó.
+                        este recurso se publicó, así sabremos la antiguedad del mismo.
                     </small>
                     @if ($errors->has('published_at'))
                         <span class="help-block"><strong>{{ $errors->first('published_at') }}</strong></span>

@@ -130,6 +130,11 @@ li.category-sidebar i, li.category-sidebar a {
     font-size: 11px;
 }
 
+.add-format-link-in-form {
+    display: block;
+    float: right;
+}
+
 /* FOOTER */
 .footer {
     height: 50px;

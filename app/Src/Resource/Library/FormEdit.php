@@ -110,6 +110,8 @@ class FormEdit extends Form
     {
         $this->model = $this->resource->toArray();
 
+        $this->configPublishedAt();
+
         $this->configCommonTagModel();
 
         $this->configAuthorTagModel();
@@ -118,6 +120,12 @@ class FormEdit extends Form
 
         $this->configTechnologyTagModel();
 
+    }
+
+
+    private function configPublishedAt()
+    {
+        $this->model['published_at'] = $this->resource->publishedAt()->format('d-m-Y');
     }
 
 

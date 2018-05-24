@@ -18,8 +18,8 @@ class CreateVersionController
         view()->share('versions', $manager->versions());
         view()->share('resource', $manager->resource());
         view()->share('form', $manager->formCreate());
-        view()->share('formTitle', '¿Sabes si existe este mismo contenido con otro formato? ¡Añádelo!');
-        view()->share('textButton', 'Añadir formato');
+        view()->share('formTitle', trans('form.form_title_version'));
+        view()->share('textButton', trans('form.text_button_add_version'));
 
         return view('resource.form_version');
     }
