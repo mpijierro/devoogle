@@ -29,13 +29,18 @@ class UpdateResourceHandlerTest extends TestCase
         $user = $this->defaultUser();
         $source = factory(Source::class)->create();
 
-        $command = new StoreResourceCommand($uuid, $user->id(), true, $source->id(), 'title', 'description', Carbon::now(),
+        $publishedAt = Carbon::parse('2018-04-01');
+
+        $command = new StoreResourceCommand($uuid, $user->id(), true, $source->id(), 'title', 'description', $publishedAt,
             'http://www.devoogle.com', $category->id(), $lang->id(), 'tag 1', 'author name', 'event name', 'technology name');
 
         $handler = app(StoreResourceHandler::class);
         $handler($command);
 
-        $command = new UpdateResourceCommand($uuid, 'title 2', 'description 2', 'http://www.devoogle2.com', $category->id(), $lang->id(), 'tag 2', 'author name 2', 'event name 2', 'technology name 2');
+        $publishedAt = Carbon::parse('2018-04-05');
+
+        $command = new UpdateResourceCommand($uuid, 'title 2', 'description 2', $publishedAt, 'http://www.devoogle2.com', $category->id(), $lang->id(), 'tag 2', 'author name 2', 'event name 2',
+            'technology name 2');
 
         $handler = app(UpdateResourceHandler::class);
         $handler($command);
@@ -50,7 +55,7 @@ class UpdateResourceHandlerTest extends TestCase
         $this->assertEquals('http://www.devoogle2.com', $resource->url());
         $this->assertEquals($category->id(), $resource->categoryId());
         $this->assertEquals($lang->id(), $resource->langId());
-        $this->assertEquals($category->id(), $resource->categoryId());
+        $this->assertEquals('2018-04-05', $resource->publishedAt()->toDateString());
 
         $authors = $resource->author();
         foreach ($authors as $author) {
