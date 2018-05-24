@@ -120,7 +120,10 @@
 
                             <li>
                                 <a href="{!! route('create-resource') !!}" class="btn">
-                                    <button type="button" class="btn btn-xs btn-success">Añadir recurso</button>
+                                    <button type="button" class="btn btn-xs btn-success"><i class="fa fa-plus-square"
+                                                                                            aria-hidden="true"></i>
+                                        Añadir recurso
+                                    </button>
                                 </a>
                             </li>
                             @endguest

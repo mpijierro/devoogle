@@ -6,7 +6,7 @@
 
     <div class="panel panel-default">
 
-        <div class="panel-heading">Añadir nuevo formato para: {!! $resource->title() !!}</div>
+        <div class="panel-heading"><b>Añadir nuevo formato para: {!! $resource->title() !!}</b></div>
 
         <div class="panel-body">
 

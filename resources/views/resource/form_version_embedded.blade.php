@@ -6,6 +6,15 @@
 
         {{ Form::model($form->model(), ['url' => $form->action(), 'method'=>'POST', 'class' => 'form-horizontal']) }}
 
+        <div class="form-group info-form">
+            <label for="" class="col-md-4 control-label"></label>
+            <div class="col-md-6">
+                <i class="fa fa-info-circle" aria-hidden="true"></i> Si <b>{!! $resource->title() !!}</b> está en otro
+                formato puedes
+                indicarlo a continuación.
+            </div>
+        </div>
+
         <div class="form-group{{ $errors->has('url') ? ' has-error' : '' }}">
             <label for="url" class="col-md-4 control-label">Url</label>
 

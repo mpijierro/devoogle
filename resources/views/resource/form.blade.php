@@ -4,7 +4,19 @@
 
     <div class="panel panel-default">
 
-        <div class="panel-heading">{!! $titleForm !!}</div>
+        <div class="panel-heading">
+            <b>{!! $titleForm !!}</b>
+
+            @if (isset($uuid))
+                <a href="{!! route('create-version', $uuid) !!}" title="Añadir otro formato para este recurso"
+                   class="add-format-link-in-form">
+                    <button type="button" class="btn btn-xs btn-success">
+                        <i class="fa fa-plus-square" aria-hidden="true"></i> Añadir otro formato
+                    </button>
+                </a>
+            @endif
+
+        </div>
 
         <div class="panel-body">
 
@@ -13,7 +25,8 @@
             <div class="form-group info-form">
                 <label for="" class="col-md-4 control-label"></label>
                 <div class="col-md-6">
-                    Estos primeros campos son obligatorios, sin ellos será imposible acceder al recurso que vayas a
+                    <i class="fa fa-warning" aria-hidden="true"></i> Estos primeros campos son obligatorios, sin ellos
+                    será imposible acceder al recurso que vayas a
                     crear.
                 </div>
             </div>
@@ -67,7 +80,8 @@
             <div class="form-group info-form">
                 <label for="" class="col-md-4 control-label"></label>
                 <div class="col-md-6">
-                    De aquí para abajo nada es obligatorio pero si rellenas los campos ayudas a mantener los recursos
+                    <i class="fa fa-warning" aria-hidden="true"></i> De aquí para abajo nada es obligatorio pero si
+                    rellenas los campos ayudas a mantener los recursos
                     mejor clasificados.
                 </div>
             </div>
@@ -80,9 +94,7 @@
                     {{ \Form::select('lang_id', $form->langOptions(), null, ['class' => 'form-control', 'required']) }}
 
                     @if ($errors->has('lang_id'))
-                        <span class="help-block">
-                                        <strong>{{ $errors->first('lang_id') }}</strong>
-                                    </span>
+                        <span class="help-block"><strong>{{ $errors->first('lang_id') }}</strong></span>
                     @endif
                 </div>
             </div>
@@ -92,12 +104,14 @@
 
                 <div class="col-md-6">
 
-                    {{ Form::text('published_at', null, ['class' => 'form-control datepicker', 'id' =>'published_at'] ) }}
+                    {{ Form::text('published_at', null, ['class' => 'form-control datepicker', 'id' =>'published_at', ''] ) }}
 
+                    <small id="publishedAtHelpBlock" class="form-text info-form">
+                        <i class="fa fa-info-circle" aria-hidden="true"></i> Si es conocida, indica la fecha en la que
+                        este recurso se publicó.
+                    </small>
                     @if ($errors->has('published_at'))
-                        <span class="help-block">
-                                        <strong>{{ $errors->first('published_at') }}</strong>
-                                    </span>
+                        <span class="help-block"><strong>{{ $errors->first('published_at') }}</strong></span>
                     @endif
                 </div>
             </div>
@@ -117,9 +131,7 @@
                     {{ Form::textarea('description', null, ['class' => 'form-control', 'id' =>'description',  'rows'=>3] ) }}
 
                     @if ($errors->has('description'))
-                        <span class="help-block">
-                                        <strong>{{ $errors->first('description') }}</strong>
-                                    </span>
+                        <span class="help-block"><strong>{{ $errors->first('description') }}</strong></span>
                     @endif
                 </div>
             </div>
@@ -132,15 +144,8 @@
                     </button>
                 </div>
             </div>
-            {{ Form::close() }}
 
-            @if (isset($uuid))
-                <div class="col-xs-12 ">
-                    <a href="{!! route('create-version', $uuid) !!}" title="Añadir nuevo formato" class="icon-resource-register">
-                        <i class="fa fa-plus-square" aria-hidden="true"></i> Añadir un nuevo formato
-                    </a>
-                </div>
-            @endif
+            {{ Form::close() }}
 
         </div>
 
@@ -172,7 +177,7 @@
 
             $('#author').textext({
                 plugins: 'tags autocomplete prompt ajax suggestions',
-                prompt: 'Buscar...',
+                prompt: 'Buscar autores en las etiquetas...',
                 ajax: {
                     url: '{{route('input-tag', \Devoogle\Src\Tag\Model\Tag::TYPE_AUTHOR)}}',
                     dataType: 'json',
@@ -194,7 +199,7 @@
 
             $('#technology').textext({
                 plugins: 'tags autocomplete prompt ajax suggestions',
-                prompt: 'Buscar...',
+                prompt: 'Buscar lenguajes o tecnologías en las etiquetas...',
                 ajax: {
                     url: '{{route('input-tag', \Devoogle\Src\Tag\Model\Tag::TYPE_TECHNOLOGY)}}',
                     dataType: 'json',
@@ -216,7 +221,7 @@
 
             $('#event').textext({
                 plugins: 'tags autocomplete prompt ajax suggestions',
-                prompt: 'Buscar...',
+                prompt: 'Buscar eventos en las etiquetas...',
                 ajax: {
                     url: '{{route('input-tag', \Devoogle\Src\Tag\Model\Tag::TYPE_EVENT)}}',
                     dataType: 'json',
@@ -238,7 +243,7 @@
 
             $('#tag').textext({
                 plugins: 'tags autocomplete prompt ajax suggestions',
-                prompt: 'Buscar...',
+                prompt: 'Buscar etiquetas comunes...',
                 ajax: {
                     url: '{{route('input-tag', \Devoogle\Src\Tag\Model\Tag::TYPE_COMMON)}}',
                     dataType: 'json',
