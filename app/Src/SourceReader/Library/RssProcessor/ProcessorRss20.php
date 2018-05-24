@@ -40,8 +40,6 @@ abstract class ProcessorRss20 implements SourceProcessorInterface, RssProcessorI
      */
     protected $langRepositoryRead;
 
-    protected $lang;
-
     /**
      * @var SourceRepositoryWrite
      */
@@ -65,7 +63,6 @@ abstract class ProcessorRss20 implements SourceProcessorInterface, RssProcessorI
 
     public function __construct(
         TagFinder $tagFinder,
-        LangRepositoryRead $langRepositoryRead,
         SourceRepositoryWrite $sourceRepositoryWrite,
         SourceRepositoryRead $sourceRepositoryRead,
         ResourceRawRepositoryWrite $resourceRawRepositoryWrite,
@@ -73,7 +70,6 @@ abstract class ProcessorRss20 implements SourceProcessorInterface, RssProcessorI
 
     ) {
         $this->tagFinder = $tagFinder;
-        $this->langRepositoryRead = $langRepositoryRead;
         $this->sourceRepositoryWrite = $sourceRepositoryWrite;
         $this->resourceRawRepositoryWrite = $resourceRawRepositoryWrite;
         $this->sourceRepositoryRead = $sourceRepositoryRead;
@@ -84,8 +80,6 @@ abstract class ProcessorRss20 implements SourceProcessorInterface, RssProcessorI
     public function process(Source $source)
     {
         $this->initialize($source);
-
-        $this->obtainLang();
 
         $this->obtainContentFromRss();
 
@@ -101,13 +95,6 @@ abstract class ProcessorRss20 implements SourceProcessorInterface, RssProcessorI
         $this->source = $source;
 
     }
-
-
-    protected function obtainLang()
-    {
-        $this->lang = $this->langRepositoryRead->findByCode(Lang::SPANISH_CODE);
-    }
-
 
     protected function obtainContentFromRss()
     {
@@ -175,7 +162,7 @@ abstract class ProcessorRss20 implements SourceProcessorInterface, RssProcessorI
         $title = $audioWrapper->title();
         $url = $audioWrapper->url();
         $categoryId = Category::AUDIO_CATEGORY_ID;
-        $langId = $this->lang->id();
+        $langId = Lang::LANG_UNSPECIFIED;
         $description = $this->sanitizeDescription($audioWrapper);
         $publishedAt = $audioWrapper->publishedAt();
         $tag = $this->tagFinder->findByCommonTags($audioWrapper->obtainTextsForSearch());

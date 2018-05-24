@@ -21,9 +21,9 @@ $factory->define(\Devoogle\Src\Source\Model\Source::class, function (Faker $fake
         'type_source_id'      => factory(\Devoogle\Src\Source\Model\TypeSource::class)->create()->id,
         'name'                => $name,
         'slug'                => str_slug($name),
+        'url'                 => $faker->url,
         'last_time_processed' => null,
         'created_at'          => new DateTime(),
         'updated_at'          => new DateTime()
     ];
 });
-
