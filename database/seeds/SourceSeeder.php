@@ -87,6 +87,7 @@ class SourceSeeder extends Seeder
             'updated_at'     => \Carbon\Carbon::now()
         ]);
 
+
         DB::table('source')->insert([
             'type_source_id' => 2,
             'name'           => '32 minutos',
@@ -95,6 +96,16 @@ class SourceSeeder extends Seeder
             'created_at'     => \Carbon\Carbon::now(),
             'updated_at'     => \Carbon\Carbon::now()
         ]);
+
+        DB::table('source')->insert([
+            'type_source_id' => 2,
+            'name'           => 'Eduardo Ferro',
+            'url'            => 'http://www.eferro.net',
+            'slug'           => Devoogle\Src\SourceReader\Library\RssProcessor\Eferro\Processor::SLUG,
+            'created_at'     => \Carbon\Carbon::now(),
+            'updated_at'     => \Carbon\Carbon::now()
+        ]);
+
 
     }
 }
