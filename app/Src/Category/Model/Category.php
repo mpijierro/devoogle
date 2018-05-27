@@ -12,6 +12,8 @@ class Category extends Model
 
     const AUDIO_CATEGORY_ID = 2;
 
+    const WEB_CATEGORY_ID = 3;
+
     protected $table = 'category';
 
     protected $fillable = ['name', 'slug', 'description'];

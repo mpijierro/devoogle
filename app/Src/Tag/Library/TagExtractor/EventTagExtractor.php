@@ -11,6 +11,7 @@ class EventTagExtractor extends TagExtractor
             'AOS 2016',
             'AOS 2017',
             'AOS 2018',
+            'Agile Open Space'
         ],
         'Atlassian Day',
         'BilboStack'       => [
@@ -23,6 +24,7 @@ class EventTagExtractor extends TagExtractor
             'Vitoria 2016',
             'CAS Vitoria'
         ],
+        'CAS 2017',
         'Commit conf'      => [
             'Codemotion',
             'Codemotion 2014',

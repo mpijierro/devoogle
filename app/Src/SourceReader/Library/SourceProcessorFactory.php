@@ -12,6 +12,7 @@ use Devoogle\Src\SourceReader\Library\RssProcessor\ProgramarFacil\Processor as P
 use Devoogle\Src\SourceReader\Library\RssProcessor\RantPod\Processor as RantPodProcessor;
 use Devoogle\Src\SourceReader\Library\RssProcessor\Tecnologeria\Processor as TecnologeriaProcessor;
 use Devoogle\Src\SourceReader\Library\RssProcessor\WeDevelopers\Processor as WedevelopersProcessor;
+use Devoogle\Src\SourceReader\Library\RssProcessor\Eferro\Processor as EferroProcessor;
 
 class SourceProcessorFactory
 {
@@ -40,6 +41,7 @@ class SourceProcessorFactory
             ProgramarFacilProcessor::SLUG       => ProgramarFacilProcessor::class,
             TecnologeriaProcessor::SLUG         => TecnologeriaProcessor::class,
             MinutosProcessor::SLUG              => MinutosProcessor::class,
+            EferroProcessor::SLUG               => EferroProcessor::class,
 
         ];
 

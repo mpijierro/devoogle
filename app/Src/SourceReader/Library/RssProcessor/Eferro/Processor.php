@@ -1,6 +1,6 @@
 <?php
 
-namespace Devoogle\Src\SourceReader\Library\RssProcessor\ProgramarEsUnaMierda;
+namespace Devoogle\Src\SourceReader\Library\RssProcessor\Eferro;
 
 use Devoogle\Src\Category\Model\Category;
 use Devoogle\Src\SourceReader\Library\RssProcessor\ProcessorRss20;
@@ -9,14 +9,20 @@ use SimpleXMLElement;
 class Processor extends ProcessorRss20
 {
 
-    const RSS_URL = 'http://www.programaresunamierda.com/feeds/posts/default?max-results=500';
+    const RSS_URL = 'http://www.eferro.net/feeds/posts/default?max-results=500';
 
-    const SLUG = 'programaresunamierda';
+    const SLUG = 'eferro';
 
 
     public function slug(): string
     {
         return self::SLUG;
+    }
+
+
+    public function rssSlug(): string
+    {
+        return self::RSS_URL;
     }
 
 
@@ -64,14 +70,8 @@ class Processor extends ProcessorRss20
     }
 
 
-    public function rssSlug(): string
-    {
-        return self::RSS_URL;
-    }
-
-
     protected function categoryId(): int
     {
-        return Category::AUDIO_CATEGORY_ID;
+        return Category::WEB_CATEGORY_ID;
     }
 }

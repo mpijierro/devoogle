@@ -15,6 +15,7 @@ class CommonTagExtractor extends TagExtractor
         'CQRS',
         'Curso',
         'Deuda técnica',
+        'Devops',
         'DDD'                    => [
             'domain driven design',
             'domain-driven design',

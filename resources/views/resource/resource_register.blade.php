@@ -76,7 +76,7 @@
         @endif
 
         <!-- Tags -->
-            <div class="col-xs-12 col-sm-8 col-md-4">
+            <div class="col-xs-12 col-sm-8 col-md-6">
                 <i class="fa fa-tags " aria-hidden="true" title="Etiquetas"></i>
                 @forelse ($resource->allTags() as $tag)
                     {{ $loop->first ? '' : ', ' }}

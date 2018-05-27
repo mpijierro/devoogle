@@ -161,7 +161,7 @@ abstract class ProcessorRss20 implements SourceProcessorInterface, RssProcessorI
         $sourceId = $this->source->id();
         $title = $audioWrapper->title();
         $url = $audioWrapper->url();
-        $categoryId = Category::AUDIO_CATEGORY_ID;
+        $categoryId = $this->categoryId();
         $langId = Lang::LANG_UNSPECIFIED;
         $description = $this->sanitizeDescription($audioWrapper);
         $publishedAt = $audioWrapper->publishedAt();
@@ -214,5 +214,8 @@ abstract class ProcessorRss20 implements SourceProcessorInterface, RssProcessorI
 
 
     abstract public function slug(): string;
+
+
+    abstract protected function categoryId(): int;
 
 }
