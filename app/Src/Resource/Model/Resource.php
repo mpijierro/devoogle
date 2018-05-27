@@ -172,6 +172,10 @@ class Resource extends Model
 
         $finder = app(SanitizeDescription::class);
 
+        if ($this->category->isWeb()) {
+            return $finder->sanitizeWeb($this->description());
+        }
+
         return $finder->sanitize($this->description());
 
     }

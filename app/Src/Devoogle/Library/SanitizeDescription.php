@@ -5,12 +5,27 @@ namespace Devoogle\Src\Devoogle\Library;
 class SanitizeDescription
 {
 
+    const DESCRIPTION_LENGHT = 500;
+
     public function sanitize(string $text): string
     {
 
         $text = $this->clearHtmlTags($text);
 
         return $this->convertLinks($text);
+
+    }
+
+
+    public function sanitizeWeb(string $text): string
+    {
+
+        $text = $this->clearHtmlTags($text);
+
+        $text = str_limit($text, self::DESCRIPTION_LENGHT);
+
+        return $this->convertLinks($text);
+
 
     }
 

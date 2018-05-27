@@ -54,4 +54,10 @@ class Category extends Model
         return $this->slug() == $otherSlug;
     }
 
+
+    public function isWeb()
+    {
+        return $this->id() == self::WEB_CATEGORY_ID;
+    }
+
 }

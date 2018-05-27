@@ -19,13 +19,13 @@ class EventTagExtractor extends TagExtractor
             'BilboStack2014',
         ],
         'BCN Software Craftmanship 2017',
-        'CAS 2016'         => [
+        'CAS 2016'                        => [
             'CAS Vitoria 2016',
             'Vitoria 2016',
             'CAS Vitoria'
         ],
         'CAS 2017',
-        'Commit conf'      => [
+        'Commit conf'                     => [
             'Codemotion',
             'Codemotion 2014',
             'Codemotion 2015',
@@ -40,7 +40,10 @@ class EventTagExtractor extends TagExtractor
         'Lean Kanban',
         'NSSpain 2015',
         'Open Expo Day (2015)',
-        'Pamplona Software Craftsmanship',
+        'Pamplona Software Craftsmanship' => [
+            'Pamplona Software Crafters'
+        ],
+
         'T3chFest 2017',
         'T3chFest 2018',
         'XSpain 2015',
