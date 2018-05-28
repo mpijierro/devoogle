@@ -1,5 +1,5 @@
 <div class="single category hidden-xs ">
-    <h3 class="side-title">Formatos</h3>
+    <h3 class="side-title title-sidebar">Formatos</h3>
     <ul class="list-unstyled">
         @foreach ($categories as $category)
             <li class="category-sidebar">

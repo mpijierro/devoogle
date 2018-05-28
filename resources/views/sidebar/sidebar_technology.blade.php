@@ -1,5 +1,5 @@
 <div class="single category">
-    <h3 class="side-title">Tecnologías</h3>
+    <h3 class="side-title title-sidebar">Tecnologías</h3>
     <ul class="list-unstyled">
         @foreach ($technologies as $tag)
 

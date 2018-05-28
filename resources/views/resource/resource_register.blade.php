@@ -45,14 +45,15 @@
         <div class="row">
             <!-- Category -->
             <div class="col-xs-4 col-md-2">
-                <i class="fa fa-folder-open" aria-hidden="true" title="Formato {{$resource->category->name()}}"></i>
+                <i class="fa fa-folder-open icon-register" aria-hidden="true"
+                   title="Formato {{$resource->category->name()}}"></i>
                 <span class="nice"><a
                             href="{{route('list-category', $resource->category->slug()) }}">{!! $resource->category->name()  !!}</a></span>
 
             </div>
             <!-- Published at -->
             <div class="col-xs-4 col-md-2">
-                <i class="fa fa-calendar " aria-hidden="true"
+                <i class="fa fa-calendar icon-register" aria-hidden="true"
                    title="Fecha de publicación"></i>
                 <span class="nice">{!! $resource->publishedAt()->format('d-m-Y') !!}</span>
             </div>
@@ -77,7 +78,7 @@
 
         <!-- Tags -->
             <div class="col-xs-12 col-sm-8 col-md-6">
-                <i class="fa fa-tags " aria-hidden="true" title="Etiquetas"></i>
+                <i class="fa fa-tags icon-register" aria-hidden="true" title="Etiquetas"></i>
                 @forelse ($resource->allTags() as $tag)
                     {{ $loop->first ? '' : ', ' }}
                     <span class="nice"><a href="{{route('list-tag', $tag->slug)}}">{{ $tag->name }}</a></span>

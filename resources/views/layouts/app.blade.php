@@ -27,7 +27,7 @@ use Krucas\Notification\Facades\Notification;
 
                 @yield('content')
             </div>
-            <div class="col-sm-3">
+            <div class="col-sm-3 sidebar">
                 @include('sidebar.sidebar_category')
                 @include('sidebar.sidebar_author')
                 @include('sidebar.sidebar_event')

@@ -1,5 +1,5 @@
 <div class="single category">
-    <h3 class="side-title">Autores</h3>
+    <h3 class="side-title title-sidebar">Autores</h3>
     <ul class="list-unstyled">
         @foreach ($authors as $tag)
 

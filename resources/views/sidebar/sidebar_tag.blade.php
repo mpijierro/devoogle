@@ -1,5 +1,5 @@
 <div class="single category">
-    <h3 class="side-title">Recursos</h3>
+    <h3 class="side-title title-sidebar">Recursos</h3>
     <ul class="list-unstyled">
         @foreach ($tags as $tag)
 
