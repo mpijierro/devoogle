@@ -17,5 +17,6 @@ class DatabaseSeeder extends Seeder
         $this->call(TypeSourceSeeder::class);
         $this->call(SourceSeeder::class);
         $this->call(YoutubeChannelSeeder::class);
+        $this->call(CharacterSeeder::class);
     }
 }
