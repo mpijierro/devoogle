@@ -17,6 +17,7 @@ class HomeResourceController
 
             view()->share('resources', $view->resources());
             view()->share('paginator', $view->resources()->links());
+            view()->share('total', $view->total());
 
             return view('resource.home');
         } catch (InvalidPageNumberException $exception) {

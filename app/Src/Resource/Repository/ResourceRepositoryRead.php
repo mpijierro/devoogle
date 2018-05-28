@@ -9,6 +9,11 @@ use Spatie\Tags\Tag;
 class ResourceRepositoryRead
 {
 
+    public function count()
+    {
+        return Resource::count();
+    }
+
 
     public function resourceForHome()
     {

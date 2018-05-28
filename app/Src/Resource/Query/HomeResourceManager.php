@@ -14,11 +14,23 @@ class HomeResourceManager
 
     private $resources;
 
+    private $total;
+
 
     public function __construct(ResourceRepositoryRead $resourceRepository)
     {
         $this->resourceRepository = $resourceRepository;
     }
+
+
+    /**
+     * @return mixed
+     */
+    public function total()
+    {
+        return $this->total;
+    }
+
 
 
     public function resources()
@@ -36,12 +48,20 @@ class HomeResourceManager
 
         $this->checkPageInRange();
 
+        $this->countResources();
+
     }
 
 
     private function search()
     {
         $this->resources = $this->resourceRepository->resourceForHome();
+    }
+
+
+    private function countResources()
+    {
+        $this->total = $this->resourceRepository->count();
     }
 
 }
