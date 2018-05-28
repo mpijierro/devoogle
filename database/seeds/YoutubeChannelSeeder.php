@@ -58,7 +58,7 @@ class YoutubeChannelSeeder extends Seeder
 
         $this->addChannel('UCeYUif57MgyHExfax5cNWMA', 'xavi-gost', 'Xavi Gost');
 
-
+        $this->addChannel('UC_u4aJMiMb2cz0KurfROyEA', 'tecnofor', 'Tecnofor Ibérica');
     }
 
 
