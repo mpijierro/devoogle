@@ -415,7 +415,7 @@ class CharacterSeeder extends Seeder
             [
                 'idpoblacion' => '688',
                 'idprovincia' => '25',
-                'poblacion' => 'Don Álvaro',
+                'poblacion' => 'Don Álvaro',
                 'poblacionseo' => 'don-alvaro',
                 'postal' => '06820',
                 'latitud' => '38.848716',

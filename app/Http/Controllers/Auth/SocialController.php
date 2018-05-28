@@ -54,8 +54,6 @@ class SocialController extends Controller
 
             DB::rollback();
 
-            throw $e;
-
             return redirect()->to('login')->with('status', 'danger')->with('message', 'Error al loguearse con redes sociales.');
         }
 

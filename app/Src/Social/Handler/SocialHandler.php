@@ -7,6 +7,7 @@ use Devoogle\Src\Social\Library\InstanceSocialUserFactory;
 use Devoogle\Src\Social\Model\Social;
 use Devoogle\Src\Social\Repository\SocialRepository;
 use Devoogle\Src\User\Model\User;
+use Devoogle\Src\User\Repository\CharacterRepositoryRead;
 use Devoogle\Src\User\Repository\UserRepository;
 
 class SocialHandler
@@ -26,8 +27,16 @@ class SocialHandler
 
     private $loginWithRegister = false;
 
+    /**
+     * @var \Devoogle\Src\User\Repository\CharacterRepositoryRead
+     */
+    private $characterRepositoryRead;
 
-    public function __construct(UserRepository $userRepository, SocialRepository $socialRepository)
+    public function __construct(
+        UserRepository $userRepository,
+        SocialRepository $socialRepository,
+        CharacterRepositoryRead $characterRepositoryRead
+    )
     {
 
         $this->userRepository = $userRepository;
@@ -35,6 +44,7 @@ class SocialHandler
 
         $this->instanceSocialUserFactory = app(InstanceSocialUserFactory::class);
 
+        $this->characterRepositoryRead = $characterRepositoryRead;
     }
 
 
@@ -54,7 +64,9 @@ class SocialHandler
         $this->findUserByMail();
 
         if ($this->userNotFound()) {
-            $this->obtainUser();
+            $this->obtainUserFromSocial();
+
+            $this->createUserSocial();
         }
 
         $this->toDoLogin();
@@ -85,19 +97,10 @@ class SocialHandler
         return is_null($this->user);
     }
 
-
-    private function obtainUser()
+    private function obtainUserFromSocial()
     {
 
         $this->user = $this->obtainUserFromSocialUser();
-
-        if ($this->userNotFound()) {
-
-            $this->create();
-
-        }
-
-        $this->loginWithRegister = true;
 
     }
 
@@ -109,6 +112,19 @@ class SocialHandler
         if ($socialUserRegistered) {
             return $socialUserRegistered->user;
         }
+    }
+
+    private function createUserSocial()
+    {
+
+        if ($this->userNotFound()) {
+
+            $this->create();
+
+        }
+
+        $this->loginWithRegister = true;
+
     }
 
 
@@ -125,10 +141,19 @@ class SocialHandler
     {
 
         $this->user = User::create([
-            'name' => $this->socialUser->name(),
+            'name' => $this->obtainName(),
             'email' => $this->retrieveEmailOrFake(),
             'password' => bcrypt(str_random(40)),
         ]);
+
+    }
+
+    private function obtainName()
+    {
+
+        $character = $this->characterRepositoryRead->random();
+
+        return $character->name;
 
     }
 
