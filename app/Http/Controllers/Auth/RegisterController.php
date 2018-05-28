@@ -2,6 +2,7 @@
 
 namespace Devoogle\Http\Controllers\Auth;
 
+use Devoogle\Src\User\Repository\CharacterRepositoryRead;
 use Devoogle\User;
 use Devoogle\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
@@ -30,13 +31,19 @@ class RegisterController extends Controller
     protected $redirectTo = '/home';
 
     /**
+     * @var \Devoogle\Src\User\Repository\CharacterRepositoryRead
+     */
+    private $characterRepositoryRead;
+
+    /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(CharacterRepositoryRead $characterRepositoryRead)
     {
         $this->middleware('guest');
+        $this->characterRepositoryRead = $characterRepositoryRead;
     }
 
     /**
@@ -48,7 +55,6 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
         ]);
@@ -63,9 +69,18 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         return User::create([
-            'name' => $data['name'],
+            'name' => $this->obtainName(),
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
+    }
+
+    private function obtainName()
+    {
+
+        $character = $this->characterRepositoryRead->random();
+
+        return $character->name;
+
     }
 }
