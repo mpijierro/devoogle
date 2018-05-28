@@ -10,7 +10,7 @@
 <div class="row list-description">
     <div class="col-xs-12 more">
 
-        Descripcinó
+        Si quieres, he escrito un post sobre este proyecto en el que explico con más detalle de que va todo esto.
 
     </div>
 </div>
