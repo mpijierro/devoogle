@@ -7,6 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class YoutubeChannel extends Model
 {
+    const URL_CHANNEL = 'https://www.youtube.com/channel/';
+
+    const URL_USER = 'https://www.youtube.com/user/';
 
     protected $table = 'youtube_channel';
 
@@ -48,6 +51,16 @@ class YoutubeChannel extends Model
     public function isUserChannel()
     {
         return (bool)$this->attributes['is_user_channel'];
+    }
+
+    public function url()
+    {
+
+        if ($this->isUserChannel()) {
+            return self::URL_USER.$this->slugId();
+        }
+
+        return self::URL_CHANNEL.$this->slugId();
     }
 
 }

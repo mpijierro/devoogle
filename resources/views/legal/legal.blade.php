@@ -4,8 +4,12 @@
 
     <div class="row">
 
-        <div class="col-xs-12 legal">
+        <div class="col-xs-12 thanks">
+            <h2>Información legal y condiciones de uso</h2>
+        </div>
 
+
+        <div class="col-xs-12 legal">
             <p>
                 <b>Información legal para devoogle.com y condiciones de uso</b><br><br>
                 IMPORTANTE: El acceso y navegación por devoogle.com y/o el uso de los servicios ofrecidos en este lugar
@@ -19,10 +23,9 @@
             En conformidad al Art.10 de la Ley 34/2002, de 11 de julio, de servicios de la sociedad de la
             información y de comercio electrónico se informa:<br><br>
 
-            El dominio devoogle.com es propiedad y está administrado por Manuel Pijierro Sa (Sa, es mi apellido, no
-            Sociedad Anónima :p ) con domicilio en:
-            Calle Segovia,29-1ºF 10005 Cáceres<br><br>
-
+            El dominio devoogle.com es propiedad y está administrado por <b>Manuel Pijierro Sa</b> (Sa, es mi apellido,
+            no
+            Sociedad Anónima :p )<br><br>
             Correo electrónico:<br>
             mpijierro[arroba]gmail.com
 
@@ -175,9 +178,6 @@
             actualizar
             las condiciones de uso sin previo aviso.
         </div>
-
-
-    </div>
 
 
     </div>
