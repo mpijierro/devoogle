@@ -13,12 +13,7 @@ Actualmente está en construcción...
 
 ## Funcionamiento
 
-Comando para obtener inicialmente todos los recursos de todas las fuentes: php artisan source:read
-
-
 ## Tests
-
-
 
 ## Próximamente  
 
