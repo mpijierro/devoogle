@@ -1,3 +1,7 @@
+<div class="devoogle-register alert alert-info">
+    @include('resource.register_devoogle')
+</div>
+
 @forelse ($resources as $resource)
     <div class="one-register">
         @include('resource.resource_register',   ['resource' => $resource])

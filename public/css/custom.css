@@ -31,6 +31,10 @@ ul.navbar-nav li a {
     padding-left: 5px;
 }
 
+.navbar-default {
+    background-color: #FFF;
+}
+
 .register-now {
     margin-top: 20px;
     margin-bottom: 20px;
@@ -121,6 +125,13 @@ li.category-sidebar i, li.category-sidebar a {
 .row-empty-list {
     margin-top: 30px;
     margin-bottom: 100px;
+}
+
+.devoogle-register {
+    margin-bottom: 20px;
+    margin-top: 20px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #eee;
 }
 
 /* END LIST */
