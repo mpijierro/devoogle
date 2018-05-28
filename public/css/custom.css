@@ -152,6 +152,10 @@ li.category-sidebar i, li.category-sidebar a {
 
 /* END FOOTER */
 
+.legal p {
+    margin-top: 20px;
+}
+
 .bold {
     font-weight: bold;
 }
