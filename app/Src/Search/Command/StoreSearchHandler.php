@@ -37,6 +37,9 @@ class StoreSearchHandler
         if ( ! $this->exists()) {
             $this->create();
         }
+
+        $this->incrementCount();
+
     }
 
 
@@ -61,5 +64,11 @@ class StoreSearchHandler
 
         $this->searchRepositoryWrite->save($search);
 
+    }
+
+
+    private function incrementCount()
+    {
+        $this->searchRepositoryWrite->incrementSearch($this->command->getSearch());
     }
 }

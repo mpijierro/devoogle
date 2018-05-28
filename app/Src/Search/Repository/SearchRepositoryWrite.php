@@ -12,4 +12,13 @@ class SearchRepositoryWrite
         return $search->save();
     }
 
+
+    public function incrementSearch(string $search)
+    {
+
+        $slug = str_slug($search);
+
+        return Search::where('slug', $slug)->increment('count');
+
+    }
 }

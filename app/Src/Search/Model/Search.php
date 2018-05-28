@@ -13,6 +13,7 @@ class Search extends Model
 
         'original',
         'slug',
+        'count'
     ];
 
     protected $dates = ['created_at', 'updated_at'];
@@ -27,5 +28,11 @@ class Search extends Model
     public function slug()
     {
         return $this->attributes['slug'];
+    }
+
+
+    public function count()
+    {
+        return $this->attributes['count'];
     }
 }

@@ -13,7 +13,7 @@ class SourceSeeder extends Seeder
     public function run()
     {
 
-
+        /*
         DB::table('source')->insert([
             'type_source_id'      => 1,
             'name'                => 'Youtube',
@@ -96,7 +96,7 @@ class SourceSeeder extends Seeder
             'created_at'     => \Carbon\Carbon::now(),
             'updated_at'     => \Carbon\Carbon::now()
         ]);
-
+*/
         DB::table('source')->insert([
             'type_source_id' => 2,
             'name'           => 'Eduardo Ferro',
