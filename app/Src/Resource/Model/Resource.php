@@ -185,11 +185,30 @@ class Resource extends Model
     public function addBoldToDescription(string $tag)
     {
 
+        $tag = $this->sanitizeTag($tag);
+
         preg_match('/'.$tag.'/i', $this->description, $matches);
 
         if ($matches) {
             $this->description = str_replace($matches[0], '<b>'.$matches[0].'</b>', $this->description);
         }
+    }
+
+    private function sanitizeTag(string $tag)
+    {
+        $tag = trim($tag);
+
+        $tag = mb_strtolower($tag);
+
+        $tag = str_replace('+', '\+', $tag);
+        $tag = str_replace('(', '\(', $tag);
+        $tag = str_replace(')', '\)', $tag);
+        $tag = str_replace('[', '\[', $tag);
+        $tag = str_replace(']', '\]', $tag);
+        $tag = str_replace('.', '\.', $tag);
+        $tag = str_replace('/', '\/', $tag);
+
+        return $tag;
     }
 
 
