@@ -3,23 +3,7 @@
 
 Devoogle es una librería multimedia para gestionar y organizar recursos de programación.
 
-Actualmente está en construcción...
-
-## Motivación
-
-
-## Detalles de implementación
-
-
-## Funcionamiento
-
-## Tests
-
-## Próximamente  
-
-
-## Contributing
-
+[Sobre el proyecto](https://medium.com/@mpijierro/devoogle-un-agregador-de-recursos-de-programaci%C3%B3n-a73ad9635809)
 
 ## License
 
