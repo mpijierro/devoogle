@@ -13,6 +13,7 @@ use Devoogle\Src\SourceReader\Library\RssProcessor\RantPod\Processor as RantPodP
 use Devoogle\Src\SourceReader\Library\RssProcessor\Tecnologeria\Processor as TecnologeriaProcessor;
 use Devoogle\Src\SourceReader\Library\RssProcessor\WeDevelopers\Processor as WedevelopersProcessor;
 use Devoogle\Src\SourceReader\Library\RssProcessor\Eferro\Processor as EferroProcessor;
+use Devoogle\Src\SourceReader\Library\RssProcessor\Freniche\Processor as FrenicheProcessor;
 
 class SourceProcessorFactory
 {
@@ -42,6 +43,7 @@ class SourceProcessorFactory
             TecnologeriaProcessor::SLUG         => TecnologeriaProcessor::class,
             MinutosProcessor::SLUG              => MinutosProcessor::class,
             EferroProcessor::SLUG               => EferroProcessor::class,
+            FrenicheProcessor::SLUG => FrenicheProcessor::class,
 
         ];
 
