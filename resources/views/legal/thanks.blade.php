@@ -45,7 +45,7 @@
                 arena,
                 quería hacer mención especial al esfuerzo que ponen desde <a href="https://www.autentia.com/"
                                                                              target="_blank"
-                                                                             title="Autentia">Autentia</a>por grabar y
+                                                                             title="Autentia">Autentia</a> por grabar y
                 ofrecer contenidos en gran cantidad y
                 de gran calidad.
             </p>
