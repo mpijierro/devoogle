@@ -179,7 +179,7 @@ abstract class ProcessorRss20 implements SourceProcessorInterface, RssProcessorI
     }
 
 
-    private function sanitizeDescription(ResourceWrapper $audioWrapper)
+    protected function sanitizeDescription(ResourceWrapper $audioWrapper)
     {
         return str_replace('.es/"', '.es/', $audioWrapper->description());
     }

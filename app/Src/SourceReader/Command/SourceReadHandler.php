@@ -49,10 +49,6 @@ class SourceReadHandler
 
         foreach ($this->sources as $source) {
 
-            if ($source->id != 5) {
-                continue;
-            }
-
             $processor = $this->factory->getInstance($source);
 
             $processor->process($source);
