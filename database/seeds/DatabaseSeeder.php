@@ -18,5 +18,6 @@ class DatabaseSeeder extends Seeder
         $this->call(SourceSeeder::class);
         $this->call(YoutubeChannelSeeder::class);
         $this->call(CharacterSeeder::class);
+        $this->call(AddFrenicheBlog::class);
     }
 }
