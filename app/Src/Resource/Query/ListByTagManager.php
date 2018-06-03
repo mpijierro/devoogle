@@ -42,6 +42,8 @@ class ListByTagManager
 
         $this->search();
 
+        $this->transformDescription();
+
         $this->checkPageInRange();
 
         return $this->configView();
@@ -64,14 +66,16 @@ class ListByTagManager
     private function search()
     {
         $this->resources = $this->repository->searchByTag($this->tag);
+    }
 
+    private function transformDescription()
+    {
         $this->resources->getCollection()->transform(function ($resource, $key) {
 
             $resource->addBoldToDescription($this->tag->name);
 
             return $resource;
         });
-
     }
 
 
