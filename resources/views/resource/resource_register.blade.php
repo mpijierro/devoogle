@@ -87,6 +87,13 @@
                 @endforelse
             </div>
 
+            <!-- Published at -->
+            <div class="col-xs-12">
+                <i class="fa fa-thumb-tack icon-register" aria-hidden="true"
+                   title="Fuente"></i>
+                <span class="nice"><a href="{!! $resource->source->url() !!}" target="_blank">{!! $resource->source->name !!}</a></span>
+            </div>
+
 
         </div>
     </div>
