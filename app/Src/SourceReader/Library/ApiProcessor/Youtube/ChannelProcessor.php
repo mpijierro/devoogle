@@ -123,9 +123,10 @@ class ChannelProcessor
     {
 
         foreach ($this->videos as $video) {
+
             try {
 
-                $this->videoProcessor->processVideo($video);
+                $this->videoProcessor->processVideo($video, $this->channel);
 
             } catch (ResourceExistsException $e) {
 

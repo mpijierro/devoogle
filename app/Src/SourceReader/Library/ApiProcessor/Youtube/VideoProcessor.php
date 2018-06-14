@@ -12,6 +12,7 @@ use Devoogle\Src\ResourceRaw\Repository\ResourceRawRepositoryWrite;
 use Devoogle\Src\Source\Repository\SourceRepositoryRead;
 use Devoogle\Src\SourceReader\Exceptions\ResourceExistsException;
 use Devoogle\Src\SourceReader\Exceptions\VideoIsNotProcessedException;
+use Devoogle\Src\SourceReader\Model\YoutubeChannel;
 use Devoogle\Src\Tag\Library\TagExtractor\TagFinder;
 use Devoogle\Src\User\Model\User;
 use Devoogle\Src\User\Repository\UserRepository;
@@ -24,6 +25,8 @@ class VideoProcessor
     private $uuid = '';
 
     private $videoWrapper;
+
+    private $channel;
 
     private $textsForTagSearch;
 
@@ -78,10 +81,10 @@ class VideoProcessor
     }
 
 
-    public function processVideo(VideoWrapper $videoWrapper)
+    public function processVideo(VideoWrapper $videoWrapper, YoutubeChannel $channel)
     {
 
-        $this->initializeVideo($videoWrapper);
+        $this->initializeVideo($videoWrapper, $channel);
 
         $this->initializeUser();
 
@@ -97,15 +100,18 @@ class VideoProcessor
 
         $this->resourceCreated();
 
+        $this->associateChannel();
+
         $this->saveRaw();
 
         $this->generateIvooxVersion();
     }
 
 
-    private function initializeVideo(VideoWrapper $videoWrapper)
+    private function initializeVideo(VideoWrapper $videoWrapper, YoutubeChannel $channel)
     {
         $this->videoWrapper = $videoWrapper;
+        $this->channel = $channel;
         $this->uuid = Uuid::generate();
     }
 
@@ -171,6 +177,11 @@ class VideoProcessor
     private function resourceCreated()
     {
         $this->resource = $this->resourceRepositoryRead->findByUuid($this->uuid);
+    }
+
+    private function associateChannel()
+    {
+        $this->resource->channel()->sync($this->channel);
     }
 
 

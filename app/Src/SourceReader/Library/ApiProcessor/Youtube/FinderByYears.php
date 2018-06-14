@@ -94,5 +94,6 @@ class FinderByYears extends VideoFinder
     private function loadYears()
     {
         $this->years = range(2007, date('Y'));
+        $this->years = range(2018, date('Y'));
     }
 }
