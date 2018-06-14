@@ -43,8 +43,20 @@
 <div class="row list-labeled">
     <div class="col-sm-12">
         <div class="row">
+
+            <!-- Source -->
+            <div class="col-xs-6 col-md-3">
+                <i class="fa fa-thumb-tack icon-register" aria-hidden="true"
+                   title="Fuente"></i>
+                <span class="nice">
+                    <a href="{!! $resource->sourceUrl() !!}" target="_blank" title="Fuente {!! $resource->source->name() !!}">
+                        {!! $resource->sourceName() !!}
+                    </a>
+                </span>
+            </div>
+
             <!-- Category -->
-            <div class="col-xs-4 col-md-2">
+            <div class="col-xs-4 col-md-3">
                 <i class="fa fa-folder-open icon-register" aria-hidden="true"
                    title="Formato {{$resource->category->name()}}"></i>
                 <span class="nice"><a
@@ -52,7 +64,7 @@
 
             </div>
             <!-- Published at -->
-            <div class="col-xs-4 col-md-2">
+            <div class="col-xs-4 col-md-3">
                 <i class="fa fa-calendar icon-register" aria-hidden="true"
                    title="Fecha de publicación"></i>
                 <span class="nice">{!! $resource->publishedAt()->format('d-m-Y') !!}</span>
@@ -60,7 +72,7 @@
 
             <!-- Version -->
             @if ($resource->version->count())
-                <div class="col-xs-4 col-sm-4 col-md-2">
+                <div class="col-xs-4 col-sm-4 col-md-3">
                     <i class="" aria-hidden="true" title="Otros formatos disponibles"></i>
 
                     @foreach ($resource->version as $version)
@@ -86,14 +98,6 @@
                     -
                 @endforelse
             </div>
-
-            <!-- Published at -->
-            <div class="col-xs-12">
-                <i class="fa fa-thumb-tack icon-register" aria-hidden="true"
-                   title="Fuente"></i>
-                <span class="nice"><a href="{!! $resource->source->url() !!}" target="_blank">{!! $resource->source->name !!}</a></span>
-            </div>
-
 
         </div>
     </div>
