@@ -6,6 +6,7 @@ use Devoogle\Src\Category\Model\Category;
 use Devoogle\Src\Devoogle\Library\SanitizeDescription;
 use Devoogle\Src\Lang\Model\Lang;
 use Devoogle\Src\Source\Model\Source;
+use Devoogle\Src\SourceReader\Model\YoutubeChannel;
 use Devoogle\Src\Tag\Model\Tag;
 use Devoogle\Src\User\Model\User;
 use Devoogle\Src\Version\Model\Version;
@@ -82,6 +83,10 @@ class Resource extends Model
         return $this->belongsToMany(User::class, 'later')->withTimestamps();
     }
 
+    public function channel()
+    {
+        return $this->belongsToMany(YoutubeChannel::class, 'resource_channel');
+    }
 
     public function viewed()
     {
