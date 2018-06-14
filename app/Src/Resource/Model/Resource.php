@@ -47,6 +47,10 @@ class Resource extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function raw()
+    {
+        return $this->hasOne(ResourceRaw::class);
+    }
 
     public function source()
     {
