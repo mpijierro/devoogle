@@ -37,7 +37,7 @@ class Resource extends Model
         'reviewed'
     ];
 
-    protected $with = ['user', 'category', 'lang', 'tags'];
+    protected $with = ['user', 'category', 'lang', 'tags', 'source', 'channel', 'channel.source', 'version'];
 
     protected $dates = ['published_at', 'created_at', 'updated_at', 'deleted_at'];
 
@@ -192,10 +192,10 @@ class Resource extends Model
 
         $tag = $this->sanitizeTag($tag);
 
-        preg_match('/'.$tag.'/i', $this->description, $matches);
+        preg_match('/' . $tag . '/i', $this->description, $matches);
 
         if ($matches) {
-            $this->description = str_replace($matches[0], '<b>'.$matches[0].'</b>', $this->description);
+            $this->description = str_replace($matches[0], '<b>' . $matches[0] . '</b>', $this->description);
         }
     }
 
@@ -319,5 +319,30 @@ class Resource extends Model
     public function favouriteCount()
     {
         return $this->attributes['favourite_count'];
+    }
+
+    public function isFromYoutubeChannel()
+    {
+        return $this->channel->count();
+    }
+
+    public function sourceUrl()
+    {
+        if ($this->isFromYoutubeChannel()) {
+            return $this->channel->first()->url();
+        }
+
+        return $this->source->url();
+
+    }
+
+    public function sourceName()
+    {
+        if ($this->isFromYoutubeChannel()) {
+            return $this->channel->first()->source->name . ' | ' . $this->channel->first()->name();
+        }
+
+        return $this->source->name();
+
     }
 }
