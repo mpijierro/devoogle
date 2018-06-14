@@ -13,7 +13,7 @@ class CreateResourceYoutubeChannel extends Migration
      */
     public function up()
     {
-        Schema::create('resource_youtube_channel', function (Blueprint $table) {
+        Schema::create('resource_channel', function (Blueprint $table) {
 
             $table->increments('id');
 
@@ -37,6 +37,6 @@ class CreateResourceYoutubeChannel extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('later');
+        Schema::dropIfExists('resource_channel');
     }
 }

@@ -2,6 +2,7 @@
 
 namespace Devoogle\Src\SourceReader\Model;
 
+use Devoogle\Src\Resource\Model\Resource;
 use Devoogle\Src\Source\Model\Source;
 use Illuminate\Database\Eloquent\Model;
 
@@ -29,6 +30,10 @@ class YoutubeChannel extends Model
         return $this->belongsTo(Source::class);
     }
 
+    public function channel()
+    {
+        return $this->belongsToMany(Resource::class, 'resource_channel');
+    }
 
     public function slugId()
     {
