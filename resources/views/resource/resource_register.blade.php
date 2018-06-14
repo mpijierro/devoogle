@@ -41,30 +41,31 @@
 </div>
 
 <div class="row list-labeled">
-    <div class="col-sm-12">
+    <div class="col-xs-12">
         <div class="row">
 
             <!-- Source -->
-            <div class="col-xs-6 col-md-3">
-                <i class="fa fa-thumb-tack icon-register" aria-hidden="true"
+            <div class="col-xs-6 col-sm-4">
+                <i class="fa fa-star icon-register" aria-hidden="true"
                    title="Fuente"></i>
                 <span class="nice">
-                    <a href="{!! $resource->sourceUrl() !!}" target="_blank" title="Fuente {!! $resource->source->name() !!}">
+                    <a href="{!! $resource->sourceUrl() !!}" target="_blank" title="Fuente: {!! $resource->sourceName() !!}">
                         {!! $resource->sourceName() !!}
                     </a>
                 </span>
             </div>
 
             <!-- Category -->
-            <div class="col-xs-4 col-md-3">
+            <div class="col-xs-6 col-sm-3">
                 <i class="fa fa-folder-open icon-register" aria-hidden="true"
                    title="Formato {{$resource->category->name()}}"></i>
                 <span class="nice"><a
                             href="{{route('list-category', $resource->category->slug()) }}">{!! $resource->category->name()  !!}</a></span>
 
             </div>
+
             <!-- Published at -->
-            <div class="col-xs-4 col-md-3">
+            <div class="col-xs-6 col-sm-3">
                 <i class="fa fa-calendar icon-register" aria-hidden="true"
                    title="Fecha de publicación"></i>
                 <span class="nice">{!! $resource->publishedAt()->format('d-m-Y') !!}</span>
@@ -72,7 +73,7 @@
 
             <!-- Version -->
             @if ($resource->version->count())
-                <div class="col-xs-4 col-sm-4 col-md-3">
+                <div class="col-xs-6 col-sm-4">
                     <i class="" aria-hidden="true" title="Otros formatos disponibles"></i>
 
                     @foreach ($resource->version as $version)
@@ -88,8 +89,9 @@
                 </div>
         @endif
 
+
         <!-- Tags -->
-            <div class="col-xs-12 col-sm-8 col-md-6">
+            <div class="col-xs-12 col-sm-8 ">
                 <i class="fa fa-tags icon-register" aria-hidden="true" title="Etiquetas"></i>
                 @forelse ($resource->allTags() as $tag)
                     {{ $loop->first ? '' : ', ' }}
@@ -99,7 +101,10 @@
                 @endforelse
             </div>
 
+
+
         </div>
+
     </div>
 </div>
 
