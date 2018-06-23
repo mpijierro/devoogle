@@ -81,7 +81,8 @@ class ChannelProcessor
 
         if ($channelFinder->hasFound()) {
             $channel = $channelFinder->channel();
-            $this->channel->slug_id = $channel->slugId();
+            $this->channel->changeSlugIdFromUserToId($channel->slugId());
+
         }
 
     }

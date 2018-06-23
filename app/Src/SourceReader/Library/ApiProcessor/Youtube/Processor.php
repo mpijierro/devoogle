@@ -8,6 +8,7 @@ use Devoogle\Src\Source\Repository\SourceRepositoryWrite;
 use Devoogle\Src\SourceReader\Library\SourceProcessorInterface;
 use Devoogle\Src\SourceReader\Model\YoutubeChannel;
 use Devoogle\Src\SourceReader\VideoChannel\Repository\YoutubeChannelRepositoryRead;
+use Devoogle\Src\SourceReader\VideoChannel\Repository\YoutubeChannelRepositoryWrite;
 
 class Processor implements SourceProcessorInterface
 {
@@ -33,15 +34,22 @@ class Processor implements SourceProcessorInterface
      */
     private $sourceRepositoryWrite;
 
+    /**
+     * @var YoutubeChannelRepositoryWrite
+     */
+    private $youtubeChannelRepositoryWrite;
+
 
     public function __construct(
         SourceRepositoryWrite $sourceRepositoryWrite,
         YoutubeChannelRepositoryRead $channelsRepository,
-        ChannelProcessor $youtubeChannelProcessor
+        ChannelProcessor $youtubeChannelProcessor,
+        YoutubeChannelRepositoryWrite $youtubeChannelRepositoryWrite
     ) {
         $this->sourceRepositoryWrite = $sourceRepositoryWrite;
         $this->channelsRepository = $channelsRepository;
         $this->channelProcessor = $youtubeChannelProcessor;
+        $this->youtubeChannelRepositoryWrite = $youtubeChannelRepositoryWrite;
     }
 
 
@@ -53,7 +61,7 @@ class Processor implements SourceProcessorInterface
 
         $this->processChannels();
 
-        $this->updateTimeProcessed();
+        $this->updateSourceTimeProcessed();
     }
 
 
@@ -83,23 +91,30 @@ class Processor implements SourceProcessorInterface
             $this->processChannel($channel);
 
         }
-
     }
 
 
     private function processChannel(YoutubeChannel $channel)
     {
 
-        if ($this->source->hasBeenProcessed()) {
-            $this->channelProcessor->processNewVideos($channel, $this->source->lastTimeProcessed());
+        if ($channel->hasBeenProcessed()) {
+            $this->channelProcessor->processNewVideos($channel, $channel->lastTimeProcessed());
         } else {
             $this->channelProcessor->processAllVideos($channel);
         }
 
+        $this->updateChannelTimeProcessed($channel);
     }
 
 
-    private function updateTimeProcessed()
+    private function updateChannelTimeProcessed(YoutubeChannel $channel)
+    {
+        $channel->last_time_processed = Carbon::now();
+        $this->youtubeChannelRepositoryWrite->save($channel);
+    }
+
+
+    private function updateSourceTimeProcessed()
     {
         $this->source->last_time_processed = Carbon::now();
 
