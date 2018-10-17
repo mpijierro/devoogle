@@ -18,6 +18,7 @@ use Devoogle\Src\SourceReader\Library\ResourceWrapper;
 use Devoogle\Src\SourceReader\Library\SourceProcessorInterface;
 use Devoogle\Src\Tag\Library\TagExtractor\TagFinder;
 use Devoogle\Src\User\Model\User;
+use Illuminate\Support\Facades\Log;
 use SimpleXMLElement;
 use Webpatser\Uuid\Uuid;
 
@@ -99,9 +100,15 @@ abstract class ProcessorRss20 implements SourceProcessorInterface, RssProcessorI
     protected function obtainContentFromRss()
     {
 
-        $content = file_get_contents($this->rssSlug());
+        try {
+            $content = file_get_contents($this->rssSlug());
 
-        $this->rssContent = new SimpleXmlElement($content);
+            $this->rssContent = new SimpleXmlElement($content);
+        } catch (\Exception $exception) {
+            Log::error($exception);
+            Log::info(sprintf('Exception with resource: %d - %s', $this->source->id(), $this->source->name()));
+        }
+
 
     }
 
