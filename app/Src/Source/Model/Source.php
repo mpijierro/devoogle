@@ -6,9 +6,11 @@ use Carbon\Carbon;
 use Devoogle\Src\Resource\Model\Resource;
 use Devoogle\Src\SourceReader\Exceptions\SourceNotHasBeenProcessedException;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Source extends Model
 {
+    use SoftDeletes;
 
     protected $table = 'source';
 
