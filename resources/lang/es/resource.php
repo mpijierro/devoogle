@@ -14,6 +14,10 @@ return [
             'updated_succesfully' => 'Versión actualizada correctamente, gracias.',
             'deleted_succesfully' => 'Versión eliminada correctamente, gracias.',
         ],
+        'download' => [
+            'processing' => "Se ha iniciado un proceso para obtener el audio del vídeo :title. Cuando acabe, recibirás un email con un enlace para descargar. Este 
+            proceso puede durar unos minutos. Gracias por tu paciencia ;)",
+            'subject' => 'Descargar audio: :title',
+        ]
     ]
-
 ];

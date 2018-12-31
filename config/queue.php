@@ -71,6 +71,13 @@ return [
             'retry_after' => 90,
         ],
 
+        'email' => [
+            'driver' => 'database',
+            'table' => 'jobs',
+            'queue' => 'default',
+            'retry_after' => 90,
+        ],
+
     ],
 
     /*

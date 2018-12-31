@@ -22,6 +22,10 @@ Route::group(['prefix' => \Devoogle\Src\Devoogle\Library\Route::PREFIX_URL_MOST_
     Route::get('/', "Favourite\MostFavouriteListController")->name(\Devoogle\Src\Devoogle\Library\Route::ROUTE_NAME_MOST_FAVOURITE_LIST);
 });
 
+Route::group(['prefix' => \Devoogle\Src\Devoogle\Library\Route::PREFIX_DOWNLOAD_AUDIO], function () {
+    Route::get('/{slug}', "Resource\DownloadResourceController")->name(\Devoogle\Src\Devoogle\Library\Route::ROUTE_NAME_DOWNLOAD_AUDIO);
+});
+
 Route::group(['prefix' => 'input'], function () {
     Route::get('/tag/{type}', "Tag\SearchTagController")->name('input-tag');
 });
