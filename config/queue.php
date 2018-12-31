@@ -15,7 +15,7 @@ return [
     |
     */
 
-    'default' => env('QUEUE_DRIVER', 'sync'),
+    'default' => env('QUEUE_DRIVER', 'database'),
 
     /*
     |--------------------------------------------------------------------------
@@ -60,6 +60,13 @@ return [
         'redis' => [
             'driver' => 'redis',
             'connection' => 'default',
+            'queue' => 'default',
+            'retry_after' => 90,
+        ],
+
+        'audio' => [
+            'driver' => 'database',
+            'table' => 'jobs',
             'queue' => 'default',
             'retry_after' => 90,
         ],

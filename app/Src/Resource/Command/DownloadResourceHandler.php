@@ -43,7 +43,9 @@ class DownloadResourceHandler
 
         $user = User::find(2);
 
-        DownloadVideoToAudio::dispatch($audioFile, $user);
+        DownloadVideoToAudio::dispatch($audioFile, $user)->onQueue('audio');
+
+        return $audioFile;
 
     }
 

@@ -16,15 +16,24 @@ use Symfony\Component\Process\Process;
 class DownloadVideoToAudio implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+    /**
+     * @var AudioFile
+     */
+    private $audioFile;
+    /**
+     * @var User
+     */
+    private $user;
 
     /**
      * Create a new job instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(AudioFile $audioFile, User $user)
     {
-        //
+        $this->audioFile = $audioFile;
+        $this->user = $user;
     }
 
     /**
@@ -32,10 +41,10 @@ class DownloadVideoToAudio implements ShouldQueue
      *
      * @return void
      */
-    public function handle(AudioFile $audioFile, User $user)
+    public function handle()
     {
 
-        $process = new Process($this->command($audioFile));
+        $process = new Process($this->command());
         $process->run();
 
         // executes after the command finishes
@@ -48,14 +57,16 @@ class DownloadVideoToAudio implements ShouldQueue
          *
          * 2) send to email if exception
          * echo $process->getOutput();
+         *
+         * 3) send email with link
          */
 
 
     }
 
-    private function command(AudioFile $audioFile)
+    private function command()
     {
-        return "youtube-dl --extract-audio --audio-format mp3 -o " . $audioFile->path() . " " . $this->resource->url();
+        return "youtube-dl --extract-audio --audio-format mp3 -o " . $this->audioFile->path() . " " . $this->audioFile->resource()->url();
     }
 
 }
