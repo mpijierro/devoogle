@@ -18,6 +18,8 @@ return [
             'processing' => "Se ha iniciado un proceso para obtener el audio del vídeo :title. Cuando acabe, recibirás un email con un enlace para descargar. Este 
             proceso puede durar unos minutos. Gracias por tu paciencia ;)",
             'subject' => 'Descargar audio: :title',
+            'user_must_be_logged_in' => 'La descarga que has intentado realizar no está disponible todavía. Necesitamos un email al que enviar el enlace de descarga 
+            cuando la tengamos disponible. Disculpa las molestias, bro.',
         ]
     ]
 ];
