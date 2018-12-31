@@ -174,6 +174,11 @@ class Resource extends Model
         return $this->attributes['description'];
     }
 
+    public function slug()
+    {
+        return $this->attributes['slug'];
+    }
+
 
     // TODO: convert to DescriptionModificator class
     public function sanititizeDescription()
@@ -348,5 +353,10 @@ class Resource extends Model
 
         return $this->source->name();
 
+    }
+
+    public function audioName()
+    {
+        return $this->slug() . '.mp3';
     }
 }
