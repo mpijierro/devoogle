@@ -56,15 +56,6 @@ class DownloadVideoToAudio implements ShouldQueue
             Log::error($exception->getMessage());
         }
 
-        /*
-         * 1) check if it is been processed
-         *
-         * 2) send to email if exception
-         * echo $process->getOutput();
-         *
-         */
-
-
     }
 
     private function downloadVideo()
