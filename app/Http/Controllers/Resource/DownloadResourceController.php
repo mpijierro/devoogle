@@ -8,6 +8,7 @@ use Devoogle\Src\User\Exception\UserIsNotLoggedInException;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Krucas\Notification\Facades\Notification;
+use Symfony\Component\Routing\Exception\InvalidParameterException;
 
 /**
  * Download resource in audio format
@@ -49,9 +50,7 @@ class DownloadResourceController
 
             Log::error($exception);
 
-            Notification::warning(trans('resource.actions.download.user_must_be_logged_in'));
-
-            return back();
+            abort(500);
         }
 
 
