@@ -2,12 +2,12 @@
 
 namespace Devoogle\Src\Resource\Command;
 
+use Devoogle\Src\Resource\Mail\DownloadAudioMail;
 use Devoogle\Src\Resource\Job\DownloadVideoToAudio;
 use Devoogle\Src\Resource\Library\AudioFile;
 use Devoogle\Src\Resource\Repository\ResourceRepositoryRead;
 use Devoogle\Src\User\Model\User;
-use Symfony\Component\Process\Exception\ProcessFailedException;
-use Symfony\Component\Process\Process;
+use Illuminate\Support\Facades\Mail;
 
 /**
  * Convert and download youtube video in audio format
