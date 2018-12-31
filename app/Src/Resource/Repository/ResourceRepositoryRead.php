@@ -26,6 +26,11 @@ class ResourceRepositoryRead
         return Resource::where('uuid', $aUuid)->firstOrFail();
     }
 
+    public function findBySlug(string $slug)
+    {
+        return Resource::where('slug', $slug)->firstOrFail();
+    }
+
 
     public function searchByTag(Tag $tag)
     {
