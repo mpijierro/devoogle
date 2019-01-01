@@ -2,16 +2,14 @@
 
 namespace Devoogle\Src\Resource\Command;
 
-use Devoogle\Src\Resource\Mail\DownloadAudioMail;
+use Devoogle\Src\Resource\Exception\ResourceNotIsFromYoutubeChannelException;
 use Devoogle\Src\Resource\Job\DownloadVideoToAudio;
 use Devoogle\Src\Resource\Library\AudioFile;
-use Devoogle\Src\Resource\Model\Resource;
 use Devoogle\Src\Resource\Repository\ResourceRepositoryRead;
 use Devoogle\Src\User\Exception\UserIsNotLoggedInException;
 use Devoogle\Src\User\Model\User;
 use Devoogle\Src\User\Repository\UserRepository;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
-use Illuminate\Support\Facades\Mail;
 
 /**
  * Convert and download youtube video in audio format
@@ -50,11 +48,16 @@ class DownloadResourceHandler
      * @var UserRepository
      */
     private $userRepository;
+    /**
+     * @var DownloadVideoToAudio
+     */
+    private $downloadVideoToAudio;
 
-    public function __construct(ResourceRepositoryRead $resourceRepositoryRead, UserRepository $userRepository)
+    public function __construct(ResourceRepositoryRead $resourceRepositoryRead, UserRepository $userRepository, DownloadVideoToAudio $downloadVideoToAudio)
     {
         $this->resourceRepositoryRead = $resourceRepositoryRead;
         $this->userRepository = $userRepository;
+        $this->downloadVideoToAudio = $downloadVideoToAudio;
     }
 
     public function __invoke(DownloadResourceCommand $command)
@@ -91,17 +94,26 @@ class DownloadResourceHandler
 
     }
 
-    private function obtainVideoAndConvert()
+    protected function obtainVideoAndConvert()
     {
-        DownloadVideoToAudio::dispatch($this->audioFile, $this->user)->onQueue('audio');
+
+        $this->downloadVideoToAudio::dispatch($this->audioFile, $this->user)->onQueue('audio');
     }
 
-    private function findResource(string $slug)
+    protected function findResource(string $slug)
     {
         $this->resource = $this->resourceRepositoryRead->findBySlug($slug);
     }
 
-    private function findUser(int $userId)
+    protected function checkResourceIsYoutubeVideo (){
+
+        if ( ! $this->resource->isFromYoutubeChannel()){
+            throw new ResourceNotIsFromYoutubeChannelException();
+        }
+
+    }
+
+    protected function findUser(int $userId)
     {
         try {
             $this->user = $this->userRepository->findByIdOrFail($userId);
