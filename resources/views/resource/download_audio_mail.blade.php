@@ -276,12 +276,13 @@
                 <tr class="tr_download_link">
                     <td align="center">
                         <a class="download_link" href="{!! route(\Devoogle\Src\Devoogle\Library\Route::ROUTE_NAME_DOWNLOAD_AUDIO, $resource->slug()) !!}">
-                            <b>{!! $resource->title() !!}</b>
-                        </a>&nbsp;</td>
+                            <b><i class="fa fa-cloud-download" aria-hidden="true"></i> {!! $resource->title() !!}</b>
+                        </a>
+                    </td>
                 </tr>
                 <tr>
                     <td width="1280" valign="top">
-                        Si no ves bien el enlace, a continuación tienes la url para que la copies y pegues directamente en el navegador:<br>
+                        Si tienes algún problema con el enlace anterior, a continuación tienes la url de descarga para que la copies y pegues directamente en el navegador:<br>
                         <span class="link">{!! route(\Devoogle\Src\Devoogle\Library\Route::ROUTE_NAME_DOWNLOAD_AUDIO, $resource->slug()) !!}</span>
                     </td>
                 </tr>
