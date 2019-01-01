@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Devoogle - Descargar audio</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Your Message Subject or Title</title>
+    <title>Devoogle - Descargar audio</title>
     <style type="text/css">
         /***********
         Originally based on The MailChimp Reset from Fabio Carneiro, MailChimp User Experience Design
@@ -24,6 +23,7 @@
             -ms-text-size-adjust: 100%;
             margin: 0;
             padding: 0;
+            font-family: Arial, Helvetica, sans-serif;
         }
 
         /* Prevent Webkit and Windows Mobile platforms from changing default font sizes, while not breaking desktop design. */
@@ -99,6 +99,7 @@
         **/
         table td {
             border-collapse: collapse;
+            line-height: 30px;
         }
 
         /** Remove spacing around Outlook 07, 10 tables
@@ -192,6 +193,48 @@
             /* Put CSS for high density (hdpi) Android layouts in here */
         }
 
+        .link {
+            color:#0a568c;
+        }
+
+        .download_link{
+            display: inline-block;
+            font-weight: 400;
+            text-align: center;
+            white-space: nowrap;
+            vertical-align: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            border: 1px solid transparent;
+            border-top-color: transparent;
+            border-right-color: transparent;
+            border-bottom-color: transparent;
+            border-left-color: transparent;
+            padding: .375rem .75rem;
+            font-size: 1rem;
+            line-height: 1.5;
+            border-radius: .25rem;
+            transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+            color: #fff;
+            background-color: #28a745;
+            border-color: #28a745;
+            padding:10px;
+            text-decoration: none;
+
+        }
+
+        .title{
+            color:#0a568c;
+            font-weight: bold;
+
+        }
+
+        .tr_download_link{
+            height:100px;
+        }
+
         /* end Android targeting */
     </style>
 
@@ -223,33 +266,34 @@
 
             <!-- Tables are the most common way to format your email consistently. Set your table widths inside cells and in most cases reset cellpadding, cellspacing, and border to zero. Use nested tables as a way to space effectively in your message. -->
             <table cellpadding="0" cellspacing="0" border="0" align="center">
+                <tr><td><br></td></tr>
                 <tr>
                     <td width="1280" valign="top">
-                        <h2>Audio disponible en <a href="{!! route('home') !!}">Devoogle</a></h2>
-                    </td>
+                        Hola, <br>ya está disponible para descargar el audio del vídeo <span class="title">{!! $resource->title() !!}</span>, en el siguiente enlace:<br>
 
-                </tr>
-                <tr>
-                    <td width="1280" valign="top">
-                        Hola, ya tienes disponible el audio para descargar desde el siguiente enlace:
-                        <a class="btn btn-info" href="{!! route(\Devoogle\Src\Devoogle\Library\Route::ROUTE_NAME_DOWNLOAD_AUDIO, $resource->slug()) !!}">
-                            <b>{!! $resource->title() !!}</b>
-                        </a>
                     </td>
                 </tr>
-                <tr>
-                    <td>&nbsp;</td>
+                <tr class="tr_download_link">
+                    <td align="center">
+                        <a class="download_link" href="{!! route(\Devoogle\Src\Devoogle\Library\Route::ROUTE_NAME_DOWNLOAD_AUDIO, $resource->slug()) !!}">
+                            <b>{!! $resource->title() !!}</b>
+                        </a>&nbsp;</td>
                 </tr>
                 <tr>
                     <td width="1280" valign="top">
-                        Si no ves bien el enlace, aquí tienes la url para que copies y pegues directamente en el navegador:<br><br>
-                        {!! route(\Devoogle\Src\Devoogle\Library\Route::ROUTE_NAME_DOWNLOAD_AUDIO, $resource->slug()) !!}
+                        Si no ves bien el enlace, a continuación tienes la url para que la copies y pegues directamente en el navegador:<br>
+                        <span class="link">{!! route(\Devoogle\Src\Devoogle\Library\Route::ROUTE_NAME_DOWNLOAD_AUDIO, $resource->slug()) !!}</span>
                     </td>
                 </tr>
                 <tr><td><br><br></td></tr>
                 <tr>
                     <td width="1280" valign="top">
-                        Un saludo
+                        Un saludo.
+                    </td>
+                </tr>
+                <tr>
+                    <td width="1280" valign="top">
+                        Devoogle
                     </td>
                 </tr>
             </table>

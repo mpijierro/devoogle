@@ -19,7 +19,7 @@ return [
             proceso puede durar unos minutos. Gracias por tu paciencia ;)",
             'subject' => 'Descargar audio: :title',
             'user_must_be_logged_in' => 'La descarga que has intentado realizar no está disponible todavía. Necesitamos un email al que enviar el enlace de descarga 
-            cuando la tengamos disponible. Disculpa las molestias, bro.',
+            cuando la tengamos disponible. Si quieres, regístrate y vuelve a intentarlo para inicar el proceso. Disculpa las molestias, bro.',
         ]
     ]
 ];
