@@ -19,7 +19,7 @@ $factory->define(\Devoogle\Src\SourceReader\Model\YoutubeChannel::class, functio
 
 
     return [
-        'source_id' => 1,
+        'source_id' => factory(\Devoogle\Src\Source\Model\Source::class)->create(),
         'slug_id' => str_random(),
         'slug_name' => str_slug($name),
         'name' => $name,
