@@ -4,11 +4,11 @@ namespace Devoogle\Http\Controllers\Resource;
 
 use Devoogle\Src\Resource\Command\DownloadResourceCommand;
 use Devoogle\Src\Resource\Command\DownloadResourceHandler;
+use Devoogle\Src\Resource\Exception\ResourceNotIsFromYoutubeChannelException;
 use Devoogle\Src\User\Exception\UserIsNotLoggedInException;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Krucas\Notification\Facades\Notification;
-use Symfony\Component\Routing\Exception\InvalidParameterException;
 
 /**
  * Download resource in audio format
@@ -38,6 +38,13 @@ class DownloadResourceController
             Notification::success(trans('resource.actions.download.processing', ['title' => $audioFile->resource()->title()]));
 
             return back();
+        }
+        catch (ResourceNotIsFromYoutubeChannelException $exception){
+
+            Notification::warning(trans('resource.actions.download.resource_not_is_youtube_video'));
+
+            return back();
+
         }
         catch (UserIsNotLoggedInException $exception){
 

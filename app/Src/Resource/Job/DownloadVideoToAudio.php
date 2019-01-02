@@ -3,6 +3,7 @@
 namespace Devoogle\Src\Resource\Job;
 
 use Devoogle\Src\Resource\Library\AudioFile;
+use Devoogle\Src\Resource\Mail\DownloadAudioExceptionMail;
 use Devoogle\Src\Resource\Mail\DownloadAudioMail;
 use Devoogle\Src\User\Model\User;
 use Illuminate\Bus\Queueable;
@@ -18,6 +19,9 @@ use Symfony\Component\Process\Process;
 class DownloadVideoToAudio implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+
+    public $tries = 1;
+
     /**
      * @var AudioFile
      */
@@ -45,17 +49,11 @@ class DownloadVideoToAudio implements ShouldQueue
      */
     public function handle()
     {
-        try {
+        $this->downloadVideo();
 
-            $this->downloadVideo();
+        $this->sendMailWithDownloadUrl();
 
-            $this->sendMailWithDownloadUrl();
-        } catch (ProcessFailedException $exception) {
-            //send mail to admin
-        } catch (\Exception $exception) {
-            Log::error($exception->getMessage());
-        }
-
+        $this->sendExceptionMail();
     }
 
     private function downloadVideo()
@@ -81,6 +79,17 @@ class DownloadVideoToAudio implements ShouldQueue
 
         Mail::to($email)->send(new DownloadAudioMail($this->audioFile->resource()));
 
+    }
+
+    public function failed(\Exception $exception)
+    {
+        Log::error($exception);
+
+        $email = config('devoogle.exception_mail');
+
+        if ( ! empty($email)) {
+            Mail::to($email)->send(new DownloadAudioExceptionMail($this->audioFile->resource(), $exception));
+        }
     }
 
 }

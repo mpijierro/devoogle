@@ -69,6 +69,8 @@ class DownloadResourceHandler
             return $this->audioFile;
         }
 
+        $this->checkResourceIsYoutubeVideo();
+
         $this->findUser($command->getUserId());
 
         $this->obtainVideoAndConvert();
@@ -96,7 +98,6 @@ class DownloadResourceHandler
 
     protected function obtainVideoAndConvert()
     {
-
         $this->downloadVideoToAudio::dispatch($this->audioFile, $this->user)->onQueue('audio');
     }
 

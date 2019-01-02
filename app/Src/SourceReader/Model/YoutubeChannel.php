@@ -16,7 +16,7 @@ class YoutubeChannel extends Model
 
     protected $table = 'youtube_channel';
 
-    protected $attributes = [
+    protected $fillable = [
         'source_id',
         'slug_id',
         'slug_name',
