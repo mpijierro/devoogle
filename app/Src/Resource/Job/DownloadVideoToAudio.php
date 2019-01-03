@@ -52,8 +52,6 @@ class DownloadVideoToAudio implements ShouldQueue
         $this->downloadVideo();
 
         $this->sendMailWithDownloadUrl();
-
-        $this->sendExceptionMail();
     }
 
     private function downloadVideo()
