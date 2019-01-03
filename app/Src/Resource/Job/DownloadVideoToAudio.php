@@ -58,6 +58,7 @@ class DownloadVideoToAudio implements ShouldQueue
     {
 
         $process = new Process($this->command());
+        $process->setTimeout(null);
         $process->run();
 
         if ( ! $process->isSuccessful()) {
