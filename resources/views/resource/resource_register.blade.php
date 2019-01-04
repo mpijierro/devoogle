@@ -100,18 +100,6 @@
                     -
                 @endforelse
             </div>
-
-
-            @if ($resource->isFromYoutubeChannel())
-            <!-- Download -->
-                <div class="col-xs-12 col-sm-4 ">
-                    <i class="fa fa-download icon-register" aria-hidden="true" title="Descargar"></i>
-                    <a href="{!! route('download-audio', $resource->slug) !!}"
-                       title="Descargar {!! $resource->title() !!} en formato audio">Descargar audio</a>
-                </div>
-            @endif
-
-
         </div>
 
     </div>
