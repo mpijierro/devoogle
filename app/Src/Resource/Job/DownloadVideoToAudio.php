@@ -80,7 +80,7 @@ class DownloadVideoToAudio implements ShouldQueue
 
     private function sendMailWithDownloadUrl()
     {
-        Mail::to($this->email)->send(new DownloadAudioMail($this->resource()));
+        Mail::to($this->email)->send(new DownloadAudioMail($this->resource));
     }
 
     public function failed(\Exception $exception)
