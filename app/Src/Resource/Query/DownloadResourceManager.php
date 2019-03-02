@@ -4,7 +4,6 @@ namespace Devoogle\Src\Resource\Query;
 use Devoogle\Src\Resource\Exception\DownloadResourceException;
 use Devoogle\Src\Resource\Library\AudioFile;
 use Devoogle\Src\Resource\Repository\ResourceRepositoryRead;
-use Devoogle\Src\User\Model\User;
 
 /**
  * Get download audio path
@@ -24,11 +23,6 @@ class DownloadResourceManager
      * @var Resource
      */
     private $resource;
-
-    /**
-     * @var User
-     */
-    private $user;
 
     /**
      * @var AudioFile
