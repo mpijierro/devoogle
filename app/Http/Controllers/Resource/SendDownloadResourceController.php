@@ -6,6 +6,7 @@ use Devoogle\Src\Resource\Command\DownloadResourceCommand;
 use Devoogle\Src\Resource\Command\DownloadResourceHandler;
 use Devoogle\Src\Resource\Command\SendDownloadResourceCommand;
 use Devoogle\Src\Resource\Command\SendDownloadResourceHandler;
+use Devoogle\Src\Resource\Exception\DownloadResourceException;
 use Devoogle\Src\Resource\Exception\ResourceNotIsFromYoutubeChannelException;
 use Devoogle\Src\Resource\Query\ReadResourceBySlugManager;
 use Devoogle\Src\Resource\Query\ReadResourceBySlugQuery;
@@ -41,18 +42,13 @@ class SendDownloadResourceController
 
             return back();
         }
-        catch (ResourceNotIsFromYoutubeChannelException $exception){
+        catch (DownloadResourceException $exception){
 
-            Notification::warning(trans('resource.actions.download.resource_not_is_youtube_video'));
+            Log::error($exception);
+
+            Notification::error(trans('resource.actions.download.download_exception'));
 
             return back();
-
-        }
-        catch (UserIsNotLoggedInException $exception){
-
-            Notification::warning(trans('resource.actions.download.user_must_be_logged_in'));
-
-            return redirect()->route('login');
 
         }
         catch (\Exception $exception){

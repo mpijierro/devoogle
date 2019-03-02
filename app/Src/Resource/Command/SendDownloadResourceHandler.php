@@ -2,13 +2,13 @@
 
 namespace Devoogle\Src\Resource\Command;
 
-use Devoogle\Src\Resource\Exception\ResourceNotIsFromYoutubeChannelException;
+use Devoogle\Src\Resource\Exception\DownloadResourceException;
 use Devoogle\Src\Resource\Job\DownloadVideoToAudio;
 use Devoogle\Src\Resource\Library\AudioFile;
 use Devoogle\Src\Resource\Repository\ResourceRepositoryRead;
 
 /**
- * Send via email a download youtube video in audio format
+ * Throw job to process video and send email with a download link
  *
  * Class SendDownDownloadResourceHandler
  * @package Devoogle\Src\Resource\Command
@@ -70,7 +70,7 @@ class SendDownloadResourceHandler
     {
 
         if ( ! $this->resource->isFromYoutubeChannel()) {
-            throw new ResourceNotIsFromYoutubeChannelException();
+            DownloadResourceException::resourceNotIsFromYoutubeChannel();
         }
 
     }

@@ -4,7 +4,10 @@ namespace Devoogle\Http\Controllers\Resource;
 
 use Devoogle\Src\Resource\Command\DownloadResourceCommand;
 use Devoogle\Src\Resource\Command\DownloadResourceHandler;
+use Devoogle\Src\Resource\Exception\DownloadResourceException;
 use Devoogle\Src\Resource\Exception\ResourceNotIsFromYoutubeChannelException;
+use Devoogle\Src\Resource\Query\DownloadResourceManager;
+use Devoogle\Src\Resource\Query\DownloadResourceQuery;
 use Devoogle\Src\User\Exception\UserIsNotLoggedInException;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
@@ -24,33 +27,21 @@ class DownloadResourceController
 
         try{
 
-            $userId = Auth::check() ? Auth::user()->id : 0;
+            $command = new DownloadResourceQuery($slug);
+            $handler = app(DownloadResourceManager::class);
 
-            $command = new DownloadResourceCommand($slug, $userId);
+            $download = $handler($command);
 
-            $handler = app(DownloadResourceHandler::class);
-            $audioFile = $handler($command);
-
-            if ($audioFile->exists()) {
-                return response()->download($audioFile->path());
-            }
-
-            Notification::success(trans('resource.actions.download.processing', ['title' => $audioFile->resource()->title()]));
-
-            return back();
-        }
-        catch (ResourceNotIsFromYoutubeChannelException $exception){
-
-            Notification::warning(trans('resource.actions.download.resource_not_is_youtube_video'));
-
-            return back();
+            return response()->download($download->get());
 
         }
-        catch (UserIsNotLoggedInException $exception){
+        catch (DownloadResourceException $exception){
 
-            Notification::warning(trans('resource.actions.download.user_must_be_logged_in'));
+            Log::error($exception);
 
-            return redirect()->route('login');
+            Notification::error($exception->getMessage());
+
+            return redirect()->route('home');
 
         }
         catch (\Exception $exception){

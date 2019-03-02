@@ -10,9 +10,10 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
-                <div class="alert alert-warning">
-                    Eres el primero en descargar este audio. Necesitamos tu dirección de correo electrónico para enviarte el enlace de descarga una vez
-                    finalizado el proceso.
+                <div class="alert alert-info">
+                    Aún no hemos convertido este vídeo en audio. Necesitamos tu dirección de correo electrónico para poder enviarte el enlace
+                    de descarga una vez haya finalizado el proceso de conversión.
+                    <br><br><b>Tras el envío, tu dirección de correo electrónico será eliminada del sistema</b>.
                 </div>
             </div>
             <form action="#" id="modal-form-download-audio" method="post">
@@ -23,6 +24,8 @@
                     <div class="title" style="margin-bottom:15px;">
                         <h3><i class="fa fa-download icon-register" aria-hidden="true" title="Descargar"></i> Descargar audio del vídeo </h3>
                         <span class="resource-title" id="modal-resource-title" style="color:#337ab7"></span>
+                        <span ></span>
+                        añadir el canal desde el que se baja
                     </div>
 
                     <div class="form-group">

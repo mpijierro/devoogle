@@ -9,7 +9,7 @@ use Devoogle\Src\Resource\Repository\ResourceRepositoryRead;
  * Get download audio path
  *
  * Class DownloadResouceManager
- * @package Devoogle\Src\Resource\Command
+ * @package Devoogle\Src\Resource\Query
  */
 class DownloadResourceManager
 {
