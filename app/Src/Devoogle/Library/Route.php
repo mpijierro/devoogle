@@ -15,6 +15,8 @@ class Route
 
     const ROUTE_NAME_DOWNLOAD_AUDIO = 'download-audio';
 
+    const ROUTE_NAME_SEND_DOWNLOAD_AUDIO = 'send-download-audio';
+
     const PREFIX_URL_CATEGORY_LIST = 'recursos-de-programacion-en';
 
     const ROUTE_NAME_TAG_LIST = 'list-tag';

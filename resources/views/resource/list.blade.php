@@ -15,7 +15,9 @@
                     finalizado el proceso.
                 </div>
             </div>
-            <form action="#" id="modal-form-download-audio">
+            <form action="#" id="modal-form-download-audio" method="post">
+
+                {{ csrf_field() }}
                 <div class="modal-body">
 
                     <div class="title" style="margin-bottom:15px;">
@@ -25,7 +27,7 @@
 
                     <div class="form-group">
                         <label for="recipient-name" class="col-form-label">Email:</label>
-                        <input type="email" class="form-control" id="email" required>
+                        <input type="email" name="email" class="form-control" id="email" required>
                     </div>
 
                 </div>
