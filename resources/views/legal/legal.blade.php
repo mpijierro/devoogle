@@ -159,6 +159,10 @@
                     otras
                     personas.
                 </li>
+                <li>8. El usuario será el responsable de utilizar la funcionalidad de descarga de vídeos de Youtube en formato audio únicamente si dispone
+                    de todos los derechos legales para hacerlo. Puede conocer más sobre los términos legales de Youtube haciendo click
+                    <a href="https://www.youtube.com/static?template=terms&hl=es&gl=ES" target="_blank">aquí</a>.
+                </li>
 
             </ul>
 
