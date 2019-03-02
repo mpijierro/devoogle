@@ -14,6 +14,10 @@ class SearchResourceController
 
         try {
 
+            if (request()->isMethod('post')){
+                return redirect(route('search-resource-get', ['search' => str_slug(request()->get('search'))]));
+            }
+
             $query = new SearchResourceQuery(request()->get('search'));
             $manager = app(SearchResourceManager::class);
             $view = $manager($query);
