@@ -60,4 +60,8 @@ class Category extends Model
         return $this->id() == self::WEB_CATEGORY_ID;
     }
 
+    public function isAudio (){
+        return $this->id() == self::AUDIO_CATEGORY_ID;
+    }
+
 }

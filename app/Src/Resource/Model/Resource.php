@@ -359,4 +359,12 @@ class Resource extends Model
     {
         return $this->slug() . '.mp3';
     }
+
+    public function hasAudioCategory (){
+
+        return $this->version->contains(function ($version){
+            return $version->category->isAudio();
+        });
+
+    }
 }

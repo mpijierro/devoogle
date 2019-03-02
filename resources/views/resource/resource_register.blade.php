@@ -70,6 +70,19 @@
                    title="Fecha de publicación"></i>
                 <span class="nice">{!! $resource->publishedAt()->format('d-m-Y') !!}</span>
             </div>
+        </div>
+
+        <div class="row">
+            <!-- Tags -->
+            <div class="col-xs-12 col-sm-4 ">
+                <i class="fa fa-tags icon-register" aria-hidden="true" title="Etiquetas"></i>
+                @forelse ($resource->allTags() as $tag)
+                    {{ $loop->first ? '' : ', ' }}
+                    <span class="nice"><a href="{{route('list-tag', $tag->slug)}}">{{ $tag->name }}</a></span>
+                @empty
+                    -
+                @endforelse
+            </div>
 
             <!-- Version -->
             @if ($resource->version->count())
@@ -89,14 +102,14 @@
                 </div>
             @endif
 
-            @if ($resource->isFromYoutubeChannel())
-                <!-- Download -->
+            @if ($resource->isFromYoutubeChannel() AND !$resource->hasAudioCategory())
+            <!-- Download -->
                 <div class="col-xs-12 col-sm-3 ">
                     <i class="fa fa-download icon-register" aria-hidden="true" title="Descargar"></i>
                     @if ($audioFile->exists($resource))
 
                         <a href="{!! route('download-audio', $resource->slug) !!}"
-                           title="Descargar {!! $resource->title() !!} en formato audio">Descargar audio</a>
+                           title="Descargar en formato audio {!! $resource->title() !!}">Descargar audio</a>
 
                     @else
                         <a href="#"
@@ -112,19 +125,10 @@
 
                     @endif
                 </div>
-        @endif
+            @endif
 
-        <!-- Tags -->
-            <div class="col-xs-12 col-sm-4 ">
-                <i class="fa fa-tags icon-register" aria-hidden="true" title="Etiquetas"></i>
-                @forelse ($resource->allTags() as $tag)
-                    {{ $loop->first ? '' : ', ' }}
-                    <span class="nice"><a href="{{route('list-tag', $tag->slug)}}">{{ $tag->name }}</a></span>
-                @empty
-                    -
-                @endforelse
-            </div>
         </div>
+
 
     </div>
 </div>
