@@ -100,6 +100,30 @@
                     -
                 @endforelse
             </div>
+
+
+            @if ($resource->isFromYoutubeChannel())
+                <!-- Download -->
+                <div class="col-xs-12 col-sm-4 ">
+                    <i class="fa fa-download icon-register" aria-hidden="true" title="Descargar"></i>
+                    @if ($audioFile->exists($resource))
+
+                        <a href="{!! route('download-audio', $resource->slug) !!}"
+                           title="Descargar {!! $resource->title() !!} en formato audio">Descargar audio</a>
+
+                    @else
+                        <a href="#"
+                           class="open-modal-download-audio"
+                           title="Descargar {!! $resource->title() !!} en formato audio"
+                           data-toggle="modal"
+                           data-title="{!! $resource->title() !!}"
+                           data-url="{!! route('download-audio', $resource->slug) !!}"
+                           data-target="#modalDownloadAudio"
+                        >Descargar audio</a>
+
+                    @endif
+                </div>
+            @endif
         </div>
 
     </div>

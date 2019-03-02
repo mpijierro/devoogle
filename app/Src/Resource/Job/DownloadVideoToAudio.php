@@ -3,8 +3,10 @@
 namespace Devoogle\Src\Resource\Job;
 
 use Devoogle\Src\Resource\Library\AudioFile;
+use Devoogle\Src\Resource\Library\AudioFileInterface;
 use Devoogle\Src\Resource\Mail\DownloadAudioExceptionMail;
 use Devoogle\Src\Resource\Mail\DownloadAudioMail;
+use Devoogle\Src\Resource\Model\Resource;
 use Devoogle\Src\User\Model\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Queue\SerializesModels;
@@ -27,19 +29,24 @@ class DownloadVideoToAudio implements ShouldQueue
      */
     private $audioFile;
     /**
-     * @var User
+     * @var Resource
      */
-    private $user;
+    private $resource;
+    /**
+     * @var string
+     */
+    private $email;
 
     /**
      * Create a new job instance.
      *
      * @return void
      */
-    public function __construct(AudioFile $audioFile, User $user)
+    public function __construct(Resource $resource, string $email, AudioFileInterface $audioFile)
     {
+        $this->resource = $resource;
+        $this->email = $email;
         $this->audioFile = $audioFile;
-        $this->user = $user;
     }
 
     /**
@@ -73,11 +80,7 @@ class DownloadVideoToAudio implements ShouldQueue
 
     private function sendMailWithDownloadUrl()
     {
-
-        $email = $this->user->email();
-
-        Mail::to($email)->send(new DownloadAudioMail($this->audioFile->resource()));
-
+        Mail::to($this->email)->send(new DownloadAudioMail($this->audioFile->resource()));
     }
 
     public function failed(\Exception $exception)

@@ -15,7 +15,6 @@ class UpdateResourceController
 
     public function __invoke(StoreResourceRequest $request, string $aUuid)
     {
-        dd($request->all());
         try {
 
             DB::beginTransaction();
