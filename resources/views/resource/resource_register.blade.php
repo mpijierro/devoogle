@@ -89,22 +89,9 @@
                 </div>
             @endif
 
-
-        <!-- Tags -->
-            <div class="col-xs-12 col-sm-4 ">
-                <i class="fa fa-tags icon-register" aria-hidden="true" title="Etiquetas"></i>
-                @forelse ($resource->allTags() as $tag)
-                    {{ $loop->first ? '' : ', ' }}
-                    <span class="nice"><a href="{{route('list-tag', $tag->slug)}}">{{ $tag->name }}</a></span>
-                @empty
-                    -
-                @endforelse
-            </div>
-
-
             @if ($resource->isFromYoutubeChannel())
                 <!-- Download -->
-                <div class="col-xs-12 col-sm-4 ">
+                <div class="col-xs-12 col-sm-3 ">
                     <i class="fa fa-download icon-register" aria-hidden="true" title="Descargar"></i>
                     @if ($audioFile->exists($resource))
 
@@ -118,12 +105,25 @@
                            data-toggle="modal"
                            data-title="{!! $resource->title() !!}"
                            data-url="{!! route('download-audio', $resource->slug) !!}"
+                           data-channel-name="{!! $resource->channel->first()->name() !!}"
+                           data-channel-url="{!! $resource->channel->first()->url() !!}"
                            data-target="#modalDownloadAudio"
                         >Descargar audio</a>
 
                     @endif
                 </div>
-            @endif
+        @endif
+
+        <!-- Tags -->
+            <div class="col-xs-12 col-sm-4 ">
+                <i class="fa fa-tags icon-register" aria-hidden="true" title="Etiquetas"></i>
+                @forelse ($resource->allTags() as $tag)
+                    {{ $loop->first ? '' : ', ' }}
+                    <span class="nice"><a href="{{route('list-tag', $tag->slug)}}">{{ $tag->name }}</a></span>
+                @empty
+                    -
+                @endforelse
+            </div>
         </div>
 
     </div>

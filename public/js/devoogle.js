@@ -85,6 +85,9 @@ $(document).ready(function () {
         $(".modal-body #modal-resource-title").html(title);
 
         $('#modal-form-download-audio').attr('action', $(this).data('url'));
+        $('.modal-body #modal-channel').attr('href', $(this).data('channel-url'));
+        $('.modal-body #modal-channel').html($(this).data('channel-name'));
+
     });
 
 });

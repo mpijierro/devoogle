@@ -23,7 +23,8 @@
 
                     <div class="title" style="margin-bottom:15px;">
                         <h3><i class="fa fa-download icon-register" aria-hidden="true" title="Descargar"></i> Descargar audio del vídeo </h3>
-                        <span class="resource-title" id="modal-resource-title" style="color:#337ab7"></span>
+                        <span class="resource-title" id="modal-resource-title" style="color:#337ab7"></span><br>
+                        Fuente: Canal de Youtube de <a href="" target="_blank" id="modal-channel"></a>
                     </div>
 
                     <div class="form-group">
