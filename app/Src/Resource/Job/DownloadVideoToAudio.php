@@ -90,7 +90,7 @@ class DownloadVideoToAudio implements ShouldQueue
         $email = config('devoogle.exception_mail');
 
         if ( ! empty($email)) {
-            Mail::to($email)->send(new DownloadAudioExceptionMail($this->audioFile->resource(), $exception));
+            Mail::to($email)->send(new DownloadAudioExceptionMail($this->resource, $exception));
         }
     }
 
