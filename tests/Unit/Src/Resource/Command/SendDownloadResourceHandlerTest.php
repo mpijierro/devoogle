@@ -2,13 +2,14 @@
 
 namespace Tests\Unit;
 
-use Devoogle\Src\Resource\Command\DownloadResourceCommand;
-use Devoogle\Src\Resource\Command\DownloadResourceHandler;
-use Devoogle\Src\Resource\Exception\ResourceNotIsFromYoutubeChannelException;
+use Devoogle\Src\Resource\Command\SendDownloadResourceCommand;
+use Devoogle\Src\Resource\Command\SendDownloadResourceHandler;
+use Devoogle\Src\Resource\Exception\DownloadResourceException;
+use Devoogle\Src\Resource\Job\DownloadVideoToAudio;
 use Devoogle\Src\Resource\Model\Resource;
 use Devoogle\Src\SourceReader\Model\YoutubeChannel;
-use Devoogle\Src\User\Exception\UserIsNotLoggedInException;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\DB;
 use Tests\TestCase;
 
 
@@ -20,64 +21,37 @@ class SendDownloadResourceHandlerTest extends TestCase
     {
         try {
 
-
-            $user = $this->defaultUser();
             $resource = factory(Resource::class)->create();
 
-            $command = new DownloadResourceCommand($resource->slug(), $user->id());
-            $handler = app(DownloadResourceHandler::class);
+            $command = new SendDownloadResourceCommand($resource->slug(), 'user@temp.com');
+            $handler = app(SendDownloadResourceHandler::class);
             $handler($command);
 
             $this->withExceptionHandling();
 
-        } catch (ResourceNotIsFromYoutubeChannelException $exception) {
+        } catch (DownloadResourceException $exception) {
 
-            $this->assertEquals(get_class($exception), ResourceNotIsFromYoutubeChannelException::class);
+            $this->assertEquals(get_class($exception), DownloadResourceException::class);
 
         }
 
     }
 
-    public function testNotAllowDownloadAudioIfUserNoIsLoggedAndFileNotExists()
-    {
-        try {
 
-            $resource = factory(Resource::class)->create();
+    public function testGenerateJobtoSendEmailSuccessfully (){
 
-            $youtubeChannel = factory(YoutubeChannel::class)->create();
-            $resource->channel()->save($youtubeChannel);
-
-            $command = new DownloadResourceCommand($resource->slug(), 0);
-            $handler = app(DownloadResourceHandler::class);
-            $handler($command);
-
-            $this->withExceptionHandling();
-
-        } catch (UserIsNotLoggedInException $exception) {
-
-            $this->assertEquals(get_class($exception), UserIsNotLoggedInException::class);
-
-        }
-
-    }
-
-    /*
-    public function testGenerateDownloadInfoSuccesfully (){
-
-
-        $user = $this->defaultUser();
         $resource = factory(Resource::class)->create();
         $youtubeChannel = factory(YoutubeChannel::class)->create();
 
         $resource->channel()->save($youtubeChannel);
 
-        $command = new DownloadResourceCommand($resource->slug(), $user->id());
-        $handler = app(DownloadResourceHandler::class);
-        $audioFile = $handler($command);
+        $command = new SendDownloadResourceCommand($resource->slug(), 'user@temp.com');
+        $handler = app(SendDownloadResourceHandler::class);
+        $handler($command);
 
-        $this->assertEquals ($resource->id, $audioFile->resource()->id);
-        $this->assertEquals (storage_path('audios') . '/' . $resource->audioName(), $audioFile->path());
-
+        $job = DB::table('jobs')->first();
+        $job = json_decode($job->payload);
+        $this->assertEquals(DownloadVideoToAudio::class, $job->data->commandName);
     }
-    */
+
 }
