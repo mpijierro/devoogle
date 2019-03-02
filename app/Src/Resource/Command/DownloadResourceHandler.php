@@ -53,11 +53,12 @@ class DownloadResourceHandler
      */
     private $downloadVideoToAudio;
 
-    public function __construct(ResourceRepositoryRead $resourceRepositoryRead, UserRepository $userRepository, DownloadVideoToAudio $downloadVideoToAudio)
+    public function __construct(ResourceRepositoryRead $resourceRepositoryRead, UserRepository $userRepository, DownloadVideoToAudio $downloadVideoToAudio, AudioFile $audioFile)
     {
         $this->resourceRepositoryRead = $resourceRepositoryRead;
         $this->userRepository = $userRepository;
         $this->downloadVideoToAudio = $downloadVideoToAudio;
+        $this->audioFile = $audioFile;
     }
 
     public function __invoke(DownloadResourceCommand $command)
@@ -86,13 +87,12 @@ class DownloadResourceHandler
 
         $this->findResource($this->command->getSlug());
 
-        $this->buildAudioFile();
     }
 
     private function fileExists(): bool
     {
 
-        return $this->audioFile->exists();
+        return $this->audioFile->exists($this->resource);
 
     }
 
@@ -106,9 +106,10 @@ class DownloadResourceHandler
         $this->resource = $this->resourceRepositoryRead->findBySlug($slug);
     }
 
-    protected function checkResourceIsYoutubeVideo (){
+    protected function checkResourceIsYoutubeVideo()
+    {
 
-        if ( ! $this->resource->isFromYoutubeChannel()){
+        if ( ! $this->resource->isFromYoutubeChannel()) {
             throw new ResourceNotIsFromYoutubeChannelException();
         }
 
@@ -124,8 +125,4 @@ class DownloadResourceHandler
 
     }
 
-    private function buildAudioFile()
-    {
-        $this->audioFile = app(AudioFile::class, ['resource' => $this->resource]);
-    }
 }

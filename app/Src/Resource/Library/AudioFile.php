@@ -8,29 +8,13 @@ use Devoogle\Src\Resource\Model\Resource;
 class AudioFile
 {
 
-    /**
-     * @var Resource
-     */
-    private $resource;
-
-    public function __construct(Resource $resource)
+    public function path(Resource $resource)
     {
-        $this->resource = $resource;
+        return storage_path('audios') . '/' . $resource->audioName();
     }
 
-    public function resource()
+    public function exists(Resource $resource)
     {
-        return $this->resource;
-    }
-
-    public function path()
-    {
-        return storage_path('audios') . '/' . $this->resource->audioName();
-    }
-
-
-    public function exists()
-    {
-        return file_exists($this->path());
+        return file_exists($this->path($resource));
     }
 }
