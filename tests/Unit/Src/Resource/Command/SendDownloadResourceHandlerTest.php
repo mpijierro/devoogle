@@ -12,7 +12,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
 
-class DownloadResourceHandlerTest extends TestCase
+class SendDownloadResourceHandlerTest extends TestCase
 {
     use RefreshDatabase;
 
@@ -61,6 +61,7 @@ class DownloadResourceHandlerTest extends TestCase
 
     }
 
+    /*
     public function testGenerateDownloadInfoSuccesfully (){
 
 
@@ -78,4 +79,5 @@ class DownloadResourceHandlerTest extends TestCase
         $this->assertEquals (storage_path('audios') . '/' . $resource->audioName(), $audioFile->path());
 
     }
+    */
 }
