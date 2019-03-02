@@ -3,6 +3,7 @@ namespace Devoogle\Src\Resource\Query;
 
 use Devoogle\Src\Resource\Exception\DownloadResourceException;
 use Devoogle\Src\Resource\Library\AudioFile;
+use Devoogle\Src\Resource\Library\AudioFileInterface;
 use Devoogle\Src\Resource\Repository\ResourceRepositoryRead;
 
 /**
@@ -35,7 +36,7 @@ class DownloadResourceManager
     private $resourceRepositoryRead;
 
 
-    public function __construct(ResourceRepositoryRead $resourceRepositoryRead, AudioFile $audioFile)
+    public function __construct(ResourceRepositoryRead $resourceRepositoryRead, AudioFileInterface $audioFile)
     {
         $this->resourceRepositoryRead = $resourceRepositoryRead;
         $this->audioFile = $audioFile;

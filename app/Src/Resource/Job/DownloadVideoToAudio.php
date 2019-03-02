@@ -3,6 +3,7 @@
 namespace Devoogle\Src\Resource\Job;
 
 use Devoogle\Src\Resource\Library\AudioFile;
+use Devoogle\Src\Resource\Library\AudioFileInterface;
 use Devoogle\Src\Resource\Mail\DownloadAudioExceptionMail;
 use Devoogle\Src\Resource\Mail\DownloadAudioMail;
 use Devoogle\Src\Resource\Model\Resource;
@@ -41,7 +42,7 @@ class DownloadVideoToAudio implements ShouldQueue
      *
      * @return void
      */
-    public function __construct(Resource $resource, string $email, AudioFile $audioFile)
+    public function __construct(Resource $resource, string $email, AudioFileInterface $audioFile)
     {
         $this->resource = $resource;
         $this->email = $email;
@@ -55,7 +56,6 @@ class DownloadVideoToAudio implements ShouldQueue
      */
     public function handle()
     {
-        dd($this);
         $this->downloadVideo();
 
         $this->sendMailWithDownloadUrl();
