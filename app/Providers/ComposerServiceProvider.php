@@ -2,6 +2,7 @@
 
 namespace Devoogle\Providers;
 
+use Devoogle\Src\Devoogle\ComposerView\AudioFileComposer;
 use Devoogle\Src\Devoogle\ComposerView\MetasComposer;
 use Devoogle\Src\Devoogle\ComposerView\SidebarAuthorComposer;
 use Devoogle\Src\Devoogle\ComposerView\SidebarCategoryComposer;
@@ -35,7 +36,7 @@ class ComposerServiceProvider extends ServiceProvider
 
         View::composer('sidebar/sidebar_technology', SidebarTechnologyComposer::class);
 
-
+        View::composer('resource/resource_register',AudioFileComposer::class);
 
 
     }
