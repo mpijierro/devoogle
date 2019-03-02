@@ -24,8 +24,6 @@
                     <div class="title" style="margin-bottom:15px;">
                         <h3><i class="fa fa-download icon-register" aria-hidden="true" title="Descargar"></i> Descargar audio del vídeo </h3>
                         <span class="resource-title" id="modal-resource-title" style="color:#337ab7"></span>
-                        <span ></span>
-                        añadir el canal desde el que se baja
                     </div>
 
                     <div class="form-group">
