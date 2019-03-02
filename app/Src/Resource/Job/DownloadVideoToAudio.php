@@ -75,12 +75,12 @@ class DownloadVideoToAudio implements ShouldQueue
 
     private function command()
     {
-        return "/usr/local/bin/youtube-dl --extract-audio --audio-format mp3 -o " . $this->audioFile->path() . " " . $this->audioFile->resource()->url();
+        return "/usr/local/bin/youtube-dl --extract-audio --audio-format mp3 -o " . $this->audioFile->path($this->resource) . " " . $this->resource->url();
     }
 
     private function sendMailWithDownloadUrl()
     {
-        Mail::to($this->email)->send(new DownloadAudioMail($this->audioFile->resource()));
+        Mail::to($this->email)->send(new DownloadAudioMail($this->resource()));
     }
 
     public function failed(\Exception $exception)
