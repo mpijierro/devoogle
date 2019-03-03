@@ -2,7 +2,8 @@
 
 namespace Devoogle\Providers;
 
-use Illuminate\Support\Facades\Event;
+use Devoogle\Src\Resource\Event\AudioDownloaded;
+use Devoogle\Src\Resource\Event\IncrementDownloadCounter;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 
 class EventServiceProvider extends ServiceProvider
@@ -13,8 +14,8 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
-        'Devoogle\Events\Event' => [
-            'Devoogle\Listeners\EventListener',
+        AudioDownloaded::class => [
+            IncrementDownloadCounter::class
         ],
     ];
 
