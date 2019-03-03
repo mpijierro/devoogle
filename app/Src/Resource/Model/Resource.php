@@ -75,6 +75,9 @@ class Resource extends Model
         return $this->hasMany(Version::class);
     }
 
+    public function downloadCounter (){
+        return $this->hasMany(DownloadCounter::class);
+    }
 
     public function favourite()
     {
