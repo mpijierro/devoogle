@@ -4,10 +4,13 @@ namespace Devoogle\Http\Controllers\Resource;
 
 use Devoogle\Src\Resource\Command\DownloadResourceCommand;
 use Devoogle\Src\Resource\Command\DownloadResourceHandler;
+use Devoogle\Src\Resource\Event\AudioDownloaded;
 use Devoogle\Src\Resource\Exception\DownloadResourceException;
 use Devoogle\Src\Resource\Exception\ResourceNotIsFromYoutubeChannelException;
 use Devoogle\Src\Resource\Query\DownloadResourceManager;
 use Devoogle\Src\Resource\Query\DownloadResourceQuery;
+use Devoogle\Src\Resource\Query\ReadResourceBySlugManager;
+use Devoogle\Src\Resource\Query\ReadResourceBySlugQuery;
 use Devoogle\Src\User\Exception\UserIsNotLoggedInException;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
@@ -31,6 +34,12 @@ class DownloadResourceController
             $handler = app(DownloadResourceManager::class);
 
             $download = $handler($command);
+
+            $query = new ReadResourceBySlugQuery($slug);
+            $manager = app(ReadResourceBySlugManager::class);
+            $resource = $manager($query);
+
+            event(new AudioDownloaded($resource));
 
             return response()->download($download->get());
 
