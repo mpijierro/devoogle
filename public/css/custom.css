@@ -1,5 +1,7 @@
+@font-face { font-family: NovaMono; src: url('www.devoogle.com/css/NovaMono.ttf'); }
+
 html, body {
-    font-family: "Open Sans Condensed", Helvetica, Arial, sans-serif;
+    font-family: NovaMono;
     line-height: 1.5;
 }
 
