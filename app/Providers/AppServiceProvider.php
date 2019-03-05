@@ -2,6 +2,8 @@
 
 namespace Devoogle\Providers;
 
+use Devoogle\Src\Resource\Library\AudioFile;
+use Devoogle\Src\Resource\Library\AudioFileInterface;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -13,7 +15,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+
     }
 
     /**
@@ -23,6 +25,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->app->bind(AudioFileInterface::class, AudioFile::class);
     }
 }

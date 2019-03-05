@@ -75,6 +75,9 @@ class Resource extends Model
         return $this->hasMany(Version::class);
     }
 
+    public function downloadCounter (){
+        return $this->hasMany(DownloadCounter::class);
+    }
 
     public function favourite()
     {
@@ -358,5 +361,13 @@ class Resource extends Model
     public function audioName()
     {
         return $this->slug() . '.mp3';
+    }
+
+    public function hasAudioCategory (){
+
+        return $this->version->contains(function ($version){
+            return $version->category->isAudio();
+        });
+
     }
 }

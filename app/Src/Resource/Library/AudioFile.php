@@ -2,35 +2,18 @@
 
 namespace Devoogle\Src\Resource\Library;
 
-
 use Devoogle\Src\Resource\Model\Resource;
 
-class AudioFile
+class AudioFile implements AudioFileInterface
 {
 
-    /**
-     * @var Resource
-     */
-    private $resource;
-
-    public function __construct(Resource $resource)
+    public function path(Resource $resource):string
     {
-        $this->resource = $resource;
+        return storage_path('audios') . '/' . $resource->audioName();
     }
 
-    public function resource()
+    public function exists(Resource $resource):bool
     {
-        return $this->resource;
-    }
-
-    public function path()
-    {
-        return storage_path('audios') . '/' . $this->resource->audioName();
-    }
-
-
-    public function exists()
-    {
-        return file_exists($this->path());
+        return file_exists($this->path($resource));
     }
 }

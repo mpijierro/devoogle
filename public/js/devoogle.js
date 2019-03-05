@@ -78,4 +78,16 @@ $(document).ready(function () {
         language: 'es',
         format: 'dd-mm-yyyy'
     });
+
+
+    $(document).on("click", ".open-modal-download-audio", function () {
+        var title = $(this).data('title');
+        $(".modal-body #modal-resource-title").html(title);
+
+        $('#modal-form-download-audio').attr('action', $(this).data('url'));
+        $('.modal-body #modal-channel').attr('href', $(this).data('channel-url'));
+        $('.modal-body #modal-channel').html($(this).data('channel-name'));
+
+    });
+
 });

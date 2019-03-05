@@ -47,7 +47,7 @@ use Krucas\Notification\Facades\Notification;
 
 <script src="{{ asset('js/bootstrap-datepicker.min.js') }}"></script>
 <script src="{{ asset('js/bootstrap-datepicker.es.min.js') }}"></script>
-<script src="{{ asset('js/devoogle.js') }}"></script>
+<script src="{{ asset('js/devoogle.js?v=1.1') }}"></script>
 
 
 </body>

@@ -70,6 +70,19 @@
                    title="Fecha de publicación"></i>
                 <span class="nice">{!! $resource->publishedAt()->format('d-m-Y') !!}</span>
             </div>
+        </div>
+
+        <div class="row">
+            <!-- Tags -->
+            <div class="col-xs-12 col-sm-4 ">
+                <i class="fa fa-tags icon-register" aria-hidden="true" title="Etiquetas"></i>
+                @forelse ($resource->allTags() as $tag)
+                    {{ $loop->first ? '' : ', ' }}
+                    <span class="nice"><a href="{{route('list-tag', $tag->slug)}}">{{ $tag->name }}</a></span>
+                @empty
+                    -
+                @endforelse
+            </div>
 
             <!-- Version -->
             @if ($resource->version->count())
@@ -89,18 +102,33 @@
                 </div>
             @endif
 
+            @if ($resource->isFromYoutubeChannel() AND !$resource->hasAudioCategory())
+            <!-- Download -->
+                <div class="col-xs-12 col-sm-3 ">
+                    <i class="fa fa-download icon-register" aria-hidden="true" title="Descargar"></i>
+                    @if ($audioFile->exists($resource))
 
-        <!-- Tags -->
-            <div class="col-xs-12 col-sm-4 ">
-                <i class="fa fa-tags icon-register" aria-hidden="true" title="Etiquetas"></i>
-                @forelse ($resource->allTags() as $tag)
-                    {{ $loop->first ? '' : ', ' }}
-                    <span class="nice"><a href="{{route('list-tag', $tag->slug)}}">{{ $tag->name }}</a></span>
-                @empty
-                    -
-                @endforelse
-            </div>
+                        <a href="{!! route('download-audio', $resource->slug) !!}"
+                           title="Descargar en formato audio {!! $resource->title() !!}">Descargar audio</a>
+
+                    @else
+                        <a href="#"
+                           class="open-modal-download-audio"
+                           title="Descargar {!! $resource->title() !!} en formato audio"
+                           data-toggle="modal"
+                           data-title="{!! $resource->title() !!}"
+                           data-url="{!! route('download-audio', $resource->slug) !!}"
+                           data-channel-name="{!! $resource->channel->first()->name() !!}"
+                           data-channel-url="{!! $resource->channel->first()->url() !!}"
+                           data-target="#modalDownloadAudio"
+                        >Descargar audio</a>
+
+                    @endif
+                </div>
+            @endif
+
         </div>
+
 
     </div>
 </div>
