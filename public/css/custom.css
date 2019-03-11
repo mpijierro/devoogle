@@ -242,4 +242,7 @@ li.category-sidebar i, li.category-sidebar a {
     .title-tag {
         font-size: 30px;
     }
+    a.navbar-brand{
+        width: 80%;
+    }
 }
