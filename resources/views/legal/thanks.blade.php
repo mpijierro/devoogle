@@ -5,11 +5,27 @@
     <div class="row">
 
         <div class="col-xs-12 thanks">
-            <h2>Agradecimientos</h2>
+            <h1>Agradecimientos</h1>
         </div>
 
         <div class="col-xs-12 thanks">
 
+            <h3>Sobre la imagen de marca</h3>
+            <p>
+                La imagen de marca de <b>Devoogle</b> ha sido diseñada y cedida de manera totalmente altruista por <b>Rober González</b>.
+                Puedes encontrarlo en su <a href="https://rober.design/" title="Rober González" target="_blank">web personal</a> o en su cuenta de
+                <a href="https://twitter.com/robergd" target="_blank" title="Twitter de Rober González">Twitter</a> y así conoces las cosas tan espectaculares que hace.
+
+                <br><br>
+                Muchísimas gracias por tu aportación, Rober.
+            </p>
+        </div>
+
+
+        <div class="col-xs-12 thanks">
+
+            <h3>Sobre el contenido</h3>
+            <p>
             El contenido de Devoogle se nutre en su inmensa mayoría de contenido publicado por terceros. Entidades
             públicas, privadas,
             empresas y personas a título personal
@@ -17,6 +33,7 @@
             Quisiera reflejar en esta página cada una de las fuentes utilizadas y aprovechar para agredecerles su
             aportación
             a la comunidad del desarrollo de software. <b>Muchas gracias a todos</b>.
+            </p>
 
         </div>
 
