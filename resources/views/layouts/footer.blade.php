@@ -9,11 +9,11 @@
         </a>
 
         <a href="{{route('thanks')}}" title="Gracias a...">
-            Agradecimientos
+            <i class="fa fa-heart red" aria-hidden="true" title="Agradecimientos"></i> Agradecimientos
         </a>
 
         <a href="{{route('legal')}}" target="_blank">
-            Aviso legal
+            <i class="fa fa-bullhorn" aria-hidden="true" title="Aviso legal"></i> Aviso legal
         </a>
 
     </div>
