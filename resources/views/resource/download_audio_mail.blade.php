@@ -297,6 +297,16 @@
                         Devoogle
                     </td>
                 </tr>
+                <tr>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td align="center">
+                        <img id="logo"
+                             class="d-inline-block mr-1"
+                             src="{{asset('image/brand/logo/logo_devoogle.png')}}" width="300px">
+                    </td>
+                </tr>
             </table>
 
 
