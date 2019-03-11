@@ -23,7 +23,7 @@
 
         <div class="collapse navbar-collapse" id="app-navbar-collapse">
 
-            <div class="col-xs-3 col-sm-4">
+            <div class="">
                 <ul class="nav navbar-nav navbar-right">
                     <li>
                         <form action="{!! route('search-resource') !!}" method="POST" class="navbar-form" role="search">
