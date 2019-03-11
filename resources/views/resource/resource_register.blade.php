@@ -114,7 +114,7 @@
                     @else
                         <a href="#"
                            class="open-modal-download-audio"
-                           title="Descargar {!! $resource->title() !!} en formato audio"
+                           title="Descargar el audio de {!! $resource->title() !!}"
                            data-toggle="modal"
                            data-title="{!! $resource->title() !!}"
                            data-url="{!! route('download-audio', $resource->slug) !!}"

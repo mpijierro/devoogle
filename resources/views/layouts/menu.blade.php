@@ -11,29 +11,32 @@
                 <span class="icon-bar"></span>
             </button>
 
-            <!-- Branding Image -->
-            <a class="navbar-brand" href="{{ url('/') }}">
-                {{ config('app.name', 'Laravel') }}
-            </a>
+            <div class="col-xs-9 col-sm-8">
+                <a href="{{ url('/') }}">
+                    <img id="logo"
+                         class="d-inline-block mr-1"
+                         src="{{asset('image/brand/logo/logo_devoogle.png')}}">
+                </a>
+            </div>
         </div>
 
 
         <div class="collapse navbar-collapse" id="app-navbar-collapse">
-            <div class="col-sm-4">
-                <form action="{!! route('search-resource') !!}" method="POST" class="navbar-form" role="search">
-                    {{ csrf_field()  }}
-                    <div class="input-group div-search">
-                        <input type="text" class="form-control" placeholder="Buscar recursos..." name="search">
-                        <div class="input-group-btn">
-                            <button class="btn btn-default" type="submit"><i class="fa fa-search"
-                                                                             aria-hidden="true"></i></button>
-                        </div>
-                    </div>
-                </form>
-            </div>
 
-            <div class="col-sm-6">
+            <div class="col-xs-3 col-sm-4">
                 <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <form action="{!! route('search-resource') !!}" method="POST" class="navbar-form" role="search">
+                            {{ csrf_field()  }}
+                            <div class="input-group div-search">
+                                <input type="text" class="form-control" placeholder="Buscar recursos..." name="search">
+                                <div class="input-group-btn">
+                                    <button class="btn btn-default" type="submit"><i class="fa fa-search"
+                                                                                     aria-hidden="true"></i></button>
+                                </div>
+                            </div>
+                        </form>
+                    </li>
 
                     @if ($showCategories)
                         <li class="dropdown hidden-sm hidden-md hidden-lg">

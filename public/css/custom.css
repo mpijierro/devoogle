@@ -5,6 +5,11 @@ html, body {
     line-height: 1.5;
 }
 
+#logo{
+    width: 70%;
+}
+
+
 .icon-resource-register {
     margin-left: 15px;
 }
@@ -242,7 +247,7 @@ li.category-sidebar i, li.category-sidebar a {
     .title-tag {
         font-size: 30px;
     }
-    a.navbar-brand{
-        width: 80%;
+    #logo{
+        width: 95%;
     }
 }
