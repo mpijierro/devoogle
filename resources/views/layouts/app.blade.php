@@ -25,7 +25,7 @@ use Krucas\Notification\Facades\Notification;
                 {!! Notification::showAll() !!}
 
 
-                <div class="row">
+                <div class="row hidden-sm hidden-md hidden-lg">
 
                     <div class="col-xs-12">
                         <form action="{!! route('search-resource') !!}" method="POST" class="" role="search">
@@ -44,6 +44,7 @@ use Krucas\Notification\Facades\Notification;
                 @yield('content')
             </div>
             <div class="col-sm-3 sidebar">
+                @include('sidebar.sidebar_search')
                 @include('sidebar.sidebar_category')
                 @include('sidebar.sidebar_author')
                 @include('sidebar.sidebar_event')

@@ -11,7 +11,7 @@
                 <span class="icon-bar"></span>
             </button>
 
-            <div class="col-xs-9 col-sm-8">
+            <div class="col-xs-9 col-sm-6 col-md-10">
                 <a href="{{ url('/') }}" title="Devoogle">
                     <img id="logo"
                          class="d-inline-block mr-1"
