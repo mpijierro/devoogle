@@ -4,7 +4,7 @@
         {{ csrf_field()  }}
         <div class="input-group div-search">
             <input type="text" class="form-control"
-                   placeholder="Buscar recursos de programación......de momento lo hacemos con un LIKE '%....%' ¯\_(ツ)_/¯ "
+                   placeholder="Buscar recursos de programación"
                    name="search">
             <div class="input-group-btn">
                 <button class="btn btn-default" type="submit"><i class="fa fa-search"
