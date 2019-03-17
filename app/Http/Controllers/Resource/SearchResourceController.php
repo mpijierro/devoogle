@@ -18,7 +18,7 @@ class SearchResourceController
                 return redirect(route('search-resource-get', ['search' => str_slug(request()->get('search'))]));
             }
 
-            $query = new SearchResourceQuery(request()->get('search'));
+            $query = new SearchResourceQuery(str_replace('-', ' ',request()->get('search')));
             $manager = app(SearchResourceManager::class);
             $view = $manager($query);
 
