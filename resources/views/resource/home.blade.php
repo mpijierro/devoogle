@@ -1,11 +1,13 @@
 @extends('layouts.app')
 
 @section('content')
-
-    <h1><i class="fa fa-caret-down" aria-hidden="true"></i> Es momento de aprender...</h1>
-    <span class="text-left description-category">
-        Listado con los últimos recursos de programación añadidos a una biblioteca con <b>{{$total}}</b> recursos disponibles.
-    </span>
+    <div class="row" >
+        <div class="col-xs-12">
+            <h3 class="text-left description-category">
+                <b>Devoogle</b> cuenta actualmente con <b>{{$total}}</b> recursos disponibles.
+            </h3>
+        </div>
+    </div>
 
     @include('resource.list')
 

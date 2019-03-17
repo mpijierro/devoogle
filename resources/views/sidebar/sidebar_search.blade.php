@@ -1,3 +1,4 @@
+<h2></h2>
 <div class="single category hidden-xs ">
     <form action="{!! route('search-resource') !!}" method="POST" class="" role="search">
         {{ csrf_field()  }}
