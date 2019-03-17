@@ -94,16 +94,14 @@
                                     <a href="{!! route('list-category', $category->slug) !!}"
                                        title="Recursos de programación de {!! $category->name() !!}"
                                        class="{!! $category->isSlug($categorySelectedSlug)?'bold':'' !!} link-format-menu col-xs-6">
-                                        @include ('layouts.icons_category', ['slug' => $category->slug]) {!! $category->name() !!}
-                                        s
+                                        @include ('layouts.icons_category', ['slug' => $category->slug]) {!! $category->name() !!}s
                                     </a>
 
                                 @endforeach
 
                                 @guest
                                     <a href="{{ route('login') }}"
-                                       style="font-size:12px;"
-                                       class=" link-format-menu col-xs-4">
+                                       class=" link-format-menu col-xs-6">
                                         <i class="fa fa-sign-in" aria-hidden="true"></i> Acceder
                                     </a>
                                 @endguest
