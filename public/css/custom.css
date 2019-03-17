@@ -17,6 +17,7 @@ html, body {
 
 .dropdown-menu > li > a.link-format-menu {
     display: inline;
+    font-size:12px
 }
 
 ul.navbar-nav li a {

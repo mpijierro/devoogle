@@ -20,73 +20,39 @@
 
                 {!! Krucas\Notification\Facades\Notification::showAll() !!}
 
-                <div class="row hidden-sm hidden-md hidden-lg" style="margin-top:10px">
-                    <div class="col-xs-12">
-                        @foreach ($categories as $category)
 
+                @guest
 
-                            <a href="{!! route('list-category', $category->slug) !!}"
-                               title="Recursos de programación de {!! $category->name() !!}"
-                               class="{!! $category->isSlug($categorySelectedSlug)?'bold':'' !!} icon-category-sidebar link-format-menu col-xs-5">
-                                @include ('layouts.icons_category', ['slug' => $category->slug]) {!! $category->name() !!}s
-                            </a>
+                    @else
+                        <div class="row">
+                            <div class="col-xs-12">
 
-                        @endforeach
-
-                            @guest
-                                <a href="{{ route('login') }}" class="icon-category-sidebar link-format-menu col-xs-5" style="font-weight:bold">
-                                    <i class="fa fa-sign-in" aria-hidden="true"></i> Acceder
-                                </a>
-                                @endguest
-                    </div>
-
-                </div>
-
-
-                <div class="row hidden-sm hidden-md hidden-lg" style="margin-top:10px">
-                    <div class="col-xs-12">
-
-                        @guest
-
-                            @else
-
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
-                                   aria-expanded="false" aria-haspopup="true">
-                                    <i class="fa fa-user" aria-hidden="true"></i> {{ Auth::user()->name }} <span
-                                            class="caret"></span>
+                                <a href="{!! route('create-resource') !!}" class="link-format-menu col-xs-6">
+                                    <i class="fa fa-plus-square green" aria-hidden="true"></i> Añadir recurso
                                 </a>
 
-                                <a href="{{route('my-resources')}}">
-                                    <i class="fa fa-suitcase" aria-hidden="true"></i>
-                                    Mis recursos
+                                <a href="{{route('my-resources')}}" class="link-format-menu col-xs-6">
+                                    <i class="fa fa-suitcase" aria-hidden="true"></i> Mis recursos
                                 </a>
 
 
-
-                                <a href="{{route('user-list-favourite')}}">
-                                    <i class="fa fa-heart red" aria-hidden="true"></i>
-                                    Mis favoritos
+                                <a href="{{route('user-list-favourite')}}" class="link-format-menu col-xs-6">
+                                    <i class="fa fa-heart red" aria-hidden="true"></i> Mis favoritos
                                 </a>
 
 
-
-                                <a href="{{route('user-list-later')}}">
-                                    <i class="fa fa-clock-o orange" aria-hidden="true"></i>
-                                    Para después
+                                <a href="{{route('user-list-later')}}" class="link-format-menu col-xs-6">
+                                    <i class="fa fa-clock-o orange" aria-hidden="true"></i> Para después
                                 </a>
 
 
-
-                                <a href="{{route('user-list-viewed')}}">
-                                    <i class="fa fa-eye green" aria-hidden="true"></i>
-                                    Vistos
+                                <a href="{{route('user-list-viewed')}}" class="link-format-menu col-xs-6">
+                                    <i class="fa fa-eye" aria-hidden="true"></i> Vistos
                                 </a>
-
-
 
                                 <a href="{{ route('logout') }}"
-                                   onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
+                                   class="link-format-menu col-xs-6"
+                                   onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                     <i class="fa fa-sign-out" aria-hidden="true"></i> Salir
                                 </a>
 
@@ -94,43 +60,127 @@
                                       style="display: none;">
                                     {{ csrf_field() }}
                                 </form>
-
-
-
-                                <a href="{!! route('create-resource') !!}" class="btn">
-                                    <button type="button" class="btn btn-xs btn-success"><i
-                                                class="fa fa-plus-square"
-                                                aria-hidden="true"></i>
-                                        Añadir recurso
-                                    </button>
-                                </a>
-
-                                @endguest
-                    </div>
-                </div>
-
-
-                <div class="row hidden-sm hidden-md hidden-lg">
-
-                    <div class="col-xs-12">
-                        <form action="{!! route('search-resource') !!}" method="POST" class="" role="search">
-                            {{ csrf_field()  }}
-                            <div class="input-group div-search">
-                                <input type="text" class="form-control"
-                                       placeholder="Buscar recursos de programación......de momento lo hacemos con un LIKE '%....%' ¯\_(ツ)_/¯ "
-                                       name="search">
-                                <div class="input-group-btn">
-                                    <button class="btn btn-default" type="submit"><i class="fa fa-search"
-                                                                                     aria-hidden="true"></i>
-                                    </button>
-                                </div>
                             </div>
-                        </form>
-                    </div>
-                </div>
 
-                <hr class="hidden-xs">
-                @yield('content')
+                        </div>
+                        @endguest
+
+
+                        <div class="row hidden-sm hidden-md hidden-lg" style="margin-top:15px;">
+
+                            <div class="col-xs-12">
+                                <form action="{!! route('search-resource') !!}" method="POST" class="" role="search">
+                                    {{ csrf_field()  }}
+                                    <div class="input-group div-search">
+                                        <input type="text" class="form-control"
+                                               placeholder="Buscar recursos de programación......de momento lo hacemos con un LIKE '%....%' ¯\_(ツ)_/¯ "
+                                               name="search">
+                                        <div class="input-group-btn">
+                                            <button class="btn btn-default" type="submit"><i class="fa fa-search"
+                                                                                             aria-hidden="true"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+
+                        <div class="row hidden-sm hidden-md hidden-lg" style="margin-top:10px">
+                            <div class="col-xs-12">
+                                @foreach ($categories as $category)
+
+
+                                    <a href="{!! route('list-category', $category->slug) !!}"
+                                       title="Recursos de programación de {!! $category->name() !!}"
+                                       class="{!! $category->isSlug($categorySelectedSlug)?'bold':'' !!} link-format-menu col-xs-6">
+                                        @include ('layouts.icons_category', ['slug' => $category->slug]) {!! $category->name() !!}
+                                        s
+                                    </a>
+
+                                @endforeach
+
+                                @guest
+                                    <a href="{{ route('login') }}"
+                                       style="font-size:12px;"
+                                       class=" link-format-menu col-xs-4">
+                                        <i class="fa fa-sign-in" aria-hidden="true"></i> Acceder
+                                    </a>
+                                @endguest
+                            </div>
+
+                        </div>
+
+
+                        <div class="row hidden-sm hidden-md hidden-lg" style="margin-top:10px">
+                            <div class="col-xs-12">
+
+                                @guest
+
+                                    @else
+
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                                           aria-expanded="false" aria-haspopup="true">
+                                            <i class="fa fa-user" aria-hidden="true"></i> {{ Auth::user()->name }} <span
+                                                    class="caret"></span>
+                                        </a>
+
+                                        <a href="{{route('my-resources')}}">
+                                            <i class="fa fa-suitcase" aria-hidden="true"></i>
+                                            Mis recursos
+                                        </a>
+
+
+
+                                        <a href="{{route('user-list-favourite')}}">
+                                            <i class="fa fa-heart red" aria-hidden="true"></i>
+                                            Mis favoritos
+                                        </a>
+
+
+
+                                        <a href="{{route('user-list-later')}}">
+                                            <i class="fa fa-clock-o orange" aria-hidden="true"></i>
+                                            Para después
+                                        </a>
+
+
+
+                                        <a href="{{route('user-list-viewed')}}">
+                                            <i class="fa fa-eye green" aria-hidden="true"></i>
+                                            Vistos
+                                        </a>
+
+
+
+                                        <a href="{{ route('logout') }}"
+                                           onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                            <i class="fa fa-sign-out" aria-hidden="true"></i> Salir
+                                        </a>
+
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                              style="display: none;">
+                                            {{ csrf_field() }}
+                                        </form>
+
+
+
+                                        <a href="{!! route('create-resource') !!}" class="btn">
+                                            <button type="button" class="btn btn-xs btn-success"><i
+                                                        class="fa fa-plus-square"
+                                                        aria-hidden="true"></i>
+                                                Añadir recurso
+                                            </button>
+                                        </a>
+
+                                        @endguest
+                            </div>
+                        </div>
+
+
+                        <hr class="hidden-xs">
+                        @yield('content')
             </div>
             <div class="col-sm-3 sidebar">
                 @include('sidebar.sidebar_search')
