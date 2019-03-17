@@ -13,7 +13,7 @@ class SourceRead extends Command
      *
      * @var string
      */
-    protected $signature = 'source:read';
+    protected $signature = 'devoogle:source-read';
 
     /**
      * The console command description.
