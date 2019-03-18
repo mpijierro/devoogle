@@ -16,7 +16,7 @@
 
         <div class="row">
 
-            <div class="col-sm-9">
+            <div class="col-sm-9 div-content">
 
                 {!! Krucas\Notification\Facades\Notification::showAll() !!}
 
@@ -109,7 +109,7 @@
 
                         </div>
 
-                        <hr class="hidden-xs">
+
                         @yield('content')
             </div>
             <div class="col-sm-3 sidebar">

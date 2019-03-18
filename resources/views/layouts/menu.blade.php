@@ -6,4 +6,7 @@
                  src="{{asset('image/brand/logo/logo_devoogle.png')}}">
         </a>
     </div>
+    <div class="col-xs-3 col-sm-7 col-lg-8" align="right">
+        <a href="{{ route('login') }}" class="link-login"><i class="fa fa-sign-in hidden-xs" aria-hidden="true"></i> Acceder</a>
+    </div>
 </div>

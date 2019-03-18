@@ -8,12 +8,13 @@ html, body {
 #logo{
     width: 100%;
 }
-
-
 .icon-resource-register {
     margin-left: 15px;
 }
 
+.div-content{
+    border-top:1px solid #eee;
+}
 
 .dropdown-menu > li > a.link-format-menu {
     display: inline;
@@ -246,5 +247,8 @@ li.category-sidebar i, li.category-sidebar a {
     }
     .title-tag {
         font-size: 30px;
+    }
+    .description-category{
+        font-size:16px;
     }
 }
