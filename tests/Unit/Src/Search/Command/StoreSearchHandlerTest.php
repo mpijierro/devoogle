@@ -21,7 +21,7 @@ class StoreSearchHandlerTest extends TestCase
 
         $search = Search::first();
         $this->assertEquals('api rest cigüeña', $search->original());
-        $this->assertEquals('api-rest-ciguena', $search->original());
+        $this->assertEquals('api-rest-ciguena', $search->slug());
         $this->assertEquals(1, $search->count());
 
     }

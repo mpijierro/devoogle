@@ -37,21 +37,4 @@ class SendDownloadResourceHandlerTest extends TestCase
 
     }
 
-
-    public function testGenerateJobtoSendEmailSuccessfully (){
-
-        $resource = factory(Resource::class)->create();
-        $youtubeChannel = factory(YoutubeChannel::class)->create();
-
-        $resource->channel()->save($youtubeChannel);
-
-        $command = new SendDownloadResourceCommand($resource->slug(), 'user@temp.com');
-        $handler = app(SendDownloadResourceHandler::class);
-        $handler($command);
-
-        $job = DB::table('jobs')->first();
-        $job = json_decode($job->payload);
-        $this->assertEquals(DownloadVideoToAudio::class, $job->data->commandName);
-    }
-
 }
