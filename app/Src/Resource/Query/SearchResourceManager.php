@@ -4,8 +4,6 @@ namespace Devoogle\Src\Resource\Query;
 
 use Devoogle\Src\Devoogle\Library\Paginable;
 use Devoogle\Src\Resource\Repository\ResourceRepositoryRead;
-use Devoogle\Src\Search\Command\StoreSearchCommand;
-use Devoogle\Src\Search\Command\StoreSearchHandler;
 
 class SearchResourceManager
 {
@@ -41,8 +39,6 @@ class SearchResourceManager
 
         $this->initializeQuery($query);
 
-        $this->save();
-
         $this->search();
 
         $this->checkPageInRange();
@@ -54,16 +50,6 @@ class SearchResourceManager
     private function initializeQuery(SearchResourceQuery $query)
     {
         $this->query = $query;
-    }
-
-
-    private function save()
-    {
-
-        $command = new StoreSearchCommand($this->query->getSearchedText());
-
-        $handler = app(StoreSearchHandler::class);
-        $handler($command);
     }
 
     private function search()

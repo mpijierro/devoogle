@@ -5,6 +5,8 @@ namespace Devoogle\Http\Controllers\Resource;
 use Devoogle\Src\Devoogle\Exceptions\InvalidPageNumberException;
 use Devoogle\Src\Resource\Query\SearchResourceManager;
 use Devoogle\Src\Resource\Query\SearchResourceQuery;
+use Devoogle\Src\Search\Command\StoreSearchCommand;
+use Devoogle\Src\Search\Command\StoreSearchHandler;
 
 class SearchResourceController
 {
@@ -15,6 +17,11 @@ class SearchResourceController
         try {
 
             if (request()->isMethod('post')){
+
+                $command = new StoreSearchCommand(request()->get('search'));
+                $handler = app(StoreSearchHandler::class);
+                $handler($command);
+
                 return redirect(route('search-resource-get', ['search' => str_slug(request()->get('search'))]));
             }
 
