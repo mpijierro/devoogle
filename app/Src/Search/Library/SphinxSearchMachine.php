@@ -65,9 +65,9 @@ class SphinxSearchMachine implements SearchMachineInterface
             $options = ['before_match' => '<strong>',
                         'after_match'=> '</strong>',
                         'chunk_separator' => ' ... ',
-                        'limit' => 250,
-                        'around' => 20,
-                        'html_strip_mode' => 'strip',
+                        'limit' => 300,
+                        'around' => 80,
+                        'html_strip_mode' => 'none',
                         'limit_passages' => 4,
                         'allow_empty' => true
 
