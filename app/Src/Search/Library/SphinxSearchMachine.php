@@ -29,11 +29,10 @@ class SphinxSearchMachine implements SearchMachineInterface
 
         $sphinx = new SphinxClient();
         $sphinx->SetServer('127.0.0.1', 9312);
-        $sphinx->SetMatchMode(SPH_MATCH_ALL);
-        //$sphinx->SetRankingMode(SPH_RANK_PROXIMITY_BM25);
-        $sphinx->SetFieldWeights(["title" => 1, 'description' => 100]);
-        $sphinx->SetSortMode ( SPH_SORT_RELEVANCE);
-
+        $sphinx->SetMatchMode(SPH_MATCH_EXTENDED2);
+        $sphinx->SetRankingMode(SPH_RANK_SPH04);
+        $sphinx->SetFieldWeights(["title" => 100, 'description' => 1]);
+        $sphinx->SetSortMode ( SPH_SORT_EXTENDED, '@weight DESC');
         $sphinx->setLimits(0, 1000, 1000);
 
         $results = $sphinx->query($search, 'devoogle');
