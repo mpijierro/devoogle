@@ -10,6 +10,7 @@
   "require": {
     "php": ">=7.0.0",
     "alaouy/youtube": "^2.1",
+    "edvinaskrucas/notification": "5.*",
     "fideloper/proxy": "~3.3",
     "laravel/framework": "5.5.*",
     "laravel/socialite": "^3.0",
@@ -17,8 +18,7 @@
     "laravelcollective/html": "^5.4.0",
     "socialiteproviders/twitter": "^3.0",
     "spatie/laravel-tags": "^2.0",
-    "webpatser/laravel-uuid": "^3.0",
-    "edvinaskrucas/notification": "5.*"
+    "webpatser/laravel-uuid": "^3.0"
   },
   "require-dev": {
     "barryvdh/laravel-debugbar": "^3.1",
@@ -36,7 +36,8 @@
       "Devoogle\\": "app/"
     },
     "files": [
-      "app/Src/Devoogle/Helper/user.php"
+      "app/Src/Devoogle/Helper/user.php",
+      "app/Src/Search/Library/sphinxapi.php"
     ]
   },
   "autoload-dev": {
