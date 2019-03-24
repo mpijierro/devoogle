@@ -12,13 +12,22 @@ class SphinxSearchMachine implements SearchMachineInterface
 
     use Paginable;
 
+    /** @var SphinxClient */
+    private $sphinx;
+
     /**
      * @var ResourceRepositoryRead
      */
     private $resourceRepository;
 
+    /**
+     * @var LengthAwarePaginator
+     */
+    private $paginator;
+
     public function __construct(ResourceRepositoryRead $resourceRepository)
     {
+        $this->sphinx = new SphinxClient();
         $this->resourceRepository = $resourceRepository;
     }
 
@@ -27,22 +36,72 @@ class SphinxSearchMachine implements SearchMachineInterface
 
         $this->initializePaginable();
 
-        $sphinx = new SphinxClient();
-        $sphinx->SetServer('127.0.0.1', 9312);
-        $sphinx->SetMatchMode(SPH_MATCH_EXTENDED2);
-        $sphinx->SetRankingMode(SPH_RANK_SPH04);
-        $sphinx->SetFieldWeights(["title" => 100, 'description' => 1]);
-        $sphinx->SetSortMode ( SPH_SORT_EXTENDED, '@weight DESC');
-        $sphinx->setLimits(0, 1000, 1000);
+        $this->sphinx->SetServer('127.0.0.1', 9312);
+        $this->sphinx->SetMatchMode(SPH_MATCH_EXTENDED2);
+        $this->sphinx->SetRankingMode(SPH_RANK_SPH04);
+        $this->sphinx->SetFieldWeights(["title" => 100, 'description' => 1]);
+        $this->sphinx->SetSortMode ( SPH_SORT_EXTENDED, '@weight DESC');
+        $this->sphinx->setLimits(0, 1000, 1000);
 
-        $results = $sphinx->query($search, 'devoogle');
+        $results = $this->sphinx->query($search, 'devoogle');
 
         $ids = [];
         if (isset($results['matches'])){
             $ids = array_keys($results['matches']);
         }
 
-        return $this->resourceRepository->searchByIds($ids);
+        $this->paginator = $this->resourceRepository->searchByIds($ids);
+
+        $this->snippet($search);
+
+        return $this->paginator;
+    }
+
+    private function snippet (string $search){
+
+        foreach ($this->paginator->all() as $resource){
+
+            //move to config file
+            $options = ['before_match' => '<strong>',
+                        'after_match'=> '</strong>',
+                        'chunk_separator' => ' ... ',
+                        'limit' => 250,
+                        'around' => 20,
+                        'html_strip_mode' => 'strip',
+                        'limit_passages' => 4,
+                        'allow_empty' => true
+
+            ];
+
+            $excerpts=$this->sphinx->BuildExcerpts([$resource->description], 'devoogle', $search, $options);
+
+            if ($excerpts){
+                if (count($excerpts)){
+
+                    if (count($excerpts) > 1){
+                        dd(count($excerpts));
+                    }
+
+                    $resource->description = '';
+
+                    foreach ($excerpts as $excerpt){
+                        $resource->description .= $excerpt;
+                    }
+
+                }
+            }
+            else{
+                $resource->description = str_limit($resource->description, 150, '...');
+            }
+
+
+            /*
+            if ($resource->id == 245){
+                dd($excerpts, $resource->description);
+            }
+            */
+
+        }
 
     }
 

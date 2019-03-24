@@ -1501,7 +1501,9 @@ class SphinxClient
 		$req .= pack ( "N", strlen($opts["passage_boundary"]) ) . $opts["passage_boundary"];
 
 		// documents
-		$req .= pack ( "N", count($docs) );
+        $numDocs = count((array)$docs);
+		$req .= pack ( "N", $numDocs );
+
 		foreach ( $docs as $doc )
 		{
 			assert ( is_string($doc) );
