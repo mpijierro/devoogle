@@ -3,26 +3,26 @@
 namespace Devoogle\Src\Resource\Query;
 
 use Devoogle\Src\Devoogle\Library\Paginable;
-use Devoogle\Src\Resource\Repository\ResourceRepositoryRead;
+use Devoogle\Src\Search\Library\SearchMachineInterface;
 
 class SearchResourceManager
 {
 
     use Paginable;
 
-    /**
-     * @var ResourceRepositoryRead
-     */
-    private $resourceRepository;
-
     private $resources;
 
     private $query;
 
+    /**
+     * @var SearchMachineInterface
+     */
+    private $searchMachine;
 
-    public function __construct(ResourceRepositoryRead $resourceRepository)
+
+    public function __construct(SearchMachineInterface $searchMachine)
     {
-        $this->resourceRepository = $resourceRepository;
+        $this->searchMachine = $searchMachine;
     }
 
 
@@ -54,7 +54,7 @@ class SearchResourceManager
 
     private function search()
     {
-        $this->resources = $this->resourceRepository->searchByString($this->query->getSearchedText());
+        $this->resources = $this->searchMachine->search($this->query->getSearchedText(),1);
     }
 
 
