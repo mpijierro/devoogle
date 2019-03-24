@@ -38,7 +38,6 @@ function htmlSubstring(s, n) {
 }
 
 $(document).ready(function () {
-    /*
     // Configure/customize these variables.
     var showChar = 150;  // How many characters are shown by default
     var ellipsestext = "...";
@@ -74,7 +73,7 @@ $(document).ready(function () {
         $(this).prev().toggle();
         return false;
     });
-*/
+
     $('.datepicker').datepicker({
         language: 'es',
         format: 'dd-mm-yyyy'
