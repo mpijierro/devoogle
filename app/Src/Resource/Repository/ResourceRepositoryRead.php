@@ -54,6 +54,11 @@ class ResourceRepositoryRead
             ->paginate($this->sizeList());
     }
 
+    public function searchByIds(array $ids)
+    {
+        return Resource::whereIn('id', $ids)->paginate($this->sizeList());
+    }
+
 
     public function existsUrlPattern(string $pattern)
     {

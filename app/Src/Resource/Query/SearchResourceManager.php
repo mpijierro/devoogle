@@ -54,7 +54,7 @@ class SearchResourceManager
 
     private function search()
     {
-        $this->resources = $this->searchMachine->search($this->query->getSearchedText(),1);
+        $this->resources = $this->searchMachine->search($this->query->getSearchedText());
     }
 
 

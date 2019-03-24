@@ -6,5 +6,5 @@ use Illuminate\Pagination\LengthAwarePaginator;
 
 interface SearchMachineInterface
 {
-    public function search (string $search, int $page):LengthAwarePaginator;
+    public function search (string $search):LengthAwarePaginator;
 }

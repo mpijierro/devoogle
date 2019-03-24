@@ -5,6 +5,7 @@ namespace Devoogle\Src\Search;
 
 use Devoogle\Src\Search\Library\EloquentSearchMachine;
 use Devoogle\Src\Search\Library\SearchMachineInterface;
+use Devoogle\Src\Search\Library\SphinxSearchMachine;
 use Illuminate\Support\ServiceProvider;
 
 class SearchServiceProvider extends ServiceProvider
@@ -17,7 +18,7 @@ class SearchServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->app->bind(SearchMachineInterface::class,EloquentSearchMachine::class);
+        $this->app->bind(SearchMachineInterface::class,SphinxSearchMachine::class);
     }
 
 
