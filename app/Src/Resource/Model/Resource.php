@@ -186,7 +186,7 @@ class Resource extends Model
     // TODO: convert to DescriptionModificator class
     public function sanititizeDescription()
     {
-return $this->description();
+
         $finder = app(SanitizeDescription::class);
 
         if ($this->category->isWeb()) {
