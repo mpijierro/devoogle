@@ -4,6 +4,7 @@ namespace Devoogle\Src\Search\Library;
 
 use Devoogle\Src\Devoogle\Library\Paginable;
 use Devoogle\Src\Resource\Repository\ResourceRepositoryRead;
+use Devoogle\Src\Search\Library\Sphinx\SearchTitle;
 use Illuminate\Pagination\LengthAwarePaginator;
 use SphinxClient;
 
@@ -37,27 +38,22 @@ class SphinxSearchMachine implements SearchMachineInterface
         $this->initializePaginable();
 
         $this->sphinx->SetServer('127.0.0.1', 9312);
-        $this->sphinx->SetMatchMode(SPH_MATCH_EXTENDED2);
-        $this->sphinx->SetRankingMode(SPH_RANK_SPH04);
-        $this->sphinx->SetFieldWeights(["title" => 100, 'description' => 1]);
-        $this->sphinx->SetSortMode ( SPH_SORT_EXTENDED, '@weight DESC');
-        $this->sphinx->setLimits(0, 1000, 1000);
 
-        $results = $this->sphinx->query($search, 'devoogle');
+        $searchTitle= app(SearchTitle::class);
+        $results = $searchTitle($this->sphinx, $search);
 
-        $ids = [];
-        if (isset($results['matches'])){
-            $ids = array_keys($results['matches']);
-        }
+        dd($results);
+
+
 
         $this->paginator = $this->resourceRepository->searchByIds($ids);
 
-        $this->snippet($search);
+        $this->configSnippets($search);
 
         return $this->paginator;
     }
 
-    private function snippet (string $search){
+    private function configSnippets (string $search){
 
         foreach ($this->paginator->all() as $resource){
 
