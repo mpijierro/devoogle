@@ -26,7 +26,7 @@ class SearchTitle implements SearchInterface
 
             $resultList = $this->nextSearch->search($search);
 
-            $resultList->add($results);
+            $resultList->prepend($results);
 
             return $resultList;
 
@@ -34,7 +34,7 @@ class SearchTitle implements SearchInterface
 
         $list = new ResultList();
 
-        $list->add($results);
+        $list->prepend($results);
 
         return $list;
 

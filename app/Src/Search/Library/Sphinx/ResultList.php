@@ -19,8 +19,8 @@ class ResultList
         return $this->results;
     }
 
-    public function add(Results $results){
-        $this->results->push($results);
+    public function prepend(Results $results){
+        $this->results->prepend($results);
     }
 
 

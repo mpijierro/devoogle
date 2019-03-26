@@ -41,8 +41,6 @@ class SphinxSearchMachine implements SearchMachineInterface
 
         $this->settingSphinx();
 
-        $searchConfig = new Search($this->sphinx, $search);
-
         $searchTitle= app(SearchTitle::class);
         $searchDescription = app(SearchDescription::class);
 
@@ -50,6 +48,7 @@ class SphinxSearchMachine implements SearchMachineInterface
 
 
 
+        $searchConfig = new Search($this->sphinx, $search);
         $results = $searchTitle->search($searchConfig);
 
         dd($results, 'main thread');
