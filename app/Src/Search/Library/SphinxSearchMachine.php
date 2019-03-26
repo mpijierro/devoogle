@@ -4,6 +4,8 @@ namespace Devoogle\Src\Search\Library;
 
 use Devoogle\Src\Devoogle\Library\Paginable;
 use Devoogle\Src\Resource\Repository\ResourceRepositoryRead;
+use Devoogle\Src\Search\Library\Sphinx\Search;
+use Devoogle\Src\Search\Library\Sphinx\SearchDescription;
 use Devoogle\Src\Search\Library\Sphinx\SearchTitle;
 use Illuminate\Pagination\LengthAwarePaginator;
 use SphinxClient;
@@ -37,12 +39,20 @@ class SphinxSearchMachine implements SearchMachineInterface
 
         $this->initializePaginable();
 
-        $this->sphinx->SetServer('127.0.0.1', 9312);
+        $this->settingSphinx();
+
+        $searchConfig = new Search($this->sphinx, $search);
 
         $searchTitle= app(SearchTitle::class);
-        $results = $searchTitle($this->sphinx, $search);
+        $searchDescription = app(SearchDescription::class);
 
-        dd($results);
+        $searchTitle->nextSearch($searchDescription);
+
+
+
+        $results = $searchTitle->search($searchConfig);
+
+        dd($results, 'main thread');
 
 
 
@@ -51,6 +61,16 @@ class SphinxSearchMachine implements SearchMachineInterface
         $this->configSnippets($search);
 
         return $this->paginator;
+    }
+
+
+    /**
+     * Extract to config file
+     */
+    private function settingSphinx (){
+
+        $this->sphinx->SetServer('127.0.0.1', 9312);
+        $this->sphinx->setLimits(0, 1000, 1000);
     }
 
     private function configSnippets (string $search){

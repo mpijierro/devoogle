@@ -2,9 +2,7 @@
 
 namespace Devoogle\Src\Search\Library\Sphinx;
 
-use SphinxClient;
-
-class SearchTitle implements SearchInterface
+class SearchDescription implements SearchInterface
 {
 
     private $nextSearch = null;
@@ -16,7 +14,7 @@ class SearchTitle implements SearchInterface
         $search->sphinxClient()->SetRankingMode(SPH_RANK_SPH04);
         //$this->sphinx->SetSortMode(SPH_SORT_ATTR_DESC, 'title');
 
-        $target = '@title ' . '("^' . $search->search(). '$" | "' . $search->search() . '" | (' . $search->search() . '))';
+        $target = '@description' . '("^' . $search->search(). '$" | "' . $search->search() . '" | (' . $search->search() . '))';
 
         $results = $search->sphinxClient()->query($target, 'devoogle');
 
