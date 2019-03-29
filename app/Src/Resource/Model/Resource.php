@@ -344,7 +344,11 @@ class Resource extends Model
             return $this->channel->first()->url();
         }
 
-        return $this->source->url();
+        if ($this->hasSource()){
+            return $this->source->url();
+        }
+
+        return '';
 
     }
 
@@ -354,7 +358,11 @@ class Resource extends Model
             return $this->channel->first()->source->name . ' | ' . $this->channel->first()->name();
         }
 
-        return $this->source->name();
+        if ($this->hasSource()){
+            return $this->source->name();
+        }
+
+        return '';
 
     }
 
