@@ -4,6 +4,7 @@ namespace Devoogle\Src\Resource\Repository;
 
 use Devoogle\Src\Category\Model\Category;
 use Devoogle\Src\Resource\Model\Resource;
+use Illuminate\Support\Facades\DB;
 use Spatie\Tags\Tag;
 
 class ResourceRepositoryRead
@@ -57,6 +58,11 @@ class ResourceRepositoryRead
     public function searchByIds(array $ids)
     {
         return Resource::whereIn('id', $ids)->paginate($this->sizeList());
+    }
+
+    public function searchByIdsAndOrderByIds(array $ids)
+    {
+        return Resource::whereIn('id', $ids)->orderBy(DB::raw('FIELD(`id`, '.implode(',', $ids).')'))->paginate($this->sizeList());
     }
 
 
