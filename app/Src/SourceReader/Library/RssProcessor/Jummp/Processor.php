@@ -1,6 +1,6 @@
 <?php
 
-namespace Devoogle\Src\SourceReader\Library\RssProcessor\JoelOnSoftware;
+namespace Devoogle\Src\SourceReader\Library\RssProcessor\Jummp;
 
 use Devoogle\Src\Category\Model\Category;
 use Devoogle\Src\Source\Model\Source;
@@ -12,9 +12,9 @@ use SimpleXMLElement;
 class Processor extends ProcessorRss20
 {
 
-    const RSS_URL = 'https://www.joelonsoftware.com/feed/';
+    const RSS_URL = 'https://jummp.wordpress.com/feed/';
 
-    const SLUG = 'joelonsoftware';
+    const SLUG = 'jummp';
 
 
     public function slug(): string
@@ -134,7 +134,7 @@ class Processor extends ProcessorRss20
     {
         $description = str_replace('.es/"', '.es/', $audioWrapper->description());
 
-        $description .= ' - por Joel On Software';
+        $description .= ' - por Jummp';
 
         return $description;
     }
