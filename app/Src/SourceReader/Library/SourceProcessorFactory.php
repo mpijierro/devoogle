@@ -14,6 +14,7 @@ use Devoogle\Src\SourceReader\Library\RssProcessor\Tecnologeria\Processor as Tec
 use Devoogle\Src\SourceReader\Library\RssProcessor\WeDevelopers\Processor as WedevelopersProcessor;
 use Devoogle\Src\SourceReader\Library\RssProcessor\Eferro\Processor as EferroProcessor;
 use Devoogle\Src\SourceReader\Library\RssProcessor\Freniche\Processor as FrenicheProcessor;
+use Devoogle\Src\SourceReader\Library\RssProcessor\JoelOnSoftware\Processor as JoelOnSoftwareProcessor;
 
 class SourceProcessorFactory
 {
@@ -44,6 +45,7 @@ class SourceProcessorFactory
             MinutosProcessor::SLUG              => MinutosProcessor::class,
             EferroProcessor::SLUG               => EferroProcessor::class,
             FrenicheProcessor::SLUG => FrenicheProcessor::class,
+            JoelOnSoftwareProcessor::SLUG       => JoelOnSoftwareProcessor::class,
 
         ];
 
