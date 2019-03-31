@@ -4,9 +4,7 @@ namespace Devoogle\Src\Search\Library;
 
 use Devoogle\Src\Devoogle\Library\Paginable;
 use Devoogle\Src\Resource\Repository\ResourceRepositoryRead;
-use Devoogle\Src\Search\Library\Sphinx\Search;
-use Devoogle\Src\Search\Library\Sphinx\SearchDescription;
-use Devoogle\Src\Search\Library\Sphinx\SearchTitle;
+use Devoogle\Src\Search\Library\Sphinx\Results;
 use Illuminate\Pagination\LengthAwarePaginator;
 use SphinxClient;
 
@@ -41,27 +39,14 @@ class SphinxSearchMachine implements SearchMachineInterface
 
         $this->settingSphinx();
 
-        $searchTitle= app(SearchTitle::class);
-        $searchDescription = app(SearchDescription::class);
+        $results = $this->searchInSphinx($search);
 
-        $searchTitle->nextSearch($searchDescription);
-
-
-
-        $searchConfig = new Search($this->sphinx, $search);
-        $results = $searchTitle->search($searchConfig);
-
-        dd($results, 'main thread');
-
-
-
-        $this->paginator = $this->resourceRepository->searchByIds($ids);
+        $this->paginator = $this->resourceRepository->searchByIdsAndOrderByIds($results->ids());
 
         $this->configSnippets($search);
 
         return $this->paginator;
     }
-
 
     /**
      * Extract to config file
@@ -70,6 +55,17 @@ class SphinxSearchMachine implements SearchMachineInterface
 
         $this->sphinx->SetServer('127.0.0.1', 9312);
         $this->sphinx->setLimits(0, 1000, 1000);
+        $this->sphinx->SetMatchMode(SPH_MATCH_EXTENDED2);
+        $this->sphinx->SetRankingMode(SPH_RANK_SPH04);
+        $this->sphinx->SetSortMode(SPH_SORT_ATTR_DESC, 'published_ts');
+    }
+
+    private function searchInSphinx (string $search): Results{
+
+        $results = $this->sphinx->query($search, 'devoogle');
+
+        return new Results($results);
+
     }
 
     private function configSnippets (string $search){
@@ -93,29 +89,16 @@ class SphinxSearchMachine implements SearchMachineInterface
             if ($excerpts){
                 if (count($excerpts)){
 
-                    if (count($excerpts) > 1){
-                        dd(count($excerpts));
-                    }
-
                     $resource->description = '';
 
                     foreach ($excerpts as $excerpt){
                         $resource->description .= $excerpt;
                     }
-
                 }
             }
             else{
                 $resource->description = str_limit($resource->description, 150, '...');
             }
-
-
-            /*
-            if ($resource->id == 245){
-                dd($excerpts, $resource->description);
-            }
-            */
-
         }
 
     }

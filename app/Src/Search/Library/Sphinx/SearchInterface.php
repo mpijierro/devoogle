@@ -7,8 +7,6 @@ use SphinxClient;
 interface SearchInterface
 {
 
-    public function nextSearch (SearchInterface $handler);
-
-    public function search (Search $search) : ResultList;
+    public function search (ConfigSearch $search) : Results;
 
 }

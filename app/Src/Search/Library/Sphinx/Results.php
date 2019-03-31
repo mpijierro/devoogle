@@ -28,7 +28,7 @@ class Results
 
     public function ids ():array{
 
-        if (!isset($results['matches'])){
+        if (!isset($this->results['matches'])){
             throw new \InvalidArgumentException('Field matchs not exists');
         }
 
