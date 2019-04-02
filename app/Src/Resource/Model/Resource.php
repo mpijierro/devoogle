@@ -344,7 +344,7 @@ class Resource extends Model
             return $this->channel->first()->url();
         }
 
-        if ($this->hasSource()){
+        if (!is_null($this->source)){
             return $this->source->url();
         }
 
