@@ -16,6 +16,7 @@ use Devoogle\Src\SourceReader\Library\RssProcessor\Eferro\Processor as EferroPro
 use Devoogle\Src\SourceReader\Library\RssProcessor\Freniche\Processor as FrenicheProcessor;
 use Devoogle\Src\SourceReader\Library\RssProcessor\JoelOnSoftware\Processor as JoelOnSoftwareProcessor;
 use Devoogle\Src\SourceReader\Library\RssProcessor\Jummp\Processor as JummpProcessor;
+use Devoogle\Src\SourceReader\Library\RssProcessor\Garajeando\Processor as GarajeandoProcessor;
 
 class SourceProcessorFactory
 {
@@ -48,6 +49,7 @@ class SourceProcessorFactory
             FrenicheProcessor::SLUG => FrenicheProcessor::class,
             JoelOnSoftwareProcessor::SLUG       => JoelOnSoftwareProcessor::class,
             JummpProcessor::SLUG                => JummpProcessor::class,
+            GarajeandoProcessor::SLUG => GarajeandoProcessor::class,
 
         ];
 
