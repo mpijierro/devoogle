@@ -144,7 +144,7 @@ abstract class ProcessorRss20 implements SourceProcessorInterface, RssProcessorI
             return;
         }
 
-        $this->saveAudio($wrapper);
+        $this->saveResource($wrapper);
 
         $this->saveRaw($wrapper);
 
@@ -159,7 +159,7 @@ abstract class ProcessorRss20 implements SourceProcessorInterface, RssProcessorI
     }
 
 
-    protected function saveAudio(ResourceWrapper $audioWrapper)
+    protected function saveResource(ResourceWrapper $audioWrapper)
     {
 
         $uuid = $this->uuid;
