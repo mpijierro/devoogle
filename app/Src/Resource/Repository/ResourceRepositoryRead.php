@@ -4,6 +4,7 @@ namespace Devoogle\Src\Resource\Repository;
 
 use Devoogle\Src\Category\Model\Category;
 use Devoogle\Src\Resource\Model\Resource;
+use Illuminate\Support\Facades\DB;
 use Spatie\Tags\Tag;
 
 class ResourceRepositoryRead
@@ -17,30 +18,30 @@ class ResourceRepositoryRead
 
     public function resourceForHome()
     {
-        return Resource::orderBy('published_at', 'desc')->paginate($this->sizeList());
+        return Resource::has('source')->orderBy('published_at', 'desc')->paginate($this->sizeList());
     }
 
 
     public function findByUuid(string $aUuid)
     {
-        return Resource::where('uuid', $aUuid)->firstOrFail();
+        return Resource::has('source')->where('uuid', $aUuid)->firstOrFail();
     }
 
     public function findBySlug(string $slug)
     {
-        return Resource::where('slug', $slug)->firstOrFail();
+        return Resource::has('source')->where('slug', $slug)->firstOrFail();
     }
 
 
     public function searchByTag(Tag $tag)
     {
-        return Resource::withAnyTags([$tag])->orderBy('published_at', 'desc')->paginate($this->sizeList());
+        return Resource::has('source')->withAnyTags([$tag])->orderBy('published_at', 'desc')->paginate($this->sizeList());
     }
 
 
     public function searchByCategory(Category $category)
     {
-        return Resource::where('category_id', $category->id)
+        return Resource::has('source')->where('category_id', $category->id)
             ->orderBy('published_at', 'desc')
             ->paginate($this->sizeList());
     }
@@ -48,10 +49,20 @@ class ResourceRepositoryRead
 
     public function searchByString(string $string)
     {
-        return Resource::where('title', 'like', '%'.$string.'%')
+        return Resource::has('source')->where('title', 'like', '%'.$string.'%')
             ->orWhere('description', 'like', '%'.$string.'%')
             ->orderBy('published_at', 'desc')
             ->paginate($this->sizeList());
+    }
+
+    public function searchByIds(array $ids)
+    {
+        return Resource::has('source')->whereIn('id', $ids)->paginate($this->sizeList());
+    }
+
+    public function searchByIdsAndOrderByIds(array $ids)
+    {
+        return Resource::has('source')->whereIn('id', $ids)->orderBy(DB::raw('FIELD(`id`, '.implode(',', $ids).')'))->paginate($this->sizeList());
     }
 
 
