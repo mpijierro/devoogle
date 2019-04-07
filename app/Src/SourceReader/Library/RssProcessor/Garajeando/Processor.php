@@ -1,6 +1,6 @@
 <?php
 
-namespace Devoogle\Src\SourceReader\Library\RssProcessor\Jummp;
+namespace Devoogle\Src\SourceReader\Library\RssProcessor\Garajeando;
 
 use Devoogle\Src\Category\Model\Category;
 use Devoogle\Src\Source\Model\Source;
@@ -11,23 +11,19 @@ use SimpleXMLElement;
 
 class Processor extends ProcessorRss20
 {
+    const RSS_URL = 'http://garajeando.blogspot.com/feeds/posts/default?alt=rss';
 
-    const RSS_URL = 'https://jummp.wordpress.com/feed/';
-
-    const SLUG = 'jummp';
-
+    const SLUG = 'garajeando';
 
     public function slug(): string
     {
         return self::SLUG;
     }
 
-
     public function rssSlug(): string
     {
         return self::RSS_URL;
     }
-
 
     protected function categoryId(): int
     {
@@ -48,7 +44,6 @@ class Processor extends ProcessorRss20
 
     }
 
-
     protected function obtainContentFromFirstPage()
     {
 
@@ -59,7 +54,6 @@ class Processor extends ProcessorRss20
         $this->processRss();
 
     }
-
 
     protected function obtainContentFromPages()
     {
@@ -81,36 +75,7 @@ class Processor extends ProcessorRss20
             } catch (\Exception $e) {
                 $end = true;
             }
-        } while ( ! $end);
-
-
-    }
-
-
-    protected function processRss()
-    {
-
-        foreach ($this->rssContent->channel->item as $item) {
-
-            $this->generateUuid();
-
-            $this->processItem($item);
-
-        }
-    }
-
-    protected function processItem(SimpleXMLElement $item)
-    {
-
-        $wrapper = new AudioWrapper($item);
-
-        if ($this->audioExists($wrapper)) {
-            return;
-        }
-
-        $this->saveResource($wrapper);
-
-        $this->saveRaw($wrapper);
+        } while (! $end);
 
     }
 
@@ -127,14 +92,14 @@ class Processor extends ProcessorRss20
 
     private function urlPaged(int $page)
     {
-        return $this->rssSlug() . "?paged=" . $page;
+        return $this->rssSlug()."&start-index=".$page;
     }
 
     protected function sanitizeDescription(ResourceWrapper $audioWrapper)
     {
         $description = str_replace('.es/"', '.es/', $audioWrapper->description());
 
-        $description .= ' - por Jummp';
+        $description .= ' - por Garajeando';
 
         return $description;
     }

@@ -108,7 +108,7 @@ class Processor extends ProcessorRss20
             return;
         }
 
-        $this->saveAudio($wrapper);
+        $this->saveResource($wrapper);
 
         $this->saveRaw($wrapper);
 
