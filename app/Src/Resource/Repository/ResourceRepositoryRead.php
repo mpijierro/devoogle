@@ -18,30 +18,31 @@ class ResourceRepositoryRead
 
     public function resourceForHome()
     {
-        return Resource::orderBy('published_at', 'desc')->paginate($this->sizeList());
+        return Resource::whereHas('source')->orderBy('published_at', 'desc')->paginate($this->sizeList());
     }
 
 
     public function findByUuid(string $aUuid)
     {
-        return Resource::where('uuid', $aUuid)->firstOrFail();
+        return Resource::whereHas('source')->where('uuid', $aUuid)->firstOrFail();
     }
 
     public function findBySlug(string $slug)
     {
-        return Resource::where('slug', $slug)->firstOrFail();
+        return Resource::whereHas('source')->where('slug', $slug)->firstOrFail();
     }
 
 
     public function searchByTag(Tag $tag)
     {
-        return Resource::withAnyTags([$tag])->orderBy('published_at', 'desc')->paginate($this->sizeList());
+        return Resource::whereHas('source')->withAnyTags([$tag])->orderBy('published_at', 'desc')->paginate($this->sizeList());
     }
 
 
     public function searchByCategory(Category $category)
     {
-        return Resource::where('category_id', $category->id)
+        return Resource::whereHas('source')
+            ->where('category_id', $category->id)
             ->orderBy('published_at', 'desc')
             ->paginate($this->sizeList());
     }
@@ -49,7 +50,8 @@ class ResourceRepositoryRead
 
     public function searchByString(string $string)
     {
-        return Resource::where('title', 'like', '%'.$string.'%')
+        return Resource::whereHas('source')
+            ->where('title', 'like', '%'.$string.'%')
             ->orWhere('description', 'like', '%'.$string.'%')
             ->orderBy('published_at', 'desc')
             ->paginate($this->sizeList());
@@ -62,19 +64,29 @@ class ResourceRepositoryRead
 
     public function searchByIdsAndOrderByIds(array $ids)
     {
-        return Resource::whereIn('id', $ids)->orderBy(DB::raw('FIELD(`id`, '.implode(',', $ids).')'))->paginate($this->sizeList());
+        return Resource::whereHas('source')
+            ->whereIn('id', $ids)
+            ->orderBy(DB::raw('FIELD(`id`, '.implode(',', $ids).')'))
+            ->paginate($this->sizeList());
     }
 
 
     public function existsUrlPattern(string $pattern)
     {
-        return Resource::where('url', 'like', '%' . $pattern . '%')->count();
+        return Resource::whereHas('source')
+            ->where('url', 'like', '%' . $pattern . '%')
+            ->count();
     }
 
 
     public function moreValued($sizeList)
     {
-        return Resource::withCount('favourite')->orderBy('favourite_count', 'desc')->havingRaw('favourite_count > 0')->limit($sizeList)->get();
+        return Resource::whereHas('source')
+            ->withCount('favourite')
+            ->orderBy('favourite_count', 'desc')
+            ->havingRaw('favourite_count > 0')
+            ->limit($sizeList)
+            ->get();
     }
 
 
