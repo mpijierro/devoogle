@@ -40,7 +40,7 @@ class SourceReadHandler
 
     private function obtainSources()
     {
-        $this->sources = $this->sourceRepositoryRead->all();
+        $this->sources = $this->sourceRepositoryRead->activeSource();
     }
 
 

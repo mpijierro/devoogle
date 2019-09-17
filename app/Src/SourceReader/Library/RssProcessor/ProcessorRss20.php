@@ -105,7 +105,13 @@ abstract class ProcessorRss20 implements SourceProcessorInterface, RssProcessorI
 
             $this->rssContent = new SimpleXmlElement($content);
         } catch (\Exception $exception) {
-            Log::error($exception);
+
+            Log::error('Exception process rss from resource',[
+                'source' => $this->source,
+                'rssSlug' => $this->rssSlug(),
+                'exception' => $exception
+            ]);
+
             Log::info(sprintf('Exception with resource: %d - %s', $this->source->id(), $this->source->name()));
         }
 

@@ -12,6 +12,9 @@ class SourceRepositoryRead
         return Source::all();
     }
 
+    public function activeSource (){
+        return Source::where('active',1)->get();
+    }
 
     public function obtainYoutube()
     {
