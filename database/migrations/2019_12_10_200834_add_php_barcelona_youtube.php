@@ -11,8 +11,8 @@ class AddPhpBarcelonaYoutube extends Migration
         DB::table('youtube_channel')->insert([
             'source_id'       => 1,
             'slug_id'         => 'UCBqwZ_Nvu9gSyB3VP4p1wcA',
-            'slug_name'       => 'php-barcelona',
-            'name'            => 'PHP Barcelona',
+            'slug_name'       => 'php-barcelona-ii',
+            'name'            => 'PHP Barcelona (II)',
             'is_user_channel' => false,
 
             'created_at' => \Carbon\Carbon::now(),
