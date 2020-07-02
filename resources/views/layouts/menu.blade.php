@@ -7,7 +7,7 @@
         </a>
     </div>
     <div class="col-xs-3 col-sm-7 col-lg-8" align="right">
-        @if (\Auth::check())
+        @if (!\Auth::check())
             <a href="{{ route('login') }}" class="link-login hidden-xs"><i class="fa fa-sign-in" aria-hidden="true"></i>
                 Acceder</a>
         @endif
