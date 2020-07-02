@@ -61,8 +61,6 @@
                             ¿No tienes cuenta? regístrate ahora.
                         </a>
                     </div>
-
-                    @include('auth.social_buttons')
                 </div>
             </form>
         </div>

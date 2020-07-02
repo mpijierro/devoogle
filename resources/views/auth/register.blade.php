@@ -54,8 +54,6 @@
                 </div>
             </form>
 
-            @include('auth.social_buttons')
-
         </div>
     </div>
 
