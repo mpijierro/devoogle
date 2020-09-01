@@ -49,7 +49,8 @@
                 <i class="fa fa-star icon-register" aria-hidden="true"
                    title="Fuente"></i>
                 <span class="nice">
-                    <a href="{!! $resource->sourceUrl() !!}" target="_blank" title="Fuente: {!! $resource->sourceName() !!}">
+                    <a href="{!! $resource->sourceUrl() !!}" target="_blank"
+                       title="Fuente: {!! $resource->sourceName() !!}">
                         {!! $resource->sourceName() !!}
                     </a>
                 </span>
@@ -102,29 +103,29 @@
                 </div>
             @endif
 
-            @if ($resource->isFromYoutubeChannel() AND !$resource->hasAudioCategory())
-            <!-- Download -->
-                <div class="col-xs-12 col-sm-3 ">
-                    <i class="fa fa-download icon-register" aria-hidden="true" title="Descargar"></i>
-                    @if ($audioFile->exists($resource))
+            @if (\Auth::check())
+                @if ($resource->isFromYoutubeChannel() AND !$resource->hasAudioCategory())
+                <!-- Download -->
+                    <div class="col-xs-12 col-sm-3 ">
+                        <i class="fa fa-download icon-register" aria-hidden="true" title="Descargar"></i>
+                        @if ($audioFile->exists($resource))
 
-                        <a href="{!! route('download-audio', $resource->slug) !!}"
-                           title="Descargar en formato audio {!! $resource->title() !!}">Descargar audio</a>
-
-                    @else
-                        <a href="#"
-                           class="open-modal-download-audio"
-                           title="Descargar el audio de {!! $resource->title() !!}"
-                           data-toggle="modal"
-                           data-title="{!! $resource->title() !!}"
-                           data-url="{!! route('download-audio', $resource->slug) !!}"
-                           data-channel-name="{!! $resource->channel->first()->name() !!}"
-                           data-channel-url="{!! $resource->channel->first()->url() !!}"
-                           data-target="#modalDownloadAudio"
-                        >Descargar audio</a>
-
-                    @endif
-                </div>
+                            <a href="{!! route('download-audio', $resource->slug) !!}"
+                               title="Descargar en formato audio {!! $resource->title() !!}">Descargar audio</a>
+                        @else
+                            <a href="#"
+                               class="open-modal-download-audio"
+                               title="Descargar el audio de {!! $resource->title() !!}"
+                               data-toggle="modal"
+                               data-title="{!! $resource->title() !!}"
+                               data-url="{!! route('download-audio', $resource->slug) !!}"
+                               data-channel-name="{!! $resource->channel->first()->name() !!}"
+                               data-channel-url="{!! $resource->channel->first()->url() !!}"
+                               data-target="#modalDownloadAudio"
+                            >Descargar audio</a>
+                        @endif
+                    </div>
+                @endif
             @endif
 
         </div>
