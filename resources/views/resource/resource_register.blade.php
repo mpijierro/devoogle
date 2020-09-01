@@ -103,7 +103,7 @@
                 </div>
             @endif
 
-            @if (\Auth::check())
+            @if (request()->has('download'))
                 @if ($resource->isFromYoutubeChannel() AND !$resource->hasAudioCategory())
                 <!-- Download -->
                     <div class="col-xs-12 col-sm-3 ">
