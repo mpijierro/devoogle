@@ -7,8 +7,8 @@ use Devoogle\Src\Source\Model\Source;
 use Devoogle\Src\Source\Repository\SourceRepositoryWrite;
 use Devoogle\Src\SourceReader\Library\SourceProcessorInterface;
 use Devoogle\Src\SourceReader\Model\YoutubeChannel;
-use Devoogle\Src\SourceReader\VideoChannel\Repository\YoutubeChannelRepositoryRead;
-use Devoogle\Src\SourceReader\VideoChannel\Repository\YoutubeChannelRepositoryWrite;
+use Devoogle\Src\SourceReader\Repository\YoutubeChannelRepositoryRead;
+use Devoogle\Src\SourceReader\Repository\YoutubeChannelRepositoryWrite;
 
 class Processor implements SourceProcessorInterface
 {

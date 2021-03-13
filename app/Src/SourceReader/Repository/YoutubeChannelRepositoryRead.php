@@ -1,6 +1,6 @@
 <?php
 
-namespace Devoogle\Src\SourceReader\VideoChannel\Repository;
+namespace Devoogle\Src\SourceReader\Repository;
 
 use Devoogle\Src\SourceReader\Model\YoutubeChannel;
 
