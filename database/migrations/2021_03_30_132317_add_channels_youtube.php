@@ -13,16 +13,7 @@ class AddChannelsYoutube extends Migration
      */
     public function up()
     {
-        //
-    }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
         $this->addById('UC8LeXCWOalN8SxlrPcG-PaQ', 'midudev', 'midudev');
         $this->addById('UCxPD7bsocoAMq8Dj18kmGyQ', 'moureddev', 'MoureDev');
         $this->addById('UCSf6S_PAhXsqGMTPDiKgdRg', 'betta-tech', 'BettaTech');
@@ -50,6 +41,15 @@ class AddChannelsYoutube extends Migration
         $this->addById('UCTTj5ztXnGeDRPFVsBp7VMA', 'rambito-js', 'Rambito JS');
         $this->addById('UCPbFiM-HA4lwJH12JXdXxDA', 'ada-lovecode-didacticode', 'Ada Lovecode - Didacticode');
         $this->addById('UCpQ-bXwyPRgA0qHcmD1fwow', 'bytes-and-humans ', 'BytesAndHumans ');
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
     }
 
     private function addById (string $slugId, string $slugName, string $name){
