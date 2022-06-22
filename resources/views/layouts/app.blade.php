@@ -115,8 +115,6 @@
             <div class="col-sm-3 sidebar">
                 @include('sidebar.sidebar_search')
                 @include('sidebar.sidebar_category')
-                @include('sidebar.sidebar_author')
-                @include('sidebar.sidebar_event')
                 @include('sidebar.sidebar_technology')
                 @include('sidebar.sidebar_tag')
                 @include('sidebar.sidebar_top')
