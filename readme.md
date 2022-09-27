@@ -1,4 +1,3 @@
-
 ## Devoogle
 
 Devoogle es una librería multimedia para gestionar y organizar recursos de programación.
@@ -8,3 +7,15 @@ Devoogle es una librería multimedia para gestionar y organizar recursos de prog
 ## License
 
 Este software está licenciado con licencia [MIT](http://opensource.org/licenses/MIT).
+
+# App
+
+Actualizar youtube-dl
+
+sudo curl -L https://yt-dl.org/downloads/latest/youtube-dl -o /usr/local/bin/youtube-dl
+
+Supervisor cd /etc/supervisor/conf.d
+
+- revisar worker de laravel
+
+sudo systemctl status supervisor
